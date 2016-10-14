@@ -8,13 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120E2271DA9E72800921288 /* AppDelegate.swift */; };
-		B120E22D1DA9E72800921288 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B120E22B1DA9E72800921288 /* Main.storyboard */; };
 		B120E22F1DA9E72800921288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B120E22E1DA9E72800921288 /* Assets.xcassets */; };
 		B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B120E2301DA9E72800921288 /* LaunchScreen.storyboard */; };
-		B120E23D1DA9E72800921288 /* ______Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120E23C1DA9E72800921288 /* ______Tests.swift */; };
-		B120E2481DA9E72800921288 /* ______UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120E2471DA9E72800921288 /* ______UITests.swift */; };
 		B120E2561DA9E99300921288 /* RankListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120E2551DA9E99300921288 /* RankListTableViewController.swift */; };
-		B120E2591DA9EA2200921288 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120E2581DA9EA2200921288 /* Book.swift */; };
+		B17E03C91DB095B90061DD47 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03C11DB095B90061DD47 /* Book.swift */; };
+		B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03CA1DB098350061DD47 /* MainViewController.swift */; };
+		B17E03CD1DB0984E0061DD47 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03CC1DB0984E0061DD47 /* BaseViewController.swift */; };
+		B17E03CF1DB0987A0061DD47 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03CE1DB0987A0061DD47 /* NavigationViewController.swift */; };
+		B17E03D11DB098CF0061DD47 /* RankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03D01DB098CF0061DD47 /* RankViewController.swift */; };
+		B17E03D31DB098E00061DD47 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03D21DB098E00061DD47 /* RecommendViewController.swift */; };
+		B17E03D51DB098F20061DD47 /* HotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03D41DB098F20061DD47 /* HotViewController.swift */; };
+		B17E03D81DB099380061DD47 /* BookshelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03D71DB099380061DD47 /* BookshelfViewController.swift */; };
+		B17E03DB1DB09B830061DD47 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03DA1DB09B830061DD47 /* Bundle+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,18 +42,21 @@
 /* Begin PBXFileReference section */
 		B120E2241DA9E72800921288 /* 小说搜索阅读.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "小说搜索阅读.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B120E2271DA9E72800921288 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B120E22C1DA9E72800921288 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B120E22E1DA9E72800921288 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B120E2311DA9E72800921288 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B120E2331DA9E72800921288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B120E2381DA9E72800921288 /* 小说搜索阅读Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "小说搜索阅读Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B120E23C1DA9E72800921288 /* ______Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "______Tests.swift"; sourceTree = "<group>"; };
-		B120E23E1DA9E72800921288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B120E2431DA9E72800921288 /* 小说搜索阅读UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "小说搜索阅读UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B120E2471DA9E72800921288 /* ______UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "______UITests.swift"; sourceTree = "<group>"; };
-		B120E2491DA9E72800921288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B120E2551DA9E99300921288 /* RankListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankListTableViewController.swift; sourceTree = "<group>"; };
-		B120E2581DA9EA2200921288 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		B17E03C11DB095B90061DD47 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		B17E03CA1DB098350061DD47 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B17E03CC1DB0984E0061DD47 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		B17E03CE1DB0987A0061DD47 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		B17E03D01DB098CF0061DD47 /* RankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankViewController.swift; sourceTree = "<group>"; };
+		B17E03D21DB098E00061DD47 /* RecommendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
+		B17E03D41DB098F20061DD47 /* HotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotViewController.swift; sourceTree = "<group>"; };
+		B17E03D71DB099380061DD47 /* BookshelfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookshelfViewController.swift; sourceTree = "<group>"; };
+		B17E03DA1DB09B830061DD47 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				B120E2261DA9E72800921288 /* 小说搜索阅读 */,
-				B120E23B1DA9E72800921288 /* 小说搜索阅读Tests */,
-				B120E2461DA9E72800921288 /* 小说搜索阅读UITests */,
 				B120E2251DA9E72800921288 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,41 +105,102 @@
 		B120E2261DA9E72800921288 /* 小说搜索阅读 */ = {
 			isa = PBXGroup;
 			children = (
-				B120E2571DA9E9F900921288 /* Model */,
+				B17E03C01DB095B90061DD47 /* Model */,
+				B17E03C31DB095B90061DD47 /* View */,
+				B17E03C81DB095B90061DD47 /* ViewModel */,
 				B120E2271DA9E72800921288 /* AppDelegate.swift */,
-				B120E22B1DA9E72800921288 /* Main.storyboard */,
 				B120E22E1DA9E72800921288 /* Assets.xcassets */,
 				B120E2301DA9E72800921288 /* LaunchScreen.storyboard */,
 				B120E2331DA9E72800921288 /* Info.plist */,
 				B120E2551DA9E99300921288 /* RankListTableViewController.swift */,
+				B17E03C21DB095B90061DD47 /* Tools */,
 			);
 			path = "小说搜索阅读";
 			sourceTree = "<group>";
 		};
-		B120E23B1DA9E72800921288 /* 小说搜索阅读Tests */ = {
+		B17E03C01DB095B90061DD47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B120E23C1DA9E72800921288 /* ______Tests.swift */,
-				B120E23E1DA9E72800921288 /* Info.plist */,
+				B17E03C11DB095B90061DD47 /* Book.swift */,
 			);
-			path = "小说搜索阅读Tests";
+			path = Model;
 			sourceTree = "<group>";
 		};
-		B120E2461DA9E72800921288 /* 小说搜索阅读UITests */ = {
+		B17E03C21DB095B90061DD47 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				B120E2471DA9E72800921288 /* ______UITests.swift */,
-				B120E2491DA9E72800921288 /* Info.plist */,
+				B17E03D91DB09B3C0061DD47 /* Extensions */,
 			);
-			path = "小说搜索阅读UITests";
+			path = Tools;
 			sourceTree = "<group>";
 		};
-		B120E2571DA9E9F900921288 /* Model */ = {
+		B17E03C31DB095B90061DD47 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B120E2581DA9EA2200921288 /* Book.swift */,
+				B17E03C51DB095B90061DD47 /* Main */,
+				B17E03D61DB099120061DD47 /* Bookshelf */,
+				B17E03C61DB095B90061DD47 /* Rank */,
+				B17E03C71DB095B90061DD47 /* Recommend */,
+				B17E03C41DB095B90061DD47 /* Hot */,
 			);
-			name = Model;
+			path = View;
+			sourceTree = "<group>";
+		};
+		B17E03C41DB095B90061DD47 /* Hot */ = {
+			isa = PBXGroup;
+			children = (
+				B17E03D41DB098F20061DD47 /* HotViewController.swift */,
+			);
+			path = Hot;
+			sourceTree = "<group>";
+		};
+		B17E03C51DB095B90061DD47 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B17E03CA1DB098350061DD47 /* MainViewController.swift */,
+				B17E03CC1DB0984E0061DD47 /* BaseViewController.swift */,
+				B17E03CE1DB0987A0061DD47 /* NavigationViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		B17E03C61DB095B90061DD47 /* Rank */ = {
+			isa = PBXGroup;
+			children = (
+				B17E03D01DB098CF0061DD47 /* RankViewController.swift */,
+			);
+			path = Rank;
+			sourceTree = "<group>";
+		};
+		B17E03C71DB095B90061DD47 /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				B17E03D21DB098E00061DD47 /* RecommendViewController.swift */,
+			);
+			path = Recommend;
+			sourceTree = "<group>";
+		};
+		B17E03C81DB095B90061DD47 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B17E03D61DB099120061DD47 /* Bookshelf */ = {
+			isa = PBXGroup;
+			children = (
+				B17E03D71DB099380061DD47 /* BookshelfViewController.swift */,
+			);
+			path = Bookshelf;
+			sourceTree = "<group>";
+		};
+		B17E03D91DB09B3C0061DD47 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B17E03DA1DB09B830061DD47 /* Bundle+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,7 +315,6 @@
 			files = (
 				B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */,
 				B120E22F1DA9E72800921288 /* Assets.xcassets in Resources */,
-				B120E22D1DA9E72800921288 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,9 +339,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B120E2591DA9EA2200921288 /* Book.swift in Sources */,
+				B17E03CF1DB0987A0061DD47 /* NavigationViewController.swift in Sources */,
+				B17E03D31DB098E00061DD47 /* RecommendViewController.swift in Sources */,
+				B17E03DB1DB09B830061DD47 /* Bundle+Extensions.swift in Sources */,
+				B17E03CD1DB0984E0061DD47 /* BaseViewController.swift in Sources */,
+				B17E03D51DB098F20061DD47 /* HotViewController.swift in Sources */,
+				B17E03D11DB098CF0061DD47 /* RankViewController.swift in Sources */,
+				B17E03C91DB095B90061DD47 /* Book.swift in Sources */,
+				B17E03D81DB099380061DD47 /* BookshelfViewController.swift in Sources */,
 				B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */,
 				B120E2561DA9E99300921288 /* RankListTableViewController.swift in Sources */,
+				B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,7 +357,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B120E23D1DA9E72800921288 /* ______Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +364,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B120E2481DA9E72800921288 /* ______UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,14 +383,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B120E22B1DA9E72800921288 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B120E22C1DA9E72800921288 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B120E2301DA9E72800921288 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -427,6 +491,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Z532NADQBJ;
 				INFOPLIST_FILE = "小说搜索阅读/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.testapp.------";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -440,6 +505,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Z532NADQBJ;
 				INFOPLIST_FILE = "小说搜索阅读/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.testapp.------";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -524,6 +590,7 @@
 				B120E24E1DA9E72800921288 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B120E24F1DA9E72800921288 /* Build configuration list for PBXNativeTarget "小说搜索阅读Tests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +599,7 @@
 				B120E2511DA9E72800921288 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B120E2521DA9E72800921288 /* Build configuration list for PBXNativeTarget "小说搜索阅读UITests" */ = {
 			isa = XCConfigurationList;
@@ -540,6 +608,7 @@
 				B120E2541DA9E72800921288 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
