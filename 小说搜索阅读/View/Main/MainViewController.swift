@@ -8,16 +8,16 @@
 
 import UIKit
 
+
+var  userLogon = false
+
 class MainViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        
         setupChildControllers()
-        
-        
         
     }
     
@@ -35,18 +35,17 @@ extension MainViewController {
         
         var  array = [
             
-            ["clsName": "RankViewController", "title": "排行榜", "imageName" : "home"],
-            ["clsName": "RecommendViewController", "title": "推荐", "imageName" : "message_center"],
+            ["clsName": "RankViewController", "title": "排行榜", "imageName" : "rank"],
+            ["clsName": "RecommendViewController", "title": "推荐", "imageName" : "recommend"],
             ["clsName": "HotViewController", "title": "热门", "imageName" : "hot"],
-            
+             ["clsName": "HotViewController", "title": "设置", "imageName" : "setting"],
             ]
         
-       // var isLoaded:Bool = true
         
         
-        if true {
+        if userLogon {
             
-            array.insert( ["clsName": "RankViewController", "title": "个人书架", "imageName" : "profile"], at: 0)
+            array.insert( ["clsName": "BookshelfViewController", "title": "个人书架", "imageName" : "profile"], at: 0)
             
         }
         
@@ -86,7 +85,7 @@ extension MainViewController {
         
         vc.tabBarItem.image = UIImage(named: "tabbar_" + imageName)
         
-        vc.tabBarItem.selectedImage = UIImage(named: "tabbar_" + imageName + "_selected")
+       // vc.tabBarItem.selectedImage = UIImage(named: "tabbar_" + imageName + "_selected")
         
         
         // vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.], for: .highlighted)

@@ -11,6 +11,7 @@
 		B120E22F1DA9E72800921288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B120E22E1DA9E72800921288 /* Assets.xcassets */; };
 		B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B120E2301DA9E72800921288 /* LaunchScreen.storyboard */; };
 		B120E2561DA9E99300921288 /* RankListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120E2551DA9E99300921288 /* RankListTableViewController.swift */; };
+		B1378BD91DB4A5CC000D4FAE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */; };
 		B17E03C91DB095B90061DD47 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03C11DB095B90061DD47 /* Book.swift */; };
 		B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03CA1DB098350061DD47 /* MainViewController.swift */; };
 		B17E03CD1DB0984E0061DD47 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03CC1DB0984E0061DD47 /* BaseViewController.swift */; };
@@ -48,6 +49,7 @@
 		B120E2381DA9E72800921288 /* 小说搜索阅读Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "小说搜索阅读Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B120E2431DA9E72800921288 /* 小说搜索阅读UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "小说搜索阅读UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B120E2551DA9E99300921288 /* RankListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankListTableViewController.swift; sourceTree = "<group>"; };
+		B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B17E03C11DB095B90061DD47 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		B17E03CA1DB098350061DD47 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B17E03CC1DB0984E0061DD47 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,14 @@
 			path = "小说搜索阅读";
 			sourceTree = "<group>";
 		};
+		B1378BD71DB4A5A0000D4FAE /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		B17E03C01DB095B90061DD47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +152,7 @@
 				B17E03C61DB095B90061DD47 /* Rank */,
 				B17E03C71DB095B90061DD47 /* Recommend */,
 				B17E03C41DB095B90061DD47 /* Hot */,
+				B1378BD71DB4A5A0000D4FAE /* Setting */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -350,6 +361,7 @@
 				B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */,
 				B120E2561DA9E99300921288 /* RankListTableViewController.swift in Sources */,
 				B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */,
+				B1378BD91DB4A5CC000D4FAE /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

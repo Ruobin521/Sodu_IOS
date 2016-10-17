@@ -21,18 +21,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window?.backgroundColor = UIColor.white
         
+        
+
+        if  arc4random() % 2  == 0 {
+            
+          userLogon = false
+            
+        }
+        
         window?.rootViewController = MainViewController()
         
-        
         window?.makeKeyAndVisible()
-       
-        
-        
         
         return true
     }
 
    
+    //        if userLogon == false  {
+    //
+    //
+    //            let tempAppDelegate = UIApplication.shared.delegate;
+    //
+    //            let main =     tempAppDelegate!.window!!.rootViewController as! MainViewController ;
+    //
+    //
+    //            let item =  ["clsName": "BookshelfViewController", "title": "个人书架", "imageName" : "profile"]
+    //
+    //            main.viewControllers?.insert(main.createController(dic: item), at: 0)
+    //
+    //
+    ////            main.reloadInputViews()
+    ////
+    ////            main.tabBar.reloadInputViews()
+    //
+    //
+    //
+    //
+    //
+    //        }
 
 }
 
