@@ -26,6 +26,7 @@ class RankViewController: BaseViewController {
             return
         }
         
+        pageIndex = 0
         loadDataByPageIndex(0)
         
     }
