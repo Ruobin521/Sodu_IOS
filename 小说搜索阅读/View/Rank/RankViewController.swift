@@ -15,22 +15,32 @@ class RankViewController: BaseViewController {
     
     lazy var bookList = [Book]()
     
+    let pageCount = 8
     
     var pageIndex = 0
     
     override func InitData() {
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        if  isLoading  {
+            
+            return
+        }
         
         loadDataByPageIndex(0)
         
-   
     }
     
     
     override func loadData() {
         
+        if  isLoading  || pageIndex == pageCount - 1 {
+            
+            return
+        }
+        
         pageIndex += 1
+        
+        isPullup = true
         
         loadDataByPageIndex(pageIndex)
         
@@ -39,6 +49,11 @@ class RankViewController: BaseViewController {
     
     
     func loadDataByPageIndex(_ pageindex: Int) {
+        
+        
+        isLoading = true
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         requestData(pageindex) { (list) in
             
@@ -51,10 +66,9 @@ class RankViewController: BaseViewController {
             self.bookList += list
             
             self.tableview?.reloadData()
+            
+            super.endLoadData()
         }
-        
-        
-        super.endLoadData()
         
     }
     
@@ -69,10 +83,12 @@ extension RankViewController {
     ///加载网页数据
     func requestData(_ index:Int, completion: @escaping (_ list : [Book]) ->())   {
         
+        
+        
         var html: String?
         
         
-        let urlStr = index == 0 ? "http://www.sodu.cc/top.html" : "http://www.sodu.cc/top_\(index).html"
+        let urlStr =  "http://www.sodu.cc/top_\(index + 1).html"
         
         let url = URL(string: urlStr)
         
@@ -82,11 +98,11 @@ extension RankViewController {
         
         request.timeoutInterval = 30
         //请求方式，跟OC一样的
-        request.httpMethod = "POST"
+        request.httpMethod = "GET"
         
         // request.httpBody = String.init(data: " ", encoding:  String.Encoding.utf8)
         
-        print ("开始加载数据")
+        print ("开始加载数据第 \(index + 1) 页数据")
         
         
         URLSession.shared.dataTask(with: request as URLRequest) { (data, _, error) in
@@ -95,6 +111,8 @@ extension RankViewController {
             {
                 return
             }
+            
+            // Thread.sleep(forTimeInterval: 5)
             
             html = String(data: data!, encoding: .utf8)
             

@@ -49,8 +49,6 @@ class BaseViewController: UIViewController {
     
     /// 初始化数据（下拉刷新）
     func InitData()  {
-       
-      
         
         endLoadData()
     }
@@ -59,19 +57,20 @@ class BaseViewController: UIViewController {
     ///加载数据（上拉加载）
     func loadData() -> () {
         
-        
         endLoadData()
         
     }
-     
+    
     
     func endLoadData() {
         
         refreshControl?.endRefreshing()
         
-        tableview?.reloadData()
-       
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        
+        isLoading = false
+        
+        isPullup = false
     }
     
 }
@@ -148,11 +147,13 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-       
+        
         
         let row = indexPath.row
         
-        if (row == tableView.numberOfRows(inSection: 0) - 1) && !isPullup {
+        let count  =  tableView.numberOfRows(inSection: 0) - 1
+        
+        if (row == count) && !isPullup {
             
             loadData()
         }
