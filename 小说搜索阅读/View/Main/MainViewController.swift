@@ -24,6 +24,14 @@ class MainViewController: UITabBarController {
         
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        
+        return .portrait
+    }
+    
+    
+    
+    
     var lastDate: NSDate?
     var selectedVC:BaseViewController?
     

@@ -10,6 +10,7 @@
 		B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120E2271DA9E72800921288 /* AppDelegate.swift */; };
 		B120E22F1DA9E72800921288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B120E22E1DA9E72800921288 /* Assets.xcassets */; };
 		B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B120E2301DA9E72800921288 /* LaunchScreen.storyboard */; };
+		B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12CD5561DB687EE00377450 /* HttpUtil.swift */; };
 		B1378BD91DB4A5CC000D4FAE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */; };
 		B17E03C91DB095B90061DD47 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03C11DB095B90061DD47 /* Book.swift */; };
 		B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03CA1DB098350061DD47 /* MainViewController.swift */; };
@@ -48,6 +49,7 @@
 		B120E2331DA9E72800921288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B120E2381DA9E72800921288 /* 小说搜索阅读Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "小说搜索阅读Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B120E2431DA9E72800921288 /* 小说搜索阅读UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "小说搜索阅读UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B12CD5561DB687EE00377450 /* HttpUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpUtil.swift; sourceTree = "<group>"; };
 		B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B17E03C11DB095B90061DD47 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		B17E03CA1DB098350061DD47 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				B17E03D91DB09B3C0061DD47 /* Extensions */,
 				B1904FB01DB605C900534AD6 /* ToastView.swift */,
+				B12CD5561DB687EE00377450 /* HttpUtil.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				B17E03D51DB098F20061DD47 /* HotViewController.swift in Sources */,
 				B17E03D11DB098CF0061DD47 /* RankViewController.swift in Sources */,
 				B17E03C91DB095B90061DD47 /* Book.swift in Sources */,
+				B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */,
 				B1904FB11DB605C900534AD6 /* ToastView.swift in Sources */,
 				B17E03D81DB099380061DD47 /* BookshelfViewController.swift in Sources */,
 				B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */,

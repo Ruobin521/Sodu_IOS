@@ -36,7 +36,7 @@ class RankViewController: BaseViewController {
     
     
     override func pullDownToLoadData() {
-   
+        
         refreshControl?.endRefreshing()
         
         InitData()
@@ -68,9 +68,9 @@ class RankViewController: BaseViewController {
         
         ToastView.instance.showLoadingView()
         
-        requestData(pageindex) { (list) in
+        requestData(pageindex) { (html,isSuccess) in
             
-            if list.count == 0 {
+            if !isSuccess {
                 
                 ToastView.instance.showToast(content: "第\(pageindex+1)页数据加载失败",nil)
                 
@@ -84,16 +84,21 @@ class RankViewController: BaseViewController {
                 
             }
             
-            self.bookList += list
-            
-            self.tableview?.reloadData()
-            
-            super.endLoadData()
-            
-            ToastView.instance.showToast(content: "已加载排行榜第\(pageindex+1)页数据",nil)
-            
-            self.navItem.title = "排行榜 - \(pageindex+1) / 8"
-            
+            let tempList =   self.analisysHtml(html)
+
+            DispatchQueue.main.async {
+                
+                self.bookList += tempList
+                
+                self.tableview?.reloadData()
+                
+                super.endLoadData()
+                
+                ToastView.instance.showToast(content: "已加载排行榜第\(pageindex+1)页数据",nil)
+                
+                self.navItem.title = "排行榜 - \(pageindex+1) / 8"
+                
+            }
         }
         
     }
@@ -107,49 +112,11 @@ extension RankViewController {
     
     
     ///加载网页数据
-    func requestData(_ index:Int, completion: @escaping (_ list : [Book]) ->())   {
-        
-        
-        
-        var html: String?
-        
+    fileprivate   func requestData(_ index:Int, completion: @escaping ( _ html:String?  , _ isSucces:Bool) ->())   {
         
         let urlStr =  "http://www.sodu.cc/top_\(index + 1).html"
         
-        let url = URL(string: urlStr)
-        
-        let request = NSMutableURLRequest.init(url: url!)
-        
-        // 设置请求超时时间
-        
-        request.timeoutInterval = 30
-        //请求方式，跟OC一样的
-        request.httpMethod = "GET"
-        
-        // request.httpBody = String.init(data: " ", encoding:  String.Encoding.utf8)
-        
-        print ("开始加载数据第 \(index + 1) 页数据")
-        
-        
-        URLSession.shared.dataTask(with: request as URLRequest) { (data, _, error) in
-            
-            if(data == nil)
-            {
-                return
-            }
-            
-            // Thread.sleep(forTimeInterval: 5)
-            
-            html = String(data: data!, encoding: .utf8)
-            
-            if  html != nil {
-                DispatchQueue.main.async {
-                    
-                    completion(self.AnalisysHtml(html))
-                }
-                
-            }
-            }.resume()
+        HttpUtil.instance.request(url: urlStr, requestMethod: .GET, postStr: nil, completion: completion  )
         
     }
     
@@ -157,7 +124,7 @@ extension RankViewController {
     
     
     ///MARK: - 解析排行榜页面数据
-    private func AnalisysHtml(_ str:String?) -> [Book]
+    fileprivate func analisysHtml(_ str:String?) -> [Book]
     {
         var  list = [Book]()
         

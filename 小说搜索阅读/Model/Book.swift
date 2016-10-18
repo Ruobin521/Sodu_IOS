@@ -21,4 +21,25 @@ class Book: NSObject {
     
     var   updateListPageUrl : String?
     
+    var   updateTime:String?
+    
+    var   coverImageName:String?
+    
+    var   catalogs:[Catalog]?
+   
+}
+
+
+class Catalog:NSObject {
+    
+    
+    var booKId :String?
+    
+    var chapterName : String?
+    
+    var chapterUrl : String?
+    
+    var chapterContent : String?
+
+    
 }
