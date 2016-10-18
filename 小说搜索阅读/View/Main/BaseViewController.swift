@@ -73,11 +73,18 @@ class BaseViewController: UIViewController {
     ///滚到顶部
     func goToTop() {
         
+        if  tableview == nil   ||  tableview?.numberOfRows(inSection: 0) == 0 {
+            
+            return
+        }
+        
         let offset =  ((tableview?.contentOffset)?.y) ??  -50.0
         
         if  offset  <=  CGFloat(-50.0)    {
             
             InitData()
+            
+            return
         }
         
         if   (tableview?.numberOfRows(inSection: 0))! > 0 {
