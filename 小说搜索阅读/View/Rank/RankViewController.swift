@@ -19,6 +19,7 @@ class RankViewController: BaseViewController {
     
     var pageIndex = 0
     
+    
     override func InitData() {
         
         if  isLoading  {
@@ -32,7 +33,16 @@ class RankViewController: BaseViewController {
     }
     
     
-    override func loadData() {
+    
+    
+    override func pullDownToLoadData() {
+   
+        refreshControl?.endRefreshing()
+        
+        InitData()
+    }
+    
+    override func pullUpToloadData() {
         
         if  isLoading  || pageIndex == pageCount - 1 {
             
@@ -51,12 +61,22 @@ class RankViewController: BaseViewController {
     
     func loadDataByPageIndex(_ pageindex: Int) {
         
-        
         isLoading = true
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
+        
+        ToastView.instance.showLoadingView()
+        
         requestData(pageindex) { (list) in
+            
+            if list.count == 0 {
+                
+                ToastView.instance.showToast(content: "第\(pageindex+1)页数据加载失败",nil)
+                
+                return
+            }
+            
             
             if pageindex == 0 {
                 
@@ -69,6 +89,11 @@ class RankViewController: BaseViewController {
             self.tableview?.reloadData()
             
             super.endLoadData()
+            
+            ToastView.instance.showToast(content: "已加载排行榜第\(pageindex+1)页数据",nil)
+            
+            self.navItem.title = "排行榜 - \(pageindex+1) / 8"
+            
         }
         
     }
@@ -152,12 +177,10 @@ extension RankViewController {
         
         let result = regx.matches(in: html!, options:[], range: NSRange(location: 0, length: html!.characters.count))
         
-        
         if result.count==0 {
             
             return list
         }
-        
         
         for  checkRange in  result
         {

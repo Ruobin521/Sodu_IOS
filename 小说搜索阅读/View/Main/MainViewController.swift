@@ -13,6 +13,9 @@ var  userLogon = false
 
 class MainViewController: UITabBarController {
     
+    
+    var baseControllers:[BaseViewController]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,8 +24,42 @@ class MainViewController: UITabBarController {
         
     }
     
+    var lastDate: NSDate?
+    var selectedVC:BaseViewController?
     
-    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        
+        let date = NSDate()
+        
+        let tempvc = (viewControllers?[selectedIndex] as! UINavigationController).viewControllers[0] as! BaseViewController
+        
+        
+        if selectedVC == nil {
+            
+            lastDate = date
+            
+            selectedVC = tempvc
+            
+            return
+        }
+        
+        let second = (date.timeIntervalSince(lastDate as! Date)) as Double
+        
+        if tempvc == selectedVC   &&  second  <= 0.5 {
+            
+            selectedVC?.goToTop()
+            
+            selectedVC = nil
+            
+            lastDate = date
+            
+        }  else{
+            
+            lastDate = date
+            selectedVC = tempvc
+            
+        }
+    }
 }
 
 
@@ -38,7 +75,7 @@ extension MainViewController {
             ["clsName": "RankViewController", "title": "排行榜", "imageName" : "rank"],
             ["clsName": "RecommendViewController", "title": "推荐", "imageName" : "recommend"],
             ["clsName": "HotViewController", "title": "热门", "imageName" : "hot"],
-             ["clsName": "HotViewController", "title": "设置", "imageName" : "setting"],
+            ["clsName": "HotViewController", "title": "设置", "imageName" : "setting"],
             ]
         
         
@@ -85,7 +122,7 @@ extension MainViewController {
         
         vc.tabBarItem.image = UIImage(named: "tabbar_" + imageName)
         
-       // vc.tabBarItem.selectedImage = UIImage(named: "tabbar_" + imageName + "_selected")
+        // vc.tabBarItem.selectedImage = UIImage(named: "tabbar_" + imageName + "_selected")
         
         
         // vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.], for: .highlighted)

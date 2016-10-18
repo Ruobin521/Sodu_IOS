@@ -10,7 +10,6 @@
 		B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120E2271DA9E72800921288 /* AppDelegate.swift */; };
 		B120E22F1DA9E72800921288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B120E22E1DA9E72800921288 /* Assets.xcassets */; };
 		B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B120E2301DA9E72800921288 /* LaunchScreen.storyboard */; };
-		B120E2561DA9E99300921288 /* RankListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120E2551DA9E99300921288 /* RankListTableViewController.swift */; };
 		B1378BD91DB4A5CC000D4FAE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */; };
 		B17E03C91DB095B90061DD47 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03C11DB095B90061DD47 /* Book.swift */; };
 		B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03CA1DB098350061DD47 /* MainViewController.swift */; };
@@ -21,6 +20,7 @@
 		B17E03D51DB098F20061DD47 /* HotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03D41DB098F20061DD47 /* HotViewController.swift */; };
 		B17E03D81DB099380061DD47 /* BookshelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03D71DB099380061DD47 /* BookshelfViewController.swift */; };
 		B17E03DB1DB09B830061DD47 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03DA1DB09B830061DD47 /* Bundle+Extensions.swift */; };
+		B1904FB11DB605C900534AD6 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1904FB01DB605C900534AD6 /* ToastView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +48,6 @@
 		B120E2331DA9E72800921288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B120E2381DA9E72800921288 /* 小说搜索阅读Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "小说搜索阅读Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B120E2431DA9E72800921288 /* 小说搜索阅读UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "小说搜索阅读UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B120E2551DA9E99300921288 /* RankListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankListTableViewController.swift; sourceTree = "<group>"; };
 		B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B17E03C11DB095B90061DD47 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		B17E03CA1DB098350061DD47 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +58,7 @@
 		B17E03D41DB098F20061DD47 /* HotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotViewController.swift; sourceTree = "<group>"; };
 		B17E03D71DB099380061DD47 /* BookshelfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookshelfViewController.swift; sourceTree = "<group>"; };
 		B17E03DA1DB09B830061DD47 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		B1904FB01DB605C900534AD6 /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +114,6 @@
 				B120E22E1DA9E72800921288 /* Assets.xcassets */,
 				B120E2301DA9E72800921288 /* LaunchScreen.storyboard */,
 				B120E2331DA9E72800921288 /* Info.plist */,
-				B120E2551DA9E99300921288 /* RankListTableViewController.swift */,
 				B17E03C21DB095B90061DD47 /* Tools */,
 			);
 			path = "小说搜索阅读";
@@ -140,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				B17E03D91DB09B3C0061DD47 /* Extensions */,
+				B1904FB01DB605C900534AD6 /* ToastView.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -357,9 +357,9 @@
 				B17E03D51DB098F20061DD47 /* HotViewController.swift in Sources */,
 				B17E03D11DB098CF0061DD47 /* RankViewController.swift in Sources */,
 				B17E03C91DB095B90061DD47 /* Book.swift in Sources */,
+				B1904FB11DB605C900534AD6 /* ToastView.swift in Sources */,
 				B17E03D81DB099380061DD47 /* BookshelfViewController.swift in Sources */,
 				B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */,
-				B120E2561DA9E99300921288 /* RankListTableViewController.swift in Sources */,
 				B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */,
 				B1378BD91DB4A5CC000D4FAE /* SettingViewController.swift in Sources */,
 			);

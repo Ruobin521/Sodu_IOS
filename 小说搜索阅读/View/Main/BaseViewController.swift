@@ -14,6 +14,8 @@ class BaseViewController: UIViewController {
     
     var isPullup = false
     
+    var isPullDown = false
+    
     var tableview:UITableView?
     
     var refreshControl:UIRefreshControl?
@@ -47,17 +49,44 @@ class BaseViewController: UIViewController {
     }
     
     
-    /// 初始化数据（下拉刷新）
+    /// 初始化数据
     func InitData()  {
         
         endLoadData()
     }
     
     
-    ///加载数据（上拉加载）
-    func loadData() -> () {
+    /// （下拉刷新）
+    func pullDownToLoadData()  {
         
         endLoadData()
+    }
+    
+    
+    ///（上拉加载）
+    func pullUpToloadData() -> () {
+        
+        endLoadData()
+        
+    }
+    
+    ///滚到顶部
+    func goToTop() {
+        
+        let offset =  ((tableview?.contentOffset)?.y) ??  -50.0
+        
+        if  offset  <=  CGFloat(-50.0)    {
+            
+            InitData()
+        }
+        
+        if   (tableview?.numberOfRows(inSection: 0))! > 0 {
+            
+            let indexPath = IndexPath(row: 0, section: 0)
+            
+            tableview?.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        }
+        
         
     }
     
@@ -71,7 +100,13 @@ class BaseViewController: UIViewController {
         isLoading = false
         
         isPullup = false
+        
+        isPullDown = false
+        
     }
+    
+    
+
     
 }
 
@@ -100,9 +135,10 @@ extension BaseViewController {
         
         refreshControl = UIRefreshControl()
         
-        refreshControl?.tintColor = self.view.tintColor
+        refreshControl?.tintColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)
+
         
-        refreshControl?.addTarget(self, action: #selector(InitData), for: .valueChanged)
+        refreshControl?.addTarget(self, action: #selector(pullDownToLoadData), for: .valueChanged)
         
         tableview?.addSubview(refreshControl!)
         
@@ -120,6 +156,8 @@ extension BaseViewController {
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent;
+        
+      
     }
     
     
@@ -155,7 +193,7 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
         
         if (row == count) && !isPullup {
             
-            loadData()
+            pullUpToloadData()
         }
         
     }
