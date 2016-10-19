@@ -9,7 +9,7 @@
 import UIKit
 
 
-var  userLogon = false
+
 
 class MainViewController: UITabBarController {
     
@@ -57,7 +57,7 @@ class MainViewController: UITabBarController {
             
             selectedVC?.goToTop()
             
-            selectedVC = nil
+            selectedVC = tempvc
             
             lastDate = date
             
@@ -83,7 +83,7 @@ extension MainViewController {
             ["clsName": "RankViewController", "title": "排行榜", "imageName" : "rank"],
             ["clsName": "RecommendViewController", "title": "推荐", "imageName" : "recommend"],
             ["clsName": "HotViewController", "title": "热门", "imageName" : "hot"],
-            ["clsName": "HotViewController", "title": "设置", "imageName" : "setting"],
+            ["clsName": "SettingViewController", "title": "设置", "imageName" : "setting"],
             ]
         
         

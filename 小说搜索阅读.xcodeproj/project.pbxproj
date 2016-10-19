@@ -22,6 +22,10 @@
 		B17E03D81DB099380061DD47 /* BookshelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03D71DB099380061DD47 /* BookshelfViewController.swift */; };
 		B17E03DB1DB09B830061DD47 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03DA1DB09B830061DD47 /* Bundle+Extensions.swift */; };
 		B1904FB11DB605C900534AD6 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1904FB01DB605C900534AD6 /* ToastView.swift */; };
+		B1904FB41DB728EA00534AD6 /* ConstantUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1904FB31DB728EA00534AD6 /* ConstantUrl.swift */; };
+		B1904FB61DB75E9900534AD6 /* AnalisysHtmlHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1904FB51DB75E9900534AD6 /* AnalisysHtmlHelper.swift */; };
+		B1904FB81DB7866900534AD6 /* BookCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1904FB71DB7866900534AD6 /* BookCacheHelper.swift */; };
+		B1904FBA1DB79A9800534AD6 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1904FB91DB79A9800534AD6 /* JSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +65,10 @@
 		B17E03D71DB099380061DD47 /* BookshelfViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookshelfViewController.swift; sourceTree = "<group>"; };
 		B17E03DA1DB09B830061DD47 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
 		B1904FB01DB605C900534AD6 /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		B1904FB31DB728EA00534AD6 /* ConstantUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantUrl.swift; sourceTree = "<group>"; };
+		B1904FB51DB75E9900534AD6 /* AnalisysHtmlHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalisysHtmlHelper.swift; sourceTree = "<group>"; };
+		B1904FB71DB7866900534AD6 /* BookCacheHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCacheHelper.swift; sourceTree = "<group>"; };
+		B1904FB91DB79A9800534AD6 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +117,7 @@
 		B120E2261DA9E72800921288 /* 小说搜索阅读 */ = {
 			isa = PBXGroup;
 			children = (
+				B1904FB21DB728BD00534AD6 /* Constants */,
 				B17E03C01DB095B90061DD47 /* Model */,
 				B17E03C31DB095B90061DD47 /* View */,
 				B17E03C81DB095B90061DD47 /* ViewModel */,
@@ -143,6 +152,9 @@
 				B17E03D91DB09B3C0061DD47 /* Extensions */,
 				B1904FB01DB605C900534AD6 /* ToastView.swift */,
 				B12CD5561DB687EE00377450 /* HttpUtil.swift */,
+				B1904FB51DB75E9900534AD6 /* AnalisysHtmlHelper.swift */,
+				B1904FB71DB7866900534AD6 /* BookCacheHelper.swift */,
+				B1904FB91DB79A9800534AD6 /* JSON.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -215,6 +227,14 @@
 				B17E03DA1DB09B830061DD47 /* Bundle+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B1904FB21DB728BD00534AD6 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				B1904FB31DB728EA00534AD6 /* ConstantUrl.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +376,7 @@
 				B17E03CF1DB0987A0061DD47 /* NavigationViewController.swift in Sources */,
 				B17E03D31DB098E00061DD47 /* RecommendViewController.swift in Sources */,
 				B17E03DB1DB09B830061DD47 /* Bundle+Extensions.swift in Sources */,
+				B1904FB61DB75E9900534AD6 /* AnalisysHtmlHelper.swift in Sources */,
 				B17E03CD1DB0984E0061DD47 /* BaseViewController.swift in Sources */,
 				B17E03D51DB098F20061DD47 /* HotViewController.swift in Sources */,
 				B17E03D11DB098CF0061DD47 /* RankViewController.swift in Sources */,
@@ -366,6 +387,9 @@
 				B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */,
 				B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */,
 				B1378BD91DB4A5CC000D4FAE /* SettingViewController.swift in Sources */,
+				B1904FBA1DB79A9800534AD6 /* JSON.swift in Sources */,
+				B1904FB41DB728EA00534AD6 /* ConstantUrl.swift in Sources */,
+				B1904FB81DB7866900534AD6 /* BookCacheHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

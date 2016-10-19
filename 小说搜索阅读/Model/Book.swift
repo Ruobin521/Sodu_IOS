@@ -8,10 +8,10 @@
 
 import UIKit
 
-class Book: NSObject {
+class Book: NSObject,JSON {
     
     
-    var   boolId :String?
+    var   bookId :String?
     
     var   bookName : String?
     

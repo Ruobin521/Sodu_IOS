@@ -8,28 +8,120 @@
 
 import UIKit
 
+//class BookshelfViewController: BaseViewController {
+
+
+private let cellId = "cellId"
+
 class BookshelfViewController: BaseViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    lazy var bookList = [Book]()
+    
+    let pageCount = 8
+    
+    var pageIndex = 0
+    
+    
+    override func InitData() {
+        
+        if  isLoading  {
+            
+            return
+        }
+        
+        pageIndex = 0
+        loadDataByPageIndex(0)
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
+    
+    override func pullDownToLoadData() {
+        
+        refreshControl?.endRefreshing()
+        
+        InitData()
     }
-    */
+    
+    
+    
+    func loadDataByPageIndex(_ pageindex: Int) {
+        
+        isLoading = true
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        
+        ToastView.instance.showLoadingView()
+        
+        HttpUtil.instance.request(url: SoDuUrl.homePage, requestMethod: .GET, postStr: nil)  { (html,isSuccess) in
+            
+            if !isSuccess {
+                
+                ToastView.instance.showToast(content: "个人收藏数据加载失败",nil)
+                
+                return
+            }
+            
+            
+            if pageindex == 0 {
+                
+                self.bookList.removeAll()
+                
+            }
+             
+            
+            DispatchQueue.main.async {
+                
+                self.bookList +=  AnalisysHtmlHelper.analisysBookShelfHtml(html)
+                
+                self.tableview?.reloadData()
+                
+                super.endLoadData()
+                
+                ToastView.instance.showToast(content: "已加载个人收藏数据",nil)
+                
+            }
+        }
+        
+    }
+    
+    
+}
 
+
+
+extension BookshelfViewController {
+    
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return bookList.count
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        
+        cell.textLabel?.text = bookList[indexPath.row].bookName
+        
+        return cell
+    }
+    
+}
+
+
+extension BookshelfViewController {
+    
+    
+    override func setupUI() {
+        
+        super.setupUI()
+        
+        tableview?.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        
+    }
+    
 }

@@ -26,6 +26,8 @@ class BaseViewController: UIViewController {
     
     
     
+    
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -73,7 +75,7 @@ class BaseViewController: UIViewController {
     ///滚到顶部
     func goToTop() {
         
-        if  tableview == nil   ||  tableview?.numberOfRows(inSection: 0) == 0 {
+        if  tableview == nil   || tableview?.numberOfSections == 0  || tableview?.numberOfRows(inSection: 0) == 0 {
             
             return
         }

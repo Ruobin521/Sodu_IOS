@@ -8,6 +8,8 @@
 
 import UIKit
 
+var  userLogon = true
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -25,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if  arc4random() % 2  == 0 {
             
-          userLogon = false
+          userLogon = true
             
         }
         

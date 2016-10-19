@@ -27,12 +27,21 @@ class RankViewController: BaseViewController {
             return
         }
         
+        let tempList =  BookCacheHelper.ReadBookListCacheFromFile(ListType.Rank)
+        
+        if (tempList.count) > 0 {
+            
+            bookList.removeAll()
+            
+            bookList += tempList
+            
+            tableview?.reloadData()
+        }
+        
         pageIndex = 0
         loadDataByPageIndex(0)
         
     }
-    
-    
     
     
     override func pullDownToLoadData() {
@@ -68,11 +77,15 @@ class RankViewController: BaseViewController {
         
         ToastView.instance.showLoadingView()
         
-        requestData(pageindex) { (html,isSuccess) in
+        let urlStr =  SoDuUrl.rankPage.replacingOccurrences(of: "_", with: "_\(pageindex + 1)")
+       
+        HttpUtil.instance.request(url: urlStr, requestMethod: .GET, postStr: nil)  { (html,isSuccess) in
             
             if !isSuccess {
                 
                 ToastView.instance.showToast(content: "第\(pageindex+1)页数据加载失败",nil)
+                
+                print("第\(pageindex+1)页数据加载失败")
                 
                 return
             }
@@ -84,11 +97,12 @@ class RankViewController: BaseViewController {
                 
             }
             
-            let tempList =   self.analisysHtml(html)
-
+            print("已获取到第\(pageindex+1)页数据，现在开始解析")
+            
+            
             DispatchQueue.main.async {
                 
-                self.bookList += tempList
+                self.bookList += AnalisysHtmlHelper.analisysRankHtml(html)
                 
                 self.tableview?.reloadData()
                 
@@ -98,7 +112,10 @@ class RankViewController: BaseViewController {
                 
                 self.navItem.title = "排行榜 - \(pageindex+1) / 8"
                 
+                BookCacheHelper.SavaBookListAsFile(self.bookList, .Rank)
+                
             }
+            
         }
         
     }
@@ -114,66 +131,11 @@ extension RankViewController {
     ///加载网页数据
     fileprivate   func requestData(_ index:Int, completion: @escaping ( _ html:String?  , _ isSucces:Bool) ->())   {
         
-        let urlStr =  "http://www.sodu.cc/top_\(index + 1).html"
+        let urlStr =  SoDuUrl.rankPage.replacingOccurrences(of: "_", with: "_\(index + 1)")
         
         HttpUtil.instance.request(url: urlStr, requestMethod: .GET, postStr: nil, completion: completion  )
         
     }
-    
-    
-    
-    
-    ///MARK: - 解析排行榜页面数据
-    fileprivate func analisysHtml(_ str:String?) -> [Book]
-    {
-        var  list = [Book]()
-        
-        var html = str
-        
-        if(html == nil || html == "") {
-            
-            return list
-        }
-        
-        html = html?.replacingOccurrences(of: "\r", with: "").replacingOccurrences(of: "\t", with: "").replacingOccurrences(of: "\n", with: "")
-        
-        
-        guard  let regx = try? NSRegularExpression(pattern: "<div class=\"main-html\".*?<div style=\"width:88px;float:left;\">.*?</div>", options: []) else {
-            return list
-        }
-        
-        let result = regx.matches(in: html!, options:[], range: NSRange(location: 0, length: html!.characters.count))
-        
-        if result.count==0 {
-            
-            return list
-        }
-        
-        for  checkRange in  result
-        {
-            let b = Book()
-            
-            var  item =  (html! as NSString).substring(with: checkRange.range)
-            
-            let  nameRegx = try? NSRegularExpression(pattern: "addToFav.*?'(.*?)'", options: [])
-            let name = nameRegx?.firstMatch(in: item, options: [], range: NSRange(location: 0, length: item.characters.count))
-            b.bookName = (item as NSString).substring(with: (name?.rangeAt(1))!)
-            
-            let  chapterUpdateUrlRegx = try? NSRegularExpression(pattern: "(?<=<a href=\")(.*?)(?=\">.*?</a>)", options: [])
-            let chapterUpdateUrl = chapterUpdateUrlRegx?.firstMatch(in: item, options: [], range: NSRange(location: 0, length: item.characters.count))
-            b.updateListPageUrl = (item as NSString).substring(with: (chapterUpdateUrl?.rangeAt(1))!)
-            
-            let  chapterNameRegx = try? NSRegularExpression(pattern: "<a href=\"http.*?title=\"总点击.*?>(.*?)</a>", options: [])
-            let chapterName = chapterNameRegx?.firstMatch(in: item, options: [], range: NSRange(location: 0, length: item.characters.count))
-            b.chapterName = (item as NSString).substring(with: (chapterName?.rangeAt(1))!)
-            
-            list.append(b)
-        }
-        
-        return list
-    }
-    
-    
     
     
 }

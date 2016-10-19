@@ -84,19 +84,295 @@
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/Rank/RankViewController.swift"
-            timestampString = "498503996.262395"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/Recommend/RecommendViewController.swift"
+            timestampString = "498557673.277877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "requestData(_:completion:)"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "RecommendViewController"
+            landmarkType = "4">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "498557673.277877"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "analisysRecommendHtml(_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/BookCacheHelper.swift"
+            timestampString = "498572173.355482"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "SavaBookListAsFile(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/BookCacheHelper.swift"
+            timestampString = "498585418.452293"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "ReadBookListCacheFromFile(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/JSON.swift"
+            timestampString = "498583956.235044"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "toJSONModel()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/JSON.swift"
+            timestampString = "498583956.235044"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "toJSONModel()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/JSON.swift"
+            timestampString = "498583956.235044"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "toJSONModel()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "498586420.406225"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "analisysHomeHtml(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "498586420.406225"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "analisysHomeHtml(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "498586420.406225"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "analisysHomeHtml(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "498588516.984991"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
+            landmarkName = "analisysRankPageHtml(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "498588876.229462"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "analisysRankPageHtml(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.AnalisysHtmlHelper.(analisysRankPageHtml in _06B6F3A9980F9B72CECCF0A433A4C923) (Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Array&lt;&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.Book&gt;"
+                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/files/SoDu_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/Tools/AnalisysHtmlHelper.swift"
+                  timestampString = "498588927.140671"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "179"
+                  endingLineNumber = "179"
+                  offsetFromSymbolStart = "4629">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.AnalisysHtmlHelper.(analisysRankPageHtml in _06B6F3A9980F9B72CECCF0A433A4C923) (Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Array&lt;&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.Book&gt;"
+                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/files/SoDu_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/Tools/AnalisysHtmlHelper.swift"
+                  timestampString = "498588927.145216"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "179"
+                  endingLineNumber = "179"
+                  offsetFromSymbolStart = "7282">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "498588945.233686"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "analisysRankPageHtml(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.AnalisysHtmlHelper.(analisysRankPageHtml in _06B6F3A9980F9B72CECCF0A433A4C923) (Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Array&lt;&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.Book&gt;"
+                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/files/SoDu_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/Tools/AnalisysHtmlHelper.swift"
+                  timestampString = "498588945.239466"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
+                  offsetFromSymbolStart = "5884">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.AnalisysHtmlHelper.(analisysRankPageHtml in _06B6F3A9980F9B72CECCF0A433A4C923) (Swift.Optional&lt;Swift.String&gt;) -&gt; Swift.Array&lt;&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.Book&gt;"
+                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/files/SoDu_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/Tools/AnalisysHtmlHelper.swift"
+                  timestampString = "498588945.243439"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "183"
+                  endingLineNumber = "183"
+                  offsetFromSymbolStart = "7402">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
