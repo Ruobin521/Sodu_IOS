@@ -112,7 +112,12 @@ class RankViewController: BaseViewController {
                 
                 self.navItem.title = "排行榜 - \(pageindex+1) / 8"
                 
-                BookCacheHelper.SavaBookListAsFile(self.bookList, .Rank)
+                if pageindex == 0 {
+                 
+                     BookCacheHelper.SavaBookListAsFile(self.bookList, .Rank)
+                }
+                
+               
                 
             }
             

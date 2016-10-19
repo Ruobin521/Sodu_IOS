@@ -28,6 +28,18 @@ class HotViewController: BaseViewController {
             return
         }
         
+        let tempList =  BookCacheHelper.ReadBookListCacheFromFile(ListType.Hot)
+        
+        if (tempList.count) > 0 {
+            
+            bookList.removeAll()
+            
+            bookList += tempList
+            
+            tableview?.reloadData()
+        }
+
+        
         pageIndex = 0
         loadDataByPageIndex(0)
         
@@ -80,6 +92,8 @@ class HotViewController: BaseViewController {
                 super.endLoadData()
                 
                 ToastView.instance.showToast(content: "已加载热门小说数据",nil)
+                
+                 BookCacheHelper.SavaBookListAsFile(self.bookList, .Hot)
                 
             }
         }

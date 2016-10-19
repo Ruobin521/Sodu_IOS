@@ -29,6 +29,19 @@ class BookshelfViewController: BaseViewController {
             return
         }
         
+        
+        let tempList =  BookCacheHelper.ReadBookListCacheFromFile(ListType.BookShelf)
+        
+        if (tempList.count) > 0 {
+            
+            bookList.removeAll()
+            
+            bookList += tempList
+            
+            tableview?.reloadData()
+        }
+        
+        
         pageIndex = 0
         loadDataByPageIndex(0)
         
@@ -70,7 +83,7 @@ class BookshelfViewController: BaseViewController {
                 self.bookList.removeAll()
                 
             }
-             
+            
             
             DispatchQueue.main.async {
                 
@@ -81,6 +94,8 @@ class BookshelfViewController: BaseViewController {
                 super.endLoadData()
                 
                 ToastView.instance.showToast(content: "已加载个人收藏数据",nil)
+                
+                BookCacheHelper.SavaBookListAsFile(self.bookList, .BookShelf)
                 
             }
         }

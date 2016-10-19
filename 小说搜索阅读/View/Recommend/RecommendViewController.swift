@@ -28,6 +28,19 @@ class RecommendViewController: BaseViewController {
             return
         }
         
+        
+        let tempList =  BookCacheHelper.ReadBookListCacheFromFile(ListType.Recommend)
+        
+        if (tempList.count) > 0 {
+            
+            bookList.removeAll()
+            
+            bookList += tempList
+            
+            tableview?.reloadData()
+        }
+        
+        
         pageIndex = 0
         loadDataByPageIndex(0)
         
@@ -80,6 +93,8 @@ class RecommendViewController: BaseViewController {
                 super.endLoadData()
                 
                 ToastView.instance.showToast(content: "已加载推荐阅读数据",nil)
+                
+                 BookCacheHelper.SavaBookListAsFile(self.bookList, .Recommend)
                 
             }
         }
