@@ -71,12 +71,12 @@ class BookCacheHelper {
         for item in array {
             
             let b = Book()
-            b.bookId = item["bookId"]
-            b.bookName = item["bookName"]
-            b.chapterName = item["chapterName"]
-            b.updateListPageUrl = item["updateListPageUrl"]
-            b.updateTime = item["bookId"]
+           
+            for  (key,value) in item {
             
+                b.setValue(value, forKey: key)
+            }
+
             list.append(b)
         }
    

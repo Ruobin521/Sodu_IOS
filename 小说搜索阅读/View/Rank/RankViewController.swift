@@ -22,11 +22,6 @@ class RankViewController: BaseViewController {
     
     override func InitData() {
         
-        if  isLoading  {
-            
-            return
-        }
-        
         let tempList =  BookCacheHelper.ReadBookListCacheFromFile(ListType.Rank)
         
         if (tempList.count) > 0 {
@@ -38,7 +33,6 @@ class RankViewController: BaseViewController {
             tableview?.reloadData()
         }
         
-        pageIndex = 0
         loadDataByPageIndex(0)
         
     }
@@ -46,79 +40,73 @@ class RankViewController: BaseViewController {
     
     override func pullDownToLoadData() {
         
-        refreshControl?.endRefreshing()
+     refreshControl?.endRefreshing()
         
-        InitData()
+        loadDataByPageIndex(0)
     }
+    
     
     override func pullUpToloadData() {
         
-        if  isLoading  || pageIndex == pageCount - 1 {
+        if  pageIndex == pageCount - 1 {
             
             return
         }
         
-        pageIndex += 1
-        
         isPullup = true
         
-        loadDataByPageIndex(pageIndex)
+        loadDataByPageIndex(pageIndex + 1)
         
     }
     
-    
-    
     func loadDataByPageIndex(_ pageindex: Int) {
+        
+        if  isLoading  {
+            
+            ToastView.instance.showToast(content: "数据加载正在努力加载中",nil)
+            
+            return
+        }
         
         isLoading = true
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-        
-        ToastView.instance.showLoadingView()
-        
         let urlStr =  SoDuUrl.rankPage.replacingOccurrences(of: "_", with: "_\(pageindex + 1)")
-       
+        
         HttpUtil.instance.request(url: urlStr, requestMethod: .GET, postStr: nil)  { (html,isSuccess) in
-            
-            if !isSuccess {
-                
-                ToastView.instance.showToast(content: "第\(pageindex+1)页数据加载失败",nil)
-                
-                print("第\(pageindex+1)页数据加载失败")
-                
-                return
-            }
-            
-            
-            if pageindex == 0 {
-                
-                self.bookList.removeAll()
-                
-            }
-            
-            print("已获取到第\(pageindex+1)页数据，现在开始解析")
-            
             
             DispatchQueue.main.async {
                 
-                self.bookList += AnalisysHtmlHelper.analisysRankHtml(html)
-                
-                self.tableview?.reloadData()
-                
-                super.endLoadData()
-                
-                ToastView.instance.showToast(content: "已加载排行榜第\(pageindex+1)页数据",nil)
-                
-                self.navItem.title = "排行榜 - \(pageindex+1) / 8"
-                
-                if pageindex == 0 {
-                 
-                     BookCacheHelper.SavaBookListAsFile(self.bookList, .Rank)
+                if !isSuccess {
+                    
+                    ToastView.instance.showToast(content: "第\(pageindex+1)页数据加载失败",nil)
+                    
+                    print("第\(pageindex+1)页数据加载失败")
+                    
+                }  else {
+                    
+                    if pageindex == 0 {
+                        
+                        self.bookList.removeAll()
+                    }
+                    
+                    
+                    self.pageIndex = pageindex
+                    
+                    self.bookList += AnalisysHtmlHelper.analisysRankHtml(html)
+                    
+                    self.tableview?.reloadData()
+                  
+                    ToastView.instance.showToast(content: "已加载排行榜第\(pageindex+1)页数据",nil)
+                    
+                    self.navItem.title = "排行榜 - \(pageindex+1) / 8"
+                    
+                    if pageindex == 0 {
+                        
+                        BookCacheHelper.SavaBookListAsFile(self.bookList, .Rank)
+                    }
                 }
                 
-               
-                
+                super.endLoadData()
             }
             
         }

@@ -16,7 +16,7 @@ class ToastView : NSObject{
     let rv = UIApplication.shared.keyWindow?.subviews.first as UIView!
     
     //显示加载圈圈
-    func showLoadingView() {
+    func showLoadingView() -> UIWindow {
         clear()
         let frame = CGRect(x: 0, y: 0, width: 120, height: 120)
         
@@ -45,13 +45,12 @@ class ToastView : NSObject{
         
         windows.append(window)
         
+        return window
+        
     }
     
     //弹窗图片文字
     func showToast(content:String , _ imageName:String?, _ duration:CFTimeInterval=1.5) {
-        
-        clear()
-        
         
         var frame = CGRect(x: 0, y: 0, width: 200  , height: 35)
         

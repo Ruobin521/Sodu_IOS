@@ -82,7 +82,7 @@ extension Bool: JSON { }
 extension Dictionary:JSON { }
 
 
-extension Array  where  Element: Book {
+extension Array  where  Element: AnyObject {
    
     //将数据转成可用的JSON模型
     func toJSONModel() -> [Any]? {
@@ -91,8 +91,8 @@ extension Array  where  Element: Book {
         
         for value in self {
             
-            if let jsonValue = value as? JSON, let jsonModel = jsonValue.toJSONModel(){
-                
+            if  let jsonModel = (value as? NSObject) .toJSONModel(){
+            
                 result.append(jsonModel)
             }
         }

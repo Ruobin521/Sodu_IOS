@@ -8,11 +8,37 @@
 
 import UIKit
 
+private var loadingCount:Int = 0
+
 class BaseViewController: UIViewController {
     
-    var isLoading = false
     
-    var isPullup = false
+    var isLoading = false {
+        
+        didSet {
+            
+            if isLoading {
+                
+                  UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                  loadingCount += 1
+                  print("当前正在加载的数量 \(loadingCount)")
+            }
+        }
+    }
+    
+    weak var processWindow:UIWindow?
+    
+    var isPullup = false {
+        
+        didSet {
+            
+            if  isPullup {
+                
+                 processWindow =  ToastView.instance.showLoadingView()
+            }
+            
+        }
+    }
     
     var isPullDown = false
     
@@ -23,11 +49,8 @@ class BaseViewController: UIViewController {
     lazy var navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64))
     
     lazy var navItem = UINavigationItem()
+   
     
-    
-    
-    
-
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -75,27 +98,32 @@ class BaseViewController: UIViewController {
     ///滚到顶部
     func goToTop() {
         
-        if  tableview == nil   || tableview?.numberOfSections == 0  || tableview?.numberOfRows(inSection: 0) == 0 {
+        if  tableview == nil  {
             
             return
         }
         
-        let offset =  ((tableview?.contentOffset)?.y) ??  -50.0
-        
-        if  offset  <=  CGFloat(-50.0)    {
-            
-            InitData()
-            
-            return
-        }
         
         if   (tableview?.numberOfRows(inSection: 0))! > 0 {
             
-            let indexPath = IndexPath(row: 0, section: 0)
-            
-            tableview?.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            if  (tableview?.contentOffset.y)! > CGFloat(0) {
+                
+                let indexPath = IndexPath(row: 0, section: 0)
+                
+                self.tableview?.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                
+            } else {
+                
+                let lastSectionIndex = (tableview?.numberOfSections)! - 1
+                
+                let latRowIndex =  (tableview?.numberOfRows(inSection: lastSectionIndex))! - 1
+                
+                let indexPath = IndexPath(row: latRowIndex, section: lastSectionIndex)
+                
+                tableview?.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                
+            }
         }
-        
         
     }
     
@@ -104,18 +132,37 @@ class BaseViewController: UIViewController {
         
         refreshControl?.endRefreshing()
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        if processWindow != nil {
+            
+            ToastView.instance.removeToast(sender: processWindow)
+            
+            self.processWindow = nil
+        }
+        
+      
+      
+        
+        if  loadingCount > 0 {
+         
+              loadingCount -= 1
+        }
+      
+        
+        print("当前正在加载的数量 \(loadingCount)")
+        
+        if loadingCount == 0 {
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
         
         isLoading = false
         
         isPullup = false
         
         isPullDown = false
-        
+         
     }
     
-    
-
     
 }
 
@@ -145,7 +192,7 @@ extension BaseViewController {
         refreshControl = UIRefreshControl()
         
         refreshControl?.tintColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)
-
+        
         
         refreshControl?.addTarget(self, action: #selector(pullDownToLoadData), for: .valueChanged)
         
@@ -166,7 +213,7 @@ extension BaseViewController {
         
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent;
         
-      
+        
     }
     
     

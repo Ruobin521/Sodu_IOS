@@ -16,18 +16,7 @@ class RecommendViewController: BaseViewController {
     
     lazy var bookList = [Book]()
     
-    let pageCount = 8
-    
-    var pageIndex = 0
-    
-    
     override func InitData() {
-        
-        if  isLoading  {
-            
-            return
-        }
-        
         
         let tempList =  BookCacheHelper.ReadBookListCacheFromFile(ListType.Recommend)
         
@@ -40,62 +29,55 @@ class RecommendViewController: BaseViewController {
             tableview?.reloadData()
         }
         
-        
-        pageIndex = 0
-        loadDataByPageIndex(0)
+        loadDataByPageIndex()
         
     }
-    
-    
     
     
     override func pullDownToLoadData() {
         
         refreshControl?.endRefreshing()
         
-        InitData()
+        loadDataByPageIndex()
     }
     
- 
     
-    func loadDataByPageIndex(_ pageindex: Int) {
+    
+    func loadDataByPageIndex() {
+        
+        if  isLoading  {
+            
+            ToastView.instance.showToast(content: "数据加载正在努力加载中",nil)
+            
+            return
+        }
         
         isLoading = true
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
-        
-        ToastView.instance.showLoadingView()
         
         HttpUtil.instance.request(url: SoDuUrl.homePage, requestMethod: .GET, postStr: nil)  { (html,isSuccess) in
             
-            if !isSuccess {
-                
-                ToastView.instance.showToast(content: "推荐数据加载失败",nil)
-                
-                return
-            }
-            
-            
-            if pageindex == 0 {
-                
-                self.bookList.removeAll()
-                
-            }
-            
-            
             DispatchQueue.main.async {
                 
-                self.bookList +=  AnalisysHtmlHelper.analisysRecommendHtml(html)
-                
-                self.tableview?.reloadData()
+                if !isSuccess {
+                    
+                    ToastView.instance.showToast(content: "推荐数据加载失败",nil)
+                    
+                }  else {
+                    
+                    self.bookList.removeAll()
+                    
+                    self.bookList +=  AnalisysHtmlHelper.analisysRecommendHtml(html)
+                    
+                    self.tableview?.reloadData()
+                                        
+                    ToastView.instance.showToast(content: "已加载推荐阅读数据",nil)
+                    
+                    BookCacheHelper.SavaBookListAsFile(self.bookList, .Recommend)
+                    
+                }
                 
                 super.endLoadData()
-                
-                ToastView.instance.showToast(content: "已加载推荐阅读数据",nil)
-                
-                 BookCacheHelper.SavaBookListAsFile(self.bookList, .Recommend)
-                
             }
         }
         

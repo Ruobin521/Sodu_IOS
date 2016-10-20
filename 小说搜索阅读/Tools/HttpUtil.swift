@@ -21,7 +21,7 @@ class  HttpUtil {
     static let  instance = HttpUtil()
      
     
-    func request(url:String ,requestMethod: RequestMethod, postStr: String?, timeOut:TimeInterval = 30.0, completion: @escaping (_ result:String?, _ isSuccess :Bool) ->() )  {
+    func request(url:String ,requestMethod: RequestMethod, postStr: String?, timeOut:TimeInterval = 15.0, completion: @escaping (_ result:String?, _ isSuccess :Bool) ->() )  {
         
         
         let request = NSMutableURLRequest.init(url: URL(string: url)!)
