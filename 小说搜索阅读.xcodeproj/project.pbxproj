@@ -26,33 +26,18 @@
 		B1904FB61DB75E9900534AD6 /* AnalisysHtmlHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1904FB51DB75E9900534AD6 /* AnalisysHtmlHelper.swift */; };
 		B1904FB81DB7866900534AD6 /* BookCacheHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1904FB71DB7866900534AD6 /* BookCacheHelper.swift */; };
 		B1904FBA1DB79A9800534AD6 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1904FB91DB79A9800534AD6 /* JSON.swift */; };
+		F5DA2AE54C56A2A2976E8D6F /* Pods_______.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C180B4901097B286F23F8F /* Pods_______.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		B120E2391DA9E72800921288 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B120E21C1DA9E72800921288 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B120E2231DA9E72800921288;
-			remoteInfo = "小说搜索阅读";
-		};
-		B120E2441DA9E72800921288 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B120E21C1DA9E72800921288 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B120E2231DA9E72800921288;
-			remoteInfo = "小说搜索阅读";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		20C180B4901097B286F23F8F /* Pods_______.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_______.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2372C43A19F5E340E0D49F6C /* Pods-小说搜索阅读.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-小说搜索阅读.release.xcconfig"; path = "Pods/Target Support Files/Pods-小说搜索阅读/Pods-小说搜索阅读.release.xcconfig"; sourceTree = "<group>"; };
+		2C2F100D7D946D83648A620C /* Pods-小说搜索阅读.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-小说搜索阅读.debug.xcconfig"; path = "Pods/Target Support Files/Pods-小说搜索阅读/Pods-小说搜索阅读.debug.xcconfig"; sourceTree = "<group>"; };
 		B120E2241DA9E72800921288 /* 小说搜索阅读.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "小说搜索阅读.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B120E2271DA9E72800921288 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B120E22E1DA9E72800921288 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B120E2311DA9E72800921288 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B120E2331DA9E72800921288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B120E2381DA9E72800921288 /* 小说搜索阅读Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "小说搜索阅读Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B120E2431DA9E72800921288 /* 小说搜索阅读UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "小说搜索阅读UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B12CD5561DB687EE00377450 /* HttpUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpUtil.swift; sourceTree = "<group>"; };
 		B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B17E03C11DB095B90061DD47 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -76,31 +61,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B120E2351DA9E72800921288 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B120E2401DA9E72800921288 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				F5DA2AE54C56A2A2976E8D6F /* Pods_______.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		773BEBA21A238BB314FD4BFC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2C2F100D7D946D83648A620C /* Pods-小说搜索阅读.debug.xcconfig */,
+				2372C43A19F5E340E0D49F6C /* Pods-小说搜索阅读.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B120E21B1DA9E72800921288 = {
 			isa = PBXGroup;
 			children = (
 				B120E2261DA9E72800921288 /* 小说搜索阅读 */,
 				B120E2251DA9E72800921288 /* Products */,
+				773BEBA21A238BB314FD4BFC /* Pods */,
+				F9C326BCDE3D42F556995BC8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,8 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				B120E2241DA9E72800921288 /* 小说搜索阅读.app */,
-				B120E2381DA9E72800921288 /* 小说搜索阅读Tests.xctest */,
-				B120E2431DA9E72800921288 /* 小说搜索阅读UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -237,6 +218,14 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		F9C326BCDE3D42F556995BC8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20C180B4901097B286F23F8F /* Pods_______.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -244,9 +233,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B120E24C1DA9E72800921288 /* Build configuration list for PBXNativeTarget "小说搜索阅读" */;
 			buildPhases = (
+				4FE821ACCAAD1499E9468575 /* [CP] Check Pods Manifest.lock */,
 				B120E2201DA9E72800921288 /* Sources */,
 				B120E2211DA9E72800921288 /* Frameworks */,
 				B120E2221DA9E72800921288 /* Resources */,
+				53D038A650BFCB20299E4E90 /* [CP] Embed Pods Frameworks */,
+				A9BC639AA4B57BBED03E2261 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -256,42 +248,6 @@
 			productName = "小说搜索阅读";
 			productReference = B120E2241DA9E72800921288 /* 小说搜索阅读.app */;
 			productType = "com.apple.product-type.application";
-		};
-		B120E2371DA9E72800921288 /* 小说搜索阅读Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B120E24F1DA9E72800921288 /* Build configuration list for PBXNativeTarget "小说搜索阅读Tests" */;
-			buildPhases = (
-				B120E2341DA9E72800921288 /* Sources */,
-				B120E2351DA9E72800921288 /* Frameworks */,
-				B120E2361DA9E72800921288 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B120E23A1DA9E72800921288 /* PBXTargetDependency */,
-			);
-			name = "小说搜索阅读Tests";
-			productName = "小说搜索阅读Tests";
-			productReference = B120E2381DA9E72800921288 /* 小说搜索阅读Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		B120E2421DA9E72800921288 /* 小说搜索阅读UITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B120E2521DA9E72800921288 /* Build configuration list for PBXNativeTarget "小说搜索阅读UITests" */;
-			buildPhases = (
-				B120E23F1DA9E72800921288 /* Sources */,
-				B120E2401DA9E72800921288 /* Frameworks */,
-				B120E2411DA9E72800921288 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B120E2451DA9E72800921288 /* PBXTargetDependency */,
-			);
-			name = "小说搜索阅读UITests";
-			productName = "小说搜索阅读UITests";
-			productReference = B120E2431DA9E72800921288 /* 小说搜索阅读UITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -307,18 +263,6 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = Z532NADQBJ;
 						ProvisioningStyle = Automatic;
-					};
-					B120E2371DA9E72800921288 = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = Z532NADQBJ;
-						ProvisioningStyle = Automatic;
-						TestTargetID = B120E2231DA9E72800921288;
-					};
-					B120E2421DA9E72800921288 = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = Z532NADQBJ;
-						ProvisioningStyle = Automatic;
-						TestTargetID = B120E2231DA9E72800921288;
 					};
 				};
 			};
@@ -336,8 +280,6 @@
 			projectRoot = "";
 			targets = (
 				B120E2231DA9E72800921288 /* 小说搜索阅读 */,
-				B120E2371DA9E72800921288 /* 小说搜索阅读Tests */,
-				B120E2421DA9E72800921288 /* 小说搜索阅读UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -352,21 +294,55 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B120E2361DA9E72800921288 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B120E2411DA9E72800921288 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4FE821ACCAAD1499E9468575 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		53D038A650BFCB20299E4E90 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-小说搜索阅读/Pods-小说搜索阅读-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A9BC639AA4B57BBED03E2261 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-小说搜索阅读/Pods-小说搜索阅读-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B120E2201DA9E72800921288 /* Sources */ = {
@@ -393,34 +369,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B120E2341DA9E72800921288 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B120E23F1DA9E72800921288 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B120E23A1DA9E72800921288 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B120E2231DA9E72800921288 /* 小说搜索阅读 */;
-			targetProxy = B120E2391DA9E72800921288 /* PBXContainerItemProxy */;
-		};
-		B120E2451DA9E72800921288 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B120E2231DA9E72800921288 /* 小说搜索阅读 */;
-			targetProxy = B120E2441DA9E72800921288 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B120E2301DA9E72800921288 /* LaunchScreen.storyboard */ = {
@@ -527,6 +476,7 @@
 		};
 		B120E24D1DA9E72800921288 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C2F100D7D946D83648A620C /* Pods-小说搜索阅读.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -542,6 +492,7 @@
 		};
 		B120E24E1DA9E72800921288 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2372C43A19F5E340E0D49F6C /* Pods-小说搜索阅读.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -552,64 +503,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.testapp.------";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		B120E2501DA9E72800921288 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = Z532NADQBJ;
-				INFOPLIST_FILE = "小说搜索阅读Tests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.testapp.------Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/小说搜索阅读.app/小说搜索阅读";
-			};
-			name = Debug;
-		};
-		B120E2511DA9E72800921288 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = Z532NADQBJ;
-				INFOPLIST_FILE = "小说搜索阅读Tests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.testapp.------Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/小说搜索阅读.app/小说搜索阅读";
-			};
-			name = Release;
-		};
-		B120E2531DA9E72800921288 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = Z532NADQBJ;
-				INFOPLIST_FILE = "小说搜索阅读UITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.testapp.------UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = "小说搜索阅读";
-			};
-			name = Debug;
-		};
-		B120E2541DA9E72800921288 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = Z532NADQBJ;
-				INFOPLIST_FILE = "小说搜索阅读UITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.testapp.------UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = "小说搜索阅读";
 			};
 			name = Release;
 		};
@@ -630,24 +523,6 @@
 			buildConfigurations = (
 				B120E24D1DA9E72800921288 /* Debug */,
 				B120E24E1DA9E72800921288 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B120E24F1DA9E72800921288 /* Build configuration list for PBXNativeTarget "小说搜索阅读Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B120E2501DA9E72800921288 /* Debug */,
-				B120E2511DA9E72800921288 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B120E2521DA9E72800921288 /* Build configuration list for PBXNativeTarget "小说搜索阅读UITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B120E2531DA9E72800921288 /* Debug */,
-				B120E2541DA9E72800921288 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
