@@ -56,6 +56,8 @@ class  HttpUtil :AFHTTPSessionManager  {
         // 设置请求超时时间
         
         request.timeoutInterval = timeOut
+       // [restRequest setValue:USERAGENT forHTTPHeaderField:@"User-Agent"];
+        request.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36", forHTTPHeaderField: "User-Agent")
         
         
         if requestMethod == RequestMethod.GET {
@@ -66,6 +68,7 @@ class  HttpUtil :AFHTTPSessionManager  {
             
             request.httpMethod = "POST"
             request.httpBody = postStr?.data(using: String.Encoding.utf8)
+            
         }
         
         print ("开始加载数据 \(url) 数据")
