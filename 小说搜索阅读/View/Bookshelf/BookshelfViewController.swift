@@ -56,7 +56,7 @@ class BookshelfViewController: BaseViewController {
         
         isLoading = true
         
-        HttpUtil.instance.AFrequest(url: SoDuUrl.homePage, requestMethod: .GET, postStr: nil,parameters: nil)  { (html,isSuccess) in
+        HttpUtil.instance.request(url: SoDuUrl.homePage, requestMethod: .GET, postStr: nil)  { (html,isSuccess) in
             
             DispatchQueue.main.async {
                 
@@ -68,7 +68,7 @@ class BookshelfViewController: BaseViewController {
                     
                     self.bookList.removeAll()
                     
-                    self.bookList +=  AnalisysHtmlHelper.analisysBookShelfHtml(html as? String)
+                    self.bookList +=  AnalisysHtmlHelper.analisysBookShelfHtml(html)
                     
                     self.tableview?.reloadData()
                     

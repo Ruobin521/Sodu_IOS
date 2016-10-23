@@ -30,7 +30,7 @@ class  HttpUtil :AFHTTPSessionManager  {
 
       
         
-        //shared.requestSerializer.setValue("gzip", forHTTPHeaderField: "Content-Encoding")
+        shared.requestSerializer.setValue("gzip", forHTTPHeaderField: "Content-Encoding")
       
         shared.requestSerializer.setValue("gzip, deflate, sdch", forHTTPHeaderField: "Accept-Encoding")
         shared.requestSerializer.timeoutInterval = 10
@@ -93,11 +93,11 @@ class  HttpUtil :AFHTTPSessionManager  {
         let success  = { (task: URLSessionDataTask? , json: Any?) -> () in
             
             completion(json , true)
-            print(json)
-            
-            var str = String(data:(json as? Data)!, encoding: String.Encoding)
-            
-            print(str)
+//            print(json)
+//            
+//            var str = String(data:(json as? Data)!, encoding: String.Encoding.utf8)
+//            
+//            print(str)
             
             
         }
