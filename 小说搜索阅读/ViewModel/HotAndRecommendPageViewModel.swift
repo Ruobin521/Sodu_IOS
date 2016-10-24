@@ -62,6 +62,8 @@ class HotAndRecommendPageViewModel {
                     self.recommendBookList.removeAll()
                     self.recommendBookList += array2
                     
+                     self.recommendBookList += array2
+                    
                     completion(true)
                     
                 }

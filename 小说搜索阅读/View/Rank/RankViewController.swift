@@ -20,9 +20,7 @@ class RankViewController: BaseViewController {
     override func loadData() {
         
         needPullUp = true
-        
-        isPullup = true
-        
+                 
         if  isLoading  {
             
             ToastView.instance.showToast(content: "数据加载正在努力加载中",nil)

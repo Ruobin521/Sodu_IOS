@@ -87,14 +87,14 @@ extension HotAndRecommednViewController {
         if indexPath.section == 0 {
             
             cell.textLabel?.text = "热门  " + self.vm.hotBookList[indexPath.row].bookName!
-           
+            
         }  else {
             
             cell.textLabel?.text = "推荐  " +  self.vm.recommendBookList[indexPath.row].bookName!
- 
+            
         }
         
-         return cell
+        return cell
     }
     
     
@@ -102,6 +102,27 @@ extension HotAndRecommednViewController {
         
         return 2
     }
+    
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        switch section {
+            
+        case 0:
+            
+            return  "热门"
+            
+        case 1:
+            
+            return  "推荐"
+            
+        default:
+            
+            return  ""
+        }
+        
+    }
+    
     
 }
 
