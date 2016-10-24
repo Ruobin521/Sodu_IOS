@@ -28,17 +28,20 @@ class BaseViewController: UIViewController {
     
     weak var processWindow:UIWindow?
     
-    var isPullup = false {
-        
-        didSet {
-            
-            if  isPullup {
-                
-                processWindow =  ToastView.instance.showLoadingView()
-            }
-            
-        }
-    }
+//    var isPullup = false {
+//        
+//        didSet {
+//            
+//            if  isPullup {
+//                
+//                processWindow =  ToastView.instance.showLoadingView()
+//            }
+//            
+//        }
+//    }
+    
+    
+    var isPullup = false
     
     var needPullUp = false
     
