@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 var  userLogon = true
 
@@ -19,7 +20,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
       
-        Thread.sleep(forTimeInterval: 1)
+        Thread.sleep(forTimeInterval: 0.5)
+        
+        
+        if #available(iOS 10.0, *) {
+         
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.carPlay,.sound]) { (success, error) in
+                
+                print("授权" + (success ? "成功"  : "失败"))
+            }
+        } else {
+            
+            ///取得用户授权[上方的提示条，声音，badgeNumber]，用户不授权用户是显示不了
+            let notifyStting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(notifyStting)
+            
+        }
+
         
         window = UIWindow()
         

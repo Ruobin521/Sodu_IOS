@@ -16,12 +16,21 @@ class MainViewController: UITabBarController {
     
     var baseControllers:[BaseViewController]?
     
+    var lastDate: NSDate?
+    
+    var selectedVC:BaseViewController?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         setupChildControllers()
         
+//      self.tabBar.items?[0].badgeValue = "\(1)"
+//      
+//      UIApplication.shared.applicationIconBadgeNumber = 0
+
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -31,9 +40,16 @@ class MainViewController: UITabBarController {
     
     
     
+  
     
-    var lastDate: NSDate?
-    var selectedVC:BaseViewController?
+    
+}
+
+
+
+
+//双击回到顶部
+extension MainViewController:UITabBarControllerDelegate {
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         
