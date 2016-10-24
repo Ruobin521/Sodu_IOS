@@ -81,9 +81,10 @@ extension MainViewController {
         var  array = [
             
             ["clsName": "RankViewController", "title": "排行榜", "imageName" : "rank"],
-            ["clsName": "RecommendViewController", "title": "推荐", "imageName" : "recommend"],
-            ["clsName": "HotViewController", "title": "热门", "imageName" : "hot"],
+          //  ["clsName": "RecommendViewController", "title": "推荐", "imageName" : "recommend"],
+            ["clsName": "HotAndRecommednViewController", "title": "热门&推荐", "imageName" : "hot"],
             ["clsName": "SettingViewController", "title": "设置", "imageName" : "setting"],
+          
             ]
         
         

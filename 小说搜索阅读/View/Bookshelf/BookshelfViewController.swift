@@ -17,75 +17,51 @@ private let cellId = "cellId"
 
 class BookshelfViewController: BaseViewController {
     
-    lazy var bookList = [Book]()
+    
+    let vm = ViewModelInstance.Instance.bookShelf
     
     
-    override func InitData() {
+    override func loadData() {
         
-        let tempList =  BookCacheHelper.ReadBookListCacheFromFile(ListType.BookShelf)
-        
-        if (tempList.count) > 0 {
-            
-            bookList.removeAll()
-            
-            bookList += tempList
-            
-            tableview?.reloadData()
-        }
-        
-        loadDataByPageIndex()
-        
-    }
-    
-    override func pullDownToLoadData() {
-        
-        refreshControl?.endRefreshing()
-        loadDataByPageIndex()
-    }
-    
-    
-    
-    func loadDataByPageIndex() {
+        needPullUp = false
         
         if  isLoading  {
             
             ToastView.instance.showToast(content: "数据加载正在努力加载中", nil)
-            
             return
         }
         
+        vm.loadCacheData(self)
+        
+        loadDataByPageIndex()
+        
+    }
+    
+    
+    func loadDataByPageIndex() {
+        
         isLoading = true
         
-        HttpUtil.instance.request(url: SoDuUrl.homePage, requestMethod: .GET, postStr: nil)  { (html,isSuccess) in
+        
+        vm.loadBookShelfPageData {(isSuccess) in
             
-            DispatchQueue.main.async {
+            if isSuccess {
                 
-                if !isSuccess  {
-                   
-                    ToastView.instance.showToast(content: "个人收藏数据加载失败",nil)
-                    
-                }  else {
-                    
-                    self.bookList.removeAll()
-                    
-                    self.bookList +=  AnalisysHtmlHelper.analisysBookShelfHtml(html)
-                    
-                    self.tableview?.reloadData()
-                    
-                    ToastView.instance.showToast(content: "已加载个人收藏数据",nil)
-                    
-                    BookCacheHelper.SavaBookListAsFile(self.bookList, .BookShelf)
-                    
-                }
+                self.tableview?.reloadData()
+                ToastView.instance.showToast(content: "已加载个人收藏数据",nil)
                 
-                 super.endLoadData()
-              
+            } else {
+                
+                ToastView.instance.showToast(content: "个人收藏数据加载失败",nil)
+                
             }
+            
+            super.endLoadData()
             
         }
         
     }
-  
+    
 }
 
 
@@ -95,7 +71,7 @@ extension BookshelfViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return bookList.count
+        return vm.bookList.count
     }
     
     
@@ -103,7 +79,7 @@ extension BookshelfViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         
-        cell.textLabel?.text = bookList[indexPath.row].bookName
+        cell.textLabel?.text = vm.bookList[indexPath.row].bookName
         
         return cell
     }

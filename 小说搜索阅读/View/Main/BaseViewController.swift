@@ -19,9 +19,9 @@ class BaseViewController: UIViewController {
             
             if isLoading {
                 
-                  UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                  loadingCount += 1
-                  print("当前正在加载的数量 \(loadingCount)")
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                loadingCount += 1
+                print("当前正在加载的数量 \(loadingCount)")
             }
         }
     }
@@ -34,13 +34,13 @@ class BaseViewController: UIViewController {
             
             if  isPullup {
                 
-                 processWindow =  ToastView.instance.showLoadingView()
+                processWindow =  ToastView.instance.showLoadingView()
             }
             
         }
     }
     
-    var isPullDown = false
+    var needPullUp = false
     
     var tableview:UITableView?
     
@@ -49,7 +49,7 @@ class BaseViewController: UIViewController {
     lazy var navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64))
     
     lazy var navItem = UINavigationItem()
-   
+    
     
     override func viewDidLoad() {
         
@@ -60,7 +60,7 @@ class BaseViewController: UIViewController {
         
         setupUI()
         
-        InitData()
+        loadData()
         
     }
     
@@ -74,26 +74,12 @@ class BaseViewController: UIViewController {
     }
     
     
-    /// 初始化数据
-    func InitData()  {
+    /// 加载数据
+    func loadData()  {
         
         endLoadData()
     }
     
-    
-    /// （下拉刷新）
-    func pullDownToLoadData()  {
-        
-        endLoadData()
-    }
-    
-    
-    ///（上拉加载）
-    func pullUpToloadData() -> () {
-        
-        endLoadData()
-        
-    }
     
     ///滚到顶部
     func goToTop() {
@@ -139,14 +125,12 @@ class BaseViewController: UIViewController {
             self.processWindow = nil
         }
         
-      
-      
         
         if  loadingCount > 0 {
-         
-              loadingCount -= 1
+            
+            loadingCount -= 1
         }
-      
+        
         
         print("当前正在加载的数量 \(loadingCount)")
         
@@ -158,9 +142,7 @@ class BaseViewController: UIViewController {
         isLoading = false
         
         isPullup = false
-        
-        isPullDown = false
-         
+                 
     }
     
     
@@ -194,7 +176,7 @@ extension BaseViewController {
         refreshControl?.tintColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)
         
         
-        refreshControl?.addTarget(self, action: #selector(pullDownToLoadData), for: .valueChanged)
+        refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
         
         tableview?.addSubview(refreshControl!)
         
@@ -235,6 +217,12 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
     }
     
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return 1
+    }
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         return UITableViewCell()
@@ -247,9 +235,10 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
         
         let count  =  tableView.numberOfRows(inSection: 0) - 1
         
-        if (row == count) && !isPullup {
+        if (row == count) && !isPullup && needPullUp {
             
-            pullUpToloadData()
+            isPullup = true
+            loadData()
         }
         
     }
