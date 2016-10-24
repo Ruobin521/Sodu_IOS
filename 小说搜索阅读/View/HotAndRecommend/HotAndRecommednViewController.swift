@@ -18,12 +18,13 @@ class HotAndRecommednViewController: BaseViewController {
     
     
     override func loadData() {
-        
-        needPullUp = false
+         
+        refreshControl?.endRefreshing()
         
         if  isLoading  {
             
             ToastView.instance.showToast(content: "数据加载正在努力加载中",nil)
+            
             return
         }
         
@@ -104,24 +105,24 @@ extension HotAndRecommednViewController {
     }
     
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        switch section {
-            
-        case 0:
-            
-            return  "热门"
-            
-        case 1:
-            
-            return  "推荐"
-            
-        default:
-            
-            return  ""
-        }
-        
-    }
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        
+//        switch section {
+//            
+//        case 0:
+//            
+//            return  "热门"
+//            
+//        case 1:
+//            
+//            return  "推荐"
+//            
+//        default:
+//            
+//            return  ""
+//        }
+//        
+//    }
     
     
 }

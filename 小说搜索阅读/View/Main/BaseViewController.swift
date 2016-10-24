@@ -164,13 +164,12 @@ extension BaseViewController {
     
     func setuoTableview() -> () {
         
-        tableview = UITableView(frame:  view.bounds, style: .plain)
-        
-        view.insertSubview(tableview!, belowSubview: navigationBar)
+        tableview = UITableView(frame:  view.bounds, style: .grouped)
         
         tableview?.dataSource = self
         tableview?.delegate = self
         
+        tableview?.backgroundColor = UIColor.white
         
         tableview?.contentInset = UIEdgeInsets(top: navigationBar.bounds.height, left: 0, bottom: tabBarController?.tabBar.bounds.height ?? 49, right: 0)
         
@@ -182,6 +181,15 @@ extension BaseViewController {
         refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
         
         tableview?.addSubview(refreshControl!)
+       
+        
+        tableview?.sectionFooterHeight = 10
+        
+        tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat.leastNormalMagnitude))
+        
+         view.insertSubview(tableview!, belowSubview: navigationBar)
+        
+        
         
     }
     
@@ -251,5 +259,13 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
         
         return nil
     }
+    
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return 0
+        
+    }
+    
     
 }

@@ -52,11 +52,13 @@ class ToastView : NSObject{
     //弹窗图片文字
     func showToast(content:String , _ imageName:String?, _ duration:CFTimeInterval=1.5) {
         
-        var frame = CGRect(x: 0, y: 0, width: 200  , height: 35)
+        var frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)!  , height: 30)
         
         
         let toastContainerView = UIView()
-        toastContainerView.layer.cornerRadius = 4
+        
+        toastContainerView.layer.cornerRadius = 0
+        
         toastContainerView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.5)
         
         var iconWidthHeight :CGFloat = 0
@@ -75,7 +77,7 @@ class ToastView : NSObject{
         
         let toastContentView = UILabel(frame: CGRect(x:0, y:iconWidthHeight  , width:frame.width,height: frame.height - iconWidthHeight))
         
-        toastContentView.font = UIFont.systemFont(ofSize: 16)
+        toastContentView.font = UIFont.systemFont(ofSize: 15)
         toastContentView.textColor = UIColor.white
         toastContentView.text = content
         toastContentView.textAlignment = NSTextAlignment.center
@@ -88,7 +90,7 @@ class ToastView : NSObject{
         toastContainerView.frame = frame
         
         window.windowLevel = UIWindowLevelAlert
-        window.center = CGPoint(x: (rv?.center.x)!, y: (rv?.center.y)! * 16 / 10)
+        window.center = CGPoint(x: (rv?.center.x)!, y: 79)
         window.isHidden = false
         window.addSubview(toastContainerView)
         windows.append(window)
@@ -131,20 +133,22 @@ class AnimationUtil{
         
         // 透明度变化动画
         let opacityAnimaton = CAKeyframeAnimation(keyPath: "opacity")
-        opacityAnimaton.keyTimes = [0, 0.4,1.3, 1.5]
-        opacityAnimaton.values = [0.2, 1, 1, 0]
+        opacityAnimaton.keyTimes = [0,  0.4, 1.0, 1.3, 1.5]
+        opacityAnimaton.values =  [0.2, 1,   1,   0.2, 0]
         opacityAnimaton.duration = duration
         
         // 组动画
         let animation = CAAnimationGroup()
         animation.animations = [scaleAnimation, opacityAnimaton]
         //动画的过渡效果1. kCAMediaTimingFunctionLinear//线性 2. kCAMediaTimingFunctionEaseIn//淡入 3. kCAMediaTimingFunctionEaseOut//淡出4. kCAMediaTimingFunctionEaseInEaseOut//淡入淡出 5. kCAMediaTimingFunctionDefault//默认
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         
         animation.duration = duration
-        animation.repeatCount = 0// HUGE
+        animation.repeatCount = 1// HUGE
         animation.isRemovedOnCompletion = false
         animation.autoreverses = false
+      //  animation.e
+        
         
         return animation
     }

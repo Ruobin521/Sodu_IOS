@@ -20,7 +20,9 @@ class RankViewController: BaseViewController {
     override func loadData() {
         
         needPullUp = true
-                 
+        
+        refreshControl?.endRefreshing()
+        
         if  isLoading  {
             
             ToastView.instance.showToast(content: "数据加载正在努力加载中",nil)
@@ -50,7 +52,7 @@ class RankViewController: BaseViewController {
             ToastView.instance.showToast(content: "已加载到最后一页",nil)
             return
         }
-         
+        
         isLoading = true
         
         viewModel.loadRankListDataByPageIndex(pageindex) { (isSuccess) in
@@ -94,6 +96,12 @@ extension RankViewController {
         cell.textLabel?.text = viewModel.bookList[indexPath.row].bookName
         
         return cell
+    }
+    
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return 8
     }
     
 }
