@@ -25,7 +25,7 @@ class RankViewController: BaseViewController {
         
         if  isLoading  {
             
-            ToastView.instance.showToast(content: "数据加载正在努力加载中",nil)
+            ToastView.instance.showToast(content: "数据加载正在努力加载中")
             return
             
         }
@@ -49,7 +49,7 @@ class RankViewController: BaseViewController {
         if  pageindex == viewModel.pageCount {
             
             isPullup = false
-            ToastView.instance.showToast(content: "已加载到最后一页",nil)
+            ToastView.instance.showToast(content: "已加载到最后一页")
             return
         }
         
@@ -61,13 +61,13 @@ class RankViewController: BaseViewController {
                 
                 self.tableview?.reloadData()
                 
-                ToastView.instance.showToast(content: "已加载排行榜第\(pageindex+1)页数据",nil)
+                ToastView.instance.showToast(content: "已加载排行榜第\(pageindex+1)页数据")
                 
                 self.navItem.title = "排行榜 - \(pageindex+1) / 8"
                 
             } else {
                 
-                ToastView.instance.showToast(content: "第\(pageindex+1)页数据加载失败",nil)
+                ToastView.instance.showToast(content: "第\(pageindex+1)页数据加载失败", false)
                 
                 print("第\(pageindex+1)页数据加载失败")
             }

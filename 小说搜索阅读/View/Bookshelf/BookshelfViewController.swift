@@ -27,7 +27,7 @@ class BookshelfViewController: BaseViewController {
         
         if  isLoading  {
             
-            ToastView.instance.showToast(content: "数据加载正在努力加载中", nil)
+            ToastView.instance.showToast(content: "数据加载正在努力加载中")
             
             return
         }
@@ -48,11 +48,11 @@ class BookshelfViewController: BaseViewController {
             if isSuccess {
                 
                 self.tableview?.reloadData()
-                ToastView.instance.showToast(content: "已加载个人收藏数据",nil)
+                ToastView.instance.showToast(content: "已加载个人收藏数据")
                 
             } else {
                 
-                ToastView.instance.showToast(content: "个人收藏数据加载失败",nil)
+                ToastView.instance.showToast(content: "个人收藏数据加载失败",false)
                 
             }
             

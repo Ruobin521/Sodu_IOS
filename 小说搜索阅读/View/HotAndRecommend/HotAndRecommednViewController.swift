@@ -23,7 +23,7 @@ class HotAndRecommednViewController: BaseViewController {
         
         if  isLoading  {
             
-            ToastView.instance.showToast(content: "数据加载正在努力加载中",nil)
+            ToastView.instance.showToast(content: "数据加载正在努力加载中",false)
             
             return
         }
@@ -42,12 +42,12 @@ class HotAndRecommednViewController: BaseViewController {
             
             if  !isSuccess {
                 
-                ToastView.instance.showToast(content: "热门小说数据加载失败",nil)
+                ToastView.instance.showToast(content: "热门小说数据加载失败",false)
                 
             } else {
                 
                 self.tableview?.reloadData()
-                ToastView.instance.showToast(content: "已加载热门小说数据",nil)
+                ToastView.instance.showToast(content: "已加载热门小说数据")
                 
             }
             

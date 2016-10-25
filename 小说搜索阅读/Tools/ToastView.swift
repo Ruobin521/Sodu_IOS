@@ -49,33 +49,36 @@ class ToastView : NSObject{
         
     }
     
-    //弹窗图片文字
-    func showToast(content:String , _ imageName:String?, _ duration:CFTimeInterval=1.5) {
+    //弹窗文字
+    func showToast(content:String , _ isSuccess:Bool = true, _ duration:CFTimeInterval=1.5) {
         
-        var frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)!  , height: 30)
+       let frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)!  , height: 30)
         
         
         let toastContainerView = UIView()
         
         toastContainerView.layer.cornerRadius = 0
         
-        toastContainerView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.5)
         
-        var iconWidthHeight :CGFloat = 0
         
-        if imageName != nil  {
-            
-            frame = CGRect(x: 0, y: 0, width: 150  , height: 90)
-           
-            iconWidthHeight = 36
-            
-            let toastIconView = UIImageView(image: UIImage(named: imageName!)!)
-            toastIconView.frame = CGRect(x:(frame.width - iconWidthHeight)/2, y:15, width:iconWidthHeight,height: iconWidthHeight)
-            toastContainerView.addSubview(toastIconView)
-        }
-      
+          toastContainerView.backgroundColor =  !isSuccess ? UIColor(red:0, green:0, blue:0, alpha: 0.5) :    UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.75)
         
-        let toastContentView = UILabel(frame: CGRect(x:0, y:iconWidthHeight  , width:frame.width,height: frame.height - iconWidthHeight))
+//        var iconWidthHeight :CGFloat = 0
+        
+//        
+//        if imageName != nil  {
+//            
+//            frame = CGRect(x: 0, y: 0, width: 150  , height: 90)
+//           
+//            iconWidthHeight = 36
+//            
+//            let toastIconView = UIImageView(image: UIImage(named: imageName!)!)
+//            toastIconView.frame = CGRect(x:(frame.width - iconWidthHeight)/2, y:15, width:iconWidthHeight,height: iconWidthHeight)
+//            toastContainerView.addSubview(toastIconView)
+//        }
+//      
+        
+        let toastContentView = UILabel(frame: CGRect(x:0, y:0  , width:frame.width,height: frame.height))
         
         toastContentView.font = UIFont.systemFont(ofSize: 15)
         toastContentView.textColor = UIColor.white
@@ -90,7 +93,7 @@ class ToastView : NSObject{
         toastContainerView.frame = frame
         
         window.windowLevel = UIWindowLevelAlert
-        window.center = CGPoint(x: (rv?.center.x)!, y: 79)
+        window.center = CGPoint(x: (rv?.center.x)!, y: 80)
         window.isHidden = false
         window.addSubview(toastContainerView)
         windows.append(window)
@@ -99,7 +102,7 @@ class ToastView : NSObject{
         
         // perform(#selector(removeToast(sender:self)), with: window, afterDelay: duration)
         
-        perform(#selector(removeToast), with: window, afterDelay: duration)
+        perform(#selector(removeToast), with: window, afterDelay: duration )
     }
     
     
@@ -133,8 +136,8 @@ class AnimationUtil{
         
         // 透明度变化动画
         let opacityAnimaton = CAKeyframeAnimation(keyPath: "opacity")
-        opacityAnimaton.keyTimes = [0,  0.4, 1.0, 1.3, 1.5]
-        opacityAnimaton.values =  [0.2, 1,   1,   0.2, 0]
+        opacityAnimaton.keyTimes = [0,  0.4, 1.3,1.5 ]
+        opacityAnimaton.values =  [0.2, 1, 1,0]
         opacityAnimaton.duration = duration
         
         // 组动画
