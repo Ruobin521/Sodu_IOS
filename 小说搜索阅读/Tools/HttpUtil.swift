@@ -25,18 +25,11 @@ class  HttpUtil :AFHTTPSessionManager  {
         
         let shared = HttpUtil()
         
-   //[manage.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-       // [urlRequest addValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-
-      
-        
         shared.requestSerializer.setValue("gzip", forHTTPHeaderField: "Content-Encoding")
       
         shared.requestSerializer.setValue("gzip, deflate, sdch", forHTTPHeaderField: "Accept-Encoding")
         shared.requestSerializer.timeoutInterval = 10
         
-        
-
         shared.responseSerializer = AFHTTPResponseSerializer()
         shared.responseSerializer.acceptableContentTypes?.insert("text/html")
         shared.responseSerializer.acceptableContentTypes?.insert("application/x-gzip")
@@ -47,12 +40,32 @@ class  HttpUtil :AFHTTPSessionManager  {
     }()
     
     
+    private var requestCount = 0  {
+        
+        didSet {
+            
+            
+            if requestCount  <= 0 {
+                
+                  UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                
+            } else {
+                
+                  UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            }
+            
+        }
+        
+    }
     
+         
     func request(url:String ,requestMethod: RequestMethod, postStr: String?, timeOut:TimeInterval = 15.0, completion: @escaping (_ result:String?, _ isSuccess :Bool) ->() )  {
         
         
         let request = NSMutableURLRequest.init(url: URL(string: url)!)
         
+        requestCount += 1
+         
         // 设置请求超时时间
         
         request.timeoutInterval = timeOut
@@ -75,6 +88,8 @@ class  HttpUtil :AFHTTPSessionManager  {
         
         URLSession.shared.dataTask(with: request as URLRequest) { (data, _, error) in
             
+            self.requestCount -= 1
+ 
             guard let _ = data , let  html = String(data: data!, encoding: .utf8) else {
                 
                 completion(nil,false)

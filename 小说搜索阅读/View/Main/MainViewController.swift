@@ -104,7 +104,6 @@ extension MainViewController {
             ]
         
         
-        
         if userLogon {
             
             array.insert( ["clsName": "BookshelfViewController", "title": "个人书架", "imageName" : "profile"], at: 0)

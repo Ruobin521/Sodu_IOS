@@ -8,38 +8,12 @@
 
 import UIKit
 
-private var loadingCount:Int = 0
-
 class BaseViewController: UIViewController {
     
     
-    var isLoading = false {
-        
-        didSet {
-            
-            if isLoading {
-                
-                UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                loadingCount += 1
-                print("当前正在加载的数量 \(loadingCount)")
-            }
-        }
-    }
+    var isLoading = false
     
     weak var processWindow:UIWindow?
-    
-//    var isPullup = false {
-//        
-//        didSet {
-//            
-//            if  isPullup {
-//                
-//                processWindow =  ToastView.instance.showLoadingView()
-//            }
-//            
-//        }
-//    }
-    
     
     var isPullup = false
     
@@ -80,7 +54,15 @@ class BaseViewController: UIViewController {
     /// 加载数据
     func loadData()  {
         
-        endLoadData()
+       refreshControl?.endRefreshing()
+        
+        if  isLoading  {
+            
+            ToastView.instance.showToast(content: "数据加载正在努力加载中")
+            
+            return
+        }
+        
     }
     
     func initData()  {
@@ -137,19 +119,6 @@ class BaseViewController: UIViewController {
         }
         
         
-        if  loadingCount > 0 {
-            
-            loadingCount -= 1
-        }
-        
-        
-        print("当前正在加载的数量 \(loadingCount)")
-        
-        if loadingCount == 0 {
-            
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        }
-        
         isLoading = false
         
         isPullup = false
@@ -188,7 +157,7 @@ extension BaseViewController {
         refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
         
         tableview?.addSubview(refreshControl!)
-       
+        
         
         tableview?.sectionFooterHeight = 10
         

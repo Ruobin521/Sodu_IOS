@@ -16,7 +16,6 @@ class HotAndRecommednViewController: BaseViewController {
     
     let vm = ViewModelInstance.Instance.HotAndRecommend
     
-    
     override func initData() {
         
         vm.loadCacheData(vc: self)
@@ -26,15 +25,8 @@ class HotAndRecommednViewController: BaseViewController {
     
     
     override func loadData() {
-         
-        refreshControl?.endRefreshing()
         
-        if  isLoading  {
-            
-            ToastView.instance.showToast(content: "数据加载正在努力加载中",false)
-            
-            return
-        }
+        super.loadData()
         
         refreshData()
     }
@@ -46,17 +38,10 @@ class HotAndRecommednViewController: BaseViewController {
         
         vm.loadData { (isSuccess) in
             
-            if  !isSuccess {
-                
-                ToastView.instance.showToast(content: "热门推荐数据加载失败",false)
-                
-            } else {
+            if  isSuccess {
                 
                 self.tableview?.reloadData()
-                ToastView.instance.showToast(content: "已加载热门推荐数据")
-                
             }
-            
             
             super.endLoadData()
         }
@@ -111,24 +96,24 @@ extension HotAndRecommednViewController {
     }
     
     
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        
-//        switch section {
-//            
-//        case 0:
-//            
-//            return  "热门"
-//            
-//        case 1:
-//            
-//            return  "推荐"
-//            
-//        default:
-//            
-//            return  ""
-//        }
-//        
-//    }
+    //    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    //
+    //        switch section {
+    //
+    //        case 0:
+    //
+    //            return  "热门"
+    //
+    //        case 1:
+    //
+    //            return  "推荐"
+    //
+    //        default:
+    //
+    //            return  ""
+    //        }
+    //
+    //    }
     
     
 }

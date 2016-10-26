@@ -48,7 +48,8 @@ class HotAndRecommendPageViewModel {
                 
                 if !isSuccess {
                     
-                    completion(false)
+                   // completion(false)
+                    ToastView.instance.showToast(content: "热门推荐数据加载失败",false)
                     
                 }  else {
                     
@@ -62,7 +63,9 @@ class HotAndRecommendPageViewModel {
                     self.recommendBookList.removeAll()
                     self.recommendBookList += array2
                     
+                    ToastView.instance.showToast(content: "已加载热门推荐数据")
                     completion(true)
+                    
                     
                 }
                 

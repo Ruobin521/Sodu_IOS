@@ -42,7 +42,8 @@ class BookShelfPageViewModel {
                 
                 if !isSuccess {
                     
-                    completion(false)
+                   // completion(false)
+                    ToastView.instance.showToast(content: "个人收藏数据加载失败",false)
                     
                 }  else {
                     
@@ -53,8 +54,11 @@ class BookShelfPageViewModel {
                     self.bookList += array
                     
                     BookCacheHelper.SavaBookListAsFile(self.bookList, .BookShelf)
-                    
+                  
+                    ToastView.instance.showToast(content: "已加载个人收藏数据")
+
                     completion(true)
+                    
                     
                 }
                 
