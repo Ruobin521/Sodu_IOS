@@ -26,7 +26,10 @@ class HotAndRecommednViewController: BaseViewController {
     
     override func loadData() {
         
-        super.loadData()
+        if  checkIsLoading() {
+            
+            return
+        }
         
         refreshData()
     }
@@ -74,17 +77,27 @@ extension HotAndRecommednViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CommonBookListTableViewCell
         
         if indexPath.section == 0 {
             
-            cell.textLabel?.text = "热门  " + self.vm.hotBookList[indexPath.row].bookName!
+            cell.book = vm.hotBookList[indexPath.row]
+            
+            cell.txtBookName?.text = vm.hotBookList[indexPath.row].bookName
+            cell.txtUpdateTime?.text = vm.hotBookList[indexPath.row].updateTime
+            cell.txtUpdateChpterName?.text = vm.hotBookList[indexPath.row].chapterName
             
         }  else {
             
-            cell.textLabel?.text = "推荐  " +  self.vm.recommendBookList[indexPath.row].bookName!
+            
+            cell.book = vm.recommendBookList[indexPath.row]
+            
+            cell.txtBookName?.text = vm.recommendBookList[indexPath.row].bookName
+            cell.txtUpdateTime?.text = vm.recommendBookList[indexPath.row].updateTime
+            cell.txtUpdateChpterName?.text = vm.recommendBookList[indexPath.row].chapterName
             
         }
+        
         
         return cell
     }
@@ -126,8 +139,9 @@ extension HotAndRecommednViewController {
         
         super.setupUI()
         
-        tableview?.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        let cellNib = UINib(nibName: "CommonBookListTableViewCell", bundle: nil)
         
+        tableview?.register(cellNib, forCellReuseIdentifier: cellId)
     }
     
 }

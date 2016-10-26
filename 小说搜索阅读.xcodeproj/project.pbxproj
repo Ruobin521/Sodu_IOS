@@ -29,8 +29,9 @@
 		B194B8C91DBDD0CE0061C9A4 /* ViewModelInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194B8C81DBDD0CE0061C9A4 /* ViewModelInstance.swift */; };
 		B194B8CB1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194B8CA1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift */; };
 		B194B8CE1DBDE6720061C9A4 /* HotAndRecommednViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194B8CD1DBDE6720061C9A4 /* HotAndRecommednViewController.swift */; };
-		B1BEC7441DC05DCF00AD8DC3 /* CommonBookListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1BEC7431DC05DCF00AD8DC3 /* CommonBookListCell.xib */; };
-		B1BEC7461DC05E3900AD8DC3 /* CommonBookListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEC7451DC05E3900AD8DC3 /* CommonBookListCellView.swift */; };
+		B1BEC74B1DC0693600AD8DC3 /* CommonBookListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEC7491DC0693600AD8DC3 /* CommonBookListTableViewCell.swift */; };
+		B1BEC74C1DC0693600AD8DC3 /* CommonBookListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1BEC74A1DC0693600AD8DC3 /* CommonBookListTableViewCell.xib */; };
+		B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */; };
 		F5DA2AE54C56A2A2976E8D6F /* Pods_______.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C180B4901097B286F23F8F /* Pods_______.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,8 +63,9 @@
 		B194B8C81DBDD0CE0061C9A4 /* ViewModelInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelInstance.swift; sourceTree = "<group>"; };
 		B194B8CA1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAndRecommendPageViewModel.swift; sourceTree = "<group>"; };
 		B194B8CD1DBDE6720061C9A4 /* HotAndRecommednViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAndRecommednViewController.swift; sourceTree = "<group>"; };
-		B1BEC7431DC05DCF00AD8DC3 /* CommonBookListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonBookListCell.xib; sourceTree = "<group>"; };
-		B1BEC7451DC05E3900AD8DC3 /* CommonBookListCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonBookListCellView.swift; sourceTree = "<group>"; };
+		B1BEC7491DC0693600AD8DC3 /* CommonBookListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonBookListTableViewCell.swift; sourceTree = "<group>"; };
+		B1BEC74A1DC0693600AD8DC3 /* CommonBookListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommonBookListTableViewCell.xib; sourceTree = "<group>"; };
+		B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateChapterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				B17E03C61DB095B90061DD47 /* Rank */,
 				B194B8CC1DBDE6720061C9A4 /* HotAndRecommend */,
 				B1378BD71DB4A5A0000D4FAE /* Setting */,
+				B1BEC74D1DC0972E00AD8DC3 /* UpdateChapter */,
 				B1BEC7421DC05D9100AD8DC3 /* UserControl */,
 			);
 			path = View;
@@ -227,10 +230,18 @@
 		B1BEC7421DC05D9100AD8DC3 /* UserControl */ = {
 			isa = PBXGroup;
 			children = (
-				B1BEC7431DC05DCF00AD8DC3 /* CommonBookListCell.xib */,
-				B1BEC7451DC05E3900AD8DC3 /* CommonBookListCellView.swift */,
+				B1BEC7491DC0693600AD8DC3 /* CommonBookListTableViewCell.swift */,
+				B1BEC74A1DC0693600AD8DC3 /* CommonBookListTableViewCell.xib */,
 			);
 			path = UserControl;
+			sourceTree = "<group>";
+		};
+		B1BEC74D1DC0972E00AD8DC3 /* UpdateChapter */ = {
+			isa = PBXGroup;
+			children = (
+				B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */,
+			);
+			path = UpdateChapter;
 			sourceTree = "<group>";
 		};
 		F9C326BCDE3D42F556995BC8 /* Frameworks */ = {
@@ -304,9 +315,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1BEC7441DC05DCF00AD8DC3 /* CommonBookListCell.xib in Resources */,
 				B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */,
 				B120E22F1DA9E72800921288 /* Assets.xcassets in Resources */,
+				B1BEC74C1DC0693600AD8DC3 /* CommonBookListTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,9 +383,10 @@
 				B17E03CD1DB0984E0061DD47 /* BaseViewController.swift in Sources */,
 				B17E03D11DB098CF0061DD47 /* RankViewController.swift in Sources */,
 				B194B8C51DBDC4530061C9A4 /* RankListPageViewModel.swift in Sources */,
+				B1BEC74B1DC0693600AD8DC3 /* CommonBookListTableViewCell.swift in Sources */,
 				B17E03C91DB095B90061DD47 /* Book.swift in Sources */,
+				B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */,
 				B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */,
-				B1BEC7461DC05E3900AD8DC3 /* CommonBookListCellView.swift in Sources */,
 				B194B8C91DBDD0CE0061C9A4 /* ViewModelInstance.swift in Sources */,
 				B1904FB11DB605C900534AD6 /* ToastView.swift in Sources */,
 				B17E03D81DB099380061DD47 /* BookshelfViewController.swift in Sources */,

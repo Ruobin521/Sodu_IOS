@@ -13,8 +13,6 @@ import UIKit
 
 private let cellId = "cellId"
 
-
-
 class BookshelfViewController: BaseViewController {
     
     
@@ -31,10 +29,12 @@ class BookshelfViewController: BaseViewController {
     
     override func loadData() {
         
-        super.loadData()
+        if  checkIsLoading() {
+            
+            return
+        }
         
         loadDataByPageIndex()
-        
     }
     
     
@@ -57,6 +57,13 @@ class BookshelfViewController: BaseViewController {
     
 }
 
+extension BookshelfViewController {
+    
+    
+    
+    
+}
+
 
 
 extension BookshelfViewController {
@@ -70,12 +77,27 @@ extension BookshelfViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CommonBookListTableViewCell
         
-        cell.textLabel?.text = vm.bookList[indexPath.row].bookName
+        cell.book = vm.bookList[indexPath.row]
+        
+        cell.txtBookName?.text = vm.bookList[indexPath.row].bookName
+        cell.txtUpdateTime?.text = vm.bookList[indexPath.row].updateTime
+        cell.txtUpdateChpterName?.text = vm.bookList[indexPath.row].chapterName
         
         return cell
     }
+    
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableview?.deselectRow(at: indexPath, animated: true)
+        
+        
+        
+    }
+    
     
 }
 
@@ -87,7 +109,11 @@ extension BookshelfViewController {
         
         super.setupUI()
         
-        tableview?.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        let cellNib = UINib(nibName: "CommonBookListTableViewCell", bundle: nil)
+        
+        tableview?.register(cellNib, forCellReuseIdentifier: cellId)
+        
+      
         
     }
     

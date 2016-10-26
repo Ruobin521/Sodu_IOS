@@ -1,8 +1,8 @@
 //
-//  RankViewController.swift
+//  UpdateChapterViewController.swift
 //  小说搜索阅读
 //
-//  Created by  ruobin on 2016/10/14.
+//  Created by  ruobin on 2016/10/26.
 //  Copyright © 2016年 Ruobin Dang. All rights reserved.
 //
 
@@ -11,7 +11,8 @@ import UIKit
 
 private let cellId = "cellId"
 
-class RankViewController: BaseViewController {
+class UpdateChapterViewController: BaseViewController {
+
     
     
     var vm =  ViewModelInstance.Instance.rank
@@ -73,7 +74,7 @@ class RankViewController: BaseViewController {
 }
 
 
-extension RankViewController {
+extension UpdateChapterViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -91,7 +92,7 @@ extension RankViewController {
         cell.txtBookName?.text = vm.bookList[indexPath.row].bookName
         cell.txtUpdateTime?.text = vm.bookList[indexPath.row].updateTime
         cell.txtUpdateChpterName?.text = vm.bookList[indexPath.row].chapterName
- 
+        
         return cell
     }
     
@@ -104,7 +105,7 @@ extension RankViewController {
 }
 
 
-extension RankViewController {
+extension UpdateChapterViewController {
     
     
     override func setupUI() {

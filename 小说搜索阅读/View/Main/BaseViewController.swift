@@ -55,15 +55,25 @@ class BaseViewController: UIViewController {
     func loadData()  {
         
        refreshControl?.endRefreshing()
+       
+    }
+    
+    
+    func  checkIsLoading() -> Bool {
+    
+        refreshControl?.endRefreshing()
         
         if  isLoading  {
             
             ToastView.instance.showToast(content: "数据加载正在努力加载中")
             
-            return
+            return true
         }
         
+        return false
     }
+    
+    
     
     func initData()  {
         
@@ -161,10 +171,9 @@ extension BaseViewController {
         
         tableview?.sectionFooterHeight = 10
         
-        tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat.leastNormalMagnitude))
+        tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat(5)))
         
-        
-        
+        tableview?.rowHeight = 68
         
         view.insertSubview(tableview!, belowSubview: navigationBar)
         
@@ -242,6 +251,11 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
         
         return 0
         
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+          tableview?.deselectRow(at: indexPath, animated: true)
     }
     
     

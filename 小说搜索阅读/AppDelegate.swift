@@ -36,6 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(notifyStting)
             
         }
+        
+        
+      
 
         
         window = UIWindow()
