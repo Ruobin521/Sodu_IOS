@@ -50,7 +50,7 @@ class ToastView : NSObject{
     }
     
     //弹窗文字
-    func showToast(content:String , _ isSuccess:Bool = true, _ duration:CFTimeInterval=1.5) {
+    func showToast(content:String , _ isSuccess:Bool = true, _ duration:CFTimeInterval=1.0) {
         
        let frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)!  , height: 30)
         
@@ -130,21 +130,21 @@ class AnimationUtil{
     static func getToastAnimation(duration:CFTimeInterval = 1.5) -> CAAnimation{
         // 大小变化动画
         let scaleAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
-        scaleAnimation.keyTimes = [0, 0.5, 1.5]
+        scaleAnimation.keyTimes = [0, 0.5, 1]
         scaleAnimation.values = [1, 1, 1]
         scaleAnimation.duration = duration
         
         // 透明度变化动画
         let opacityAnimaton = CAKeyframeAnimation(keyPath: "opacity")
-        opacityAnimaton.keyTimes = [0,  0.4, 1.3,1.5 ]
-        opacityAnimaton.values =  [0.2, 1, 1,0]
+        opacityAnimaton.keyTimes = [0, 0.5 , 1]
+        opacityAnimaton.values =  [0.5, 1,1]
         opacityAnimaton.duration = duration
         
         // 组动画
         let animation = CAAnimationGroup()
         animation.animations = [scaleAnimation, opacityAnimaton]
         //动画的过渡效果1. kCAMediaTimingFunctionLinear//线性 2. kCAMediaTimingFunctionEaseIn//淡入 3. kCAMediaTimingFunctionEaseOut//淡出4. kCAMediaTimingFunctionEaseInEaseOut//淡入淡出 5. kCAMediaTimingFunctionDefault//默认
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
         
         animation.duration = duration
         animation.repeatCount = 1// HUGE
