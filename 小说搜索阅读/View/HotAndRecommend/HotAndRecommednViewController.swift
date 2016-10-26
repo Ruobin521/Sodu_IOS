@@ -17,6 +17,14 @@ class HotAndRecommednViewController: BaseViewController {
     let vm = ViewModelInstance.Instance.HotAndRecommend
     
     
+    override func initData() {
+        
+        vm.loadCacheData(vc: self)
+        
+        loadData()
+    }
+    
+    
     override func loadData() {
          
         refreshControl?.endRefreshing()
@@ -27,8 +35,6 @@ class HotAndRecommednViewController: BaseViewController {
             
             return
         }
-        
-        vm.loadCacheData(vc: self)
         
         refreshData()
     }
@@ -42,17 +48,17 @@ class HotAndRecommednViewController: BaseViewController {
             
             if  !isSuccess {
                 
-                ToastView.instance.showToast(content: "热门小说数据加载失败",false)
+                ToastView.instance.showToast(content: "热门推荐数据加载失败",false)
                 
             } else {
                 
                 self.tableview?.reloadData()
-                ToastView.instance.showToast(content: "已加载热门小说数据")
+                ToastView.instance.showToast(content: "已加载热门推荐数据")
                 
             }
             
-            super.endLoadData()
             
+            super.endLoadData()
         }
         
         

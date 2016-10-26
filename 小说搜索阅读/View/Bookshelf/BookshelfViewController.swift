@@ -21,6 +21,14 @@ class BookshelfViewController: BaseViewController {
     let vm = ViewModelInstance.Instance.bookShelf
     
     
+    override func initData() {
+        
+        vm.loadCacheData(self)
+        
+        loadData()
+    }
+    
+    
     override func loadData() {
         
         refreshControl?.endRefreshing()
@@ -32,7 +40,6 @@ class BookshelfViewController: BaseViewController {
             return
         }
         
-        vm.loadCacheData(self)
         
         loadDataByPageIndex()
         

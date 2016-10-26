@@ -63,7 +63,7 @@ class BaseViewController: UIViewController {
         
         setupUI()
         
-        loadData()
+        initData()
         
     }
     
@@ -83,6 +83,11 @@ class BaseViewController: UIViewController {
         endLoadData()
     }
     
+    func initData()  {
+        
+        
+    }
+    
     
     ///滚到顶部
     func goToTop() {
@@ -100,6 +105,9 @@ class BaseViewController: UIViewController {
                 let indexPath = IndexPath(row: 0, section: 0)
                 
                 self.tableview?.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                
+                
+                
                 
             } else {
                 
@@ -145,7 +153,7 @@ class BaseViewController: UIViewController {
         isLoading = false
         
         isPullup = false
-                 
+        
     }
     
     
@@ -177,7 +185,6 @@ extension BaseViewController {
         
         refreshControl?.tintColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)
         
-        
         refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
         
         tableview?.addSubview(refreshControl!)
@@ -187,9 +194,10 @@ extension BaseViewController {
         
         tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat.leastNormalMagnitude))
         
-         view.insertSubview(tableview!, belowSubview: navigationBar)
         
         
+        
+        view.insertSubview(tableview!, belowSubview: navigationBar)
         
     }
     

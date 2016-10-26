@@ -17,7 +17,7 @@ class RankListPageViewModel {
     
     var pageIndex = 0
     
-    func loadCacheData(vc:BaseViewController) {
+    func loadCacheData(_ vc:BaseViewController) {
         
         if bookList.count == 0 && pageIndex == 0 {
             

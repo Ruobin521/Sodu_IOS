@@ -14,8 +14,14 @@ private let cellId = "cellId"
 class RankViewController: BaseViewController {
     
     
-    var viewModel =  ViewModelInstance.Instance.rank
+    var vm =  ViewModelInstance.Instance.rank
     
+    override func initData() {
+        
+        vm.loadCacheData(self)
+        
+        loadData()
+    }
     
     override func loadData() {
         
@@ -30,11 +36,10 @@ class RankViewController: BaseViewController {
             
         }
         
-        viewModel.loadCacheData(vc: self)
         
         if isPullup {
             
-            loadDataByPageIndex(viewModel.pageIndex + 1)
+            loadDataByPageIndex(vm.pageIndex + 1)
             
         }  else {
             
@@ -46,7 +51,7 @@ class RankViewController: BaseViewController {
     
     func loadDataByPageIndex(_ pageindex: Int) {
         
-        if  pageindex == viewModel.pageCount {
+        if  pageindex == vm.pageCount {
             
             isPullup = false
             ToastView.instance.showToast(content: "已加载到最后一页")
@@ -55,7 +60,7 @@ class RankViewController: BaseViewController {
         
         isLoading = true
         
-        viewModel.loadRankListDataByPageIndex(pageindex) { (isSuccess) in
+        vm.loadRankListDataByPageIndex(pageindex) { (isSuccess) in
             
             if isSuccess {
                 
@@ -85,7 +90,7 @@ extension RankViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return viewModel.bookList.count
+        return vm.bookList.count
     }
     
     
@@ -93,7 +98,7 @@ extension RankViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         
-        cell.textLabel?.text = viewModel.bookList[indexPath.row].bookName
+        cell.textLabel?.text = vm.bookList[indexPath.row].bookName
         
         return cell
     }
