@@ -129,6 +129,16 @@ extension HotAndRecommednViewController {
     //    }
     
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableview?.deselectRow(at: indexPath, animated: true)
+        
+        let book = indexPath.section == 0 ? vm.hotBookList[indexPath.row]  : vm.recommendBookList[indexPath.row]
+        
+        CommonPageViewModel.navigateToUpdateChapterPage(book, navigationController)
+    }
+    
+    
 }
 
 

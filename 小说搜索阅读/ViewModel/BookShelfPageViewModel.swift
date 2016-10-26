@@ -42,7 +42,7 @@ class BookShelfPageViewModel {
                 
                 if !isSuccess {
                     
-                   // completion(false)
+                    completion(false)
                     ToastView.instance.showToast(content: "个人收藏数据加载失败",false)
                     
                 }  else {

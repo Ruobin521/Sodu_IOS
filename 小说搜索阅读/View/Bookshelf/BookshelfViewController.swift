@@ -57,12 +57,8 @@ class BookshelfViewController: BaseViewController {
     
 }
 
-extension BookshelfViewController {
-    
-    
-    
-    
-}
+
+
 
 
 
@@ -92,10 +88,9 @@ extension BookshelfViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableview?.deselectRow(at: indexPath, animated: true)
+        super.tableView(tableView, didSelectRowAt: indexPath)
         
-        
-        
+        CommonPageViewModel.navigateToUpdateChapterPage(vm.bookList[indexPath.row], navigationController)
     }
     
     
@@ -113,7 +108,7 @@ extension BookshelfViewController {
         
         tableview?.register(cellNib, forCellReuseIdentifier: cellId)
         
-      
+        
         
     }
     

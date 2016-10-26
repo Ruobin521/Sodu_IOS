@@ -13,7 +13,7 @@ class BaseViewController: UIViewController {
     
     var isLoading = false
     
-    weak var processWindow:UIWindow?
+    
     
     var isPullup = false
     
@@ -54,13 +54,13 @@ class BaseViewController: UIViewController {
     /// 加载数据
     func loadData()  {
         
-       refreshControl?.endRefreshing()
-       
+        refreshControl?.endRefreshing()
+        
     }
     
     
     func  checkIsLoading() -> Bool {
-    
+        
         refreshControl?.endRefreshing()
         
         if  isLoading  {
@@ -120,14 +120,6 @@ class BaseViewController: UIViewController {
     func endLoadData() {
         
         refreshControl?.endRefreshing()
-        
-        if processWindow != nil {
-            
-            ToastView.instance.removeToast(sender: processWindow)
-            
-            self.processWindow = nil
-        }
-        
         
         isLoading = false
         
@@ -190,6 +182,8 @@ extension BaseViewController {
         
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
+        navigationBar.tintColor = UIColor.white
+        
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent;
         
         
@@ -225,6 +219,13 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
         return UITableViewCell()
     }
     
+    
+    
+    /// 主要是上拉加载
+    ///
+    /// - parameter tableView: <#tableView description#>
+    /// - parameter cell:      <#cell description#>
+    /// - parameter indexPath: <#indexPath description#>
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         
@@ -232,7 +233,7 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
         
         let count  =  tableView.numberOfRows(inSection: 0) - 1
         
-        if (row == count) && !isPullup && needPullUp {
+        if (row == count) && !isPullup && needPullUp && !isLoading {
             
             isPullup = true
             loadData()
@@ -241,21 +242,39 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
     }
     
     
+    
+    /// 设置section的标题
+    ///
+    /// - parameter tableView: <#tableView description#>
+    /// - parameter section:   <#section description#>
+    ///
+    /// - returns: <#return value description#>
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         return nil
     }
     
     
+    
+    
+    /// 设置section的header的高度
+    ///
+    /// - parameter tableView: <#tableView description#>
+    /// - parameter section:   <#section description#>
+    ///
+    /// - returns: <#return value description#>
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return 0
         
     }
     
+    
+    
+    ///选中后取消选中
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-          tableview?.deselectRow(at: indexPath, animated: true)
+        tableview?.deselectRow(at: indexPath, animated: true)
     }
     
     

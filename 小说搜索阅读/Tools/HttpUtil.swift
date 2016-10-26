@@ -69,9 +69,11 @@ class  HttpUtil :AFHTTPSessionManager  {
         // 设置请求超时时间
         
         request.timeoutInterval = timeOut
-       // [restRequest setValue:USERAGENT forHTTPHeaderField:@"User-Agent"];
-        request.setValue("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36", forHTTPHeaderField: "User-Agent")
         
+        //Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.97 Safari/537.36
+        //Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36
+//        request.setValue("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.97 Safari/537.36", forHTTPHeaderField: "User-Agent")
+//        
         
         if requestMethod == RequestMethod.GET {
             
@@ -111,12 +113,7 @@ class  HttpUtil :AFHTTPSessionManager  {
         let success  = { (task: URLSessionDataTask? , json: Any?) -> () in
             
             completion(json , true)
-//            print(json)
-//            
-//            var str = String(data:(json as? Data)!, encoding: String.Encoding.utf8)
-//            
-//            print(str)
-            
+ 
             
         }
         

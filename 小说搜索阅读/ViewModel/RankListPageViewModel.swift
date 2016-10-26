@@ -49,7 +49,7 @@ class RankListPageViewModel {
                     
                     print("第\(pageindex+1)页数据加载失败")
                     
-                   // completion(false)
+                    completion(false)
                     
                 }  else {
                     

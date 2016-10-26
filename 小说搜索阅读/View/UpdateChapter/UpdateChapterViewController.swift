@@ -9,24 +9,22 @@
 import UIKit
 
 
-private let cellId = "cellId"
+private let cellId = "updateCellid"
 
 class UpdateChapterViewController: BaseViewController {
-
     
-    
-    var vm =  ViewModelInstance.Instance.rank
+    var vm =  UpdateChapterViewModel()
     
     override func initData() {
         
-        vm.loadCacheData(self)
+        needPullUp = true
         
         loadData()
     }
     
     override func loadData() {
         
-        needPullUp = true
+        
         
         if  checkIsLoading() {
             
@@ -48,29 +46,46 @@ class UpdateChapterViewController: BaseViewController {
     
     func loadDataByPageIndex(_ pageindex: Int) {
         
-        if  pageindex == vm.pageCount {
+        if  pageindex == vm.pageCount  && pageindex != 0 {
             
             isPullup = false
+            ToastView.instance.showToast(content: "已加载到最后一页")
+            
             return
             
         }
         
         isLoading = true
         
-        vm.loadRankListDataByPageIndex(pageindex) { (isSuccess) in
+        vm.loadUpdateChapterListDataByPageIndex(pageindex) { [weak self]  (isSuccess) in
             
             if isSuccess {
                 
-                self.tableview?.reloadData()
-                self.navItem.title = "排行榜 - \(pageindex+1) / 8"
+                self?.tableview?.reloadData()
+                self?.navigationItem.title = "\(self?.vm.currentBook?.bookName) - \(pageindex+1) / \(self?.vm.pageCount)"
                 
             }
             
-            super.endLoadData()
+            self?.endLoadData()
         }
-        
-        
     }
+}
+
+extension UpdateChapterViewController {
+    
+    
+    func chapterDidSelected(_ book:Book) {
+       
+        
+        let bc = BookContentViewController()
+        let vc = UINavigationController(rootViewController: bc)
+        
+        bc.currentBook = book
+         
+        present(vc, animated: true, completion: nil)
+       
+    }
+    
 }
 
 
@@ -79,19 +94,18 @@ extension UpdateChapterViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return vm.bookList.count
+        return vm.chapterList.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CommonBookListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UpdateChapterTableViewCell
         
-        cell.book = vm.bookList[indexPath.row]
         
-        cell.txtBookName?.text = vm.bookList[indexPath.row].bookName
-        cell.txtUpdateTime?.text = vm.bookList[indexPath.row].updateTime
-        cell.txtUpdateChpterName?.text = vm.bookList[indexPath.row].chapterName
+        cell.txtChapterName?.text = vm.chapterList[indexPath.row].chapterName
+        cell.txtUpdateTime?.text = vm.chapterList[indexPath.row].updateTime
+        cell.txtLywzName?.text = vm.chapterList[indexPath.row].lywzName
         
         return cell
     }
@@ -99,7 +113,17 @@ extension UpdateChapterViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 8
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        super.tableView(tableView, didSelectRowAt: indexPath)
+        
+        let  book  = vm.chapterList[indexPath.row]
+        
+        chapterDidSelected(book)
+        
     }
     
 }
@@ -112,7 +136,7 @@ extension UpdateChapterViewController {
         
         super.setupUI()
         
-        let cellNib = UINib(nibName: "CommonBookListTableViewCell", bundle: nil)
+        let cellNib = UINib(nibName: "UpdateChapterTableViewCell", bundle: nil)
         
         tableview?.register(cellNib, forCellReuseIdentifier: cellId)
         

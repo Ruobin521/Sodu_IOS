@@ -48,7 +48,7 @@ class HotAndRecommendPageViewModel {
                 
                 if !isSuccess {
                     
-                   // completion(false)
+                    completion(false)
                     ToastView.instance.showToast(content: "热门推荐数据加载失败",false)
                     
                 }  else {

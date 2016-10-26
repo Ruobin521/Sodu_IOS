@@ -101,6 +101,15 @@ extension RankViewController {
         return 8
     }
     
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableview?.deselectRow(at: indexPath, animated: true)
+        
+        CommonPageViewModel.navigateToUpdateChapterPage(vm.bookList[indexPath.row], navigationController)
+    }
+    
+    
 }
 
 

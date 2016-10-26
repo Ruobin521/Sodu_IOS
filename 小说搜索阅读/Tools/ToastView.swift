@@ -15,8 +15,10 @@ class ToastView : NSObject{
     var windows = UIApplication.shared.windows
     let rv = UIApplication.shared.keyWindow?.subviews.first as UIView!
     
+    var loadinWindow : UIWindow?
+    
     //显示加载圈圈
-    func showLoadingView() -> UIWindow {
+    func showLoadingView() {
         clear()
         let frame = CGRect(x: 0, y: 0, width: 120, height: 120)
         
@@ -43,16 +45,32 @@ class ToastView : NSObject{
         window.isHidden = false
         window.addSubview(loadingContainerView)
         
+        
+        loadinWindow = window
+        
         windows.append(window)
         
-        return window
+    }
+    
+    func closeLoadingWindos() {
+        
+        DispatchQueue.main.async {
+            
+            if self.loadinWindow != nil {
+               
+                self.removeToast(sender: self.loadinWindow)
+                self.loadinWindow = nil
+                
+            }
+            
+        }
         
     }
     
     //弹窗文字
     func showToast(content:String , _ isSuccess:Bool = true, _ duration:CFTimeInterval=1.0) {
         
-       let frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)!  , height: 30)
+        let frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)!  , height: 30)
         
         
         let toastContainerView = UIView()
@@ -61,22 +79,22 @@ class ToastView : NSObject{
         
         
         
-          toastContainerView.backgroundColor =  !isSuccess ? UIColor(red:0, green:0, blue:0, alpha: 0.5) :    UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.75)
+        toastContainerView.backgroundColor =  !isSuccess ? UIColor(red:0, green:0, blue:0, alpha: 0.5) :    UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.75)
         
-//        var iconWidthHeight :CGFloat = 0
+        //        var iconWidthHeight :CGFloat = 0
         
-//        
-//        if imageName != nil  {
-//            
-//            frame = CGRect(x: 0, y: 0, width: 150  , height: 90)
-//           
-//            iconWidthHeight = 36
-//            
-//            let toastIconView = UIImageView(image: UIImage(named: imageName!)!)
-//            toastIconView.frame = CGRect(x:(frame.width - iconWidthHeight)/2, y:15, width:iconWidthHeight,height: iconWidthHeight)
-//            toastContainerView.addSubview(toastIconView)
-//        }
-//      
+        //
+        //        if imageName != nil  {
+        //
+        //            frame = CGRect(x: 0, y: 0, width: 150  , height: 90)
+        //
+        //            iconWidthHeight = 36
+        //
+        //            let toastIconView = UIImageView(image: UIImage(named: imageName!)!)
+        //            toastIconView.frame = CGRect(x:(frame.width - iconWidthHeight)/2, y:15, width:iconWidthHeight,height: iconWidthHeight)
+        //            toastContainerView.addSubview(toastIconView)
+        //        }
+        //
         
         let toastContentView = UILabel(frame: CGRect(x:0, y:0  , width:frame.width,height: frame.height))
         
@@ -112,7 +130,7 @@ class ToastView : NSObject{
         if let temp = sender  {
             
             let index =  windows.index(of: temp)
-             windows.remove(at: index!)
+            windows.remove(at: index!)
         }
     }
     
@@ -150,7 +168,7 @@ class AnimationUtil{
         animation.repeatCount = 1// HUGE
         animation.isRemovedOnCompletion = false
         animation.autoreverses = false
-      //  animation.e
+        //  animation.e
         
         
         return animation
