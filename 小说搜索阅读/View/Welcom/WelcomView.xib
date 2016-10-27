@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WelcomView" customModule="小说搜索阅读" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="welcom" translatesAutoresizingMaskIntoConstraints="NO" id="Ofj-mQ-Rc0">
+                    <frame key="frameInset" width="375" height="667"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head" translatesAutoresizingMaskIntoConstraints="NO" id="wNj-Ho-TJy">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="85" id="J1P-5k-2pj"/>
+                        <constraint firstAttribute="height" constant="85" id="faF-OW-om8"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎使用小说搜索阅读" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11v-9U-Sah">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="wNj-Ho-TJy" secondAttribute="bottom" constant="160" id="D00-ei-Mbc"/>
+                <constraint firstItem="wNj-Ho-TJy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Fw0-eV-ZIt"/>
+                <constraint firstItem="11v-9U-Sah" firstAttribute="top" secondItem="wNj-Ho-TJy" secondAttribute="bottom" id="bpw-4i-msd"/>
+                <constraint firstItem="11v-9U-Sah" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hSe-AT-MrC"/>
+                <constraint firstItem="11v-9U-Sah" firstAttribute="centerX" secondItem="wNj-Ho-TJy" secondAttribute="centerX" id="xqs-VN-en6"/>
+            </constraints>
+            <connections>
+                <outlet property="bottomConstraint" destination="D00-ei-Mbc" id="RYC-Vx-uSX"/>
+                <outlet property="headImage" destination="wNj-Ho-TJy" id="i9M-aI-kRC"/>
+                <outlet property="tipLabel" destination="11v-9U-Sah" id="sOY-m6-O0b"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="head" width="170" height="170"/>
+        <image name="welcom" width="375" height="667"/>
+    </resources>
+</document>

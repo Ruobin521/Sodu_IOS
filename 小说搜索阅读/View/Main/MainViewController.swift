@@ -24,13 +24,15 @@ class MainViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupWelcomView()
         
         setupChildControllers()
         
         
+//        NotificationCenter.default.addObserver(self, selector: #selector(addBookShelfTabbar), name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
         
         
-        NotificationCenter.default.addObserver(self, selector: #selector(addBookShelfTabbar), name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
+        
         
     }
     
@@ -66,6 +68,30 @@ class MainViewController: UITabBarController {
 }
 
 
+extension  MainViewController {
+    
+    func  setupWelcomView() {
+        
+        
+        if !userLogon {
+            
+            return
+        }
+        
+        
+        let v = WelcomView.welcomView()
+        
+        v.frame = self.view.bounds
+        
+        self.view.addSubview(v)
+        
+    }
+    
+    
+    
+    
+}
+
 
 
 //双击回到顶部
@@ -73,9 +99,12 @@ extension MainViewController:UITabBarControllerDelegate {
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         
-        let date = NSDate()
+        guard  let tempvc = (viewControllers?[selectedIndex] as! UINavigationController).viewControllers[0] as? BaseViewController else {
+            
+            return
+        }
         
-        let tempvc = (viewControllers?[selectedIndex] as! UINavigationController).viewControllers[0] as! BaseViewController
+        let date = NSDate()
         
         
         if selectedVC == nil {

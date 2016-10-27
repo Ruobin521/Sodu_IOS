@@ -87,8 +87,9 @@ class  HttpUtil :AFHTTPSessionManager  {
         }
         
         print ("开始加载数据 \(url) 数据")
+       
         
-        URLSession.shared.dataTask(with: request as URLRequest) { (data, _, error) in
+        URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             
             self.requestCount -= 1
  
@@ -99,6 +100,14 @@ class  HttpUtil :AFHTTPSessionManager  {
             }
             
             completion(html,true)
+            
+            print(html)
+            
+           // print((response as! HTTPURLResponse).value(forKey: "headers"))
+           //
+            print((response as! HTTPURLResponse).allHeaderFields["Set-Cookie"])
+          
+            
             
             }.resume()
         

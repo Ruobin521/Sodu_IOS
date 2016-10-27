@@ -20,12 +20,12 @@ class ToastView : NSObject{
     //显示加载圈圈
     func showLoadingView() {
         clear()
-        let frame = CGRect(x: 0, y: 0, width: 120, height: 120)
+        let frame = CGRect(x: 0, y: 0, width: 80, height: 80)
         
         let loadingContainerView = UIView()
         loadingContainerView.layer.cornerRadius = 10
         
-        loadingContainerView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.5)
+        loadingContainerView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha: 0.3)
         
         //loadingContainerView.backgroundColor = loadingContainerView.tintColor
         

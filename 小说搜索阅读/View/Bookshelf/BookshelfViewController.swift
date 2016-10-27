@@ -58,6 +58,8 @@ class BookshelfViewController: BaseViewController {
 }
 
 
+
+
 extension BookshelfViewController {
     
     
@@ -99,19 +101,32 @@ extension BookshelfViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let action1  =  UITableViewRowAction(style: .normal, title: "删除", handler: { (action, indexPath) in
+        let action1  =  UITableViewRowAction(style: .normal, title: " 删除 ", handler: { (action, indexPath) in
             
             DispatchQueue.main.async {
                 
-                ToastView.instance.showToast(content: "滑动了一下下")
+                let book = self.vm.bookList[indexPath.row]
                 
-                tableView.isEditing = false
+                self.vm.removeBookFromList(book,indexPath: indexPath) { () in
+                    
+                    var array = [IndexPath]()
+                    
+                    array.append(indexPath)
+                    
+                    self.tableview?.deleteRows(at: array, with: .automatic)
+                    
+                    tableView.isEditing = false
+                }
+                
+                
             }
             
         })
         
         //FF2133
         action1.backgroundColor =  #colorLiteral(red: 1, green: 0.1294117647, blue: 0.2, alpha: 1)
+        
+        // action1.backgroundColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 1)
         
         return [action1]
     }

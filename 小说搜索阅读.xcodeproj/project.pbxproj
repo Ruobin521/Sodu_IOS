@@ -12,6 +12,8 @@
 		B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B120E2301DA9E72800921288 /* LaunchScreen.storyboard */; };
 		B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12CD5561DB687EE00377450 /* HttpUtil.swift */; };
 		B1378BD91DB4A5CC000D4FAE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */; };
+		B1600A401DC25ED3000A4C49 /* WelcomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1600A3E1DC25ED3000A4C49 /* WelcomView.swift */; };
+		B1600A431DC26E76000A4C49 /* WelcomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1600A421DC26E76000A4C49 /* WelcomView.xib */; };
 		B162E2121DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E2111DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift */; };
 		B162E2161DC0F152008DF1C4 /* CommonPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E2151DC0F152008DF1C4 /* CommonPageViewModel.swift */; };
 		B162E2191DC0FB0B008DF1C4 /* UpdateChapterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E2171DC0FB0B008DF1C4 /* UpdateChapterTableViewCell.swift */; };
@@ -53,6 +55,8 @@
 		B120E2331DA9E72800921288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B12CD5561DB687EE00377450 /* HttpUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpUtil.swift; sourceTree = "<group>"; };
 		B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		B1600A3E1DC25ED3000A4C49 /* WelcomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomView.swift; sourceTree = "<group>"; };
+		B1600A421DC26E76000A4C49 /* WelcomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomView.xib; sourceTree = "<group>"; };
 		B162E2111DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateChapterViewModel.swift; sourceTree = "<group>"; };
 		B162E2151DC0F152008DF1C4 /* CommonPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonPageViewModel.swift; sourceTree = "<group>"; };
 		B162E2171DC0FB0B008DF1C4 /* UpdateChapterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateChapterTableViewCell.swift; sourceTree = "<group>"; };
@@ -145,6 +149,15 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		B1600A3B1DC25D7E000A4C49 /* Welcom */ = {
+			isa = PBXGroup;
+			children = (
+				B1600A3E1DC25ED3000A4C49 /* WelcomView.swift */,
+				B1600A421DC26E76000A4C49 /* WelcomView.xib */,
+			);
+			path = Welcom;
+			sourceTree = "<group>";
+		};
 		B162E21D1DC1104A008DF1C4 /* ContentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +190,7 @@
 		B17E03C31DB095B90061DD47 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B1600A3B1DC25D7E000A4C49 /* Welcom */,
 				B17E03C51DB095B90061DD47 /* Main */,
 				B17E03D61DB099120061DD47 /* Bookshelf */,
 				B17E03C61DB095B90061DD47 /* Rank */,
@@ -345,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B162E21A1DC0FB0B008DF1C4 /* UpdateChapterTableViewCell.xib in Resources */,
+				B1600A431DC26E76000A4C49 /* WelcomView.xib in Resources */,
 				B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */,
 				B120E22F1DA9E72800921288 /* Assets.xcassets in Resources */,
 				B1BEC74C1DC0693600AD8DC3 /* CommonBookListTableViewCell.xib in Resources */,
@@ -434,6 +449,7 @@
 				B194B8CE1DBDE6720061C9A4 /* HotAndRecommednViewController.swift in Sources */,
 				B1904FB81DB7866900534AD6 /* BookCacheHelper.swift in Sources */,
 				B194B8CB1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift in Sources */,
+				B1600A401DC25ED3000A4C49 /* WelcomView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
