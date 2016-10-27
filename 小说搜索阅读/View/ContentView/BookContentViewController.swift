@@ -8,34 +8,32 @@
 
 import UIKit
 
-class BookContentViewController: UIViewController {
+class BookContentViewController: BaseViewController {
     
-    let webView = UIWebView()
+    var webView:UIWebView?
     
     var currentBook:Book?
     
     
     
-    override func loadView() {
+    override func initData() {
         
-        super.viewDidLoad()
+        ToastView.instance.showLoadingView()
         
-        view = webView
+        webView = UIWebView(frame: view.bounds)
         
-        webView.delegate = self
+        webView?.delegate = self
         
-        webView.backgroundColor = UIColor.white
+        webView?.backgroundColor = UIColor.white
+        
+        webView?.bounds = (tableview?.bounds)!
+        
+        view.insertSubview(webView!, aboveSubview: tableview!)
+        
         
         
         title = currentBook?.chapterName
         
-        navigationController?.navigationBar.barTintColor = self.view.tintColor
-        
-        navigationItem.leftBarButtonItem =  UIBarButtonItem(title: "返回", fontSize: 14, target: self, action: #selector(back), isBack: true)
-        
-    }
-    
-    override func viewDidLoad() {
         
         guard   let urlString =  currentBook?.contentPageUrl ,let url = URL(string: urlString) else {
             
@@ -44,10 +42,10 @@ class BookContentViewController: UIViewController {
         
         let request = URLRequest(url: url)
         
-        webView.loadRequest(request)
+        webView?.loadRequest(request)
         
     }
-    
+         
     
     func back() {
         
@@ -55,6 +53,11 @@ class BookContentViewController: UIViewController {
         
         ToastView.instance.closeLoadingWindos()
         
+    }
+    
+    deinit {
+        
+          ToastView.instance.closeLoadingWindos()
     }
     
 }
@@ -79,10 +82,6 @@ extension BookContentViewController :UIWebViewDelegate {
     
     
     func webViewDidStartLoad(_ webView: UIWebView) {
-        
-        ToastView.instance.showLoadingView()
-        
-        
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }

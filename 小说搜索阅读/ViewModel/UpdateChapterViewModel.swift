@@ -58,9 +58,10 @@ class UpdateChapterViewModel {
                     
                     self.chapterList += array
                     
-                    ToastView.instance.showToast(content: "已加载第\(pageindex+1)页数据")
-                    
                     completion(true)
+                    
+                    let bookName  = (self.currentBook?.bookName)!
+                    ToastView.instance.showToast(content: "已加载\(bookName)更新列表第\(pageindex+1)页数据")
                 }
                 
             }

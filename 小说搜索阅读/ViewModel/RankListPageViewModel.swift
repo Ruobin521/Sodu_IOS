@@ -66,9 +66,9 @@ class RankListPageViewModel {
                     
                     self.bookList += array
                     
-                    ToastView.instance.showToast(content: "已加载排行榜第\(pageindex+1)页数据")
-                    
                     completion(true)
+                    
+                    ToastView.instance.showToast(content: "已加载排行榜第\(pageindex+1)页数据")
                 }
                 
             }

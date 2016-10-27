@@ -16,6 +16,11 @@ class CommonPageViewModel {
     
     static  func navigateToUpdateChapterPage(_ book:Book, _ navigationController : UINavigationController?)  {
         
+        if (navigationController?.childViewControllers.count)! > 1 {
+            
+            return
+        }
+        
         let vc = UpdateChapterViewController()
         
         vc.vm.currentBook = book

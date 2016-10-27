@@ -63,8 +63,9 @@ class HotAndRecommendPageViewModel {
                     self.recommendBookList.removeAll()
                     self.recommendBookList += array2
                     
-                    ToastView.instance.showToast(content: "已加载热门推荐数据")
+                    
                     completion(true)
+                    ToastView.instance.showToast(content: "已加载热门推荐数据")
                     
                     
                 }

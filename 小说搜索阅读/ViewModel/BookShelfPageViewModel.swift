@@ -55,9 +55,9 @@ class BookShelfPageViewModel {
                     
                     BookCacheHelper.SavaBookListAsFile(self.bookList, .BookShelf)
                   
-                    ToastView.instance.showToast(content: "已加载个人收藏数据")
 
                     completion(true)
+                    ToastView.instance.showToast(content: "已加载个人收藏数据")
                     
                     
                 }
