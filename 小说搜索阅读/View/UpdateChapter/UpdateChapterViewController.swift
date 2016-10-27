@@ -106,7 +106,7 @@ extension UpdateChapterViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return vm.chapterList.count
+        return vm.chapterList.count 
     }
     
     
@@ -122,11 +122,7 @@ extension UpdateChapterViewController {
         return cell
     }
     
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 1
-    }
+   
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

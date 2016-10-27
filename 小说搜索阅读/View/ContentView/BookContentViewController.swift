@@ -20,13 +20,13 @@ class BookContentViewController: BaseViewController {
         
         ToastView.instance.showLoadingView()
         
-        webView = UIWebView(frame: view.bounds)
+        webView = UIWebView()
+        
+        webView?.frame = CGRect(x: 0, y: 64, width: view.bounds.width, height: view.bounds.height - 64)
         
         webView?.delegate = self
         
         webView?.backgroundColor = UIColor.white
-        
-        webView?.bounds = (tableview?.bounds)!
         
         view.insertSubview(webView!, aboveSubview: tableview!)
         

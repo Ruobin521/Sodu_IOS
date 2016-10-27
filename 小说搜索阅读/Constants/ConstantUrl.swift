@@ -15,6 +15,8 @@ class SoDuUrl {
     
     static   var  rankPage:String = "http://www.sodu.cc/top_.html"
     
+    static   var  loginPostPage:String = "http://www.sodu.cc/handler/login.html"
     
+    static   var  bookShelfPage:String = "http://www.sodu.cc/home.html"
     
 }

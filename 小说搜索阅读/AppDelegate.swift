@@ -9,22 +9,22 @@
 import UIKit
 import UserNotifications
 
-var  userLogon = true
+var  userLogon = false
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
-
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-      
+        
         Thread.sleep(forTimeInterval: 0.5)
         
         
         if #available(iOS 10.0, *) {
-         
+            
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.carPlay,.sound]) { (success, error) in
                 
                 print("授权" + (success ? "成功"  : "失败"))
@@ -38,20 +38,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-      
+        
+        login()
 
         
         window = UIWindow()
         
         window?.backgroundColor = UIColor.white
-        
-        
-
-        if  arc4random() % 2  == 0 {
-            
-          userLogon = true
-            
-        }
         
         window?.rootViewController = MainViewController()
         
@@ -62,30 +55,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+       
+}
 
-   
-    //        if userLogon == false  {
-    //
-    //
-    //            let tempAppDelegate = UIApplication.shared.delegate;
-    //
-    //            let main =     tempAppDelegate!.window!!.rootViewController as! MainViewController ;
-    //
-    //
-    //            let item =  ["clsName": "BookshelfViewController", "title": "个人书架", "imageName" : "profile"]
-    //
-    //            main.viewControllers?.insert(main.createController(dic: item), at: 0)
-    //
-    //
-    ////            main.reloadInputViews()
-    ////
-    ////            main.tabBar.reloadInputViews()
-    //
-    //
-    //
-    //
-    //
-    //        }
 
+extension AppDelegate {
+    
+    func login() {
+        
+        
+        let url = SoDuUrl.loginPostPage
+        
+        let postData = "username=918201&userpass=8166450"
+        
+        
+        HttpUtil.instance.request(url: url, requestMethod: .POST, postStr: postData) { (str, isSuccess) in
+            
+            print(str)
+            
+            if (str?.contains("true"))!  && (str?.contains("success"))! {
+                
+                userLogon = true
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
+                                 
+            }
+            
+        }
+        
+        
+    }
+    
+    
 }
 

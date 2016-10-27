@@ -108,13 +108,10 @@ class  HttpUtil :AFHTTPSessionManager  {
     func AFrequest(url:String ,requestMethod: RequestMethod, postStr: String?,parameters: [String: AnyObject]?, timeOut:TimeInterval = 15.0, completion: @escaping (_ result:Any?, _ isSuccess :Bool) ->() )  {
         
         
-       
-        
         let success  = { (task: URLSessionDataTask? , json: Any?) -> () in
             
             completion(json , true)
- 
-            
+  
         }
         
         

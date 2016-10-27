@@ -34,7 +34,7 @@ class BookShelfPageViewModel {
     func loadBookShelfPageData(completion:@escaping (_ isSuccess:Bool)->()) {
         
         
-        let urlStr =  SoDuUrl.homePage
+        let urlStr =  SoDuUrl.bookShelfPage
         
         HttpUtil.instance.request(url: urlStr, requestMethod: .GET, postStr: nil)  { (html,isSuccess) in
             
@@ -43,7 +43,7 @@ class BookShelfPageViewModel {
                 if !isSuccess {
                     
                     completion(false)
-                    ToastView.instance.showToast(content: "个人收藏数据加载失败",false)
+                    ToastView.instance.showToast(content: "个人书架数据加载失败",false)
                     
                 }  else {
                     
@@ -57,7 +57,7 @@ class BookShelfPageViewModel {
                   
 
                     completion(true)
-                    ToastView.instance.showToast(content: "已加载个人收藏数据")
+                    ToastView.instance.showToast(content: "已加载个人书架数据")
                     
                     
                 }

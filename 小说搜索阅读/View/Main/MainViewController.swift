@@ -27,10 +27,11 @@ class MainViewController: UITabBarController {
         
         setupChildControllers()
         
-//      self.tabBar.items?[0].badgeValue = "\(1)"
-//      
-//      UIApplication.shared.applicationIconBadgeNumber = 0
-
+        
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(addBookShelfTabbar), name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
+        
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -39,9 +40,28 @@ class MainViewController: UITabBarController {
     }
     
     
+    func addBookShelfTabbar() {
+        
+        let item =  ["clsName": "BookshelfViewController", "title": "个人书架", "imageName" : "profile"]
+        
+        DispatchQueue.main.async {
+            
+            ToastView.instance.showToast(content: "用户登陆成功")
+            
+            self.viewControllers?.insert(self.createController(dic: item), at: 0)
+            
+            self.selectedIndex = 0
+        }
+        
+    }
     
-  
     
+    
+    deinit {
+        
+        NotificationCenter.default.removeObserver(self)
+        
+    }
     
 }
 
@@ -97,10 +117,10 @@ extension MainViewController {
         var  array = [
             
             ["clsName": "RankViewController", "title": "排行榜", "imageName" : "rank"],
-          //  ["clsName": "RecommendViewController", "title": "推荐", "imageName" : "recommend"],
+            //  ["clsName": "RecommendViewController", "title": "推荐", "imageName" : "recommend"],
             ["clsName": "HotAndRecommednViewController", "title": "热门推荐", "imageName" : "hot"],
             ["clsName": "SettingViewController", "title": "设置", "imageName" : "setting"],
-          
+            
             ]
         
         
@@ -109,9 +129,6 @@ extension MainViewController {
             array.insert( ["clsName": "BookshelfViewController", "title": "个人书架", "imageName" : "profile"], at: 0)
             
         }
-        
-        
-        
         
         
         var arrayM = [UIViewController]()

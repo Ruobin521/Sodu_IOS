@@ -68,7 +68,7 @@ class ToastView : NSObject{
     }
     
     //弹窗文字
-    func showToast(content:String , _ isSuccess:Bool = true, _ duration:CFTimeInterval=1.0) {
+    func showToast(content:String , _ isSuccess:Bool = true, _ duration:CFTimeInterval=1.5) {
         
         let frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)!  , height: 30)
         
@@ -111,7 +111,7 @@ class ToastView : NSObject{
         toastContainerView.frame = frame
         
         window.windowLevel = UIWindowLevelAlert
-        window.center = CGPoint(x: (rv?.center.x)!, y: 80)
+        window.center = CGPoint(x: (rv?.center.x)!, y: 79)
         window.isHidden = false
         window.addSubview(toastContainerView)
         windows.append(window)
@@ -146,17 +146,19 @@ class AnimationUtil{
     
     //弹窗动画
     static func getToastAnimation(duration:CFTimeInterval = 1.5) -> CAAnimation{
+        
+      
         // 大小变化动画
         let scaleAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
-        scaleAnimation.keyTimes = [0, 0.5, 1]
+        scaleAnimation.keyTimes = [0, 0.5, 1.5]
         scaleAnimation.values = [1, 1, 1]
         scaleAnimation.duration = duration
         
         // 透明度变化动画
         let opacityAnimaton = CAKeyframeAnimation(keyPath: "opacity")
-        opacityAnimaton.keyTimes = [0, 0.5 , 1]
-        opacityAnimaton.values =  [0.5, 1,1]
-        opacityAnimaton.duration = duration
+        opacityAnimaton.keyTimes = [0, 0.4 , 1.5]
+        opacityAnimaton.values =  [0.5, 1, 1]
+        opacityAnimaton.duration = 1.5
         
         // 组动画
         let animation = CAAnimationGroup()

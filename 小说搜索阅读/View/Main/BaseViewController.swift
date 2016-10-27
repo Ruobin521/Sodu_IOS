@@ -134,6 +134,7 @@ extension BaseViewController {
     
     func setupUI() -> () {
         
+        
         setBackColor()
         setUpNavigationBar()
         setuoTableview()
@@ -143,7 +144,7 @@ extension BaseViewController {
     
     func setuoTableview() -> () {
         
-        tableview = UITableView(frame:  view.bounds, style: .grouped)
+        tableview = UITableView(frame:  view.bounds, style: .plain)
         
         tableview?.dataSource = self
         tableview?.delegate = self
@@ -151,6 +152,10 @@ extension BaseViewController {
         tableview?.backgroundColor = UIColor.white
         
         tableview?.contentInset = UIEdgeInsets(top: navigationBar.bounds.height, left: 0, bottom: tabBarController?.tabBar.bounds.height ?? 49, right: 0)
+        
+        // 修改指示器的缩进 - 强行解包是为了拿到一个必有的 inset
+        tableview?.scrollIndicatorInsets = tableview!.contentInset
+
         
         refreshControl = UIRefreshControl()
         
@@ -161,9 +166,9 @@ extension BaseViewController {
         tableview?.addSubview(refreshControl!)
         
         
-        tableview?.sectionFooterHeight = 10
+        tableview?.sectionFooterHeight = 5
         
-        tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat(5)))
+        tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat.leastNormalMagnitude))
         
         tableview?.rowHeight = 68
         
@@ -231,7 +236,9 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
         
         let row = indexPath.row
         
-        let count  =  tableView.numberOfRows(inSection: 0) - 1
+        let section = (tableview?.numberOfSections)! - 1
+        
+        let count  =  tableView.numberOfRows(inSection: section) - 1
         
         if (row == count) && !isPullup && needPullUp && !isLoading {
             

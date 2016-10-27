@@ -63,6 +63,8 @@ class RankViewController: BaseViewController {
                 self.tableview?.reloadData()
                 self.navItem.title = "排行榜 - \(pageindex+1) / 8"
                 
+                 print("已加载\(pageindex+1)页,共\(self.vm.bookList.count)条数据")
+                
             }
             
             super.endLoadData()
@@ -93,12 +95,6 @@ extension RankViewController {
         cell.txtUpdateChpterName?.text = vm.bookList[indexPath.row].chapterName
  
         return cell
-    }
-    
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 8
     }
     
     

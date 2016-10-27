@@ -10,34 +10,40 @@ import UIKit
 
 class AnalisysHtmlHelper {
     
-    
+    ///推荐
     static func analisysRecommendHtml(_ str:String?) -> [Book]  {
         
         return analisysHomeHtml(str,0)
     }
     
+    ///最热
     static func analisysHotHtml(_ str:String?) -> [Book]  {
         
         return analisysHomeHtml(str,1)
     }
     
+    ///个人书架
     static func analisysBookShelfHtml(_ str:String?) -> [Book]  {
         
-        return analisysHomeHtml(str,1)
+        return analisysBookShelfPageHtml(str)
     }
     
     
+    ///排行榜
     static func analisysRankHtml(_ str:String?) -> [Book]  {
         
         return analisysRankPageHtml(str)
     }
     
     
+    ///返回更新列表数据
     static func analisysUpdateChapterHtml(_ str:String?) -> [Book]  {
         
         return analisysUpdateChapterPageHtml(str)
     }
     
+    
+    ///返回更新列表页的数量
     static func analisysUpdateChapterPageCount(_ str:String?) -> Int {
         
         return  getUpdateChapterPageCount(str!)
@@ -136,6 +142,71 @@ extension AnalisysHtmlHelper {
         return list
     }
     
+    ///MARK: - 解析排行榜页面数据
+    fileprivate static func analisysBookShelfPageHtml(_ str:String?)  -> [Book]  {
+        
+        var  list = [Book]()
+        
+        var html = str
+        
+        if(html == nil || html == "") {
+            
+            return list
+        }
+        
+        
+        
+        html = html?.replacingOccurrences(of: "\r", with: "").replacingOccurrences(of: "\t", with: "").replacingOccurrences(of: "\n", with: "")
+        
+        
+        guard  let regx = try? NSRegularExpression(pattern: "<div class=\"main-html\".*?class=\"clearSc\".*?</div>", options: []) else {
+            
+            return list
+        }
+        
+        
+        let result = regx.matches(in: html!, options:[], range: NSRange(location: 0, length: html!.characters.count))
+        
+        
+        
+        if result.count == 0 {
+            
+            return list
+        }
+        
+        
+        for  checkRange in  result
+        {
+            let b = Book()
+            
+            var  item =  (html! as NSString).substring(with: checkRange.range)
+            
+            
+            let str =  "<a href=\"(.*?)\".*?>(.*?)</a>.*?target=_blank>(.*?)</a>.*?<div.*?>(.*?)</div>.*?id=(.*?)\""
+            
+            let regex = try? NSRegularExpression(pattern: str, options: [])
+            
+            let result = regex?.firstMatch(in: item, options: [], range: NSRange(location: 0, length: item.characters.count))
+            
+            
+            if (result?.numberOfRanges)! < 6 {
+                
+                continue
+            }
+            
+            b.updateListPageUrl = (item as NSString).substring(with: (result?.rangeAt(1))!)
+            b.bookName = (item as NSString).substring(with: (result?.rangeAt(2))!)
+            b.chapterName = (item as NSString).substring(with: (result?.rangeAt(3))!)
+            b.updateTime = (item as NSString).substring(with: (result?.rangeAt(4))!)
+            b.bookId = (item as NSString).substring(with: (result?.rangeAt(5))!)
+            
+            list.append(b)
+        }
+        
+        print("解析到的数量 \(list.count)")
+        
+        return list
+    }
     
     ///MARK: - 解析排行榜页面数据
     fileprivate static func analisysRankPageHtml(_ str:String?)  -> [Book]  {
@@ -202,9 +273,7 @@ extension AnalisysHtmlHelper {
         
         return list
     }
-    
-    
-    
+   
     ///MARK: - 解析排行榜页面数据
     fileprivate static func analisysUpdateChapterPageHtml(_ str:String?)  -> [Book]  {
         
