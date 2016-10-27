@@ -155,7 +155,7 @@ extension BaseViewController {
         
         // 修改指示器的缩进 - 强行解包是为了拿到一个必有的 inset
         tableview?.scrollIndicatorInsets = tableview!.contentInset
-
+        
         
         refreshControl = UIRefreshControl()
         
@@ -284,5 +284,45 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
         tableview?.deselectRow(at: indexPath, animated: true)
     }
     
+    
+    
+    //    - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+    //    {
+    //
+    //    }
+    //    // 左滑cell时出现什么按钮
+    //    - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
+    //    {
+    //    UITableViewRowAction *action0 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"关注" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+    //    NSLog(@"点击了关注");
+    //
+    //    // 收回左滑出现的按钮(退出编辑模式)
+    //    tableView.editing = NO;
+    //    }];
+    //
+    //    UITableViewRowAction *action1 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+    //    [self.wineArray removeObjectAtIndex:indexPath.row];
+    //    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    //    }];
+    //
+    //    return @[action1, action0];
+    //    }
+    
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        
+        return .delete
+    }
+    
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        return nil
+    }
     
 }
