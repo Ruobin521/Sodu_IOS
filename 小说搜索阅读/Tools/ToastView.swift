@@ -126,18 +126,18 @@ class ToastView : NSObject{
     //全局弹窗文字
     func showGlobalToast(content:String , _ isSuccess:Bool = true, _ duration:CFTimeInterval = 1.5)  {
         
-        let frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)! - 100 , height: 35)
+        let frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)! - 100 , height: 30)
         
         
         let toastContainerView = UIView()
         
         toastContainerView.layer.cornerRadius = 6
         
-        toastContainerView.backgroundColor =  !isSuccess ? UIColor(red:0, green:0, blue:0, alpha: 0.5) :    UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.75)
+        toastContainerView.backgroundColor =  !isSuccess ? UIColor(red:0, green:0, blue:0, alpha: 0.4) :    UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)
         
         let toastContentView = UILabel(frame: CGRect(x:0, y:0  , width:frame.width,height: frame.height))
         
-        toastContentView.font = UIFont.systemFont(ofSize: 16)
+        toastContentView.font = UIFont.systemFont(ofSize: 15)
         toastContentView.textColor = UIColor.white
         toastContentView.text = content
         toastContentView.textAlignment = NSTextAlignment.center

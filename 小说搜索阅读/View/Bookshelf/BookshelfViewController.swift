@@ -18,10 +18,14 @@ class BookshelfViewController: BaseViewController {
     
     let vm = ViewModelInstance.Instance.bookShelf
     
+    var isDeleting:Bool = false
+    
     
     override func initData() {
         
         vm.loadCacheData(self)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(addBookToShelf), name: NSNotification.Name(rawValue: AddToBookshelfSuccessNotification), object: nil)
         
         loadData()
     }
@@ -33,7 +37,7 @@ class BookshelfViewController: BaseViewController {
             
             return
         }
-         
+        
         print(isLoading)
         loadDataByPageIndex()
     }
@@ -53,6 +57,22 @@ class BookshelfViewController: BaseViewController {
             }
             
             super.endLoadData()
+            
+        }
+        
+    }
+    
+    func addBookToShelf(_ notification:Notification) {
+        
+        guard  let book = notification.object as? Book  else{
+            
+            return
+        }
+        
+        DispatchQueue.main.async {
+            
+            self.vm.bookList.insert(book, at: 0)
+            self.tableview?.reloadData()
             
         }
         
@@ -106,36 +126,51 @@ extension BookshelfViewController {
         
         let action1  =  UITableViewRowAction(style: .normal, title: "   删除   ", handler: { (action, indexPath) in
             
-            DispatchQueue.main.async {
+            if self.isDeleting {
                 
-                let book = self.vm.bookList[indexPath.row]
+                ToastView.instance.showGlobalToast(content: "正在执行删除操作，请稍后")
+                
+            }else {
+                
+                if   indexPath.row > self.vm.bookList.count - 1 {
+                    
+                    return
+                }
+                
+                self.isDeleting = true
+                
+                let book =   self.vm.bookList[indexPath.row]
                 
                 self.vm.removeBookFromList(book,indexPath: indexPath) { (success) in
                     
-                    if success {
+                    DispatchQueue.main.async {
                         
-                        var array = [IndexPath]()
+                        if success {
+                            
+                            var array = [IndexPath]()
+                            
+                            array.append(indexPath)
+                            
+                            tableView.deleteRows(at: array, with: .automatic)
+                            
+                            self.showToast(content: "\(book.bookName!)取消收藏成功")
+                            
+                        }else {
+                            
+                            self.showToast(content: "\(book.bookName)取消收藏失败",false)
+                        }
                         
-                        array.append(indexPath)
-                        
-                        tableView.deleteRows(at: array, with: .automatic)
-                        
-                        tableView.isEditing = false
-                        
-                        self.showToast(content: "\(book.bookName!)取消收藏成功")
-                        
-                    }else {
-                        
-                        self.showToast(content: "\(book.bookName)取消收藏失败",false)
+                        self.isDeleting = false
                     }
-                    
-                    
-                    
                 }
-                
                 
             }
             
+            DispatchQueue.main.async {
+                
+                tableView.isEditing = false
+                
+            }
         })
         
         //FF2133

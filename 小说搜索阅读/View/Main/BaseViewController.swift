@@ -162,7 +162,7 @@ extension BaseViewController {
     
     func setuoTableview() -> () {
         
-        tableview = UITableView(frame:  view.bounds, style: .plain)
+        tableview = UITableView(frame:  view.bounds, style: .grouped)
         
         tableview?.dataSource = self
         tableview?.delegate = self
@@ -184,15 +184,17 @@ extension BaseViewController {
         tableview?.addSubview(refreshControl!)
         
         
-        tableview?.sectionFooterHeight = 5
+        tableview?.sectionFooterHeight = 0
         
-        tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat.leastNormalMagnitude))
+        //tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat.leastNormalMagnitude))
+        
+          tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat(10)))
         
         tableview?.rowHeight = 68
         
-        //  self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+       
         
-        tableview?.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        tableview?.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: (tableview?.frame.width)!, height: CGFloat.leastNormalMagnitude))
         
         view.insertSubview(tableview!, belowSubview: navigationBar)
         
@@ -234,7 +236,7 @@ extension BaseViewController {
         label.textColor = navigationBar.tintColor
         
         let size = label.sizeThatFits(CGSize(width: label.frame.size.width, height: CGFloat(MAXFLOAT)))
-        label.frame = CGRect(x: 20, y: 32 - size.height/2, width: size.width, height: size.height)
+        label.frame = CGRect(x: 15, y: 32 - size.height/2, width: size.width>250 ? 250 : size.width, height: size.height)
         label.textAlignment = .left
         
         

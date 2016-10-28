@@ -64,7 +64,7 @@ class BookShelfPageViewModel {
     
     func removeBookFromList(_ book:Book,indexPath:IndexPath,completion:@escaping (_ isSuccess:Bool)->())  {
         
-        HttpUtil.instance.request(url: SoDuUrl.bookShelfPage + "?id=\(book.bookId!)", requestMethod: .GET,postStr:nil) { (str, isSuccess) in
+        HttpUtil.instance.request(url: SoDuUrl.bookShelfPage + "?id=\(book.bookId!)", requestMethod: .GET,postStr:nil,true) { (str, isSuccess) in
             
             
             DispatchQueue.main.async {

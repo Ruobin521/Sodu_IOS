@@ -61,7 +61,7 @@ class RankViewController: BaseViewController {
             if isSuccess {
                 
                 self.tableview?.reloadData()
-              
+                
                 self.navItem.title = "排行榜 - \(pageindex+1) / 8"
                 
                 self.showToast(content: "已加载排行榜第\(pageindex+1)页数据")
@@ -83,7 +83,7 @@ class RankViewController: BaseViewController {
 extension RankViewController {
     
     
-   
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return vm.bookList.count
@@ -114,7 +114,7 @@ extension RankViewController {
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
-        return  userLogon        
+        return  userLogon
     }
     
     
@@ -125,6 +125,14 @@ extension RankViewController {
             let book = self.vm.bookList[indexPath.row]
             
             CommonPageViewModel.AddBookToShelf(book: book)
+            
+            DispatchQueue.main.async {
+                
+                 tableView.isEditing = false
+                
+            }
+            
+           
             
         })
         
