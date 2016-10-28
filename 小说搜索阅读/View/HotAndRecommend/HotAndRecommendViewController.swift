@@ -12,7 +12,7 @@ import UIKit
 
 private let cellId = "cellId"
 
-class HotAndRecommednViewController: BaseViewController {
+class HotAndRecommendViewController: BaseViewController {
     
     let vm = ViewModelInstance.Instance.HotAndRecommend
     
@@ -44,6 +44,11 @@ class HotAndRecommednViewController: BaseViewController {
             if  isSuccess {
                 
                 self.tableview?.reloadData()
+                self.showToast(content: "已加载热门推荐数据")
+            }
+            else {
+                
+                self.showToast(content: "热门推荐数据加载失败",false)
             }
             
             super.endLoadData()
@@ -58,7 +63,7 @@ class HotAndRecommednViewController: BaseViewController {
 
 
 
-extension HotAndRecommednViewController {
+extension HotAndRecommendViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -142,7 +147,7 @@ extension HotAndRecommednViewController {
 }
 
 
-extension HotAndRecommednViewController {
+extension HotAndRecommendViewController {
     
     
     override func setupUI() {

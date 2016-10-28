@@ -29,10 +29,7 @@ class MainViewController: UITabBarController {
         setupChildControllers()
         
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(addBookShelfTabbar), name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
-        
-        
-        
+        //     NotificationCenter.default.addObserver(self, selector: #selector(addBookShelfTabbar), name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
         
     }
     
@@ -48,7 +45,7 @@ class MainViewController: UITabBarController {
         
         DispatchQueue.main.async {
             
-            ToastView.instance.showToast(content: "用户登陆成功")
+            self.showToast(content: "用户登陆成功")
             
             self.viewControllers?.insert(self.createController(dic: item), at: 0)
             
@@ -99,7 +96,13 @@ extension MainViewController:UITabBarControllerDelegate {
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         
-        guard  let tempvc = (viewControllers?[selectedIndex] as! UINavigationController).viewControllers[0] as? BaseViewController else {
+        
+        guard let nav = viewControllers?[selectedIndex]  as? UINavigationController else {
+            
+            return
+        }
+        
+        guard  let tempvc = nav.viewControllers[0] as? BaseViewController else {
             
             return
         }
@@ -146,8 +149,9 @@ extension MainViewController {
         var  array = [
             
             ["clsName": "RankViewController", "title": "排行榜", "imageName" : "rank"],
-            //  ["clsName": "RecommendViewController", "title": "推荐", "imageName" : "recommend"],
-            ["clsName": "HotAndRecommednViewController", "title": "热门推荐", "imageName" : "hot"],
+            
+            ["clsName": "HotAndRecommendViewController", "title": "热门推荐", "imageName" : "hot"],
+            ["clsName": "BaseViewController", "title": "本地书架", "imageName" : "books"],
             ["clsName": "SettingViewController", "title": "设置", "imageName" : "setting"],
             
             ]
@@ -196,9 +200,7 @@ extension MainViewController {
         
         
         // vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.], for: .highlighted)
-        vc.tabBarItem.setTitleTextAttributes(
-            [NSFontAttributeName: UIFont.systemFont(ofSize: 12)],
-            for: UIControlState(rawValue: 0))
+        vc.tabBarItem.setTitleTextAttributes( [NSFontAttributeName: UIFont.systemFont(ofSize: 10)],  for: .normal)
         
         let nav = NavigationViewController(rootViewController: vc)
         

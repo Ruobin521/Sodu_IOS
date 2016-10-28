@@ -47,6 +47,8 @@ class BookshelfViewController: BaseViewController {
             if isSuccess {
                 
                 self.tableview?.reloadData()
+                
+                self.showToast(content: "已加载个人书架数据")
             }
             
             super.endLoadData()
@@ -101,21 +103,33 @@ extension BookshelfViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let action1  =  UITableViewRowAction(style: .normal, title: " 删除 ", handler: { (action, indexPath) in
+        let action1  =  UITableViewRowAction(style: .normal, title: "  删除  ", handler: { (action, indexPath) in
             
             DispatchQueue.main.async {
                 
                 let book = self.vm.bookList[indexPath.row]
                 
-                self.vm.removeBookFromList(book,indexPath: indexPath) { () in
+                self.vm.removeBookFromList(book,indexPath: indexPath) { (success) in
                     
-                    var array = [IndexPath]()
+                    if success {
+                        
+                        var array = [IndexPath]()
+                        
+                        array.append(indexPath)
+                        
+                        tableView.deleteRows(at: array, with: .automatic)
+                        
+                        tableView.isEditing = false
+                        
+                        self.showToast(content: "\(book.bookName!)取消收藏成功")
+                        
+                    }else {
+                        
+                        self.showToast(content: "\(book.bookName)取消收藏失败",false)
+                    }
                     
-                    array.append(indexPath)
                     
-                    self.tableview?.deleteRows(at: array, with: .automatic)
                     
-                    tableView.isEditing = false
                 }
                 
                 

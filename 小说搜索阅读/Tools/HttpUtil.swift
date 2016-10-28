@@ -26,7 +26,7 @@ class  HttpUtil :AFHTTPSessionManager  {
         let shared = HttpUtil()
         
         shared.requestSerializer.setValue("gzip", forHTTPHeaderField: "Content-Encoding")
-      
+        
         shared.requestSerializer.setValue("gzip, deflate, sdch", forHTTPHeaderField: "Accept-Encoding")
         shared.requestSerializer.timeoutInterval = 10
         
@@ -47,33 +47,33 @@ class  HttpUtil :AFHTTPSessionManager  {
             
             if requestCount  <= 0 {
                 
-                  UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 
             } else {
                 
-                  UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
             }
             
         }
         
     }
     
-         
+    
     func request(url:String ,requestMethod: RequestMethod, postStr: String?, timeOut:TimeInterval = 15.0, completion: @escaping (_ result:String?, _ isSuccess :Bool) ->() )  {
         
         
         let request = NSMutableURLRequest.init(url: URL(string: url)!)
         
         requestCount += 1
-         
+        
         // 设置请求超时时间
         
         request.timeoutInterval = timeOut
         
         //Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.97 Safari/537.36
         //Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36
-//        request.setValue("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.97 Safari/537.36", forHTTPHeaderField: "User-Agent")
-//        
+        //        request.setValue("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.97 Safari/537.36", forHTTPHeaderField: "User-Agent")
+        //
         
         if requestMethod == RequestMethod.GET {
             
@@ -87,12 +87,12 @@ class  HttpUtil :AFHTTPSessionManager  {
         }
         
         print ("开始加载数据 \(url) 数据")
-       
+        
         
         URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             
             self.requestCount -= 1
- 
+            
             guard let _ = data , let  html = String(data: data!, encoding: .utf8) else {
                 
                 completion(nil,false)
@@ -100,14 +100,6 @@ class  HttpUtil :AFHTTPSessionManager  {
             }
             
             completion(html,true)
-            
-            print(html)
-            
-           // print((response as! HTTPURLResponse).value(forKey: "headers"))
-           //
-            print((response as! HTTPURLResponse).allHeaderFields["Set-Cookie"])
-          
-            
             
             }.resume()
         
@@ -120,7 +112,7 @@ class  HttpUtil :AFHTTPSessionManager  {
         let success  = { (task: URLSessionDataTask? , json: Any?) -> () in
             
             completion(json , true)
-  
+            
         }
         
         

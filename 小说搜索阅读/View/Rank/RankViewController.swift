@@ -63,8 +63,12 @@ class RankViewController: BaseViewController {
                 self.tableview?.reloadData()
                 self.navItem.title = "排行榜 - \(pageindex+1) / 8"
                 
-                 print("已加载\(pageindex+1)页,共\(self.vm.bookList.count)条数据")
+                self.showToast(content: "已加载排行榜第\(pageindex+1)页数据")
                 
+                
+            }else {
+                
+                self.showToast(content: "第\(pageindex+1)页数据加载失败", false)
             }
             
             super.endLoadData()
@@ -93,7 +97,7 @@ extension RankViewController {
         cell.txtBookName?.text = vm.bookList[indexPath.row].bookName
         cell.txtUpdateTime?.text = vm.bookList[indexPath.row].updateTime
         cell.txtUpdateChpterName?.text = vm.bookList[indexPath.row].chapterName
- 
+        
         return cell
     }
     

@@ -65,7 +65,7 @@ class BaseViewController: UIViewController {
         
         if  isLoading  {
             
-            ToastView.instance.showToast(content: "数据加载正在努力加载中")
+            showToast(content: "数据加载正在努力加载中")
             
             return true
         }
@@ -172,6 +172,10 @@ extension BaseViewController {
         
         tableview?.rowHeight = 68
         
+        //  self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+        
+        tableview?.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        
         view.insertSubview(tableview!, belowSubview: navigationBar)
         
     }
@@ -191,6 +195,8 @@ extension BaseViewController {
         
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent;
         
+        navItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"tabbar_discover"), style: .plain, target: self, action: #selector(goToSearchPage))
+        
         
     }
     
@@ -201,6 +207,12 @@ extension BaseViewController {
         view.backgroundColor = UIColor.white
     }
     
+    
+    func goToSearchPage() {
+        
+        print("点击了搜索按钮")
+        
+    }
     
 }
 
@@ -246,6 +258,8 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
             loadData()
         }
         
+        
+        
     }
     
     
@@ -286,29 +300,6 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
     
     
     
-    //    - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-    //    {
-    //
-    //    }
-    //    // 左滑cell时出现什么按钮
-    //    - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
-    //    {
-    //    UITableViewRowAction *action0 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"关注" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-    //    NSLog(@"点击了关注");
-    //
-    //    // 收回左滑出现的按钮(退出编辑模式)
-    //    tableView.editing = NO;
-    //    }];
-    //
-    //    UITableViewRowAction *action1 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-    //    [self.wineArray removeObjectAtIndex:indexPath.row];
-    //    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    //    }];
-    //
-    //    return @[action1, action0];
-    //    }
-    
-    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
         return false
@@ -325,4 +316,21 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
         return nil
     }
     
+    
+    
+}
+
+
+
+
+
+extension UIViewController {
+    
+    
+    func showToast(content:String,_ isScuccess:Bool = true) {
+        
+        
+        self.view.addSubview(ToastView.instance.showToast(content: content,isScuccess))
+        
+    }
 }

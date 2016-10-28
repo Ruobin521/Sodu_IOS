@@ -21,6 +21,9 @@ class CommonBookListTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+          self.separatorInset = UIEdgeInsets.zero
+       
         // Initialization code
     }
 

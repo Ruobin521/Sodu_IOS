@@ -44,8 +44,7 @@ class ToastView : NSObject{
         window.center = CGPoint(x: (rv?.center.x)!, y: (rv?.center.y)!)
         window.isHidden = false
         window.addSubview(loadingContainerView)
-        
-        
+         
         loadinWindow = window
         
         windows.append(window)
@@ -57,7 +56,7 @@ class ToastView : NSObject{
         DispatchQueue.main.async {
             
             if self.loadinWindow != nil {
-               
+                
                 self.removeToast(sender: self.loadinWindow)
                 self.loadinWindow = nil
                 
@@ -68,7 +67,7 @@ class ToastView : NSObject{
     }
     
     //弹窗文字
-    func showToast(content:String , _ isSuccess:Bool = true, _ duration:CFTimeInterval=1.5) {
+    func showToast(content:String , _ isSuccess:Bool = true, _ duration:CFTimeInterval=1.5) -> UIView {
         
         let frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)!  , height: 30)
         
@@ -77,24 +76,7 @@ class ToastView : NSObject{
         
         toastContainerView.layer.cornerRadius = 0
         
-        
-        
         toastContainerView.backgroundColor =  !isSuccess ? UIColor(red:0, green:0, blue:0, alpha: 0.5) :    UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.75)
-        
-        //        var iconWidthHeight :CGFloat = 0
-        
-        //
-        //        if imageName != nil  {
-        //
-        //            frame = CGRect(x: 0, y: 0, width: 150  , height: 90)
-        //
-        //            iconWidthHeight = 36
-        //
-        //            let toastIconView = UIImageView(image: UIImage(named: imageName!)!)
-        //            toastIconView.frame = CGRect(x:(frame.width - iconWidthHeight)/2, y:15, width:iconWidthHeight,height: iconWidthHeight)
-        //            toastContainerView.addSubview(toastIconView)
-        //        }
-        //
         
         let toastContentView = UILabel(frame: CGRect(x:0, y:0  , width:frame.width,height: frame.height))
         
@@ -105,33 +87,41 @@ class ToastView : NSObject{
         toastContainerView.addSubview(toastContentView)
         
         
-        let window = UIWindow()
+        let window = UIView()
         window.backgroundColor = UIColor.clear
         window.frame = frame
         toastContainerView.frame = frame
         
-        window.windowLevel = UIWindowLevelAlert
+        
         window.center = CGPoint(x: (rv?.center.x)!, y: 79)
         window.isHidden = false
         window.addSubview(toastContainerView)
-        windows.append(window)
+        
         
         toastContainerView.layer.add(AnimationUtil.getToastAnimation(duration: duration), forKey: nil)
         
-        // perform(#selector(removeToast(sender:self)), with: window, afterDelay: duration)
-        
         perform(#selector(removeToast), with: window, afterDelay: duration )
+        
+        
+        return window
     }
     
     
     //移除当前弹窗
-    func removeToast(sender: UIWindow?) {
+    func removeToast(sender: UIView?) {
         
-        if let temp = sender  {
+        if sender is UIWindow {
             
-            let index =  windows.index(of: temp)
+            let index = windows.index(of: sender as! UIWindow)
             windows.remove(at: index!)
+            
+        }  else {
+            
+            sender?.performSelector(onMainThread: #selector(sender?.removeFromSuperview), with: nil, waitUntilDone: false)
+
         }
+        
+        
     }
     
     //清除所有弹窗
@@ -142,12 +132,13 @@ class ToastView : NSObject{
     
 }
 
+
 class AnimationUtil{
     
     //弹窗动画
     static func getToastAnimation(duration:CFTimeInterval = 1.5) -> CAAnimation{
         
-      
+        
         // 大小变化动画
         let scaleAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
         scaleAnimation.keyTimes = [0, 0.5, 1.5]

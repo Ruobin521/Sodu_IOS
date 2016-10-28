@@ -45,8 +45,6 @@ class RankListPageViewModel {
                 
                 if !isSuccess {
                     
-                    ToastView.instance.showToast(content: "第\(pageindex+1)页数据加载失败", false)
-                    
                     print("第\(pageindex+1)页数据加载失败")
                     
                     completion(false)
@@ -68,7 +66,6 @@ class RankListPageViewModel {
                     
                     completion(true)
                     
-                    ToastView.instance.showToast(content: "已加载排行榜第\(pageindex+1)页数据")
                 }
                 
             }

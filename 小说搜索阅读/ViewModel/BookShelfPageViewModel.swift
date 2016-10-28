@@ -43,7 +43,6 @@ class BookShelfPageViewModel {
                 if !isSuccess {
                     
                     completion(false)
-                    ToastView.instance.showToast(content: "个人书架数据加载失败",false)
                     
                 }  else {
                     
@@ -55,20 +54,15 @@ class BookShelfPageViewModel {
                     
                     BookCacheHelper.SavaBookListAsFile(self.bookList, .BookShelf)
                     
-                    
                     completion(true)
-                    ToastView.instance.showToast(content: "已加载个人书架数据")
-                    
-                    
                 }
                 
             }
-            
         }
     }
     
     
-    func removeBookFromList(_ book:Book,indexPath:IndexPath,completion:@escaping ()->())  {
+    func removeBookFromList(_ book:Book,indexPath:IndexPath,completion:@escaping (_ isSuccess:Bool)->())  {
         
         HttpUtil.instance.request(url: SoDuUrl.bookShelfPage + "?id=\(book.bookId!)", requestMethod: .GET,postStr:nil) { (str, isSuccess) in
             
@@ -79,14 +73,14 @@ class BookShelfPageViewModel {
                     
                     self.bookList.remove(at: indexPath.row)
                     
-                    completion()
+                    completion(true)
                     
-                    ToastView.instance.showToast(content: "\(book.bookName!)取消收藏成功")
+                    
                     
                 }  else {
                     
-                    ToastView.instance.showToast(content: "\(book.bookName)取消收藏失败",false)
                     
+                    completion(false)
                 }
                 
             }

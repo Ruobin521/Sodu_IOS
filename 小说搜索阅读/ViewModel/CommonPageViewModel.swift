@@ -13,7 +13,7 @@ import  UIKit
 /// 保存一些共同调用的方法
 class CommonPageViewModel {
     
-    
+    ///导航到更新章节列表页
     static  func navigateToUpdateChapterPage(_ book:Book, _ navigationController : UINavigationController?)  {
         
         if (navigationController?.childViewControllers.count)! > 1 {
@@ -29,6 +29,5 @@ class CommonPageViewModel {
         
         navigationController?.pushViewController(vc, animated: true)
     }
-    
     
 }

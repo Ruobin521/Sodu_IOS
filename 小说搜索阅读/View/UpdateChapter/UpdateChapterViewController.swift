@@ -49,7 +49,8 @@ class UpdateChapterViewController: BaseViewController {
         if  pageindex == vm.pageCount  && pageindex != 0 {
             
             isPullup = false
-            ToastView.instance.showToast(content: "已加载到最后一页")
+            
+            showToast(content: "已加载到最后一页")
             
             return
             
@@ -59,12 +60,23 @@ class UpdateChapterViewController: BaseViewController {
         
         vm.loadUpdateChapterListDataByPageIndex(pageindex) { [weak self]  (isSuccess) in
             
+            if self == nil {
+                
+                return
+ 
+            }
+            
             if isSuccess {
                 
                 self?.tableview?.reloadData()
-                self?.navigationItem.title = "\(self?.vm.currentBook?.bookName) - \(pageindex+1) / \(self?.vm.pageCount)"
+                self?.navItem.title = "\((self?.vm.currentBook?.bookName)!) - \(pageindex+1) / \((self?.vm.pageCount)!)"
+                self?.showToast(content: "已加载\((self?.vm.currentBook?.bookName)!)更新列表第\(pageindex+1)页数据")
                 
+            }else {
+                
+                self?.showToast(content: "第\(pageindex+1)页数据加载失败", false)
             }
+            
             
             self?.endLoadData()
             
@@ -93,6 +105,7 @@ extension UpdateChapterViewController {
         bc.currentBook = book
         
         // present(vc, animated: true, completion: nil)
+        ToastView.instance.closeLoadingWindos()
         
         navigationController?.pushViewController(bc, animated: true)
         
@@ -106,7 +119,7 @@ extension UpdateChapterViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return vm.chapterList.count 
+        return vm.chapterList.count
     }
     
     
@@ -122,7 +135,7 @@ extension UpdateChapterViewController {
         return cell
     }
     
-   
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

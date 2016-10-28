@@ -41,13 +41,13 @@ class WelcomView: UIView {
         bottomConstraint.constant = bounds.size.height - 200
         
         
-        UIView.animate(withDuration: 2.0, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
+        UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
             
             self.layoutIfNeeded()
             
         }) { (isSuccess) in
             
-            UIView.animate(withDuration: 1.0, animations: {
+            UIView.animate(withDuration: 1.5, animations: {
                 
                 self.tipLabel.alpha = 1
                 

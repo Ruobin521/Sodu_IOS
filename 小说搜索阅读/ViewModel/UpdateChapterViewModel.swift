@@ -29,7 +29,7 @@ class UpdateChapterViewModel {
                 
                 if !isSuccess {
                     
-                    ToastView.instance.showToast(content: "第\(pageindex+1)页数据加载失败", false)
+                    //ToastView.instance.showToast(content: "第\(pageindex+1)页数据加载失败", false)
                     
                     print("第\(pageindex+1)页数据加载失败")
                     
@@ -60,8 +60,6 @@ class UpdateChapterViewModel {
                     
                     completion(true)
                     
-                    let bookName  = (self.currentBook?.bookName)!
-                    ToastView.instance.showToast(content: "已加载\(bookName)更新列表第\(pageindex+1)页数据")
                 }
                 
             }
