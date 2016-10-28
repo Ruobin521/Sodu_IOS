@@ -45,7 +45,7 @@ class BookContentViewController: BaseViewController {
         webView?.loadRequest(request)
         
     }
-         
+    
     
     func back() {
         
@@ -55,10 +55,6 @@ class BookContentViewController: BaseViewController {
         
     }
     
-    deinit {
-        
-          ToastView.instance.closeLoadingWindos()
-    }
     
 }
 
@@ -83,15 +79,13 @@ extension BookContentViewController :UIWebViewDelegate {
     
     func webViewDidStartLoad(_ webView: UIWebView) {
         
-       // UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        isLoading = true
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         
         
-        ToastView.instance.closeLoadingWindos()
-        
-       // UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        isLoading = false
     }
     
     

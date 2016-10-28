@@ -144,6 +144,33 @@ extension HotAndRecommendViewController {
     }
     
     
+    override  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let action1  =  UITableViewRowAction(style: .normal, title: "添加至书架", handler: { (action, indexPath) in
+            
+            var book:Book
+            
+            if indexPath.section == 0 {
+                
+                book = self.vm.hotBookList[indexPath.row]
+                
+            } else {
+                
+                book = self.vm.recommendBookList[indexPath.row]
+                
+            }
+            
+            CommonPageViewModel.AddBookToShelf(book: book)
+            
+        })
+        
+        action1.backgroundColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)
+        
+        return [action1]
+        
+    }
+    
+    
 }
 
 

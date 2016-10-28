@@ -19,4 +19,8 @@ class SoDuUrl {
     
     static   var  bookShelfPage:String = "http://www.sodu.cc/home.html"
     
+    static   var  addTobookShelf:String = "http://www.sodu.cc/handler/home.html?bid="
+    
+    
+    
 }

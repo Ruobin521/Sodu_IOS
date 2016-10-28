@@ -28,8 +28,7 @@ class MainViewController: UITabBarController {
         
         setupChildControllers()
         
-        
-        //     NotificationCenter.default.addObserver(self, selector: #selector(addBookShelfTabbar), name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addBookShelfTabbar), name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
         
     }
     

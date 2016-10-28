@@ -61,6 +61,7 @@ class RankViewController: BaseViewController {
             if isSuccess {
                 
                 self.tableview?.reloadData()
+              
                 self.navItem.title = "排行榜 - \(pageindex+1) / 8"
                 
                 self.showToast(content: "已加载排行榜第\(pageindex+1)页数据")
@@ -82,12 +83,7 @@ class RankViewController: BaseViewController {
 extension RankViewController {
     
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        
-        return true
-        
-    }
-    
+   
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return vm.bookList.count
@@ -114,6 +110,30 @@ extension RankViewController {
         
         CommonPageViewModel.navigateToUpdateChapterPage(vm.bookList[indexPath.row], navigationController)
     }
+    
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        return  userLogon        
+    }
+    
+    
+    override  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let action1  =  UITableViewRowAction(style: .normal, title: "添加至书架", handler: { (action, indexPath) in
+            
+            let book = self.vm.bookList[indexPath.row]
+            
+            CommonPageViewModel.AddBookToShelf(book: book)
+            
+        })
+        
+        action1.backgroundColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)
+        
+        return [action1]
+        
+    }
+    
     
 }
 

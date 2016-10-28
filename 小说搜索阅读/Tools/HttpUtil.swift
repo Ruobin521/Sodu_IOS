@@ -59,7 +59,7 @@ class  HttpUtil :AFHTTPSessionManager  {
     }
     
     
-    func request(url:String ,requestMethod: RequestMethod, postStr: String?, timeOut:TimeInterval = 15.0, completion: @escaping (_ result:String?, _ isSuccess :Bool) ->() )  {
+    func request(url:String ,requestMethod: RequestMethod, postStr: String?, timeOut:TimeInterval = 15.0, _ isIndicatorVisible:Bool = false, completion: @escaping (_ result:String?, _ isSuccess :Bool) ->() )  {
         
         
         if !NetworkHelper.isNetConnected() {
@@ -75,7 +75,12 @@ class  HttpUtil :AFHTTPSessionManager  {
         
         let request = NSMutableURLRequest.init(url: URL(string: url)!)
         
-        requestCount += 1
+        if isIndicatorVisible {
+            
+              requestCount += 1
+        }
+        
+      
         
         // 设置请求超时时间
         
@@ -102,7 +107,11 @@ class  HttpUtil :AFHTTPSessionManager  {
         
         URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             
-            self.requestCount -= 1
+            
+            if isIndicatorVisible {
+                
+                self.requestCount -= 1
+            }
             
             guard let _ = data , let  html = String(data: data!, encoding: .utf8) else {
                 

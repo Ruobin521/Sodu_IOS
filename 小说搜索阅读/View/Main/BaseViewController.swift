@@ -11,7 +11,24 @@ import UIKit
 class BaseViewController: UIViewController {
     
     
-    var isLoading = false
+    var isLoading = false  {
+        
+        
+        didSet {
+            
+            if isLoading {
+                
+                setTitleView()
+                
+            } else {
+                
+                navItem.titleView = nil
+                navItem.prompt = nil
+                
+            }
+        }
+        
+    }
     
     
     
@@ -26,7 +43,6 @@ class BaseViewController: UIViewController {
     lazy var navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64))
     
     lazy var navItem = UINavigationItem()
-    
     
     override func viewDidLoad() {
         
@@ -45,7 +61,9 @@ class BaseViewController: UIViewController {
     override var title: String? {
         
         didSet {
+            
             navItem.title = title
+            
         }
         
     }
@@ -202,6 +220,43 @@ extension BaseViewController {
     
     
     
+    func   setTitleView()  {
+        
+        
+        let loadingIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+        loadingIndicatorView.startAnimating()
+        loadingIndicatorView.frame = CGRect(x: 0, y: 32 - 3, width: 6, height: 6)
+        
+        
+        let label = UILabel()
+        label.text = title
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.textColor = navigationBar.tintColor
+        
+        let size = label.sizeThatFits(CGSize(width: label.frame.size.width, height: CGFloat(MAXFLOAT)))
+        label.frame = CGRect(x: 20, y: 32 - size.height/2, width: size.width, height: size.height)
+        label.textAlignment = .left
+        
+        
+        
+        let view  = UIView(frame: CGRect(x: 0, y: 0, width: label.frame.width + 30, height: 64))
+        
+        view.addSubview(label)
+        view.addSubview(loadingIndicatorView)
+        
+        view.sizeToFit()
+        
+        self.navItem.titleView = view
+        
+        
+        
+        
+        ///  self.navItem.prompt = "加载中"
+    }
+    
+    
+    
+    
     func  setBackColor()  {
         
         view.backgroundColor = UIColor.white
@@ -299,10 +354,7 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
     }
     
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        
-        return false
-    }
+    
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         
@@ -310,24 +362,15 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
     }
     
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        return userLogon
+    }
+    
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let action1  =  UITableViewRowAction(style: .normal, title: "添加书架", handler: { (action, indexPath) in
-            
-            DispatchQueue.main.async {
-                
-                self.showToast(content: "添加收藏成功")
-            }
-            
-        })
-        
-        //FF2133
-        //action1.backgroundColor =  #colorLiteral(red: 1, green: 0.1294117647, blue: 0.2, alpha: 1)
-        
-        action1.backgroundColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)
-    
-        
-        return [action1]
+        return nil
     }
     
     

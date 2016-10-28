@@ -9,3 +9,5 @@
 import Foundation
 
 let LogonSuccessNotification = "LogonSuccessNotification"
+
+let AddToBookshelfSuccessNotification = "AddToBookshelfSuccessNotification"

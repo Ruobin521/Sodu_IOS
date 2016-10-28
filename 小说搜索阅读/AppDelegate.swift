@@ -40,6 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         userLogon =   checklogon()
         
+        if !userLogon {
+            
+            login()
+            
+        }
+        
         window = UIWindow()
         
         window?.backgroundColor = UIColor.white
