@@ -152,8 +152,8 @@ class AnimationUtil{
         
         // 透明度变化动画
         let opacityAnimaton = CAKeyframeAnimation(keyPath: "opacity")
-        opacityAnimaton.keyTimes = [0, 0.4 , 1.5]
-        opacityAnimaton.values =  [0.5, 1, 1]
+       // opacityAnimaton.keyTimes = [0, 0.4 , 1.5]
+        opacityAnimaton.values =  [0.5, 1, 1,0]
         opacityAnimaton.duration = 1.5
         
         // 组动画
@@ -166,6 +166,9 @@ class AnimationUtil{
         animation.repeatCount = 1// HUGE
         animation.isRemovedOnCompletion = false
         animation.autoreverses = false
+        
+        ///表示动画保持结束后的状态
+        animation.fillMode = kCAFillModeForwards;
         //  animation.e
         
         
