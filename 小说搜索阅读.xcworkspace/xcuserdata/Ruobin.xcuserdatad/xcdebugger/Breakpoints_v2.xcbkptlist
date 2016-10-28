@@ -265,11 +265,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/Main/BaseViewController.swift"
-            timestampString = "499323838.701853"
+            timestampString = "499331750.109978"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "316"
-            endingLineNumber = "316"
+            startingLineNumber = "318"
+            endingLineNumber = "318"
             landmarkName = "tableView(_:editActionsForRowAt:)"
             landmarkType = "7">
             <Locations>
@@ -665,44 +665,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/ToastView.swift"
-            timestampString = "499329886.169025"
+            timestampString = "499333294.56853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "removeToast(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/ToastView.swift"
+            timestampString = "499333294.56853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "112"
             endingLineNumber = "112"
-            landmarkName = "removeToast(sender:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/ToastView.swift"
-            timestampString = "499328822.64089"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
             landmarkName = "showToast(content:_:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/ToastView.swift"
-            timestampString = "499329886.169025"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "removeToast(sender:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -752,6 +736,86 @@
             endingLineNumber = "58"
             landmarkName = "closeLoadingWindos()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/ToastView.swift"
+            timestampString = "499333294.56853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "removeToast(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/Main/BaseViewController.swift"
+            timestampString = "499332648.048275"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "347"
+            endingLineNumber = "347"
+            landmarkName = "showToast(content:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/Main/BaseViewController.swift"
+            timestampString = "499332801.804864"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
+            landmarkName = "BaseViewController"
+            landmarkType = "4">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;):__ObjC.UIViewController.(showToast (content : Swift.String, Swift.Bool) -&gt; ()).(default argument 1)"
+                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/files/SoDu_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/Main/BaseViewController.swift"
+                  timestampString = "499332801.814311"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "344"
+                  endingLineNumber = "344"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(extension in &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;):__ObjC.UIViewController.showToast (content : Swift.String, Swift.Bool) -&gt; ()"
+                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/files/SoDu_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/Main/BaseViewController.swift"
+                  timestampString = "499332801.818148"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "347"
+                  endingLineNumber = "347"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

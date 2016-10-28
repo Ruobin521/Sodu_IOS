@@ -83,7 +83,7 @@ extension BookContentViewController :UIWebViewDelegate {
     
     func webViewDidStartLoad(_ webView: UIWebView) {
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+       // UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
@@ -91,7 +91,7 @@ extension BookContentViewController :UIWebViewDelegate {
         
         ToastView.instance.closeLoadingWindos()
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+       // UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
     

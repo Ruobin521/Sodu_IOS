@@ -299,7 +299,6 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
     }
     
     
-    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
         return false
@@ -313,7 +312,22 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        return nil
+        let action1  =  UITableViewRowAction(style: .normal, title: "添加书架", handler: { (action, indexPath) in
+            
+            DispatchQueue.main.async {
+                
+                self.showToast(content: "添加收藏成功")
+            }
+            
+        })
+        
+        //FF2133
+        //action1.backgroundColor =  #colorLiteral(red: 1, green: 0.1294117647, blue: 0.2, alpha: 1)
+        
+        action1.backgroundColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)
+    
+        
+        return [action1]
     }
     
     

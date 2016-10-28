@@ -103,7 +103,7 @@ extension BookshelfViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let action1  =  UITableViewRowAction(style: .normal, title: "  删除  ", handler: { (action, indexPath) in
+        let action1  =  UITableViewRowAction(style: .normal, title: "   删除   ", handler: { (action, indexPath) in
             
             DispatchQueue.main.async {
                 

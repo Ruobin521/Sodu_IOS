@@ -44,7 +44,7 @@ class ToastView : NSObject{
         window.center = CGPoint(x: (rv?.center.x)!, y: (rv?.center.y)!)
         window.isHidden = false
         window.addSubview(loadingContainerView)
-         
+        
         loadinWindow = window
         
         windows.append(window)
@@ -103,6 +103,12 @@ class ToastView : NSObject{
         perform(#selector(removeToast), with: window, afterDelay: duration )
         
         
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
+            
+            self.removeToast(sender: window)
+            
+        }
+        
         return window
     }
     
@@ -117,15 +123,14 @@ class ToastView : NSObject{
             
         }  else {
             
-            sender?.performSelector(onMainThread: #selector(sender?.removeFromSuperview), with: nil, waitUntilDone: false)
-
+            sender?.removeFromSuperview()
         }
-        
         
     }
     
     //清除所有弹窗
     func clear() {
+        
         NSObject.cancelPreviousPerformRequests(withTarget: self)
         windows.removeAll(keepingCapacity: false)
     }
