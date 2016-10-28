@@ -9,6 +9,7 @@ pod "YYModel"
 pod "FMDB"
 pod "SVProgressHUD"
 pod "pop"
+pod “ReachabilitySwift”
 
 end
 

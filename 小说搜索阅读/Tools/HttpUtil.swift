@@ -62,6 +62,17 @@ class  HttpUtil :AFHTTPSessionManager  {
     func request(url:String ,requestMethod: RequestMethod, postStr: String?, timeOut:TimeInterval = 15.0, completion: @escaping (_ result:String?, _ isSuccess :Bool) ->() )  {
         
         
+        if !NetworkHelper.isNetConnected() {
+            
+            completion(nil,false)
+            
+            ToastView.instance.showGlobalToast(content: "请检查网络连接是否正常",false)
+            
+            print("没有网络连接。。。。")
+            
+            return
+        }
+        
         let request = NSMutableURLRequest.init(url: URL(string: url)!)
         
         requestCount += 1

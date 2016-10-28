@@ -18,6 +18,7 @@ PODS:
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - pop (1.0.9)
+  - ReachabilitySwift (3)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - AFNetworking
   - FMDB
   - pop
+  - ReachabilitySwift
   - SDWebImage
   - SVProgressHUD
   - YYModel
@@ -36,10 +38,11 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 2e6b83b793a9479c66441bbdd8660e5be6242c9c
+PODFILE CHECKSUM: 23747b247eaaa3ecb370508e4be5db27898ae610
 
 COCOAPODS: 1.1.1
