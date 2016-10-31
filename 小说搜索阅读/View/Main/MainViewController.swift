@@ -22,6 +22,14 @@ class MainViewController: UITabBarController {
     
     
     override func viewDidLoad() {
+      
+//        var appVersion = Bundle.main.appVesion
+//        var appVersion2 =  UserDefaultsHelper.getUserDefaultByKey(key: SettingKey.AppVersionKey)
+//        
+//        UserDefaultsHelper.setUserDefaultsValueForKey(key: SettingKey.AppVersionKey, value: appVersion)
+//        
+//         var appVersion3 =  UserDefaultsHelper.getUserDefaultByKey(key: SettingKey.AppVersionKey)
+        
         super.viewDidLoad()
         
         setupWelcomView()

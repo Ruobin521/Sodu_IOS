@@ -16,4 +16,10 @@ extension Bundle {
     }
     
     
+    var appVesion : String {
+        
+        return infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+        
+    }
+    
 }
