@@ -237,6 +237,7 @@ extension BaseViewController {
         
         let size = label.sizeThatFits(CGSize(width: label.frame.size.width, height: CGFloat(MAXFLOAT)))
         label.frame = CGRect(x: 15, y: 32 - size.height/2, width: size.width>250 ? 250 : size.width, height: size.height)
+       
         label.textAlignment = .left
         
         
