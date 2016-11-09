@@ -23,7 +23,6 @@ class BookshelfViewController: BaseViewController {
     
     override func initData() {
         
-        vm.loadCacheData(self)
         
         NotificationCenter.default.addObserver(self, selector: #selector(addBookToShelf), name: NSNotification.Name(rawValue: AddToBookshelfSuccessNotification), object: nil)
         
@@ -38,7 +37,6 @@ class BookshelfViewController: BaseViewController {
             return
         }
         
-        print(isLoading)
         loadDataByPageIndex()
     }
     
@@ -46,6 +44,8 @@ class BookshelfViewController: BaseViewController {
     func loadDataByPageIndex() {
         
         isLoading = true
+        
+        vm.loadCacheData(self)
         
         vm.loadBookShelfPageData {(isSuccess) in
             
@@ -92,15 +92,24 @@ extension BookshelfViewController {
     }
     
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 100
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CommonBookListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BookshelfTableViewCell
         
         cell.book = vm.bookList[indexPath.row]
         
         cell.txtBookName?.text = vm.bookList[indexPath.row].bookName
         cell.txtUpdateTime?.text = vm.bookList[indexPath.row].updateTime
         cell.txtUpdateChpterName?.text = vm.bookList[indexPath.row].chapterName
+        
+        cell.txtLastReadChapterName.text = vm.bookList[indexPath.row].chapterName
+        
+      //  cell.?.text = vm.bookList[indexPath.row].chapterName
         
         return cell
     }
@@ -191,7 +200,7 @@ extension BookshelfViewController {
         
         super.setupUI()
         
-        let cellNib = UINib(nibName: "CommonBookListTableViewCell", bundle: nil)
+        let cellNib = UINib(nibName: "BookshelfTableViewCell", bundle: nil)
         
         tableview?.register(cellNib, forCellReuseIdentifier: cellId)
         

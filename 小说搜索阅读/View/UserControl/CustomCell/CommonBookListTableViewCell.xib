@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -12,32 +15,37 @@
             <rect key="frame" x="0.0" y="0.0" width="537" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="537" height="79"/>
+                <rect key="frame" x="0.0" y="0.0" width="537" height="79"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="书名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvp-VS-fwd">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="书名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvp-VS-fwd">
+                        <rect key="frame" x="15" y="10" width="359" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新章节名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jgk-oN-x40">
+                        <rect key="frame" x="15" y="44.5" width="514" height="27"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-10-26 00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B74-v1-wLa">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-10-26 00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B74-v1-wLa">
+                        <rect key="frame" x="381" y="10" width="148" height="18"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Jgk-oN-x40" secondAttribute="bottom" constant="8" id="5Ch-EU-0PD"/>
-                    <constraint firstItem="B74-v1-wLa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="8Cl-Nb-dqI"/>
-                    <constraint firstItem="Jgk-oN-x40" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="8OC-58-7Km"/>
-                    <constraint firstItem="Fvp-VS-fwd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="M4D-H0-693"/>
-                    <constraint firstItem="Fvp-VS-fwd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="YGy-X9-iSC"/>
-                    <constraint firstAttribute="trailing" secondItem="Jgk-oN-x40" secondAttribute="trailing" constant="8" id="nNS-x1-3ur"/>
-                    <constraint firstAttribute="trailing" secondItem="B74-v1-wLa" secondAttribute="trailing" constant="8" id="yz5-gW-Uft"/>
+                    <constraint firstItem="Fvp-VS-fwd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="6eD-V6-nGP"/>
+                    <constraint firstItem="Jgk-oN-x40" firstAttribute="leading" secondItem="Fvp-VS-fwd" secondAttribute="leading" id="7KB-Jm-X7e"/>
+                    <constraint firstAttribute="trailing" secondItem="B74-v1-wLa" secondAttribute="trailing" constant="8" id="NWE-cf-Mes"/>
+                    <constraint firstAttribute="trailing" secondItem="Jgk-oN-x40" secondAttribute="trailing" constant="8" id="Pnh-Zw-vgI"/>
+                    <constraint firstItem="Jgk-oN-x40" firstAttribute="top" secondItem="Fvp-VS-fwd" secondAttribute="bottom" constant="15" id="XzR-xd-lxZ"/>
+                    <constraint firstItem="B74-v1-wLa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="fOq-1v-Qod"/>
+                    <constraint firstAttribute="bottom" secondItem="Jgk-oN-x40" secondAttribute="bottom" constant="8" id="gzf-O7-LCE"/>
+                    <constraint firstItem="Fvp-VS-fwd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="roy-J0-SXQ"/>
+                    <constraint firstItem="B74-v1-wLa" firstAttribute="trailing" secondItem="Fvp-VS-fwd" secondAttribute="trailing" constant="155" id="uss-AM-pmJ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

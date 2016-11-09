@@ -44,7 +44,7 @@ class UpdateChapterViewController: BaseViewController {
     
     func loadDataByPageIndex(_ pageindex: Int) {
         
-        ToastView.instance.showLoadingView()
+      //  ToastView.instance.showLoadingView()
         
         if  pageindex == vm.pageCount  && pageindex != 0 {
             
@@ -80,7 +80,7 @@ class UpdateChapterViewController: BaseViewController {
             
             self?.endLoadData()
             
-            ToastView.instance.closeLoadingWindos()
+           // ToastView.instance.closeLoadingWindos()
         }
     }
     
@@ -89,7 +89,7 @@ class UpdateChapterViewController: BaseViewController {
         
         self.endLoadData()
         
-        ToastView.instance.closeLoadingWindos()
+        //ToastView.instance.closeLoadingWindos()
     }
     
 }

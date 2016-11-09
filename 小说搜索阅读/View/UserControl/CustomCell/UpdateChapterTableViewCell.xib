@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="updateCellid" rowHeight="138" id="KGk-i7-Jjw" customClass="UpdateChapterTableViewCell" customModule="小说搜索阅读" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="537" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="537" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来源网站" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDE-03-6rd">
+                        <rect key="frame" x="15" y="42.5" width="61.5" height="18.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-12-12 00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fad-xO-G3U">
+                        <rect key="frame" x="379.5" y="42.5" width="144.5" height="18.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="章节名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEM-Kv-tcw">
+                        <rect key="frame" x="15" y="8" width="506" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="LEM-Kv-tcw" secondAttribute="trailing" constant="8" id="5Fd-xo-Vga"/>
+                    <constraint firstAttribute="bottom" secondItem="aDE-03-6rd" secondAttribute="bottom" constant="8" id="IEK-PZ-msb"/>
+                    <constraint firstItem="aDE-03-6rd" firstAttribute="leading" secondItem="LEM-Kv-tcw" secondAttribute="leading" id="OcI-ej-W1o"/>
+                    <constraint firstItem="Fad-xO-G3U" firstAttribute="bottom" secondItem="aDE-03-6rd" secondAttribute="bottom" id="hxy-rg-UiU"/>
+                    <constraint firstItem="aDE-03-6rd" firstAttribute="top" secondItem="LEM-Kv-tcw" secondAttribute="bottom" constant="15" id="j1A-D1-Sgb"/>
+                    <constraint firstItem="LEM-Kv-tcw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="jG4-OQ-unC"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Fad-xO-G3U" secondAttribute="trailing" constant="5" id="kQG-bS-SZ1"/>
+                    <constraint firstItem="LEM-Kv-tcw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="oZF-Wh-gu8"/>
+                    <constraint firstItem="Fad-xO-G3U" firstAttribute="top" secondItem="aDE-03-6rd" secondAttribute="top" id="zHn-ci-PAQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="txtChapterName" destination="LEM-Kv-tcw" id="1UL-0q-4YS"/>
+                <outlet property="txtLywzName" destination="aDE-03-6rd" id="mrO-yq-JnZ"/>
+                <outlet property="txtUpdateTime" destination="Fad-xO-G3U" id="LKn-uZ-iuM"/>
+            </connections>
+            <point key="canvasLocation" x="26.5" y="91"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -18,12 +18,15 @@ class BaseViewController: UIViewController {
             
             if isLoading {
                 
-                setTitleView()
+                // setTitleView()
+                
+                refreshControl?.beginRefreshing()
                 
             } else {
                 
                 navItem.titleView = nil
-                navItem.prompt = nil
+                
+                refreshControl?.endRefreshing()
                 
             }
         }
@@ -38,7 +41,7 @@ class BaseViewController: UIViewController {
     
     var tableview:UITableView?
     
-    var refreshControl:UIRefreshControl?
+    var refreshControl:RefreshControl?
     
     lazy var navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64))
     
@@ -54,6 +57,7 @@ class BaseViewController: UIViewController {
         setupUI()
         
         initData()
+        
         
     }
     
@@ -79,7 +83,6 @@ class BaseViewController: UIViewController {
     
     func  checkIsLoading() -> Bool {
         
-        refreshControl?.endRefreshing()
         
         if  isLoading  {
             
@@ -116,8 +119,11 @@ class BaseViewController: UIViewController {
                 
                 self.tableview?.scrollToRow(at: indexPath, at: .bottom, animated: true)
                 
-                
-                
+//                self.loadData()
+//                
+//                let y = (refreshControl?.frame.height)! +  (tableview?.contentInset.top)!
+//                
+//                self.tableview?.setContentOffset(CGPoint(x: 0, y: -y), animated: true)
                 
             } else {
                 
@@ -137,7 +143,6 @@ class BaseViewController: UIViewController {
     
     func endLoadData() {
         
-        refreshControl?.endRefreshing()
         
         isLoading = false
         
@@ -162,7 +167,7 @@ extension BaseViewController {
     
     func setuoTableview() -> () {
         
-        tableview = UITableView(frame:  view.bounds, style: .grouped)
+        tableview = UITableView(frame:  view.bounds, style: .plain)
         
         tableview?.dataSource = self
         tableview?.delegate = self
@@ -175,7 +180,7 @@ extension BaseViewController {
         tableview?.scrollIndicatorInsets = tableview!.contentInset
         
         
-        refreshControl = UIRefreshControl()
+        refreshControl = RefreshControl()
         
         refreshControl?.tintColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)
         
@@ -184,15 +189,15 @@ extension BaseViewController {
         tableview?.addSubview(refreshControl!)
         
         
-        tableview?.sectionFooterHeight = 0
+        //   tableview?.sectionFooterHeight = 0
+        //
+        //   tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat.leastNormalMagnitude))
+        //
+        //   tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat(10)))
         
-        //tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat.leastNormalMagnitude))
+        tableview?.rowHeight = UITableViewAutomaticDimension
         
-          tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat(10)))
-        
-        tableview?.rowHeight = 68
-        
-       
+        tableview?.estimatedRowHeight = 70
         
         tableview?.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: (tableview?.frame.width)!, height: CGFloat.leastNormalMagnitude))
         
@@ -222,7 +227,7 @@ extension BaseViewController {
     
     
     
-    func   setTitleView()  {
+    func  setTitleView()  {
         
         
         let loadingIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
@@ -237,7 +242,7 @@ extension BaseViewController {
         
         let size = label.sizeThatFits(CGSize(width: label.frame.size.width, height: CGFloat(MAXFLOAT)))
         label.frame = CGRect(x: 15, y: 32 - size.height/2, width: size.width>250 ? 250 : size.width, height: size.height)
-       
+        
         label.textAlignment = .left
         
         
@@ -251,10 +256,6 @@ extension BaseViewController {
         
         self.navItem.titleView = view
         
-        
-        
-        
-        ///  self.navItem.prompt = "加载中"
     }
     
     
@@ -333,30 +334,11 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
         return nil
     }
     
-    
-    
-    
-    /// 设置section的header的高度
-    ///
-    /// - parameter tableView: <#tableView description#>
-    /// - parameter section:   <#section description#>
-    ///
-    /// - returns: <#return value description#>
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        return 0
-        
-    }
-    
-    
-    
     ///选中后取消选中
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableview?.deselectRow(at: indexPath, animated: true)
     }
-    
-    
     
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
@@ -367,7 +349,7 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
-        return userLogon
+        return false
     }
     
     
@@ -375,8 +357,6 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
         
         return nil
     }
-    
-    
     
 }
 

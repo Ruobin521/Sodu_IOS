@@ -18,7 +18,7 @@ class RankViewController: BaseViewController {
     
     override func initData() {
         
-        vm.loadCacheData(self)
+        
         
         loadData()
     }
@@ -55,6 +55,16 @@ class RankViewController: BaseViewController {
         }
         
         isLoading = true
+        
+        vm.loadCacheData(self)
+        
+        if pageindex > 0 {
+            
+            
+            setTitleView()
+        }
+        
+        
         
         vm.loadRankListDataByPageIndex(pageindex) { (isSuccess) in
             
@@ -128,11 +138,11 @@ extension RankViewController {
             
             DispatchQueue.main.async {
                 
-                 tableView.isEditing = false
+                tableView.isEditing = false
                 
             }
             
-           
+            
             
         })
         

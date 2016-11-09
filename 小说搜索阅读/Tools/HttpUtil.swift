@@ -138,10 +138,10 @@ class  HttpUtil :AFHTTPSessionManager  {
         
         let failure  = { (task: URLSessionDataTask?, error: Error?) -> () in
             
-            print(task?.response ?? <#default value#>)
+            print(task?.response ?? "")
             
             completion(nil, false)
-            print(error ?? <#default value#>)
+            print(error ?? "")
             
         }
         
