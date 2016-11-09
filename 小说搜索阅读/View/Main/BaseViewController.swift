@@ -119,11 +119,11 @@ class BaseViewController: UIViewController {
                 
                 self.tableview?.scrollToRow(at: indexPath, at: .bottom, animated: true)
                 
-//                self.loadData()
-//                
-//                let y = (refreshControl?.frame.height)! +  (tableview?.contentInset.top)!
-//                
-//                self.tableview?.setContentOffset(CGPoint(x: 0, y: -y), animated: true)
+                //                self.loadData()
+                //
+                //                let y = (refreshControl?.frame.height)! +  (tableview?.contentInset.top)!
+                //
+                //                self.tableview?.setContentOffset(CGPoint(x: 0, y: -y), animated: true)
                 
             } else {
                 
@@ -155,30 +155,53 @@ class BaseViewController: UIViewController {
 
 extension BaseViewController {
     
-    func setupUI() -> () {
-        
+    func setupUI()  {
         
         setBackColor()
         setUpNavigationBar()
         setuoTableview()
+        setRefreshControl()
         
     }
     
     
     func setuoTableview() -> () {
         
-        tableview = UITableView(frame:  view.bounds, style: .plain)
+        tableview = UITableView(frame:  view.bounds, style: .grouped)
         
         tableview?.dataSource = self
         tableview?.delegate = self
         
         tableview?.backgroundColor = UIColor.white
         
+        tableview?.separatorStyle = .singleLine
+        
         tableview?.contentInset = UIEdgeInsets(top: navigationBar.bounds.height, left: 0, bottom: tabBarController?.tabBar.bounds.height ?? 49, right: 0)
         
         // 修改指示器的缩进 - 强行解包是为了拿到一个必有的 inset
         tableview?.scrollIndicatorInsets = tableview!.contentInset
         
+        
+        
+        
+        tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat.leastNormalMagnitude))
+        
+        //   tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat(10)))
+        
+        tableview?.rowHeight = UITableViewAutomaticDimension
+        
+        tableview?.estimatedRowHeight = 70
+        
+        tableview?.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: CGFloat.leastNormalMagnitude))
+        
+        tableview?.sectionFooterHeight = CGFloat.leastNormalMagnitude
+        
+        view.insertSubview(tableview!, belowSubview: navigationBar)
+        
+    }
+    
+    
+    func setRefreshControl() {
         
         refreshControl = RefreshControl()
         
@@ -189,22 +212,7 @@ extension BaseViewController {
         tableview?.addSubview(refreshControl!)
         
         
-        //   tableview?.sectionFooterHeight = 0
-        //
-        //   tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat.leastNormalMagnitude))
-        //
-        //   tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat(10)))
-        
-        tableview?.rowHeight = UITableViewAutomaticDimension
-        
-        tableview?.estimatedRowHeight = 70
-        
-        tableview?.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: (tableview?.frame.width)!, height: CGFloat.leastNormalMagnitude))
-        
-        view.insertSubview(tableview!, belowSubview: navigationBar)
-        
     }
-    
     
     func setUpNavigationBar()   {
         
