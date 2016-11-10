@@ -13,12 +13,12 @@ import UIKit
 
 enum SettingKey : String {
     
-    
     case UserNameKey = "UserName"
     case PasswordKey = "Password"
     case AppVersionKey = "AppVersion"
-   
     case IsFirstLaunchKey = "IsFirstLaunch"
+    case IsAutoAddToShelf = "IsAutoAddToShelf"
+    case IsDownLoadOnWWAN = "IsDownLoadOnWWAN"
 }
 
 class UserDefaultsHelper {
@@ -33,22 +33,24 @@ class UserDefaultsHelper {
     
     static func getBoolUserDefaultByKey(key:SettingKey) -> Bool {
         
-        let value = UserDefaults.standard.value(forKey: key.rawValue) as? Bool
+        let value = UserDefaults.standard.value(forKey: key.rawValue) as? Bool  ?? false
         
-        return value!
+        print( "\(key.rawValue) : \(value)")
+        
+        return value
     }
     
     
     
     static func setUserDefaultsValueForKey(key:SettingKey,value:Any) {
         
-        
         UserDefaults.standard.set(value, forKey: key.rawValue)
         
+        let value = UserDefaults.standard.value(forKey: key.rawValue) as? Bool
+        
+        print( "\(key.rawValue) : \(value)")
+        
     }
-    
-    
-    
     
     
     

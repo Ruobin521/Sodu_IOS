@@ -38,9 +38,9 @@ class MainViewController: UITabBarController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(addBookShelfTabbar), name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
         
-       
+        
         delegate = self
-
+        
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -99,20 +99,12 @@ extension  MainViewController {
 extension MainViewController {
     
     
-    //        // 测试方向旋转
-    //        let vc = UIViewController()
-    //
-    //        vc.view.backgroundColor = UIColor.cz_random()
-    //
-    //        let nav = UINavigationController(rootViewController: vc)
-    
-    //present(nav, animated: true, completion: nil)
     
     func login() {
         
         // 测试方向旋转
         let vc = LonginViewController()
-        // let nav = UINavigationController(rootViewController: vc)
+       
         
         present(vc, animated: true, completion: nil)
     }
@@ -123,13 +115,13 @@ extension MainViewController {
 
 
 
-//双击回到顶部
+
 extension MainViewController:UITabBarControllerDelegate {
     
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
-       
+        
         guard  let tempvc = (viewController as? NavigationViewController)?.viewControllers[0] as? BaseViewController else {
             
             return false
@@ -137,17 +129,18 @@ extension MainViewController:UITabBarControllerDelegate {
         
         if tempvc is SettingViewController {
             
-            login()
-            
-            return false
-            
+            if !userLogon {
+                
+                login()
+                return false
+                
+            }
         }
-
         
         return true
         
     }
-   
+    
     
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -163,9 +156,7 @@ extension MainViewController:UITabBarControllerDelegate {
             return
         }
         
-        if tempvc is SettingViewController {
-            
-            login()
+        if tempvc.isMember(of: SettingViewController.self) {
             
             return
             

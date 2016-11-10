@@ -80,12 +80,24 @@ extension BookContentViewController :UIWebViewDelegate {
     func webViewDidStartLoad(_ webView: UIWebView) {
         
         isLoading = true
+        
+        setTitleView()
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         
         
         isLoading = false
+        
+        
+        navItem.title = webView.stringByEvaluatingJavaScript(from: "document.title")
+        
+        navItem.titleView = nil
+        
+       
+ 
+        
+    
     }
     
     

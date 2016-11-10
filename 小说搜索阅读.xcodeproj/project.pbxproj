@@ -47,10 +47,12 @@
 		B19B74461DD3446E008D6C5C /* UpdateChapterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19B74421DD3446E008D6C5C /* UpdateChapterTableViewCell.xib */; };
 		B19B74491DD344D8008D6C5C /* BookshelfTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B74471DD344D8008D6C5C /* BookshelfTableViewCell.swift */; };
 		B19B744A1DD344D8008D6C5C /* BookshelfTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19B74481DD344D8008D6C5C /* BookshelfTableViewCell.xib */; };
+		B19B744C1DD43DC9008D6C5C /* UserLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B744B1DD43DC9008D6C5C /* UserLoginViewModel.swift */; };
+		B19B744E1DD44B76008D6C5C /* SettingEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B744D1DD44B76008D6C5C /* SettingEntity.swift */; };
+		B19B74501DD44E18008D6C5C /* SettingPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B744F1DD44E18008D6C5C /* SettingPageViewModel.swift */; };
 		B1B6A3531DC1EA2300CF23B7 /* Constaints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6A3521DC1EA2300CF23B7 /* Constaints.swift */; };
 		B1B6A3551DC3409D00CF23B7 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6A3541DC3409D00CF23B7 /* NetworkHelper.swift */; };
 		B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */; };
-		B1C238561DD382FE00C37FA6 /* SettingSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C238541DD382FE00C37FA6 /* SettingSwitchTableViewCell.swift */; };
 		B1C238571DD382FE00C37FA6 /* SettingSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C238551DD382FE00C37FA6 /* SettingSwitchTableViewCell.xib */; };
 		B1C2385B1DD388D800C37FA6 /* LonginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C238591DD388D800C37FA6 /* LonginViewController.swift */; };
 		B1C2385C1DD388D800C37FA6 /* LonginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C2385A1DD388D800C37FA6 /* LonginViewController.xib */; };
@@ -103,10 +105,12 @@
 		B19B74421DD3446E008D6C5C /* UpdateChapterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateChapterTableViewCell.xib; sourceTree = "<group>"; };
 		B19B74471DD344D8008D6C5C /* BookshelfTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookshelfTableViewCell.swift; sourceTree = "<group>"; };
 		B19B74481DD344D8008D6C5C /* BookshelfTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookshelfTableViewCell.xib; sourceTree = "<group>"; };
+		B19B744B1DD43DC9008D6C5C /* UserLoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLoginViewModel.swift; sourceTree = "<group>"; };
+		B19B744D1DD44B76008D6C5C /* SettingEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingEntity.swift; sourceTree = "<group>"; };
+		B19B744F1DD44E18008D6C5C /* SettingPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingPageViewModel.swift; sourceTree = "<group>"; };
 		B1B6A3521DC1EA2300CF23B7 /* Constaints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constaints.swift; sourceTree = "<group>"; };
 		B1B6A3541DC3409D00CF23B7 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateChapterViewController.swift; sourceTree = "<group>"; };
-		B1C238541DD382FE00C37FA6 /* SettingSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		B1C238551DD382FE00C37FA6 /* SettingSwitchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingSwitchTableViewCell.xib; sourceTree = "<group>"; };
 		B1C238591DD388D800C37FA6 /* LonginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LonginViewController.swift; sourceTree = "<group>"; };
 		B1C2385A1DD388D800C37FA6 /* LonginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LonginViewController.xib; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				B17E03C11DB095B90061DD47 /* Book.swift */,
+				B19B744D1DD44B76008D6C5C /* SettingEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -259,6 +264,8 @@
 				B162E2111DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift */,
 				B194B8C81DBDD0CE0061C9A4 /* ViewModelInstance.swift */,
 				B162E2151DC0F152008DF1C4 /* CommonPageViewModel.swift */,
+				B19B744B1DD43DC9008D6C5C /* UserLoginViewModel.swift */,
+				B19B744F1DD44E18008D6C5C /* SettingPageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -318,7 +325,6 @@
 				B19B74481DD344D8008D6C5C /* BookshelfTableViewCell.xib */,
 				B17860BB1DD37A7300E07944 /* SettingTableViewCell.swift */,
 				B17860BC1DD37A7300E07944 /* SettingTableViewCell.xib */,
-				B1C238541DD382FE00C37FA6 /* SettingSwitchTableViewCell.swift */,
 				B1C238551DD382FE00C37FA6 /* SettingSwitchTableViewCell.xib */,
 			);
 			path = CustomCell;
@@ -508,13 +514,15 @@
 				B19B74431DD3446E008D6C5C /* CommonBookListTableViewCell.swift in Sources */,
 				B17860BD1DD37A7300E07944 /* SettingTableViewCell.swift in Sources */,
 				B194B8C91DBDD0CE0061C9A4 /* ViewModelInstance.swift in Sources */,
+				B19B744C1DD43DC9008D6C5C /* UserLoginViewModel.swift in Sources */,
+				B19B744E1DD44B76008D6C5C /* SettingEntity.swift in Sources */,
 				B1904FB11DB605C900534AD6 /* ToastView.swift in Sources */,
 				B17E03D81DB099380061DD47 /* BookshelfViewController.swift in Sources */,
 				B1B6A3531DC1EA2300CF23B7 /* Constaints.swift in Sources */,
 				B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */,
 				B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */,
 				B1378BD91DB4A5CC000D4FAE /* SettingViewController.swift in Sources */,
-				B1C238561DD382FE00C37FA6 /* SettingSwitchTableViewCell.swift in Sources */,
+				B19B74501DD44E18008D6C5C /* SettingPageViewModel.swift in Sources */,
 				B1904FBA1DB79A9800534AD6 /* JSON.swift in Sources */,
 				B1B6A3551DC3409D00CF23B7 /* NetworkHelper.swift in Sources */,
 				B15B846A1DC5EB4500DD1A56 /* UserDefaultsHelper.swift in Sources */,

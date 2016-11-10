@@ -37,14 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
+     
         
         userLogon =   checklogon()
         
-        if !userLogon {
-            
-            login()
-            
-        }
         
         window = UIWindow()
         
@@ -71,7 +67,7 @@ extension AppDelegate {
         let cookies =   HTTPCookieStorage.shared.cookies(for:  URL.init(string: SoDuUrl.homePage)!)
         
         
-        guard   let cookie = cookies?.first(where: { (item) -> Bool in
+        guard   let _ = cookies?.first(where: { (item) -> Bool in
             
             item.name == "sodu_user"
             
@@ -81,49 +77,11 @@ extension AppDelegate {
         }
         
         
-        let tempcookie =   HTTPCookie(properties: [HTTPCookiePropertyKey.name     :  cookie.name ,
-                                                   HTTPCookiePropertyKey.value    :  cookie.value ,
-                                                   HTTPCookiePropertyKey.domain   :  cookie.domain,
-                                                   HTTPCookiePropertyKey.path     :  cookie.path,
-                                                   HTTPCookiePropertyKey.version  :  cookie.version,
-                                                   HTTPCookiePropertyKey.expires  :  Date(timeIntervalSinceNow: 60*60*24*365*2)
-            
-            ])
-        
-        
-        HTTPCookieStorage.shared.setCookie(tempcookie!)
-        
         return true
     }
     
     
     
-    func login() {
-        
-        
-        let url = SoDuUrl.loginPostPage
-        
-        let postData = "username=918201&userpass=8166450"
-        
-        
-        HttpUtil.instance.request(url: url, requestMethod: .POST, postStr: postData) { (str, isSuccess) in
-            
-            if str == nil  {
-                
-                return
-                
-            }
-            
-            if (str?.contains("true"))!  && (str?.contains("success"))! {
-                
-                userLogon = true
-                
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
-                
-            }
-            
-        }
-    }
     
 }
 

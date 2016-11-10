@@ -377,8 +377,12 @@ extension UIViewController {
     
     func showToast(content:String,_ isScuccess:Bool = true) {
         
+        DispatchQueue.main.async {
+            
+              self.view.addSubview(ToastView.instance.showToast(content: content,isScuccess))
+            
+        }
         
-        self.view.addSubview(ToastView.instance.showToast(content: content,isScuccess))
-        
+               
     }
 }

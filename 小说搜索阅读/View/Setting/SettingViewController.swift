@@ -15,7 +15,7 @@ private let SwitchCellId = "SwitchCellId"
 
 class SettingViewController: BaseViewController {
     
-    
+    let vm = SettingPageViewModel()
     
     
 }
@@ -23,9 +23,27 @@ class SettingViewController: BaseViewController {
 
 extension SettingViewController {
     
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return 2
+        
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return  2
+        if section == 0 {
+            
+            return vm.secondarySettingList.count
+            
+        }else if section == 1 {
+            
+            return vm.switchSettingList.count
+            
+        }  else {
+            
+            return 1
+        }
         
     }
     
@@ -40,22 +58,41 @@ extension SettingViewController {
         
         var cellid = ""
         
-        if indexPath.row == 0 {
+        let setting:SettingEntity?
+        
+        if indexPath.section == 0 {
             
-            cellid = commonCellId
+            setting = vm.secondarySettingList[indexPath.row]
             
+        } else if indexPath.section == 1 {
+            
+               setting = vm.switchSettingList[indexPath.row]
         } else {
             
             
-             cellid =  SwitchCellId
+            setting = nil
         }
         
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath)
+        if setting?.type  ==  SettingType.Secondary {
+            
+            cellid = commonCellId
+            
+        } else  if setting?.type  ==  SettingType.Swich {
+            
+            cellid =  SwitchCellId
+        }
         
-        cell.selectionStyle = .none
         
-       // cell.txtSetting.text = "个人中心"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath) as! SettingTableViewCell
+        
+        cell.setting = setting
+        
+        cell.imgIcon.image = UIImage(named: (setting?.icon!)!)
+        
+        cell.txtSetting.text = setting?.txtTitle
+        
+        
         
         return cell
     }
