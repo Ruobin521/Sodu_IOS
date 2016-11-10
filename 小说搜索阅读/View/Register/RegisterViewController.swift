@@ -19,6 +19,8 @@ class RegisterViewController: UIViewController {
     
     
     
+    let vm = UserLoginViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,7 +33,32 @@ class RegisterViewController: UIViewController {
             
             return
         }
-
+        
+        
+        vm.userRegister(txtUserName.text!, txtPasswd.text!, completion: { (isSuccess) in
+            
+            
+            if isSuccess {
+                
+                userLogon = true
+                
+                self.showToast(content: "登录成功")
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
+                
+               // self.goBack(nil)
+                
+                self.vm.setCoookie()
+                
+            } else {
+                
+                self.showToast(content: "登录失败，请检查用户名密码",false)
+            }
+            
+         //   self.isLoading = false
+            
+        })
+        
     }
     
     
@@ -67,14 +94,14 @@ class RegisterViewController: UIViewController {
             ToastView.instance.showGlobalToast(content: "两次密码输入不一致，请重新输入",false)
             return false
         }
-
+        
         return true
     }
     
     
     @IBAction func goBack(_ sender: Any) {
         
-          dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     

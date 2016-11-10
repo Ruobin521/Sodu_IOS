@@ -41,6 +41,35 @@ class UserLoginViewModel  {
         }
     }
     
+    
+    
+    func userRegister(_ userName:String,_ passwd:String,completion:@escaping (_ isSuccess:Bool)->()) {
+        
+        let url = SoDuUrl.registerPage
+        
+        let postData = "username=\(urlEncode(userName))&userpass=\(urlEncode(passwd))"
+        
+        
+        ToastView.instance.showLoadingView()
+        
+        HttpUtil.instance.request(url: url, requestMethod: .POST, postStr: postData) { (str, isSuccess) in
+            
+            if  str != nil && (str?.contains("true"))!  && (str?.contains("success"))! {
+                
+                
+                completion(true)
+                
+            } else {
+                
+                completion(false)
+                
+            }
+            
+            ToastView.instance.closeLoadingWindos()
+            
+        }
+    }
+    
 }
 
 
