@@ -29,6 +29,7 @@ class LonginViewController: UIViewController {
         
     }
     
+
     
     @IBAction func login(_ sender: Any) {
         
@@ -85,12 +86,27 @@ class LonginViewController: UIViewController {
         
     }
     
+    @IBAction func registerAction() {
+        
+        // 测试方向旋转
+        let vc = RegisterViewController()
+        
+        
+        present(vc, animated: true, completion: nil)
+        
+    }
     
     @IBAction func goBack(_ sender: Any?) {
         
         dismiss(animated: true, completion: nil)
         
         
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+         self.view.endEditing(true)
     }
 }
 

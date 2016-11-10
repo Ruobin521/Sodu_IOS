@@ -37,10 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-     
         
-        userLogon =   checklogon()
         
+       userLogon =   checklogon()
+        
+       // userLogon =  false
         
         window = UIWindow()
         

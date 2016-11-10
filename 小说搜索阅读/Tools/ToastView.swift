@@ -126,7 +126,7 @@ class ToastView : NSObject{
     //全局弹窗文字
     func showGlobalToast(content:String , _ isSuccess:Bool = true, _ duration:CFTimeInterval = 1.5)  {
         
-        let frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)! - 100 , height: 30)
+        let frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)! , height: 30)
         
         
         let toastContainerView = UIView()
@@ -150,7 +150,7 @@ class ToastView : NSObject{
         toastContainerView.frame = frame
         
         window.windowLevel = UIWindowLevelAlert
-        window.center = CGPoint(x: (rv?.center.x)!, y: (rv?.bounds.height)! / 20 * 14)
+        window.center = CGPoint(x: (rv?.center.x)!, y: 79 )
         window.isHidden = false
         window.addSubview(toastContainerView)
         
