@@ -15,6 +15,8 @@ class LonginViewController: UIViewController {
     @IBOutlet weak var txtPasswd: UITextField!
     
     
+    var registerCallBack: (() -> ())?
+    
     var isLoading = false
     
     let vm = UserLoginViewModel()
@@ -29,7 +31,7 @@ class LonginViewController: UIViewController {
         
     }
     
-
+    
     
     @IBAction func login(_ sender: Any) {
         
@@ -80,7 +82,7 @@ class LonginViewController: UIViewController {
                 self.showToast(content: "登录失败，请检查用户名密码",false)
             }
             
-             self.isLoading = false
+            self.isLoading = false
             
         })
         
@@ -88,12 +90,7 @@ class LonginViewController: UIViewController {
     
     @IBAction func registerAction() {
         
-        // 测试方向旋转
-        let vc = RegisterViewController()
-        
-        
-        present(vc, animated: true, completion: nil)
-        
+        registerCallBack?()
     }
     
     @IBAction func goBack(_ sender: Any?) {
@@ -106,7 +103,7 @@ class LonginViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-         self.view.endEditing(true)
+        self.view.endEditing(true)
     }
 }
 

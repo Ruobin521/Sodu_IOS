@@ -54,6 +54,12 @@ class BookshelfViewController: BaseViewController {
                 self.tableview?.reloadData()
                 
                 self.showToast(content: "已加载个人书架数据")
+                
+                if self.vm.bookList.count ==  0 {
+                    
+                   self.setEmptyBackView()
+                    
+                }
             }
             
             super.endLoadData()
@@ -109,7 +115,7 @@ extension BookshelfViewController {
         
         cell.txtLastReadChapterName.text = vm.bookList[indexPath.row].chapterName
         
-      //  cell.?.text = vm.bookList[indexPath.row].chapterName
+        //  cell.?.text = vm.bookList[indexPath.row].chapterName
         
         return cell
     }

@@ -275,6 +275,25 @@ extension BaseViewController {
     }
     
     
+    func setEmptyBackView() {
+        
+        let emptyView  = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        emptyView.backgroundColor = UIColor.clear
+        
+        let label = UILabel()
+        label.text = "您的书架空空如也，点击排行榜或热门推荐添加几本吧..."
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.textColor =  UIColor.lightGray
+        label.numberOfLines = 0
+        label.frame = CGRect(x: 0, y: 0 , width:  300 , height: 100)
+        label.center =  CGPoint(x: view.center.x, y: view.center.y - 80)
+        label.textAlignment = .center
+        
+        emptyView.addSubview(label)
+        view.insertSubview(emptyView, belowSubview: navigationBar)
+        
+    }
+    
     func goToSearchPage() {
         
         print("点击了搜索按钮")
@@ -379,10 +398,9 @@ extension UIViewController {
         
         DispatchQueue.main.async {
             
-              self.view.addSubview(ToastView.instance.showToast(content: content,isScuccess))
+            self.view.addSubview(ToastView.instance.showToast(content: content,isScuccess))
             
         }
         
-               
     }
 }

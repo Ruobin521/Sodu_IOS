@@ -166,9 +166,9 @@
 				B17E03C01DB095B90061DD47 /* Model */,
 				B17E03C31DB095B90061DD47 /* View */,
 				B17E03C81DB095B90061DD47 /* ViewModel */,
-				B120E2271DA9E72800921288 /* AppDelegate.swift */,
 				B120E22E1DA9E72800921288 /* Assets.xcassets */,
 				B120E2301DA9E72800921288 /* LaunchScreen.storyboard */,
+				B120E2271DA9E72800921288 /* AppDelegate.swift */,
 				B120E2331DA9E72800921288 /* Info.plist */,
 				B17E03C21DB095B90061DD47 /* Tools */,
 			);

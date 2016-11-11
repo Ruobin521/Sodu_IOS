@@ -104,7 +104,17 @@ extension MainViewController {
         
         // 测试方向旋转
         let vc = LonginViewController()
-       
+        
+        vc.registerCallBack = {  [weak self] in
+            
+            self?.dismiss(animated: false, completion: nil)
+            // 测试方向旋转
+            let rvc = RegisterViewController()
+            self?.present(rvc, animated: true, completion: nil)
+            
+            
+            
+        }
         
         present(vc, animated: true, completion: nil)
     }

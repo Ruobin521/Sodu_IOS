@@ -17,7 +17,7 @@ class RegisterViewController: UIViewController {
     
     @IBOutlet weak var txtConfirmPasswd: UITextField!
     
-    
+    var isLoading = false
     
     let vm = UserLoginViewModel()
     
@@ -34,6 +34,13 @@ class RegisterViewController: UIViewController {
             return
         }
         
+        if isLoading {
+            
+            self.showToast(content: "正在注册中，请稍后")
+            return
+        }
+        
+        isLoading = true
         
         vm.userRegister(txtUserName.text!, txtPasswd.text!, completion: { (isSuccess) in
             
@@ -42,20 +49,22 @@ class RegisterViewController: UIViewController {
                 
                 userLogon = true
                 
-                self.showToast(content: "登录成功")
+                self.showToast(content: "注册成功")
                 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
                 
-               // self.goBack(nil)
-                
                 self.vm.setCoookie()
+                
+                self.goBack()
                 
             } else {
                 
-                self.showToast(content: "登录失败，请检查用户名密码",false)
+                self.showToast(content: "注册失败，该用户可能已经注册过",false)
             }
             
-         //   self.isLoading = false
+            self.isLoading = false
+            
+            
             
         })
         
@@ -99,7 +108,7 @@ class RegisterViewController: UIViewController {
     }
     
     
-    @IBAction func goBack(_ sender: Any) {
+    @IBAction func goBack() {
         
         dismiss(animated: true, completion: nil)
     }
