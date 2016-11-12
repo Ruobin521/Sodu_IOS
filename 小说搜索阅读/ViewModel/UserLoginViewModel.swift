@@ -124,7 +124,7 @@ extension UserLoginViewModel {
     
     
     /// 删除cookie
-    func deleteCoookie()  {
+    static   func  deleteCoookie()  {
         
         let cookies =   HTTPCookieStorage.shared.cookies(for:  URL.init(string: SoDuUrl.homePage)!)
         

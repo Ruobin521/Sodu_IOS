@@ -12,6 +12,8 @@
 		B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B120E2301DA9E72800921288 /* LaunchScreen.storyboard */; };
 		B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12CD5561DB687EE00377450 /* HttpUtil.swift */; };
 		B1378BD91DB4A5CC000D4FAE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */; };
+		B145D8E31DD7530B00FB09F2 /* PersonCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145D8E21DD7530B00FB09F2 /* PersonCenterViewController.swift */; };
+		B145D8E51DD753C900FB09F2 /* PersonCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B145D8E41DD753C900FB09F2 /* PersonCenterViewController.xib */; };
 		B15B846A1DC5EB4500DD1A56 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15B84691DC5EB4500DD1A56 /* UserDefaultsHelper.swift */; };
 		B1600A401DC25ED3000A4C49 /* WelcomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1600A3E1DC25ED3000A4C49 /* WelcomView.swift */; };
 		B1600A431DC26E76000A4C49 /* WelcomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1600A421DC26E76000A4C49 /* WelcomView.xib */; };
@@ -72,6 +74,8 @@
 		B120E2331DA9E72800921288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B12CD5561DB687EE00377450 /* HttpUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpUtil.swift; sourceTree = "<group>"; };
 		B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		B145D8E21DD7530B00FB09F2 /* PersonCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCenterViewController.swift; sourceTree = "<group>"; };
+		B145D8E41DD753C900FB09F2 /* PersonCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonCenterViewController.xib; sourceTree = "<group>"; };
 		B15B84691DC5EB4500DD1A56 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		B1600A3E1DC25ED3000A4C49 /* WelcomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomView.swift; sourceTree = "<group>"; };
 		B1600A421DC26E76000A4C49 /* WelcomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomView.xib; sourceTree = "<group>"; };
@@ -183,6 +187,15 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		B145D8E11DD752F200FB09F2 /* PersonalCenter */ = {
+			isa = PBXGroup;
+			children = (
+				B145D8E41DD753C900FB09F2 /* PersonCenterViewController.xib */,
+				B145D8E21DD7530B00FB09F2 /* PersonCenterViewController.swift */,
+			);
+			path = PersonalCenter;
+			sourceTree = "<group>";
+		};
 		B1600A3B1DC25D7E000A4C49 /* Welcom */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +240,7 @@
 		B17E03C31DB095B90061DD47 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B145D8E11DD752F200FB09F2 /* PersonalCenter */,
 				B1600A3B1DC25D7E000A4C49 /* Welcom */,
 				B17E03C51DB095B90061DD47 /* Main */,
 				B17E03D61DB099120061DD47 /* Bookshelf */,
@@ -451,6 +465,7 @@
 				B19B74441DD3446E008D6C5C /* CommonBookListTableViewCell.xib in Resources */,
 				B1600A431DC26E76000A4C49 /* WelcomView.xib in Resources */,
 				B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */,
+				B145D8E51DD753C900FB09F2 /* PersonCenterViewController.xib in Resources */,
 				B120E22F1DA9E72800921288 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,6 +557,7 @@
 				B1904FBA1DB79A9800534AD6 /* JSON.swift in Sources */,
 				B1B6A3551DC3409D00CF23B7 /* NetworkHelper.swift in Sources */,
 				B15B846A1DC5EB4500DD1A56 /* UserDefaultsHelper.swift in Sources */,
+				B145D8E31DD7530B00FB09F2 /* PersonCenterViewController.swift in Sources */,
 				B162E21F1DC110BE008DF1C4 /* BookContentViewController.swift in Sources */,
 				B162E2121DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift in Sources */,
 				B1904FB41DB728EA00534AD6 /* ConstantUrl.swift in Sources */,

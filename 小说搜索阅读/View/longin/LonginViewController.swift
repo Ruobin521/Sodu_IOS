@@ -77,6 +77,8 @@ class LonginViewController: UIViewController {
                 
                 self.vm.setCoookie()
                 
+                UserDefaultsHelper.setUserDefaultsValueForKey(key: .UserNameKey, value: self.txtUserName.text!)
+                
             } else {
                 
                 self.showToast(content: "登录失败，请检查用户名密码",false)

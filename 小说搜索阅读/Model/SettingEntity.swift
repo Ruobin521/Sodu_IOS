@@ -33,5 +33,8 @@ class SettingEntity :NSObject {
     ///值
     var value:Any?
     
+    ///二级界面
+    var controller:String?
+    
     
 }

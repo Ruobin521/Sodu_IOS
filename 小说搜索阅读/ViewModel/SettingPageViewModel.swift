@@ -20,7 +20,7 @@ class SettingPageViewModel {
         aitem0.type = SettingType.Secondary
         aitem0.txtTitle = "个人中心"
         aitem0.icon =  "person"
-        
+         aitem0.controller =  "PersonCenterViewController"
         secondarySettingList.append(aitem0)
         
         

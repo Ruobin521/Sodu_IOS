@@ -23,12 +23,6 @@ class MainViewController: UITabBarController {
     
     override func viewDidLoad() {
         
-        //        var appVersion = Bundle.main.appVesion
-        //        var appVersion2 =  UserDefaultsHelper.getUserDefaultByKey(key: SettingKey.AppVersionKey)
-        //
-        //        UserDefaultsHelper.setUserDefaultsValueForKey(key: SettingKey.AppVersionKey, value: appVersion)
-        //
-        //         var appVersion3 =  UserDefaultsHelper.getUserDefaultByKey(key: SettingKey.AppVersionKey)
         
         super.viewDidLoad()
         
@@ -36,7 +30,13 @@ class MainViewController: UITabBarController {
         
         setupChildControllers()
         
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(login), name: NSNotification.Name(rawValue: NeedLoginNotification), object: nil)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(addBookShelfTabbar), name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(logout), name: NSNotification.Name(rawValue: LogoutNotification), object: nil)
         
         
         delegate = self
@@ -59,11 +59,17 @@ class MainViewController: UITabBarController {
             
             self.viewControllers?.insert(self.createController(dic: item), at: 0)
             
-            self.selectedIndex = 0
+            self.selectedIndex =  (self.viewControllers?.count)! - 1  >= 0  ? (self.viewControllers?.count)! - 1  : 0
         }
         
     }
     
+    
+    func logout()  {
+        
+        self.viewControllers?.remove(at: 0)
+       
+    }
     
     
     deinit {
@@ -99,16 +105,15 @@ extension  MainViewController {
 extension MainViewController {
     
     
-    
     func login() {
         
-        // 测试方向旋转
+       
         let vc = LonginViewController()
         
         vc.registerCallBack = {  [weak self] in
             
             self?.dismiss(animated: false, completion: nil)
-            // 测试方向旋转
+            
             let rvc = RegisterViewController()
             self?.present(rvc, animated: true, completion: nil)
             
@@ -118,8 +123,6 @@ extension MainViewController {
         
         present(vc, animated: true, completion: nil)
     }
-    
-    
     
 }
 

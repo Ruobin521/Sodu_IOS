@@ -15,7 +15,7 @@ private let SwitchCellId = "SwitchCellId"
 
 class SettingViewController: BaseViewController {
     
-    let vm = SettingPageViewModel()
+    let vm = ViewModelInstance.Instance.Setting
     
     
 }
@@ -66,7 +66,7 @@ extension SettingViewController {
             
         } else if indexPath.section == 1 {
             
-               setting = vm.switchSettingList[indexPath.row]
+            setting = vm.switchSettingList[indexPath.row]
         } else {
             
             
@@ -97,6 +97,36 @@ extension SettingViewController {
         return cell
     }
     
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        super.tableView(tableView, didSelectRowAt: indexPath)
+        
+        if indexPath.section == 0  {
+            
+            if indexPath.row == 0  && !userLogon {
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NeedLoginNotification), object: nil)
+               
+                return
+               
+            }
+            
+            let clsName = vm.secondarySettingList[indexPath.row].controller!
+            
+            guard  let cls = NSClassFromString(Bundle.main.namespace + "." + clsName) as? UIViewController.Type  else {
+                
+                return
+            }
+            
+            navigationController?.pushViewController(cls.init(), animated: true)
+            
+        }
+        
+        
+        
+    }
     
 }
 

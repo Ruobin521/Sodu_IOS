@@ -8,6 +8,10 @@
 
 import Foundation
 
+let NeedLoginNotification = "NeedLoginNotification"
+
 let LogonSuccessNotification = "LogonSuccessNotification"
 
 let AddToBookshelfSuccessNotification = "AddToBookshelfSuccessNotification"
+
+let LogoutNotification = "LogoutNotification"

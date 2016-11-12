@@ -47,7 +47,7 @@ class WelcomView: UIView {
             
         }) { (isSuccess) in
             
-            UIView.animate(withDuration: 1.5, animations: {
+            UIView.animate(withDuration: 0.8, animations: {
                 
                 self.tipLabel.alpha = 1
                 

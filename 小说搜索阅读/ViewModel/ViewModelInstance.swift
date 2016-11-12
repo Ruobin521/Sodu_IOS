@@ -18,6 +18,6 @@ class ViewModelInstance {
     
     lazy var HotAndRecommend = HotAndRecommendPageViewModel()
     
-    
+    lazy var Setting = SettingPageViewModel()
     
 }

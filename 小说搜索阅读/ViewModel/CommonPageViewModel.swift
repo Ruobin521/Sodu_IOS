@@ -30,7 +30,7 @@ class CommonPageViewModel {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    
+
     
     /// 添加小说到个人书架
     ///
