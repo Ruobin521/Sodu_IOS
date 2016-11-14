@@ -22,7 +22,6 @@
 		B162E21C1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E21B1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift */; };
 		B162E21F1DC110BE008DF1C4 /* BookContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E21E1DC110BE008DF1C4 /* BookContentViewController.swift */; };
 		B17860BD1DD37A7300E07944 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17860BB1DD37A7300E07944 /* SettingTableViewCell.swift */; };
-		B17860BE1DD37A7300E07944 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B17860BC1DD37A7300E07944 /* SettingTableViewCell.xib */; };
 		B17E03C91DB095B90061DD47 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03C11DB095B90061DD47 /* Book.swift */; };
 		B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03CA1DB098350061DD47 /* MainViewController.swift */; };
 		B17E03CD1DB0984E0061DD47 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03CC1DB0984E0061DD47 /* BaseViewController.swift */; };
@@ -40,6 +39,7 @@
 		B194B8C91DBDD0CE0061C9A4 /* ViewModelInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194B8C81DBDD0CE0061C9A4 /* ViewModelInstance.swift */; };
 		B194B8CB1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194B8CA1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift */; };
 		B194B8CE1DBDE6720061C9A4 /* HotAndRecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194B8CD1DBDE6720061C9A4 /* HotAndRecommendViewController.swift */; };
+		B19B73E51DD99F7D00171785 /* AnalisysContentHtmlHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B73E41DD99F7D00171785 /* AnalisysContentHtmlHelper.swift */; };
 		B19B743B1DD33984008D6C5C /* RefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B74381DD33984008D6C5C /* RefreshControl.swift */; };
 		B19B743C1DD33984008D6C5C /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B74391DD33984008D6C5C /* RefreshView.swift */; };
 		B19B743D1DD33984008D6C5C /* RefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19B743A1DD33984008D6C5C /* RefreshView.xib */; };
@@ -57,7 +57,7 @@
 		B1B6A3531DC1EA2300CF23B7 /* Constaints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6A3521DC1EA2300CF23B7 /* Constaints.swift */; };
 		B1B6A3551DC3409D00CF23B7 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6A3541DC3409D00CF23B7 /* NetworkHelper.swift */; };
 		B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */; };
-		B1C238571DD382FE00C37FA6 /* SettingSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C238551DD382FE00C37FA6 /* SettingSwitchTableViewCell.xib */; };
+		B1C238571DD382FE00C37FA6 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C238551DD382FE00C37FA6 /* SettingTableViewCell.xib */; };
 		B1C2385B1DD388D800C37FA6 /* LonginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C238591DD388D800C37FA6 /* LonginViewController.swift */; };
 		B1C2385C1DD388D800C37FA6 /* LonginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C2385A1DD388D800C37FA6 /* LonginViewController.xib */; };
 		F5DA2AE54C56A2A2976E8D6F /* Pods_______.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C180B4901097B286F23F8F /* Pods_______.framework */; };
@@ -84,7 +84,6 @@
 		B162E21B1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
 		B162E21E1DC110BE008DF1C4 /* BookContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookContentViewController.swift; sourceTree = "<group>"; };
 		B17860BB1DD37A7300E07944 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
-		B17860BC1DD37A7300E07944 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		B17E03C11DB095B90061DD47 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		B17E03CA1DB098350061DD47 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B17E03CC1DB0984E0061DD47 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +101,7 @@
 		B194B8C81DBDD0CE0061C9A4 /* ViewModelInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelInstance.swift; sourceTree = "<group>"; };
 		B194B8CA1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAndRecommendPageViewModel.swift; sourceTree = "<group>"; };
 		B194B8CD1DBDE6720061C9A4 /* HotAndRecommendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAndRecommendViewController.swift; sourceTree = "<group>"; };
+		B19B73E41DD99F7D00171785 /* AnalisysContentHtmlHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnalisysContentHtmlHelper.swift; path = Extensions/AnalisysContentHtmlHelper.swift; sourceTree = "<group>"; };
 		B19B74381DD33984008D6C5C /* RefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshControl.swift; sourceTree = "<group>"; };
 		B19B74391DD33984008D6C5C /* RefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
 		B19B743A1DD33984008D6C5C /* RefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshView.xib; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		B1B6A3521DC1EA2300CF23B7 /* Constaints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constaints.swift; sourceTree = "<group>"; };
 		B1B6A3541DC3409D00CF23B7 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateChapterViewController.swift; sourceTree = "<group>"; };
-		B1C238551DD382FE00C37FA6 /* SettingSwitchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingSwitchTableViewCell.xib; sourceTree = "<group>"; };
+		B1C238551DD382FE00C37FA6 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		B1C238591DD388D800C37FA6 /* LonginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LonginViewController.swift; sourceTree = "<group>"; };
 		B1C2385A1DD388D800C37FA6 /* LonginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LonginViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -227,6 +227,7 @@
 			children = (
 				B17E03D91DB09B3C0061DD47 /* Extensions */,
 				B1904FB01DB605C900534AD6 /* ToastView.swift */,
+				B19B73E41DD99F7D00171785 /* AnalisysContentHtmlHelper.swift */,
 				B12CD5561DB687EE00377450 /* HttpUtil.swift */,
 				B1904FB51DB75E9900534AD6 /* AnalisysHtmlHelper.swift */,
 				B1904FB71DB7866900534AD6 /* BookCacheHelper.swift */,
@@ -343,8 +344,7 @@
 				B19B74471DD344D8008D6C5C /* BookshelfTableViewCell.swift */,
 				B19B74481DD344D8008D6C5C /* BookshelfTableViewCell.xib */,
 				B17860BB1DD37A7300E07944 /* SettingTableViewCell.swift */,
-				B17860BC1DD37A7300E07944 /* SettingTableViewCell.xib */,
-				B1C238551DD382FE00C37FA6 /* SettingSwitchTableViewCell.xib */,
+				B1C238551DD382FE00C37FA6 /* SettingTableViewCell.xib */,
 			);
 			path = CustomCell;
 			sourceTree = "<group>";
@@ -458,9 +458,8 @@
 				B19B74551DD4C344008D6C5C /* RegisterViewController.xib in Resources */,
 				B19B744A1DD344D8008D6C5C /* BookshelfTableViewCell.xib in Resources */,
 				B1C2385C1DD388D800C37FA6 /* LonginViewController.xib in Resources */,
-				B1C238571DD382FE00C37FA6 /* SettingSwitchTableViewCell.xib in Resources */,
+				B1C238571DD382FE00C37FA6 /* SettingTableViewCell.xib in Resources */,
 				B19B74461DD3446E008D6C5C /* UpdateChapterTableViewCell.xib in Resources */,
-				B17860BE1DD37A7300E07944 /* SettingTableViewCell.xib in Resources */,
 				B19B743D1DD33984008D6C5C /* RefreshView.xib in Resources */,
 				B19B74441DD3446E008D6C5C /* CommonBookListTableViewCell.xib in Resources */,
 				B1600A431DC26E76000A4C49 /* WelcomView.xib in Resources */,
@@ -565,6 +564,7 @@
 				B1904FB81DB7866900534AD6 /* BookCacheHelper.swift in Sources */,
 				B194B8CB1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift in Sources */,
 				B1600A401DC25ED3000A4C49 /* WelcomView.swift in Sources */,
+				B19B73E51DD99F7D00171785 /* AnalisysContentHtmlHelper.swift in Sources */,
 				B19B743B1DD33984008D6C5C /* RefreshControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

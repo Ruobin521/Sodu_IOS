@@ -18,8 +18,10 @@ enum SettingType {
 
 class SettingEntity :NSObject {
     
+    var index:Int! = 0
+    
     ///设置类型
-    var type:SettingType?
+    var settingType:SettingType?
     
     ///标题
     var txtTitle:String?

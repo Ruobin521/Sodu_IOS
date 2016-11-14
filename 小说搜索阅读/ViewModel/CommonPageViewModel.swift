@@ -27,6 +27,8 @@ class CommonPageViewModel {
         
         vc.title = book.bookName
         
+       
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -14,17 +14,18 @@ class SettingTableViewCell: UITableViewCell {
         
         didSet {
             
-            if setting?.type == SettingType.Swich {
+            if setting?.settingType == SettingType.Swich {
                 
                 self.accessoryType = .none
                 self.selectionStyle = .none
+                self.btnSwitch?.isOn = self.setting?.value as? Bool ?? false
+                self.btnSwitch?.isHidden = false
+
+            } else {
                 
-                DispatchQueue.main.async {
-                    
-                    self.btnSwitch?.isOn = self.setting?.value as? Bool ?? false
-                }
-                
-                btnSwitch?.addTarget(self, action: #selector(OnSwitchAction), for: .touchUpInside)
+                self.accessoryType = .disclosureIndicator
+                self.selectionStyle = .default
+                self.btnSwitch?.isHidden = true
             }
         }
     }
@@ -41,13 +42,6 @@ class SettingTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
-    }
-    
-    
-    func OnSwitchAction(obj:Any) {
-        
-        UserDefaultsHelper.setUserDefaultsValueForKey(key:  (self.setting?.key!)!, value: btnSwitch!.isOn)
         
     }
     

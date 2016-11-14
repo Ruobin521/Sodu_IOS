@@ -10,8 +10,6 @@ import UIKit
 
 
 private let commonCellId = "commonCellId"
-private let SwitchCellId = "SwitchCellId"
-
 
 class SettingViewController: BaseViewController {
     
@@ -36,7 +34,7 @@ extension SettingViewController {
             
             return vm.secondarySettingList.count
             
-        }else if section == 1 {
+        } else if section == 1 {
             
             return vm.switchSettingList.count
             
@@ -56,43 +54,24 @@ extension SettingViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cellid = ""
+        var setting:SettingEntity?
         
-        let setting:SettingEntity?
+        let list =  indexPath.section == 0 ? vm.secondarySettingList :  vm.switchSettingList
         
-        if indexPath.section == 0 {
-            
-            setting = vm.secondarySettingList[indexPath.row]
-            
-        } else if indexPath.section == 1 {
-            
-            setting = vm.switchSettingList[indexPath.row]
-        } else {
-            
-            
-            setting = nil
-        }
+        setting  = list[indexPath.row]
         
         
-        if setting?.type  ==  SettingType.Secondary {
-            
-            cellid = commonCellId
-            
-        } else  if setting?.type  ==  SettingType.Swich {
-            
-            cellid =  SwitchCellId
-        }
-        
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellid, for: indexPath) as! SettingTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: commonCellId, for: indexPath) as! SettingTableViewCell
         
         cell.setting = setting
         
-        cell.imgIcon.image = UIImage(named: (setting?.icon!)!)
+        cell.imgIcon.image = UIImage(named: (setting?.icon) ?? "")
         
         cell.txtSetting.text = setting?.txtTitle
         
+        cell.btnSwitch?.addTarget(self, action: #selector(switchAtion), for: .touchUpInside)
         
+        cell.btnSwitch?.tag = setting?.index ??  0
         
         return cell
     }
@@ -103,30 +82,61 @@ extension SettingViewController {
         
         super.tableView(tableView, didSelectRowAt: indexPath)
         
-        if indexPath.section == 0  {
+        if indexPath.section != 0  {
             
-            if indexPath.row == 0  && !userLogon {
-                
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NeedLoginNotification), object: nil)
-               
-                return
-               
-            }
-            
-            let clsName = vm.secondarySettingList[indexPath.row].controller!
-            
-            guard  let cls = NSClassFromString(Bundle.main.namespace + "." + clsName) as? UIViewController.Type  else {
-                
-                return
-            }
-            
-            navigationController?.pushViewController(cls.init(), animated: true)
+            return
             
         }
         
+        if indexPath.row == 0  && !userLogon {
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: NeedLoginNotification), object: nil)
+            return
+            
+        }
         
+        guard   let clsName = vm.secondarySettingList[indexPath.row].controller  else {
+            
+            showToast(content: "该功能暂未实现")
+            
+            return
+        }
+        
+        guard  let cls = NSClassFromString(Bundle.main.namespace + "." + clsName) as? UIViewController.Type  else {
+            
+            return
+        }
+        
+        navigationController?.pushViewController(cls.init(), animated: true)
+    }
+    
+}
+
+extension SettingViewController {
+    
+    func switchAtion(sender:Any?) {
+        
+        guard  let btnSwitch = sender as? UISwitch else {
+            
+            return
+            
+        }
+        
+        let index = btnSwitch.tag
+        
+        guard  let setting =  vm.switchSettingList.first(where: { (item) -> Bool in
+            
+            item.index == index
+            
+        }) else {
+            
+            return
+        }
+        
+        vm.setValue((setting.key)!,btnSwitch.isOn)
         
     }
+    
     
 }
 
@@ -139,18 +149,8 @@ extension SettingViewController {
         setUpNavigationBar()
         setuoTableview()
         
-        
-        
         let cellNib1 = UINib(nibName: "SettingTableViewCell", bundle: nil)
-        
         tableview?.register(cellNib1, forCellReuseIdentifier: commonCellId)
-        
-        
-        let cellNib2 = UINib(nibName: "SettingSwitchTableViewCell", bundle: nil)
-        
-        tableview?.register(cellNib2, forCellReuseIdentifier: SwitchCellId)
-        
-        
     }
     
 }
