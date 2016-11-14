@@ -25,14 +25,15 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUi-oA-pA6">
-                            <rect key="frame" x="0.0" y="26" width="88" height="30"/>
+                            <rect key="frame" x="0.0" y="26" width="70" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="返回" image="navigationbar_back_withtext"/>
                             <connections>
                                 <action selector="goBack:" destination="-1" eventType="touchUpInside" id="mVR-Mo-2mS"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人中心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZK-Db-G2f">
-                            <rect key="frame" x="152" y="31" width="70" height="21"/>
+                            <rect key="frame" x="152" y="30" width="70" height="21"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -40,7 +41,7 @@
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="hZK-Db-G2f" firstAttribute="leading" secondItem="jUi-oA-pA6" secondAttribute="trailing" constant="64" id="42m-Vr-8Wm"/>
+                        <constraint firstItem="hZK-Db-G2f" firstAttribute="leading" secondItem="jUi-oA-pA6" secondAttribute="trailing" constant="82" id="42m-Vr-8Wm"/>
                         <constraint firstItem="hZK-Db-G2f" firstAttribute="centerX" secondItem="yWo-hf-t42" secondAttribute="centerX" id="E8P-3N-1m2"/>
                         <constraint firstItem="jUi-oA-pA6" firstAttribute="bottom" secondItem="yWo-hf-t42" secondAttribute="bottomMargin" id="OdG-76-VDf"/>
                         <constraint firstItem="jUi-oA-pA6" firstAttribute="leading" secondItem="yWo-hf-t42" secondAttribute="leading" id="XDT-Tv-FWY"/>

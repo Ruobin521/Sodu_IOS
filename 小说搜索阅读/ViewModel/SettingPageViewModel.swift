@@ -71,6 +71,7 @@ extension  SettingPageViewModel {
         aitem1.settingType = SettingType.Secondary
         aitem1.txtTitle = "下载中心"
         aitem1.icon =  "download"
+        aitem1.controller =  "DownCenterViewController"
         
         secondarySettingList.append(aitem1)
         

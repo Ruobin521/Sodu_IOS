@@ -38,7 +38,7 @@ class NavigationViewController: UINavigationController {
             
             if let vc = viewController  as?  BaseViewController {
                 
-                vc.navItem.leftBarButtonItem =  UIBarButtonItem(title: title, fontSize:15.0,  target: self, action: #selector(goBack),isBack:true)
+                vc.navItem.leftBarButtonItem =  UIBarButtonItem(title: title, fontSize:16.0,  target: self, action: #selector(goBack),isBack:true)
                 
             }
             

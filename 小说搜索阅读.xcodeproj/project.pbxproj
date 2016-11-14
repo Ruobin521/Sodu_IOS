@@ -40,6 +40,8 @@
 		B194B8CB1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194B8CA1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift */; };
 		B194B8CE1DBDE6720061C9A4 /* HotAndRecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194B8CD1DBDE6720061C9A4 /* HotAndRecommendViewController.swift */; };
 		B19B73E51DD99F7D00171785 /* AnalisysContentHtmlHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B73E41DD99F7D00171785 /* AnalisysContentHtmlHelper.swift */; };
+		B19B73E71DD9BD5A00171785 /* DownloadCenterPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B73E61DD9BD5A00171785 /* DownloadCenterPageViewModel.swift */; };
+		B19B73EA1DD9C01300171785 /* DownCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B73E91DD9C01300171785 /* DownCenterViewController.swift */; };
 		B19B743B1DD33984008D6C5C /* RefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B74381DD33984008D6C5C /* RefreshControl.swift */; };
 		B19B743C1DD33984008D6C5C /* RefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B74391DD33984008D6C5C /* RefreshView.swift */; };
 		B19B743D1DD33984008D6C5C /* RefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19B743A1DD33984008D6C5C /* RefreshView.xib */; };
@@ -102,6 +104,8 @@
 		B194B8CA1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAndRecommendPageViewModel.swift; sourceTree = "<group>"; };
 		B194B8CD1DBDE6720061C9A4 /* HotAndRecommendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAndRecommendViewController.swift; sourceTree = "<group>"; };
 		B19B73E41DD99F7D00171785 /* AnalisysContentHtmlHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnalisysContentHtmlHelper.swift; path = Extensions/AnalisysContentHtmlHelper.swift; sourceTree = "<group>"; };
+		B19B73E61DD9BD5A00171785 /* DownloadCenterPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadCenterPageViewModel.swift; sourceTree = "<group>"; };
+		B19B73E91DD9C01300171785 /* DownCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownCenterViewController.swift; sourceTree = "<group>"; };
 		B19B74381DD33984008D6C5C /* RefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshControl.swift; sourceTree = "<group>"; };
 		B19B74391DD33984008D6C5C /* RefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshView.swift; sourceTree = "<group>"; };
 		B19B743A1DD33984008D6C5C /* RefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefreshView.xib; sourceTree = "<group>"; };
@@ -241,6 +245,7 @@
 		B17E03C31DB095B90061DD47 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B19B73E81DD9BFCC00171785 /* DownCenter */,
 				B145D8E11DD752F200FB09F2 /* PersonalCenter */,
 				B1600A3B1DC25D7E000A4C49 /* Welcom */,
 				B17E03C51DB095B90061DD47 /* Main */,
@@ -286,6 +291,7 @@
 				B162E2151DC0F152008DF1C4 /* CommonPageViewModel.swift */,
 				B19B744B1DD43DC9008D6C5C /* UserLoginViewModel.swift */,
 				B19B744F1DD44E18008D6C5C /* SettingPageViewModel.swift */,
+				B19B73E61DD9BD5A00171785 /* DownloadCenterPageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -322,6 +328,14 @@
 				B194B8CD1DBDE6720061C9A4 /* HotAndRecommendViewController.swift */,
 			);
 			path = HotAndRecommend;
+			sourceTree = "<group>";
+		};
+		B19B73E81DD9BFCC00171785 /* DownCenter */ = {
+			isa = PBXGroup;
+			children = (
+				B19B73E91DD9C01300171785 /* DownCenterViewController.swift */,
+			);
+			path = DownCenter;
 			sourceTree = "<group>";
 		};
 		B19B74371DD33984008D6C5C /* RefreshControl */ = {
@@ -528,6 +542,7 @@
 				B194B8C71DBDD0280061C9A4 /* BookShelfPageViewModel.swift in Sources */,
 				B17E03CF1DB0987A0061DD47 /* NavigationViewController.swift in Sources */,
 				B17E03DB1DB09B830061DD47 /* Bundle+Extensions.swift in Sources */,
+				B19B73E71DD9BD5A00171785 /* DownloadCenterPageViewModel.swift in Sources */,
 				B19B74451DD3446E008D6C5C /* UpdateChapterTableViewCell.swift in Sources */,
 				B1904FB61DB75E9900534AD6 /* AnalisysHtmlHelper.swift in Sources */,
 				B17E03CD1DB0984E0061DD47 /* BaseViewController.swift in Sources */,
@@ -552,6 +567,7 @@
 				B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */,
 				B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */,
 				B1378BD91DB4A5CC000D4FAE /* SettingViewController.swift in Sources */,
+				B19B73EA1DD9C01300171785 /* DownCenterViewController.swift in Sources */,
 				B19B74501DD44E18008D6C5C /* SettingPageViewModel.swift in Sources */,
 				B1904FBA1DB79A9800534AD6 /* JSON.swift in Sources */,
 				B1B6A3551DC3409D00CF23B7 /* NetworkHelper.swift in Sources */,
