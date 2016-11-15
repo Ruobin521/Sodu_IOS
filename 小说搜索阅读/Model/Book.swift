@@ -29,6 +29,9 @@ class Book: NSObject,JSON {
     /// 正文页面地址
     var   contentPageUrl : String?
     
+    /// 上次阅读至页面地址
+    var   LastReadContentPageUrl : String?
+    
     /// 更新日期
     var   updateTime:String?
     
@@ -41,6 +44,12 @@ class Book: NSObject,JSON {
     /// 来源网站名称
     var   lywzName:String?
    
+}
+
+extension Book {
+   
+   
+    
 }
 
 

@@ -10,7 +10,7 @@ import Foundation
 import  UIKit
 
 
-/// 保存一些共同调用的方法
+/// 一些共同调用的方法
 class CommonPageViewModel {
     
     ///导航到更新章节列表页

@@ -44,7 +44,7 @@ class UpdateChapterViewController: BaseViewController {
     
     func loadDataByPageIndex(_ pageindex: Int) {
         
-      //  ToastView.instance.showLoadingView()
+        //  ToastView.instance.showLoadingView()
         
         if  pageindex == vm.pageCount  && pageindex != 0 {
             
@@ -63,7 +63,7 @@ class UpdateChapterViewController: BaseViewController {
             if self == nil {
                 
                 return
- 
+                
             }
             
             if isSuccess {
@@ -80,7 +80,7 @@ class UpdateChapterViewController: BaseViewController {
             
             self?.endLoadData()
             
-           // ToastView.instance.closeLoadingWindos()
+            // ToastView.instance.closeLoadingWindos()
         }
     }
     
@@ -99,6 +99,12 @@ extension UpdateChapterViewController {
     
     func chapterDidSelected(_ book:Book) {
         
+        if isLoading {
+            
+            return
+        }
+        
+        
         let bc = BookContentViewController()
         // let vc = NavigationViewController(rootViewController: bc)
         
@@ -107,7 +113,9 @@ extension UpdateChapterViewController {
         // present(vc, animated: true, completion: nil)
         ToastView.instance.closeLoadingWindos()
         
-        navigationController?.pushViewController(bc, animated: true)
+        //  navigationController?.pushViewController(bc, animated: true)
+        
+        present(bc, animated: true, completion: nil)
         
     }
     

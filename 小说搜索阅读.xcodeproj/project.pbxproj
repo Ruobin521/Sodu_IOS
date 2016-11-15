@@ -11,6 +11,9 @@
 		B120E22F1DA9E72800921288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B120E22E1DA9E72800921288 /* Assets.xcassets */; };
 		B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B120E2301DA9E72800921288 /* LaunchScreen.storyboard */; };
 		B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12CD5561DB687EE00377450 /* HttpUtil.swift */; };
+		B133A77C1DDABFC60038B5D2 /* BookContentPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B133A77B1DDABFC60038B5D2 /* BookContentPageViewModel.swift */; };
+		B133A7831DDAD1EC0038B5D2 /* BookContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B133A7811DDAD1EC0038B5D2 /* BookContentViewController.swift */; };
+		B133A7841DDAD1EC0038B5D2 /* BookContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B133A7821DDAD1EC0038B5D2 /* BookContentViewController.xib */; };
 		B1378BD91DB4A5CC000D4FAE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */; };
 		B145D8E31DD7530B00FB09F2 /* PersonCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B145D8E21DD7530B00FB09F2 /* PersonCenterViewController.swift */; };
 		B145D8E51DD753C900FB09F2 /* PersonCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B145D8E41DD753C900FB09F2 /* PersonCenterViewController.xib */; };
@@ -20,7 +23,6 @@
 		B162E2121DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E2111DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift */; };
 		B162E2161DC0F152008DF1C4 /* CommonPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E2151DC0F152008DF1C4 /* CommonPageViewModel.swift */; };
 		B162E21C1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E21B1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift */; };
-		B162E21F1DC110BE008DF1C4 /* BookContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E21E1DC110BE008DF1C4 /* BookContentViewController.swift */; };
 		B17860BD1DD37A7300E07944 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17860BB1DD37A7300E07944 /* SettingTableViewCell.swift */; };
 		B17E03C91DB095B90061DD47 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03C11DB095B90061DD47 /* Book.swift */; };
 		B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03CA1DB098350061DD47 /* MainViewController.swift */; };
@@ -75,6 +77,9 @@
 		B120E2311DA9E72800921288 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B120E2331DA9E72800921288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B12CD5561DB687EE00377450 /* HttpUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpUtil.swift; sourceTree = "<group>"; };
+		B133A77B1DDABFC60038B5D2 /* BookContentPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookContentPageViewModel.swift; sourceTree = "<group>"; };
+		B133A7811DDAD1EC0038B5D2 /* BookContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookContentViewController.swift; sourceTree = "<group>"; };
+		B133A7821DDAD1EC0038B5D2 /* BookContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookContentViewController.xib; sourceTree = "<group>"; };
 		B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B145D8E21DD7530B00FB09F2 /* PersonCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonCenterViewController.swift; sourceTree = "<group>"; };
 		B145D8E41DD753C900FB09F2 /* PersonCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonCenterViewController.xib; sourceTree = "<group>"; };
@@ -84,7 +89,6 @@
 		B162E2111DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateChapterViewModel.swift; sourceTree = "<group>"; };
 		B162E2151DC0F152008DF1C4 /* CommonPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonPageViewModel.swift; sourceTree = "<group>"; };
 		B162E21B1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
-		B162E21E1DC110BE008DF1C4 /* BookContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookContentViewController.swift; sourceTree = "<group>"; };
 		B17860BB1DD37A7300E07944 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		B17E03C11DB095B90061DD47 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		B17E03CA1DB098350061DD47 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -212,7 +216,8 @@
 		B162E21D1DC1104A008DF1C4 /* ContentView */ = {
 			isa = PBXGroup;
 			children = (
-				B162E21E1DC110BE008DF1C4 /* BookContentViewController.swift */,
+				B133A7811DDAD1EC0038B5D2 /* BookContentViewController.swift */,
+				B133A7821DDAD1EC0038B5D2 /* BookContentViewController.xib */,
 			);
 			path = ContentView;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 				B19B744B1DD43DC9008D6C5C /* UserLoginViewModel.swift */,
 				B19B744F1DD44E18008D6C5C /* SettingPageViewModel.swift */,
 				B19B73E61DD9BD5A00171785 /* DownloadCenterPageViewModel.swift */,
+				B133A77B1DDABFC60038B5D2 /* BookContentPageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -474,6 +480,7 @@
 				B1C2385C1DD388D800C37FA6 /* LonginViewController.xib in Resources */,
 				B1C238571DD382FE00C37FA6 /* SettingTableViewCell.xib in Resources */,
 				B19B74461DD3446E008D6C5C /* UpdateChapterTableViewCell.xib in Resources */,
+				B133A7841DDAD1EC0038B5D2 /* BookContentViewController.xib in Resources */,
 				B19B743D1DD33984008D6C5C /* RefreshView.xib in Resources */,
 				B19B74441DD3446E008D6C5C /* CommonBookListTableViewCell.xib in Resources */,
 				B1600A431DC26E76000A4C49 /* WelcomView.xib in Resources */,
@@ -547,6 +554,7 @@
 				B1904FB61DB75E9900534AD6 /* AnalisysHtmlHelper.swift in Sources */,
 				B17E03CD1DB0984E0061DD47 /* BaseViewController.swift in Sources */,
 				B19B74491DD344D8008D6C5C /* BookshelfTableViewCell.swift in Sources */,
+				B133A77C1DDABFC60038B5D2 /* BookContentPageViewModel.swift in Sources */,
 				B17E03D11DB098CF0061DD47 /* RankViewController.swift in Sources */,
 				B194B8C51DBDC4530061C9A4 /* RankListPageViewModel.swift in Sources */,
 				B162E21C1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift in Sources */,
@@ -557,6 +565,7 @@
 				B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */,
 				B162E2161DC0F152008DF1C4 /* CommonPageViewModel.swift in Sources */,
 				B19B74431DD3446E008D6C5C /* CommonBookListTableViewCell.swift in Sources */,
+				B133A7831DDAD1EC0038B5D2 /* BookContentViewController.swift in Sources */,
 				B17860BD1DD37A7300E07944 /* SettingTableViewCell.swift in Sources */,
 				B194B8C91DBDD0CE0061C9A4 /* ViewModelInstance.swift in Sources */,
 				B19B744C1DD43DC9008D6C5C /* UserLoginViewModel.swift in Sources */,
@@ -573,7 +582,6 @@
 				B1B6A3551DC3409D00CF23B7 /* NetworkHelper.swift in Sources */,
 				B15B846A1DC5EB4500DD1A56 /* UserDefaultsHelper.swift in Sources */,
 				B145D8E31DD7530B00FB09F2 /* PersonCenterViewController.swift in Sources */,
-				B162E21F1DC110BE008DF1C4 /* BookContentViewController.swift in Sources */,
 				B162E2121DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift in Sources */,
 				B1904FB41DB728EA00534AD6 /* ConstantUrl.swift in Sources */,
 				B194B8CE1DBDE6720061C9A4 /* HotAndRecommendViewController.swift in Sources */,
