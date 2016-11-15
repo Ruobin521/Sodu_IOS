@@ -93,6 +93,11 @@ class RankViewController: BaseViewController {
 extension RankViewController {
     
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 115
+    }
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -166,6 +171,8 @@ extension RankViewController {
         let cellNib = UINib(nibName: "CommonBookListTableViewCell", bundle: nil)
         
         tableview?.register(cellNib, forCellReuseIdentifier: cellId)
+        
+        tableview?.separatorStyle = .none
         
     }
     

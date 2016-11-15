@@ -24,7 +24,7 @@ enum RefreshState {
 class RefreshControl: UIControl {
     
     
-    fileprivate let refreshOffset:CGFloat = 60
+    fileprivate let refreshOffset:CGFloat = 80
     
     /// 刷新控件的父控件，下拉刷新控件适用于uitableveiw / collectionview
     fileprivate weak var scrollView :UIScrollView?
@@ -137,10 +137,7 @@ class RefreshControl: UIControl {
     
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        
-        
-        //print(scrollView?.contentOffset ?? "父视图为空")
-        
+         
         
         guard  let sv = scrollView else {
             

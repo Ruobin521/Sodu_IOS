@@ -172,7 +172,7 @@ extension BaseViewController {
         tableview?.dataSource = self
         tableview?.delegate = self
         
-        tableview?.backgroundColor = UIColor.white
+        tableview?.backgroundColor =  #colorLiteral(red: 0.9254901961, green: 0.9411764706, blue: 0.9450980392, alpha: 1)
         
         tableview?.separatorStyle = .singleLine
         

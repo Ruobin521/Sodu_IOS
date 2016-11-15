@@ -18,10 +18,27 @@ class BookContentViewController: UIViewController {
     
     var isLoading = false
     
-    @IBOutlet weak var btnClose: UIButton!
+    var isShowMenu: Bool = false  {
+        
+        didSet {
+            
+            topMenu.isHidden = !isShowMenu
+            UIApplication.shared.isStatusBarHidden = !isShowMenu
+           // txtContent.isScrollEnabled = !isShowMenu
+            
+        }
+        
+        
+    }
+    
     @IBOutlet weak var txtChapterName: UILabel!
     @IBOutlet weak var txtContent: UITextView!
     @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var txtBattary: UILabel!
+    @IBOutlet weak var txtBookName: UILabel!
+    
+    @IBOutlet weak var topMenu: UIView!
+    
     
     var currentBook:Book?
     
@@ -105,8 +122,7 @@ extension BookContentViewController {
     
     func  showSetting() {
         
-        btnClose.isHidden = !btnClose.isHidden
-        
+       isShowMenu = !isShowMenu
     }
     
     
@@ -126,16 +142,32 @@ extension BookContentViewController {
         
         errorView?.isHidden = true
         
-        btnClose.isHidden = true
+        topMenu.isHidden = true
+        
+        txtBookName.text = currentBook?.bookName
         
         loadingWindow = ToastView.instance.createLoadingView()
         
-        loadingWindow.center = self.errorView.center
+        loadingWindow.center = CGPoint(x: self.errorView.center.x, y: self.errorView.center.y - 20)
         
         
-        txtContent.textContainerInset = UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 5)
+        
+        
+        txtContent.textContainerInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 8)
         txtContent.textAlignment = .left
         
+        
+        let device = UIDevice.current
+        device.isBatteryMonitoringEnabled = true
+        
+        txtBattary.text = "电量:\(Int(device.batteryLevel*100))%"
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(battaryChanged), name: NSNotification.Name.UIDeviceBatteryLevelDidChange, object: device.batteryLevel)
+    }
+    
+    func battaryChanged(level:Float)  {
+        
+        txtBattary.text = "电量:\(Int(level*100))%"
         
     }
     
@@ -146,11 +178,12 @@ extension BookContentViewController {
         var  dic:[String:Any?] =  [:]
         
         
-        dic[NSFontAttributeName] = UIFont(name: "Sinhala Sangam MN 19.0", size: CGFloat(vm.fontSize))
+        // dic[NSFontAttributeName] = UIFont(name: "PingFangSC-Regular", size: CGFloat(vm.fontSize))
+        dic[NSFontAttributeName] =  UIFont.systemFont(ofSize: CGFloat(vm.fontSize))
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = CGFloat(vm.lineSpace)
-
+        paragraphStyle.lineSpacing = CGFloat(8)
+        
         dic[NSParagraphStyleAttributeName] = paragraphStyle
         
         dic[NSForegroundColorAttributeName] = #colorLiteral(red: 0.1058823529, green: 0.2392156863, blue: 0.1450980392, alpha: 1)

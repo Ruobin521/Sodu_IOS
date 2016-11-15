@@ -20,7 +20,7 @@ class BookContentPageViewModel {
     
     var fontSize:Float = 20
     
-    var lineSpace:Float = 12
+    var lineSpace:Float = 10
     
     
     

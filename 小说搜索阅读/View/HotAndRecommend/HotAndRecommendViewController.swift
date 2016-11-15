@@ -66,6 +66,11 @@ class HotAndRecommendViewController: BaseViewController {
 extension HotAndRecommendViewController {
     
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 120
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if section == 0 {
@@ -180,10 +185,12 @@ extension HotAndRecommendViewController {
     override func setupUI() {
         
         super.setupUI()
-        
+         
         let cellNib = UINib(nibName: "CommonBookListTableViewCell", bundle: nil)
         
         tableview?.register(cellNib, forCellReuseIdentifier: cellId)
+        
+        tableview?.separatorStyle = .none
     }
     
 }
