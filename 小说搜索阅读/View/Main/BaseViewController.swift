@@ -58,7 +58,6 @@ class BaseViewController: UIViewController {
         
         initData()
         
-        
     }
     
     
@@ -332,19 +331,43 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         
-        let row = indexPath.row
-        
-        let section = (tableview?.numberOfSections)! - 1
-        
-        let count  =  tableView.numberOfRows(inSection: section) - 1
-        
-        if (row == count) && !isPullup && needPullUp && !isLoading {
+        if !needPullUp {
             
-            isPullup = true
-            loadData()
+            return
         }
         
         
+        var result = false
+        
+        let section = indexPath.section
+        
+        let row = indexPath.row
+        
+        let sectionCount  =  tableView.numberOfSections
+        
+        let rowCount = tableView.numberOfRows(inSection: section)
+        
+        if sectionCount > 1 {
+            
+            if (section == sectionCount - 1) && !isPullup && needPullUp && !isLoading {
+                
+                result = true
+            }
+        } else if sectionCount == 1 {
+            
+            if (row == rowCount - 1) && !isPullup && needPullUp && !isLoading {
+                
+                result = true
+            }
+            
+        }
+        
+        if result {
+            
+            isPullup = true
+            loadData()
+            
+        }
         
     }
     

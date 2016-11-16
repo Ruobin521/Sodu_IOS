@@ -10,27 +10,20 @@ import Foundation
 
 class HotAndRecommendPageViewModel {
     
-    lazy  var hotBookList = [Book]()
+    lazy  var bookList = [Book]()
     
-    lazy  var recommendBookList = [Book]()
+    
     
     
     func loadCacheData(vc:BaseViewController) {
         
-        if hotBookList.count == 0  && recommendBookList.count == 0 {
+        if bookList.count == 0  {
             
             let tempList =  BookCacheHelper.ReadBookListCacheFromFile(ListType.Hot)
             
             if (tempList.count) > 0 {
                 
-                hotBookList += tempList
-            }
-            
-            let  tempList2 =  BookCacheHelper.ReadBookListCacheFromFile(ListType.Recommend)
-            
-            if (tempList2.count) > 0 {
-                
-                recommendBookList += tempList2
+                bookList += tempList
             }
             
             vc.tableview?.reloadData()
@@ -49,24 +42,20 @@ class HotAndRecommendPageViewModel {
                 if !isSuccess {
                     
                     completion(false)
-                   
+                    
                     
                 }  else {
                     
                     let array = AnalisysHtmlHelper.analisysHotHtml(html)
                     BookCacheHelper.SavaBookListAsFile(array, .Hot)
-                    self.hotBookList.removeAll()
-                    self.hotBookList += array
+                    self.bookList.removeAll()
+                    self.bookList += array
                     
                     let array2 = AnalisysHtmlHelper.analisysRecommendHtml(html)
                     BookCacheHelper.SavaBookListAsFile(array2, .Recommend)
-                    self.recommendBookList.removeAll()
-                    self.recommendBookList += array2
-                    
+                    self.bookList += array2
                     
                     completion(true)
-                    
-                    
                     
                 }
                 

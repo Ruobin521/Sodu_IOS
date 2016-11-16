@@ -21,6 +21,8 @@ class BookshelfViewController: BaseViewController {
     var isDeleting:Bool = false
     
     
+    let num = [1,2,3,4,5,6,7,8,9]
+    
     override func initData() {
         
         
@@ -45,7 +47,7 @@ class BookshelfViewController: BaseViewController {
         
         isLoading = true
         
-        vm.loadCacheData(self)
+        //  vm.loadCacheData(self)
         
         vm.loadBookShelfPageData {(isSuccess) in
             
@@ -57,7 +59,7 @@ class BookshelfViewController: BaseViewController {
                 
                 if self.vm.bookList.count ==  0 {
                     
-                   self.setEmptyBackView()
+                    self.setEmptyBackView()
                     
                 }
             }
@@ -67,6 +69,8 @@ class BookshelfViewController: BaseViewController {
         }
         
     }
+    
+    
     
     func addBookToShelf(_ notification:Notification) {
         
@@ -92,28 +96,39 @@ class BookshelfViewController: BaseViewController {
 extension BookshelfViewController {
     
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return  vm.bookList.count
+        
+        
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return vm.bookList.count
+        return  1
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 138
+        
+        return 125
     }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BookshelfTableViewCell
         
-        cell.book = vm.bookList[indexPath.row]
+        let book = vm.bookList[indexPath.section]
         
-        cell.txtBookName?.text = vm.bookList[indexPath.row].bookName
-        cell.txtUpdateTime?.text = vm.bookList[indexPath.row].updateTime
-        cell.txtUpdateChpterName?.text = vm.bookList[indexPath.row].chapterName
+        cell.book = book
         
-        cell.txtLastReadChapterName.text = vm.bookList[indexPath.row].chapterName
+        cell.txtBookName?.text = vm.bookList[indexPath.section].bookName
+        cell.txtUpdateTime?.text = vm.bookList[indexPath.section].updateTime
+        cell.txtUpdateChpterName?.text = vm.bookList[indexPath.section].chapterName
+        
+        cell.txtLastReadChapterName.text = vm.bookList[indexPath.section].chapterName
         
         //  cell.?.text = vm.bookList[indexPath.row].chapterName
         
@@ -126,7 +141,7 @@ extension BookshelfViewController {
         
         super.tableView(tableView, didSelectRowAt: indexPath)
         
-        CommonPageViewModel.navigateToUpdateChapterPage(vm.bookList[indexPath.row], navigationController)
+        CommonPageViewModel.navigateToUpdateChapterPage(vm.bookList[indexPath.section], navigationController)
     }
     
     
@@ -147,14 +162,14 @@ extension BookshelfViewController {
                 
             }else {
                 
-                if   indexPath.row > self.vm.bookList.count - 1 {
+                if   indexPath.section > self.vm.bookList.count - 1 {
                     
                     return
                 }
                 
                 self.isDeleting = true
                 
-                let book =   self.vm.bookList[indexPath.row]
+                let book =   self.vm.bookList[indexPath.section]
                 
                 self.vm.removeBookFromList(book,indexPath: indexPath) { (success) in
                     
@@ -166,7 +181,11 @@ extension BookshelfViewController {
                             
                             array.append(indexPath)
                             
-                            tableView.deleteRows(at: array, with: .automatic)
+                         //   tableView.deleteRows(at: array, with: .automatic)
+                            
+                            tableView.deleteSections([indexPath.section], with: .automatic)
+                            
+                          //  tableView.reloadData()
                             
                             self.showToast(content: "\(book.bookName!)取消收藏成功")
                             

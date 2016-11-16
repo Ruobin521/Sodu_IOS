@@ -93,15 +93,20 @@ class RankViewController: BaseViewController {
 extension RankViewController {
     
     
+   override func numberOfSections(in tableView: UITableView) -> Int {
+        
+      return  vm.bookList.count
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 115
+        return 105
     }
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return vm.bookList.count
+        return 1
     }
     
     
@@ -111,11 +116,11 @@ extension RankViewController {
         
         cell.rankView.isHidden = false
         
-        cell.book = vm.bookList[indexPath.row]
+        cell.book = vm.bookList[indexPath.section]
         
-        cell.txtBookName?.text = vm.bookList[indexPath.row].bookName
-        cell.txtUpdateTime?.text = vm.bookList[indexPath.row].updateTime
-        cell.txtUpdateChpterName?.text = vm.bookList[indexPath.row].chapterName
+        cell.txtBookName?.text = vm.bookList[indexPath.section].bookName
+        cell.txtUpdateTime?.text = vm.bookList[indexPath.section].updateTime
+        cell.txtUpdateChpterName?.text = vm.bookList[indexPath.section].chapterName
         
         return cell
     }
@@ -125,7 +130,7 @@ extension RankViewController {
         
         tableview?.deselectRow(at: indexPath, animated: true)
         
-        CommonPageViewModel.navigateToUpdateChapterPage(vm.bookList[indexPath.row], navigationController)
+        CommonPageViewModel.navigateToUpdateChapterPage(vm.bookList[indexPath.section], navigationController)
     }
     
     
@@ -139,7 +144,7 @@ extension RankViewController {
         
         let action1  =  UITableViewRowAction(style: .normal, title: "添加至书架", handler: { (action, indexPath) in
             
-            let book = self.vm.bookList[indexPath.row]
+            let book = self.vm.bookList[indexPath.section]
             
             CommonPageViewModel.AddBookToShelf(book: book)
             
