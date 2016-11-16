@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,110 +12,106 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="KGk-i7-Jjw" customClass="BookshelfTableViewCell" customModule="小说搜索阅读" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="411" height="100"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="140" id="KGk-i7-Jjw" customClass="BookshelfTableViewCell" customModule="小说搜索阅读" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="411" height="140"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="411" height="99"/>
+                <rect key="frame" x="0.0" y="0.0" width="411" height="140"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="phU-6t-i5D">
+                        <rect key="frame" x="0.0" y="0.0" width="411" height="130"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="书名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJX-9K-nNR">
-                        <rect key="frame" x="15" y="8" width="33" height="20"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <rect key="frame" x="15" y="15" width="35" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新章节:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcT-dj-FAh">
-                        <rect key="frame" x="15" y="38" width="66" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wcT-dj-FAh">
+                        <rect key="frame" x="15" y="44" width="37" height="20"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="章节名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7W3-Ud-kQB">
-                        <rect key="frame" x="86" y="38" width="309" height="18"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                        <rect key="frame" x="57" y="44" width="338" height="20"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最后阅读:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPb-k0-W1c">
-                        <rect key="frame" x="15" y="73" width="67" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="读至:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPb-k0-W1c">
+                        <rect key="frame" x="15" y="72" width="38" height="20"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新章节名称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YDp-J4-rbj">
-                        <rect key="frame" x="87" y="73" width="308" height="18"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="right" verticalHuggingPriority="251" text="9999-02-02 00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3T-Ph-M69">
-                        <rect key="frame" x="249" y="8" width="154" height="18"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                        <rect key="frame" x="58" y="72" width="337" height="20"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(有更新)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvo-1c-tpo">
-                        <rect key="frame" x="56" y="8" width="57" height="19"/>
+                        <rect key="frame" x="58" y="17" width="57" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.30501239222965681" green="0.54091235342294242" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tsi-j0-opn">
-                        <rect key="frame" x="0.0" y="0.0" width="411" height="0.0"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="0.10000000000000001" id="NBO-qb-EJN"/>
-                        </constraints>
-                    </view>
-                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tar-ML-7C3">
-                        <rect key="frame" x="0.0" y="99" width="411" height="1"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="0.29999999999999999" id="FzU-Ee-NFD"/>
-                        </constraints>
-                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更新时间:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ClM-lR-eYh">
+                        <rect key="frame" x="15" y="100" width="70" height="20"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="right" verticalHuggingPriority="251" text="9999-02-02 00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3T-Ph-M69">
+                        <rect key="frame" x="93" y="100" width="310" height="20"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="phU-6t-i5D" secondAttribute="trailing" id="060-xE-jLt"/>
                     <constraint firstItem="7W3-Ud-kQB" firstAttribute="leading" secondItem="wcT-dj-FAh" secondAttribute="trailing" constant="5" id="34U-uu-Iox"/>
-                    <constraint firstItem="X3T-Ph-M69" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Cvo-1c-tpo" secondAttribute="trailing" constant="5" id="3S0-8g-2D6"/>
-                    <constraint firstItem="tsi-j0-opn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="3n3-Bq-3LT"/>
-                    <constraint firstItem="tsi-j0-opn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9dL-XN-MAi"/>
-                    <constraint firstItem="tsi-j0-opn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9f4-pM-Khy"/>
                     <constraint firstItem="YDp-J4-rbj" firstAttribute="top" secondItem="hPb-k0-W1c" secondAttribute="top" id="9vX-Vb-VZU"/>
-                    <constraint firstAttribute="trailing" secondItem="tsi-j0-opn" secondAttribute="trailing" id="Clo-np-m69"/>
-                    <constraint firstItem="wcT-dj-FAh" firstAttribute="top" secondItem="cJX-9K-nNR" secondAttribute="bottom" constant="10" id="GG1-vw-PrU"/>
-                    <constraint firstAttribute="bottom" secondItem="Tar-ML-7C3" secondAttribute="bottom" id="Mnn-wo-hX3"/>
-                    <constraint firstItem="cJX-9K-nNR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="PmM-Rs-BhD"/>
+                    <constraint firstItem="ClM-lR-eYh" firstAttribute="leading" secondItem="cJX-9K-nNR" secondAttribute="leading" id="AGG-Ik-VeD"/>
+                    <constraint firstItem="X3T-Ph-M69" firstAttribute="bottom" secondItem="ClM-lR-eYh" secondAttribute="bottom" id="Ed3-ta-qAY"/>
+                    <constraint firstItem="wcT-dj-FAh" firstAttribute="top" secondItem="cJX-9K-nNR" secondAttribute="bottom" constant="8" id="GG1-vw-PrU"/>
+                    <constraint firstItem="cJX-9K-nNR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="PmM-Rs-BhD"/>
                     <constraint firstItem="YDp-J4-rbj" firstAttribute="leading" secondItem="hPb-k0-W1c" secondAttribute="trailing" constant="5" id="SQt-fn-Qvo"/>
                     <constraint firstItem="7W3-Ud-kQB" firstAttribute="bottom" secondItem="wcT-dj-FAh" secondAttribute="bottom" id="SVw-pb-TxG"/>
+                    <constraint firstItem="phU-6t-i5D" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="UTR-S7-qil"/>
                     <constraint firstItem="hPb-k0-W1c" firstAttribute="centerX" secondItem="wcT-dj-FAh" secondAttribute="centerX" id="Ufa-Y2-ul9"/>
-                    <constraint firstItem="X3T-Ph-M69" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="UrM-VQ-7v7"/>
-                    <constraint firstItem="tsi-j0-opn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="YtI-sm-HvZ"/>
+                    <constraint firstItem="phU-6t-i5D" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Vg7-oa-Skj"/>
+                    <constraint firstAttribute="bottom" secondItem="phU-6t-i5D" secondAttribute="bottom" constant="10" id="YQO-fO-14a"/>
                     <constraint firstItem="Cvo-1c-tpo" firstAttribute="leading" secondItem="cJX-9K-nNR" secondAttribute="trailing" constant="8" id="ZmP-27-q7L"/>
                     <constraint firstItem="hPb-k0-W1c" firstAttribute="leading" secondItem="wcT-dj-FAh" secondAttribute="leading" id="Zml-It-wB5"/>
-                    <constraint firstItem="hPb-k0-W1c" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="bkZ-lk-Cmm"/>
                     <constraint firstItem="YDp-J4-rbj" firstAttribute="bottom" secondItem="hPb-k0-W1c" secondAttribute="bottom" id="c1d-Ey-A5i"/>
-                    <constraint firstAttribute="trailing" secondItem="tsi-j0-opn" secondAttribute="trailing" id="dtx-1u-uK7"/>
+                    <constraint firstItem="hPb-k0-W1c" firstAttribute="top" secondItem="wcT-dj-FAh" secondAttribute="bottom" constant="8" id="eWl-Vd-YlP"/>
                     <constraint firstItem="7W3-Ud-kQB" firstAttribute="top" secondItem="wcT-dj-FAh" secondAttribute="top" id="eWz-VY-jbN"/>
-                    <constraint firstItem="Tar-ML-7C3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="i1D-sv-u6V"/>
+                    <constraint firstItem="X3T-Ph-M69" firstAttribute="top" secondItem="ClM-lR-eYh" secondAttribute="top" id="gFn-rw-VYg"/>
                     <constraint firstItem="cJX-9K-nNR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="kvH-2j-3bA"/>
-                    <constraint firstAttribute="trailing" secondItem="Tar-ML-7C3" secondAttribute="trailing" id="lIG-Sa-6L2"/>
+                    <constraint firstItem="X3T-Ph-M69" firstAttribute="leading" secondItem="ClM-lR-eYh" secondAttribute="trailing" constant="8" id="oCw-Gj-Uq6"/>
                     <constraint firstItem="Cvo-1c-tpo" firstAttribute="baseline" secondItem="cJX-9K-nNR" secondAttribute="baseline" id="oXw-sR-yu3"/>
+                    <constraint firstItem="X3T-Ph-M69" firstAttribute="centerY" secondItem="ClM-lR-eYh" secondAttribute="centerY" id="pSl-yF-bQv"/>
                     <constraint firstAttribute="trailing" secondItem="X3T-Ph-M69" secondAttribute="trailing" constant="8" id="sA8-bA-muO"/>
                     <constraint firstItem="wcT-dj-FAh" firstAttribute="leading" secondItem="cJX-9K-nNR" secondAttribute="leading" id="u4L-fP-sDM"/>
-                    <constraint firstItem="Cvo-1c-tpo" firstAttribute="top" secondItem="tsi-j0-opn" secondAttribute="bottom" constant="8" symbolic="YES" id="wQ3-oe-1DW"/>
+                    <constraint firstItem="ClM-lR-eYh" firstAttribute="top" secondItem="hPb-k0-W1c" secondAttribute="bottom" constant="8" id="udX-FQ-RJZ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="YDp-J4-rbj" secondAttribute="trailing" constant="8" id="wy3-i3-HeM"/>
                     <constraint firstAttribute="trailingMargin" secondItem="7W3-Ud-kQB" secondAttribute="trailing" constant="8" id="xV7-sd-BTu"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="txtBookName" destination="cJX-9K-nNR" id="KzB-i8-dG2"/>
                 <outlet property="txtLastReadChapterName" destination="7W3-Ud-kQB" id="cHd-3A-CeH"/>
                 <outlet property="txtUpdateChpterName" destination="YDp-J4-rbj" id="GH3-Gx-7w9"/>
                 <outlet property="txtUpdateTime" destination="X3T-Ph-M69" id="aqD-gI-fPi"/>
             </connections>
-            <point key="canvasLocation" x="70.5" y="80"/>
+            <point key="canvasLocation" x="70.5" y="100"/>
         </tableViewCell>
     </objects>
 </document>

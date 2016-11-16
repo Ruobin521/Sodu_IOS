@@ -109,6 +109,8 @@ extension RankViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CommonBookListTableViewCell
         
+        cell.rankView.isHidden = false
+        
         cell.book = vm.bookList[indexPath.row]
         
         cell.txtBookName?.text = vm.bookList[indexPath.row].bookName

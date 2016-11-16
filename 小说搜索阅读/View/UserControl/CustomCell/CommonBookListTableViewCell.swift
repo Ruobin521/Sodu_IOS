@@ -16,6 +16,8 @@ class CommonBookListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var txtUpdateChpterName: UILabel!
     
+    @IBOutlet weak var rankView: UIView!
+    @IBOutlet weak var txtRank: UILabel!
     
     var book:Book?
     
@@ -24,6 +26,7 @@ class CommonBookListTableViewCell: UITableViewCell {
         
           self.separatorInset = UIEdgeInsets.zero
        
+        rankView.isHidden = true
         // Initialization code
     }
 

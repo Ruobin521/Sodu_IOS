@@ -196,7 +196,7 @@ extension AnalisysHtmlHelper {
             
             b.updateListPageUrl = (item as NSString).substring(with: (result?.rangeAt(1))!)
             b.bookName = (item as NSString).substring(with: (result?.rangeAt(2))!)
-            b.chapterName = (item as NSString).substring(with: (result?.rangeAt(3))!)
+            b.chapterName = (item as NSString).substring(with: (result?.rangeAt(3))!).replacingOccurrences(of: "target=_blank", with: "")
             b.updateTime = (item as NSString).substring(with: (result?.rangeAt(4))!)
             b.bookId = (item as NSString).substring(with: (result?.rangeAt(5))!)
             

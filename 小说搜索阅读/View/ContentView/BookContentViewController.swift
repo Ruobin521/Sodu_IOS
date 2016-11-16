@@ -24,7 +24,7 @@ class BookContentViewController: UIViewController {
             
             topMenu.isHidden = !isShowMenu
             UIApplication.shared.isStatusBarHidden = !isShowMenu
-           // txtContent.isScrollEnabled = !isShowMenu
+            // txtContent.isScrollEnabled = !isShowMenu
             
         }
         
@@ -122,7 +122,7 @@ extension BookContentViewController {
     
     func  showSetting() {
         
-       isShowMenu = !isShowMenu
+        isShowMenu = !isShowMenu
     }
     
     
@@ -207,8 +207,23 @@ extension UITextView {
     
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
+        guard  let p = touches.first?.location(in: self.superview)  else{
+            
+            return
+        }
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: touchBeginNotification), object: nil)
+        print(p)
+        
+        let height = self.bounds.height
+        let width = self.bounds.width
+        
+        if p.x > width * 1 / 3 && p.x < width * 2 / 3  &&  p.y > height * 1 / 3 && p.y < height * 2 / 3  {
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: touchBeginNotification), object: nil)
+            
+        }
+        
+        
     }
     
     

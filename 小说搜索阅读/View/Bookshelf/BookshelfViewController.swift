@@ -100,7 +100,7 @@ extension BookshelfViewController {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 100
+        return 138
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -210,7 +210,7 @@ extension BookshelfViewController {
         
         tableview?.register(cellNib, forCellReuseIdentifier: cellId)
         
-        
+        tableview?.separatorStyle = .none
         
     }
     
