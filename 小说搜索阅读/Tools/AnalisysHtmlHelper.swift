@@ -254,6 +254,11 @@ extension AnalisysHtmlHelper {
             
             let result = regex?.firstMatch(in: item, options: [], range: NSRange(location: 0, length: item.characters.count))
             
+            if result == nil {
+                
+                continue
+            }
+            
             
             if (result?.numberOfRanges)! < 6 {
                 
@@ -265,6 +270,34 @@ extension AnalisysHtmlHelper {
             b.updateListPageUrl = (item as NSString).substring(with: (result?.rangeAt(3))!)
             b.chapterName = (item as NSString).substring(with: (result?.rangeAt(4))!)
             b.updateTime = (item as NSString).substring(with: (result?.rangeAt(5))!)
+            
+            if item.contains("trend-") {
+                
+                let pattern = "<small class=\"trend-(.*?)\">(.*?)</small>"
+                
+                let reg = try? NSRegularExpression(pattern: pattern, options: [])
+                
+                let res = reg?.firstMatch(in: item, options: [], range: NSRange(location: 0, length: item.characters.count))
+            
+                
+                if res != nil {
+                    
+                    let changType = (item as NSString).substring(with: (res?.rangeAt(1))!)
+                    let value = (item as NSString).substring(with: (res?.rangeAt(2))!)
+                    
+                    if changType == "up" {
+                        
+                        b.rankChangeValue =  value
+                        
+                    } else {
+                        
+                         b.rankChangeValue =  "-" + value
+                    }
+                    
+                
+                }
+            }
+            
             
             list.append(b)
         }

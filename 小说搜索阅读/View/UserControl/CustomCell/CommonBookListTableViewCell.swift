@@ -19,6 +19,9 @@ class CommonBookListTableViewCell: UITableViewCell {
     @IBOutlet weak var rankView: UIView!
     @IBOutlet weak var txtRank: UILabel!
     
+    @IBOutlet weak var imgRank: UIImageView!
+    
+    
     var book:Book?
     
     override func awakeFromNib() {

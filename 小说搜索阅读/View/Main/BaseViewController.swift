@@ -33,7 +33,7 @@ class BaseViewController: UIViewController {
         
     }
     
-    
+    var emptyView:UIView?
     
     var isPullup = false
     
@@ -193,7 +193,9 @@ extension BaseViewController {
         
         tableview?.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: CGFloat.leastNormalMagnitude))
         
-        tableview?.sectionFooterHeight = CGFloat.leastNormalMagnitude
+        tableview?.sectionFooterHeight = 10
+        tableview?.sectionHeaderHeight = 0.1
+        //  tableview?.sectionFooterHeight = CGFloat.leastNormalMagnitude
         
         view.insertSubview(tableview!, belowSubview: navigationBar)
         
@@ -276,8 +278,8 @@ extension BaseViewController {
     
     func setEmptyBackView() {
         
-        let emptyView  = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        emptyView.backgroundColor = UIColor.clear
+        emptyView  = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        emptyView?.backgroundColor = UIColor.clear
         
         let label = UILabel()
         label.text = "您的书架空空如也，点击排行榜或热门推荐添加几本吧..."
@@ -288,8 +290,15 @@ extension BaseViewController {
         label.center =  CGPoint(x: view.center.x, y: view.center.y - 80)
         label.textAlignment = .center
         
-        emptyView.addSubview(label)
-        view.insertSubview(emptyView, belowSubview: navigationBar)
+        emptyView?.addSubview(label)
+        view.insertSubview(emptyView!, belowSubview: navigationBar)
+        
+    }
+    
+    
+    func removeEmptyView() {
+        
+        emptyView?.removeFromSuperview()
         
     }
     

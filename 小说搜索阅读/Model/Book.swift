@@ -43,12 +43,35 @@ class Book: NSObject,JSON {
     
     /// 来源网站名称
     var   lywzName:String?
-   
+    
+    /// 排行榜数据
+    var rankChangeValue:String?
+    
 }
 
 extension Book {
-   
-   
+    
+    func  clone() -> Book {
+        
+        let book = Book()
+        
+        
+        book.author = self.author
+        book.bookId = self.bookId
+        book.bookName = self.bookName
+        
+        book.chapterName = self.chapterName
+        book.chapterName = self.chapterName
+        book.contentPageUrl = self.contentPageUrl
+        book.coverImageName = self.coverImageName
+        book.LastReadContentPageUrl = self.LastReadContentPageUrl
+        book.lywzName = self.lywzName
+        book.updateListPageUrl = self.updateListPageUrl
+        book.updateTime = self.updateTime
+        
+        return book
+    }
+
     
 }
 
@@ -63,6 +86,6 @@ class Catalog:NSObject {
     var chapterUrl : String?
     
     var chapterContent : String?
-
+    
     
 }

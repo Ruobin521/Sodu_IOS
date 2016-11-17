@@ -32,7 +32,7 @@ class UpdateChapterViewController: BaseViewController {
         
         if isPullup {
             
-            loadDataByPageIndex(vm.pageIndex + 1)
+            loadDataByPageIndex((vm.pageIndex) + 1)
             
         }  else {
             
@@ -60,17 +60,15 @@ class UpdateChapterViewController: BaseViewController {
         
         vm.loadUpdateChapterListDataByPageIndex(pageindex) { [weak self]  (isSuccess) in
             
-            if self == nil {
-                
-                return
-                
-            }
-            
             if isSuccess {
                 
                 self?.tableview?.reloadData()
-                self?.navItem.title = "\((self?.vm.currentBook?.bookName)!) - \(pageindex+1) / \((self?.vm.pageCount)!)"
-                self?.showToast(content: "已加载\((self?.vm.currentBook?.bookName)!)更新列表第\(pageindex+1)页数据")
+                
+                self?.navItem.title = (self?.vm.currentBook?.bookName ?? " ") + " - "
+                
+                self?.navItem.title  = (self?.navItem.title)! +   "\(pageindex+1) / \(self?.vm.pageCount ?? 0)"
+                
+                self?.showToast(content: "已加载\((self?.vm.currentBook?.bookName) ?? " ")更新列表第\(pageindex+1)页数据")
                 
             }else {
                 
@@ -80,7 +78,7 @@ class UpdateChapterViewController: BaseViewController {
             
             self?.endLoadData()
             
-            // ToastView.instance.closeLoadingWindos()
+            
         }
     }
     
@@ -89,7 +87,6 @@ class UpdateChapterViewController: BaseViewController {
         
         self.endLoadData()
         
-        //ToastView.instance.closeLoadingWindos()
     }
     
 }
@@ -108,10 +105,20 @@ extension UpdateChapterViewController {
         let bc = BookContentViewController()
         // let vc = NavigationViewController(rootViewController: bc)
         
-        bc.currentBook = book
+        
+        let temp = book.clone()
+       
+        bc.currentBook = temp
+        
+        if bc.currentBook == nil {
+            
+            return
+        }
+        
+        //  bc.view.backgroundColor = UIColor.green
         
         // present(vc, animated: true, completion: nil)
-        ToastView.instance.closeLoadingWindos()
+        
         
         //  navigationController?.pushViewController(bc, animated: true)
         
@@ -150,6 +157,7 @@ extension UpdateChapterViewController {
         super.tableView(tableView, didSelectRowAt: indexPath)
         
         let  book  = vm.chapterList[indexPath.row]
+        
         
         chapterDidSelected(book)
         

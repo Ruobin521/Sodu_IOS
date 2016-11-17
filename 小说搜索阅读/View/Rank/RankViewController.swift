@@ -93,9 +93,9 @@ class RankViewController: BaseViewController {
 extension RankViewController {
     
     
-   override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         
-      return  vm.bookList.count
+        return  vm.bookList.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -117,6 +117,24 @@ extension RankViewController {
         cell.rankView.isHidden = false
         
         cell.book = vm.bookList[indexPath.section]
+                 
+        if cell.book?.rankChangeValue != nil {
+            
+            if (cell.book?.rankChangeValue!.contains("-"))! {
+                
+                cell.imgRank.image  =  UIImage(named: "down")
+                cell.txtRank.text = cell.book?.rankChangeValue!.replacingOccurrences(of: "-", with: "")
+            } else {
+                
+                 cell.imgRank.image  =  UIImage(named: "up")
+                cell.txtRank.text = cell.book?.rankChangeValue!
+            }
+            
+        } else {
+            
+            cell.txtRank.text =  "-"
+        }
+        
         
         cell.txtBookName?.text = vm.bookList[indexPath.section].bookName
         cell.txtUpdateTime?.text = vm.bookList[indexPath.section].updateTime

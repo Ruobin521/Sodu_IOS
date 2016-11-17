@@ -120,7 +120,7 @@ extension HotAndRecommendViewController {
              
             book = self.vm.bookList[indexPath.section]
             
-            CommonPageViewModel.AddBookToShelf(book: book)
+            CommonPageViewModel.AddBookToShelf(book: book.clone())
             
         })
         

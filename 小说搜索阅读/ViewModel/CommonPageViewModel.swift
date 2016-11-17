@@ -23,11 +23,18 @@ class CommonPageViewModel {
         
         let vc = UpdateChapterViewController()
         
-        vc.vm.currentBook = book
+        let temp = book.clone()
         
-        vc.title = book.bookName
+        vc.vm.currentBook = temp
         
+        let title = vc.vm.currentBook?.bookName
+        
+        if title != nil {
+            
+            vc.title =  vc.vm.currentBook?.bookName!
+        }
        
+        //print(vc.vm.currentBook)
         
         navigationController?.pushViewController(vc, animated: true)
     }

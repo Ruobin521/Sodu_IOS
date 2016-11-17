@@ -21,9 +21,20 @@ class UpdateChapterViewModel {
     
     func loadUpdateChapterListDataByPageIndex(_ pageindex: Int,completion:@escaping (_ isSuccess:Bool)->()) {
         
+        if currentBook == nil {
+            
+            completion(false)
+            
+        }
+        
         let urlStr = (pageindex == 0 ? currentBook?.updateListPageUrl : currentBook?.updateListPageUrl?.replacingOccurrences(of: ".html", with: "_\(pageindex + 1).html")) ?? ""
         
-        HttpUtil.instance.request(url: urlStr, requestMethod: .GET, postStr: nil)  { (html,isSuccess) in
+        HttpUtil.instance.request(url: urlStr, requestMethod: .GET, postStr: nil)  { [weak self]  (html,isSuccess) in
+            
+            guard let _ = self else {
+                
+                return
+            }
             
             DispatchQueue.main.async {
                 
@@ -37,26 +48,26 @@ class UpdateChapterViewModel {
                     
                 }  else {
                     
-                    self.pageIndex = pageindex
+                    self?.pageIndex = pageindex
                     
                     let array = AnalisysHtmlHelper.analisysUpdateChapterHtml(html)
                     
                     
-                    self.pageCount =  AnalisysHtmlHelper.analisysUpdateChapterPageCount(html)
+                    self?.pageCount =  AnalisysHtmlHelper.analisysUpdateChapterPageCount(html)
                     
                     if pageindex == 0 {
                         
-                        self.chapterList.removeAll()
+                        self?.chapterList.removeAll()
                         
                     }
                     
                     for item  in array {
                         
-                        item.bookId = self.currentBook?.bookId
-                        item.bookName = self.currentBook?.bookName
+                        item.bookId = self?.currentBook?.bookId
+                        item.bookName = self?.currentBook?.bookName
                     }
                     
-                    self.chapterList += array
+                    self?.chapterList += array
                     
                     completion(true)
                     

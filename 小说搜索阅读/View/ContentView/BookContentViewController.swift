@@ -14,6 +14,8 @@ class BookContentViewController: UIViewController {
     
     let vm = BookContentPageViewModel()
     
+    var timer:Timer?
+    
     var loadingWindow:UIWindow!
     
     var isLoading = false
@@ -24,7 +26,6 @@ class BookContentViewController: UIViewController {
             
             topMenu.isHidden = !isShowMenu
             UIApplication.shared.isStatusBarHidden = !isShowMenu
-            // txtContent.isScrollEnabled = !isShowMenu
             
         }
         
@@ -39,6 +40,7 @@ class BookContentViewController: UIViewController {
     
     @IBOutlet weak var topMenu: UIView!
     
+    @IBOutlet weak var txtTime: UILabel!
     
     var currentBook:Book?
     
@@ -80,9 +82,7 @@ class BookContentViewController: UIViewController {
             } else {
                 
                 self?.errorView.isHidden = false
-                self?.errorView.alpha = 1
-                //  self?.txtContent.isHidden = true
-                
+                self?.errorView.alpha = 0.8
             }
             
             
@@ -99,15 +99,13 @@ class BookContentViewController: UIViewController {
     @IBAction func closeAciton() {
         
         dismiss(animated: true, completion: nil)
-        
-        // ToastView.instance.closeLoadingWindos()
-        
     }
     
     
     deinit {
         
         NotificationCenter.default.removeObserver(self)
+        timer?.invalidate()
         
     }
     
@@ -124,9 +122,6 @@ extension BookContentViewController {
         
         isShowMenu = !isShowMenu
     }
-    
-    
-    
     
 }
 
@@ -150,12 +145,16 @@ extension BookContentViewController {
         
         loadingWindow.center = CGPoint(x: self.errorView.center.x, y: self.errorView.center.y - 20)
         
-        
-        
-        
         txtContent.textContainerInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 8)
         txtContent.textAlignment = .left
         
+        
+        setBattaryInfo()
+        setTiemInfo()
+        
+    }
+    
+    func setBattaryInfo() {
         
         let device = UIDevice.current
         device.isBatteryMonitoringEnabled = true
@@ -163,19 +162,51 @@ extension BookContentViewController {
         txtBattary.text = "电量:\(Int(device.batteryLevel*100))%"
         
         NotificationCenter.default.addObserver(self, selector: #selector(battaryChanged), name: NSNotification.Name.UIDeviceBatteryLevelDidChange, object: device.batteryLevel)
+        
     }
+    
+    func setTiemInfo() {
+        
+        if timer == nil {
+            
+            timer =  Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setTiemInfo), userInfo: nil, repeats: true)
+           
+            //timer?.fire()
+      
+        } else {
+            
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm:ss"
+            let dateString = formatter.string(from: Date())
+            
+            txtTime.text = dateString
+            
+        }
+        
+    }
+    
+    
+    
     
     func battaryChanged(level:Float)  {
         
-        txtBattary.text = "电量:\(Int(level*100))%"
+        if level == -1 {
+            
+            txtBattary.text = "电量:\(Int(level*100))%"
+        } else {
+            
+            txtBattary.text = "电量:\(Int(level*100))%"
+        }
         
     }
+    
     
     
     func  setTextContetAttributes() {
         
         
-        var  dic:[String:Any?] =  [:]
+        var  dic:[String:Any] = [:]
         
         
         // dic[NSFontAttributeName] = UIFont(name: "PingFangSC-Regular", size: CGFloat(vm.fontSize))

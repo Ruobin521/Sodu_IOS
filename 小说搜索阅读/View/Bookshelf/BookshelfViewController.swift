@@ -20,9 +20,6 @@ class BookshelfViewController: BaseViewController {
     
     var isDeleting:Bool = false
     
-    
-    let num = [1,2,3,4,5,6,7,8,9]
-    
     override func initData() {
         
         
@@ -82,6 +79,7 @@ class BookshelfViewController: BaseViewController {
         DispatchQueue.main.async {
             
             self.vm.bookList.insert(book, at: 0)
+            self.removeEmptyView()
             self.tableview?.reloadData()
             
         }
@@ -124,11 +122,17 @@ extension BookshelfViewController {
         
         cell.book = book
         
-        cell.txtBookName?.text = vm.bookList[indexPath.section].bookName
-        cell.txtUpdateTime?.text = vm.bookList[indexPath.section].updateTime
-        cell.txtUpdateChpterName?.text = vm.bookList[indexPath.section].chapterName
-        
-        cell.txtLastReadChapterName.text = vm.bookList[indexPath.section].chapterName
+        if cell.book != nil {
+            
+            
+            cell.txtBookName?.text = vm.bookList[indexPath.section].bookName
+            cell.txtUpdateTime?.text = vm.bookList[indexPath.section].updateTime
+            cell.txtUpdateChpterName?.text = vm.bookList[indexPath.section].chapterName
+            
+            cell.txtLastReadChapterName.text = vm.bookList[indexPath.section].chapterName
+
+            
+        }
         
         //  cell.?.text = vm.bookList[indexPath.row].chapterName
         
@@ -181,11 +185,11 @@ extension BookshelfViewController {
                             
                             array.append(indexPath)
                             
-                         //   tableView.deleteRows(at: array, with: .automatic)
+                            //   tableView.deleteRows(at: array, with: .automatic)
                             
                             tableView.deleteSections([indexPath.section], with: .automatic)
                             
-                          //  tableView.reloadData()
+                            //  tableView.reloadData()
                             
                             self.showToast(content: "\(book.bookName!)取消收藏成功")
                             
