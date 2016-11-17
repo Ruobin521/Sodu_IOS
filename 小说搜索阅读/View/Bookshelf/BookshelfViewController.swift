@@ -44,7 +44,7 @@ class BookshelfViewController: BaseViewController {
         
         isLoading = true
         
-        //  vm.loadCacheData(self)
+        vm.loadCacheData(self)
         
         vm.loadBookShelfPageData {(isSuccess) in
             
@@ -110,7 +110,7 @@ extension BookshelfViewController {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         
-        return 125
+        return 105
     }
     
     

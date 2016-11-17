@@ -117,7 +117,7 @@ extension RankViewController {
         cell.rankView.isHidden = false
         
         cell.book = vm.bookList[indexPath.section]
-                 
+        
         if cell.book?.rankChangeValue != nil {
             
             if (cell.book?.rankChangeValue!.contains("-"))! {

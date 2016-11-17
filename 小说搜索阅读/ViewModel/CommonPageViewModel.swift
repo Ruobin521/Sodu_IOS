@@ -36,6 +36,12 @@ class CommonPageViewModel {
        
         //print(vc.vm.currentBook)
         
+        if ViewModelInstance.Instance.Setting.isAutoAddToShelf {
+            
+            
+            AddBookToShelf(book: book.clone(),false)
+        }
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -44,7 +50,7 @@ class CommonPageViewModel {
     /// 添加小说到个人书架
     ///
     /// - parameter book: 需要添加的小说
-    static func AddBookToShelf(book:Book) {
+    static func AddBookToShelf(book:Book,_ notice:Bool = true) {
         
         let item = ViewModelInstance.Instance.bookShelf.bookList.first(where: { (b) -> Bool in
             
@@ -54,7 +60,7 @@ class CommonPageViewModel {
         
         if item != nil {
             
-            ToastView.instance.showGlobalToast(content: "\((book.bookName)!)已存个人书架")
+          //  ToastView.instance.showGlobalToast(content: "\((book.bookName)!)已存个人书架")
             return
         }
         
@@ -71,12 +77,20 @@ class CommonPageViewModel {
                     
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddToBookshelfSuccessNotification), object: book)
                     
-                    ToastView.instance.showGlobalToast(content: "已添加\((book.bookName)!)至个人书架")
-                    
+                    if notice {
+                        
+                        ToastView.instance.showGlobalToast(content: "已添加\((book.bookName)!)至个人书架")
+                        
+                    }
+                  
                     
                 }  else {
                     
-                    ToastView.instance.showGlobalToast(content: "添加\((book.bookName)!)至个人书架失败")
+                    if notice {
+                        
+                        ToastView.instance.showGlobalToast(content: "添加\((book.bookName)!)至个人书架失败")
+                    }
+                    
                 }
                 
             }
