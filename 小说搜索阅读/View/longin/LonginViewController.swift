@@ -8,28 +8,15 @@
 
 import UIKit
 
-class LonginViewController: UIViewController {
+class LonginViewController: BaseViewController {
     
     @IBOutlet weak var txtUserName: UITextField!
     
     @IBOutlet weak var txtPasswd: UITextField!
     
-    
-    var registerCallBack: (() -> ())?
-    
-    var isLoading = false
-    
     let vm = UserLoginViewModel()
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-        txtUserName.text = "918201"
-        txtPasswd.text = "8166450"
-        
-    }
+  
     
     
     
@@ -92,7 +79,8 @@ class LonginViewController: UIViewController {
     
     @IBAction func registerAction() {
         
-        registerCallBack?()
+        navigationController?.pushViewController(RegisterViewController(), animated: true)
+    
     }
     
     @IBAction func goBack(_ sender: Any?) {
@@ -109,4 +97,23 @@ class LonginViewController: UIViewController {
     }
 }
 
+extension LonginViewController {
+    
+    override func  setupUI()  {
+        
+        setUpNavigationBar()
+        setBackColor()
+        
+        self.title = "登录"
+        
+        self.navItem.leftBarButtonItem = UIBarButtonItem(title: "返回", fontSize:16.0,  target: self, action: #selector(goBack),isBack:true)
+        
+              
+        txtUserName.text = "918201"
+        txtPasswd.text = "8166450"
+
+    }
+    
+    
+}
 

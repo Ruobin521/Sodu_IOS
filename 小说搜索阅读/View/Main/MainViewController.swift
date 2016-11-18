@@ -68,7 +68,7 @@ class MainViewController: UITabBarController {
     func logout()  {
         
         self.viewControllers?.remove(at: 0)
-       
+        
     }
     
     
@@ -107,19 +107,7 @@ extension MainViewController {
     
     func login() {
         
-       
-        let vc = LonginViewController()
-        
-        vc.registerCallBack = {  [weak self] in
-            
-            self?.dismiss(animated: false, completion: nil)
-            
-            let rvc = RegisterViewController()
-            self?.present(rvc, animated: true, completion: nil)
-            
-            
-            
-        }
+        let vc =    NavigationViewController(rootViewController: LonginViewController())
         
         present(vc, animated: true, completion: nil)
     }
@@ -145,8 +133,6 @@ extension MainViewController:UITabBarControllerDelegate {
             if !userLogon {
                 
                 login()
-                return false
-                
             }
         }
         

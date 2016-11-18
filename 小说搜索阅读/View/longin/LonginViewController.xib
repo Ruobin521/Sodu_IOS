@@ -21,31 +21,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWo-hf-t42">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUi-oA-pA6">
-                            <rect key="frame" x="0.0" y="26" width="70" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <state key="normal" title="返回" image="navigationbar_back_withtext"/>
-                            <connections>
-                                <action selector="goBack:" destination="-1" eventType="touchUpInside" id="JmN-WK-uZ5"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZK-Db-G2f">
-                            <rect key="frame" x="166" y="31" width="42" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="64" id="sbv-IY-xpl"/>
-                    </constraints>
-                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head" translatesAutoresizingMaskIntoConstraints="NO" id="TdR-hX-qRX">
                     <rect key="frame" x="148" y="107" width="80" height="80"/>
                     <constraints>
@@ -171,14 +146,11 @@
                 <constraint firstItem="QKU-ex-iIt" firstAttribute="centerX" secondItem="YRn-15-f22" secondAttribute="centerX" id="UQ7-yF-noI"/>
                 <constraint firstItem="FEf-Ha-RIF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="UQF-Bc-WNT"/>
                 <constraint firstAttribute="trailing" secondItem="IKh-gV-nBs" secondAttribute="trailing" id="UW1-ow-B02"/>
-                <constraint firstItem="yWo-hf-t42" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Y2g-UY-s4H"/>
                 <constraint firstAttribute="trailing" secondItem="QKU-ex-iIt" secondAttribute="trailing" constant="34" id="aTs-YT-9fJ"/>
-                <constraint firstItem="yWo-hf-t42" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cKH-rS-01D"/>
                 <constraint firstItem="QKU-ex-iIt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="35" id="jj8-T1-Fan"/>
                 <constraint firstItem="IKh-gV-nBs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="195" id="ok9-Ha-ZIn"/>
                 <constraint firstAttribute="trailing" secondItem="FEf-Ha-RIF" secondAttribute="trailing" constant="10" id="rCH-CW-Vbp"/>
                 <constraint firstAttribute="bottom" secondItem="FEf-Ha-RIF" secondAttribute="bottom" constant="15" id="uyi-54-Fm4"/>
-                <constraint firstItem="IKh-gV-nBs" firstAttribute="trailing" secondItem="yWo-hf-t42" secondAttribute="trailing" id="vKY-XZ-wFh"/>
                 <constraint firstItem="IKh-gV-nBs" firstAttribute="centerX" secondItem="TdR-hX-qRX" secondAttribute="centerX" id="vq9-EZ-pRy"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
@@ -187,7 +159,6 @@
     <resources>
         <image name="head" width="170" height="170"/>
         <image name="lock" width="12" height="12"/>
-        <image name="navigationbar_back_withtext" width="16" height="30"/>
         <image name="user" width="12" height="12"/>
     </resources>
 </document>

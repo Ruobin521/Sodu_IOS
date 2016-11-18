@@ -58,6 +58,7 @@
 		B19B74501DD44E18008D6C5C /* SettingPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B744F1DD44E18008D6C5C /* SettingPageViewModel.swift */; };
 		B19B74531DD4C30D008D6C5C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B74521DD4C30D008D6C5C /* RegisterViewController.swift */; };
 		B19B74551DD4C344008D6C5C /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19B74541DD4C344008D6C5C /* RegisterViewController.xib */; };
+		B1B261531DDEF31F00F28B17 /* SearcheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B261521DDEF31F00F28B17 /* SearcheViewController.swift */; };
 		B1B6A3531DC1EA2300CF23B7 /* Constaints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6A3521DC1EA2300CF23B7 /* Constaints.swift */; };
 		B1B6A3551DC3409D00CF23B7 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6A3541DC3409D00CF23B7 /* NetworkHelper.swift */; };
 		B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */; };
@@ -124,6 +125,7 @@
 		B19B744F1DD44E18008D6C5C /* SettingPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingPageViewModel.swift; sourceTree = "<group>"; };
 		B19B74521DD4C30D008D6C5C /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B19B74541DD4C344008D6C5C /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		B1B261521DDEF31F00F28B17 /* SearcheViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearcheViewController.swift; sourceTree = "<group>"; };
 		B1B6A3521DC1EA2300CF23B7 /* Constaints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constaints.swift; sourceTree = "<group>"; };
 		B1B6A3541DC3409D00CF23B7 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateChapterViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				B17E03C61DB095B90061DD47 /* Rank */,
 				B194B8CC1DBDE6720061C9A4 /* HotAndRecommend */,
 				B1378BD71DB4A5A0000D4FAE /* Setting */,
+				B1B261511DDEF2A900F28B17 /* Search */,
 				B19B74511DD4C299008D6C5C /* Register */,
 				B1C238581DD3889400C37FA6 /* longin */,
 				B1BEC74D1DC0972E00AD8DC3 /* UpdateChapter */,
@@ -376,6 +379,14 @@
 				B19B74521DD4C30D008D6C5C /* RegisterViewController.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		B1B261511DDEF2A900F28B17 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				B1B261521DDEF31F00F28B17 /* SearcheViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		B1BEC7421DC05D9100AD8DC3 /* UserControl */ = {
@@ -563,6 +574,7 @@
 				B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */,
 				B1C2385B1DD388D800C37FA6 /* LonginViewController.swift in Sources */,
 				B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */,
+				B1B261531DDEF31F00F28B17 /* SearcheViewController.swift in Sources */,
 				B162E2161DC0F152008DF1C4 /* CommonPageViewModel.swift in Sources */,
 				B19B74431DD3446E008D6C5C /* CommonBookListTableViewCell.swift in Sources */,
 				B133A7831DDAD1EC0038B5D2 /* BookContentViewController.swift in Sources */,

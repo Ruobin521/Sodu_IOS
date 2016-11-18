@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: BaseViewController {
     
     @IBOutlet weak var txtUserName: UITextField!
     
@@ -17,15 +17,9 @@ class RegisterViewController: UIViewController {
     
     @IBOutlet weak var txtConfirmPasswd: UITextField!
     
-    var isLoading = false
     
     let vm = UserLoginViewModel()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-    }
     
     @IBAction func registerAction() {
         
@@ -42,27 +36,29 @@ class RegisterViewController: UIViewController {
         
         isLoading = true
         
-        vm.userRegister(txtUserName.text!, txtPasswd.text!, completion: { (isSuccess) in
+        vm.userRegister(txtUserName.text!, txtPasswd.text!, completion: { [weak self] (isSuccess) in
             
             
             if isSuccess {
                 
                 userLogon = true
                 
-                self.showToast(content: "注册成功")
+                self?.showToast(content: "注册成功")
                 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
                 
-                self.vm.setCoookie()
+                self?.vm.setCoookie()
                 
-                self.goBack()
+                
+                
+                self?.goBack()
                 
             } else {
                 
-                self.showToast(content: "注册失败，该用户可能已经注册过",false)
+                self?.showToast(content: "注册失败，该用户可能已经注册过",false)
             }
             
-            self.isLoading = false
+            self?.isLoading = false
             
             
             
@@ -110,6 +106,8 @@ class RegisterViewController: UIViewController {
     
     @IBAction func goBack() {
         
+        //  dismiss(animated: true, completion: nil)
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -120,5 +118,21 @@ class RegisterViewController: UIViewController {
         self.view.endEditing(true)
         
     }
+    
+}
+
+extension RegisterViewController {
+    
+    override func  setupUI()  {
+        
+        super.setUpNavigationBar()
+        super.setBackColor()
+        
+        self.title = "注册"
+        
+        //  self.navItem.leftBarButtonItem? = UIBarButtonItem(title: "返回", fontSize:16.0,  target: self, action: #selector(goBack),isBack:true)
+        
+    }
+    
     
 }

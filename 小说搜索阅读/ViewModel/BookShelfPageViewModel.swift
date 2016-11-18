@@ -71,7 +71,7 @@ class BookShelfPageViewModel {
                 
                 if isSuccess && (str?.contains("取消收藏成功"))!{
                     
-                    self.bookList.remove(at: indexPath.row)
+                    self.bookList.remove(at: indexPath.section)
                     
                     completion(true)
                     

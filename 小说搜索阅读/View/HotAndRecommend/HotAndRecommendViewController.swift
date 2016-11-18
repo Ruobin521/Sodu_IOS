@@ -99,7 +99,7 @@ extension HotAndRecommendViewController {
         
     }
     
- 
+    
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -117,7 +117,7 @@ extension HotAndRecommendViewController {
         let action1  =  UITableViewRowAction(style: .normal, title: "添加至书架", handler: { (action, indexPath) in
             
             var book:Book
-             
+            
             book = self.vm.bookList[indexPath.section]
             
             CommonPageViewModel.AddBookToShelf(book: book.clone())
@@ -140,6 +140,7 @@ extension HotAndRecommendViewController {
     override func setupUI() {
         
         super.setupUI()
+        super.setupSeachItem()
         
         let cellNib = UINib(nibName: "CommonBookListTableViewCell", bundle: nil)
         

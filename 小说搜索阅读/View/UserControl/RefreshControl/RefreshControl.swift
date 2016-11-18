@@ -66,15 +66,22 @@ class RefreshControl: UIControl {
         
         refreshView.refreshState = .WillRefresh
         
-        UIView.animate(withDuration: 0.25, animations:  {
-            
-            var inset = sv.contentInset
-            
-            inset.top += self.refreshOffset
-            
-            sv.contentInset = inset
-            
-        })
+        
+        var inset = sv.contentInset
+        
+        inset.top += self.refreshOffset
+        
+        sv.contentInset = inset
+        
+//        UIView.animate(withDuration: 0.25, animations:  {
+//            
+//            var inset = sv.contentInset
+//            
+//            inset.top += self.refreshOffset
+//            
+//            sv.contentInset = inset
+//            
+//        })
         
     }
     

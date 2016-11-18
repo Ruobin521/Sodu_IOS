@@ -171,7 +171,7 @@ extension BaseViewController {
         tableview?.dataSource = self
         tableview?.delegate = self
         
-        tableview?.backgroundColor =  #colorLiteral(red: 0.9254901961, green: 0.9411764706, blue: 0.9450980392, alpha: 1)
+        tableview?.backgroundColor =  UIColor.clear
         
         tableview?.separatorStyle = .singleLine
         
@@ -229,9 +229,11 @@ extension BaseViewController {
         
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent;
         
+    }
+    
+    func setupSeachItem() {
+        
         navItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"tabbar_discover"), style: .plain, target: self, action: #selector(goToSearchPage))
-        
-        
     }
     
     
@@ -272,39 +274,16 @@ extension BaseViewController {
     
     func  setBackColor()  {
         
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = #colorLiteral(red: 0.9019607843, green: 0.9019607843, blue: 0.9019607843, alpha: 1)
     }
     
     
-    func setEmptyBackView() {
-        
-        emptyView  = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        emptyView?.backgroundColor = UIColor.clear
-        
-        let label = UILabel()
-        label.text = "您的书架空空如也，点击排行榜或热门推荐添加几本吧..."
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor =  UIColor.lightGray
-        label.numberOfLines = 0
-        label.frame = CGRect(x: 0, y: 0 , width:  300 , height: 100)
-        label.center =  CGPoint(x: view.center.x, y: view.center.y - 80)
-        label.textAlignment = .center
-        
-        emptyView?.addSubview(label)
-        view.insertSubview(emptyView!, belowSubview: navigationBar)
-        
-    }
     
-    
-    func removeEmptyView() {
-        
-        emptyView?.removeFromSuperview()
-        
-    }
     
     func goToSearchPage() {
+      
+        navigationController?.pushViewController(SearcheViewController(), animated: true)
         
-        print("点击了搜索按钮")
         
     }
     

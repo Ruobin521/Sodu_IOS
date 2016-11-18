@@ -126,7 +126,7 @@ extension RankViewController {
                 cell.txtRank.text = cell.book?.rankChangeValue!.replacingOccurrences(of: "-", with: "")
             } else {
                 
-                 cell.imgRank.image  =  UIImage(named: "up")
+                cell.imgRank.image  =  UIImage(named: "up")
                 cell.txtRank.text = cell.book?.rankChangeValue!
             }
             
@@ -192,6 +192,7 @@ extension RankViewController {
     override func setupUI() {
         
         super.setupUI()
+        super.setupSeachItem()
         
         let cellNib = UINib(nibName: "CommonBookListTableViewCell", bundle: nil)
         

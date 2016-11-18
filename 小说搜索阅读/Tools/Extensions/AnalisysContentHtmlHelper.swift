@@ -52,7 +52,11 @@ class AnalisysContentHtmlHelper {
         case  LyWebUrls.dhzw:
             
             value = analisysDhzwHtml(urlStr,html)
+       
+        //爱上中文
+        case  LyWebUrls.aszw:
             
+        value = analisysCommonHtml(html,"<div id=\"contents\".*?</div>")
             
         ///少年文学
         case  LyWebUrls.snwx:
@@ -682,6 +686,12 @@ class LyWebUrls {
     /// 少年文学
     /// </summary>
     static let snwx = "www.snwx.com";
+    
+    
+    /// <summary>
+    /// 爱上中文
+    /// </summary>
+    static let aszw = "www.aszw8.com";
     
     /// <summary>
     /// 手牵手小说

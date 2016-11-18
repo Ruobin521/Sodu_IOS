@@ -130,7 +130,7 @@ extension BookshelfViewController {
             cell.txtUpdateChpterName?.text = vm.bookList[indexPath.section].chapterName
             
             cell.txtLastReadChapterName.text = vm.bookList[indexPath.section].chapterName
-
+            
             
         }
         
@@ -185,11 +185,11 @@ extension BookshelfViewController {
                             
                             array.append(indexPath)
                             
-                            //   tableView.deleteRows(at: array, with: .automatic)
                             
-                            tableView.deleteSections([indexPath.section], with: .automatic)
                             
-                            //  tableView.reloadData()
+                            tableView.deleteSections([indexPath.section], with:  UITableViewRowAnimation.automatic)
+                            
+                           // tableView.reloadData()
                             
                             self.showToast(content: "\(book.bookName!)取消收藏成功")
                             
@@ -228,6 +228,7 @@ extension BookshelfViewController {
     override func setupUI() {
         
         super.setupUI()
+        super.setupSeachItem()
         
         let cellNib = UINib(nibName: "BookshelfTableViewCell", bundle: nil)
         
@@ -237,4 +238,30 @@ extension BookshelfViewController {
         
     }
     
+    
+    func setEmptyBackView() {
+        
+        emptyView  = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        emptyView?.backgroundColor = UIColor.clear
+        
+        let label = UILabel()
+        label.text = "您的书架空空如也，在排行榜或热门推荐中向左滑动添加几本吧..."
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.textColor =  UIColor.lightGray
+        label.numberOfLines = 0
+        label.frame = CGRect(x: 0, y: 0 , width:  300 , height: 100)
+        label.center =  CGPoint(x: view.center.x, y: view.center.y - 80)
+        label.textAlignment = .center
+        
+        emptyView?.addSubview(label)
+        view.insertSubview(emptyView!, belowSubview: navigationBar)
+        
+    }
+    
+    
+    func removeEmptyView() {
+        
+        emptyView?.removeFromSuperview()
+        
+    }
 }

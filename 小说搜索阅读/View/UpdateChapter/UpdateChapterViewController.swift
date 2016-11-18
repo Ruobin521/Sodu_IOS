@@ -132,9 +132,14 @@ extension UpdateChapterViewController {
 extension UpdateChapterViewController {
     
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         
         return vm.chapterList.count
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return 1
     }
     
     
@@ -143,9 +148,9 @@ extension UpdateChapterViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UpdateChapterTableViewCell
         
         
-        cell.txtChapterName?.text = vm.chapterList[indexPath.row].chapterName
-        cell.txtUpdateTime?.text = vm.chapterList[indexPath.row].updateTime
-        cell.txtLywzName?.text = vm.chapterList[indexPath.row].lywzName
+        cell.txtChapterName?.text = vm.chapterList[indexPath.section].chapterName
+        cell.txtUpdateTime?.text = vm.chapterList[indexPath.section].updateTime
+        cell.txtLywzName?.text = vm.chapterList[indexPath.section].lywzName
         
         return cell
     }
@@ -156,11 +161,16 @@ extension UpdateChapterViewController {
         
         super.tableView(tableView, didSelectRowAt: indexPath)
         
-        let  book  = vm.chapterList[indexPath.row]
+        let  book  = vm.chapterList[indexPath.section]
         
         
         chapterDidSelected(book)
         
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        return 5
     }
     
 }
@@ -176,6 +186,8 @@ extension UpdateChapterViewController {
         let cellNib = UINib(nibName: "UpdateChapterTableViewCell", bundle: nil)
         
         tableview?.register(cellNib, forCellReuseIdentifier: cellId)
+        
+        tableview?.separatorStyle = .none
         
     }
     

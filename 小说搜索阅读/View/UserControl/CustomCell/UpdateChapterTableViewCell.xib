@@ -38,6 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="LEM-Kv-tcw" secondAttribute="trailing" constant="8" id="5Fd-xo-Vga"/>
                     <constraint firstAttribute="bottom" secondItem="aDE-03-6rd" secondAttribute="bottom" constant="8" id="IEK-PZ-msb"/>
