@@ -16,10 +16,6 @@ class CommonPageViewModel {
     ///导航到更新章节列表页
     static  func navigateToUpdateChapterPage(_ book:Book, _ navigationController : UINavigationController?)  {
         
-        if (navigationController?.childViewControllers.count)! > 1 {
-            
-            return
-        }
         
         let vc = UpdateChapterViewController()
         
@@ -97,5 +93,21 @@ class CommonPageViewModel {
         }
     }
     
+    
+    
+  /// 将中文转为utf8
+  ///
+  /// - Parameter str: <#str description#>
+  /// - Returns: <#return value description#>
+  static  func urlEncode(_ str:String) -> String {
+        
+        var st = str
+        
+        st =  str.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        
+        return st
+        
+    }
+
     
 }

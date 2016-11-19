@@ -96,7 +96,9 @@ class BaseViewController: UIViewController {
     
     
     func initData()  {
-        
+       
+        refreshControl?.endRefreshing()
+
         
     }
     
@@ -158,13 +160,13 @@ extension BaseViewController {
         
         setBackColor()
         setUpNavigationBar()
-        setuoTableview()
+        setupTableview()
         setRefreshControl()
         
     }
     
     
-    func setuoTableview() -> () {
+    func setupTableview() -> () {
         
         tableview = UITableView(frame:  view.bounds, style: .grouped)
         
@@ -281,8 +283,12 @@ extension BaseViewController {
     
     
     func goToSearchPage() {
+        
+        let vc = SearchViewController()
+        
+        vc.title = "搜索"
       
-        navigationController?.pushViewController(SearcheViewController(), animated: true)
+        navigationController?.pushViewController(vc, animated: true)
         
         
     }
@@ -414,4 +420,6 @@ extension UIViewController {
         }
         
     }
+    
+ 
 }

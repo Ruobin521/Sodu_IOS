@@ -36,6 +36,14 @@ class AnalisysHtmlHelper {
     }
     
     
+    ///搜索结果
+    static func analisysSearchHtml(_ str:String?) -> [Book]  {
+        
+        return analisysRankPageHtml(str)
+    }
+    
+
+    
     ///返回更新列表数据
     static func analisysUpdateChapterHtml(_ str:String?) -> [Book]  {
         

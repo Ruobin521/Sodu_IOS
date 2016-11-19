@@ -147,7 +147,7 @@ extension SettingViewController {
         
         setBackColor()
         setUpNavigationBar()
-        setuoTableview()
+        setupTableview()
         
         let cellNib1 = UINib(nibName: "SettingTableViewCell", bundle: nil)
         tableview?.register(cellNib1, forCellReuseIdentifier: commonCellId)

@@ -120,21 +120,13 @@ extension BookshelfViewController {
         
         let book = vm.bookList[indexPath.section]
         
-        cell.book = book
+        cell.txtBookName?.text = book.bookName
+        cell.txtUpdateTime?.text = book.updateTime
+        cell.txtUpdateChpterName?.text = book.chapterName
         
-        if cell.book != nil {
-            
-            
-            cell.txtBookName?.text = vm.bookList[indexPath.section].bookName
-            cell.txtUpdateTime?.text = vm.bookList[indexPath.section].updateTime
-            cell.txtUpdateChpterName?.text = vm.bookList[indexPath.section].chapterName
-            
-            cell.txtLastReadChapterName.text = vm.bookList[indexPath.section].chapterName
-            
-            
-        }
+        cell.txtLastReadChapterName.text = book.chapterName
         
-        //  cell.?.text = vm.bookList[indexPath.row].chapterName
+        
         
         return cell
     }
@@ -189,7 +181,7 @@ extension BookshelfViewController {
                             
                             tableView.deleteSections([indexPath.section], with:  UITableViewRowAnimation.automatic)
                             
-                           // tableView.reloadData()
+                            // tableView.reloadData()
                             
                             self.showToast(content: "\(book.bookName!)取消收藏成功")
                             

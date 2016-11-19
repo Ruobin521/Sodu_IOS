@@ -14,12 +14,6 @@ import UIKit
 class MainViewController: UITabBarController {
     
     
-    var baseControllers:[BaseViewController]?
-    
-    var lastDate: NSDate?
-    
-    var selectedVC:BaseViewController?
-    
     
     override func viewDidLoad() {
         
@@ -134,6 +128,20 @@ extension MainViewController:UITabBarControllerDelegate {
                 
                 login()
             }
+        } else {
+            
+            guard  let selectedvc = (viewControllers?[selectedIndex] as? NavigationViewController)?.viewControllers[0] as? BaseViewController else {
+                
+                return true
+            }
+            
+            if selectedvc == tempvc {
+                
+                
+                selectedvc.goToTop()
+                
+                return false
+            }
         }
         
         return true
@@ -142,55 +150,9 @@ extension MainViewController:UITabBarControllerDelegate {
     
     
     
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        
-        
-        guard let nav = viewControllers?[selectedIndex]  as? UINavigationController else {
-            
-            return
-        }
-        
-        guard  let tempvc = nav.viewControllers[0] as? BaseViewController else {
-            
-            return
-        }
-        
-        if tempvc.isMember(of: SettingViewController.self) {
-            
-            return
-            
-        }
-        
-        let date = NSDate()
-        
-        
-        if selectedVC == nil {
-            
-            lastDate = date
-            
-            selectedVC = tempvc
-            
-            return
-        }
-        
-        let second = (date.timeIntervalSince(lastDate as! Date)) as Double
-        
-        if tempvc == selectedVC   &&  second  <= 0.5 {
-            
-            selectedVC?.goToTop()
-            
-            selectedVC = tempvc
-            
-            lastDate = date
-            
-        }  else{
-            
-            lastDate = date
-            selectedVC = tempvc
-            
-        }
-    }
 }
+
+
 
 
 extension MainViewController {

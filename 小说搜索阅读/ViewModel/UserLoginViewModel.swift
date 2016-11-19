@@ -18,7 +18,7 @@ class UserLoginViewModel  {
         
         let url = SoDuUrl.loginPostPage
         
-        let postData = "username=\(urlEncode(userName))&userpass=\(urlEncode(passwd))"
+        let postData = "username=\(CommonPageViewModel.urlEncode(userName))&userpass=\(CommonPageViewModel.urlEncode(passwd))"
         
         
         ToastView.instance.showLoadingView()
@@ -47,7 +47,7 @@ class UserLoginViewModel  {
         
         let url = SoDuUrl.registerPage
         
-        let postData = "username=\(urlEncode(userName))&userpass=\(urlEncode(passwd))"
+        let postData = "username=\(CommonPageViewModel.urlEncode(userName))&userpass=\(CommonPageViewModel.urlEncode(passwd))"
         
         
         ToastView.instance.showLoadingView()
@@ -75,16 +75,6 @@ class UserLoginViewModel  {
 
 extension UserLoginViewModel {
     
-    
-    func urlEncode(_ str:String) -> String {
-        
-        var st = str
-        
-        st =  str.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        
-        return st
-        
-    }
     
 }
 

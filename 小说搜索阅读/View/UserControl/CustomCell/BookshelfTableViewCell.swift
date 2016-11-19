@@ -10,7 +10,6 @@ import UIKit
 
 class BookshelfTableViewCell: UITableViewCell {
     
-    var book:Book?
     
     @IBOutlet weak var txtBookName: UILabel!
     

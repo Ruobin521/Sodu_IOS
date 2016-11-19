@@ -20,6 +20,8 @@ class RefreshView: UIView {
     
     @IBOutlet weak var tipIcon: UIImageView!
     
+    /// 父视图的高度 - 为了刷新控件不需要关心当前具体的刷新视图是谁！
+    var parentViewHeight: CGFloat = 0
     
     /// ios中默认顺时针旋转
     /// 就近原则

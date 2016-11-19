@@ -81,11 +81,11 @@ extension HotAndRecommendViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CommonBookListTableViewCell
         
-        cell.book = vm.bookList[indexPath.section]
+        let book = vm.bookList[indexPath.section]
         
-        cell.txtBookName?.text = vm.bookList[indexPath.section].bookName
-        cell.txtUpdateTime?.text = vm.bookList[indexPath.section].updateTime
-        cell.txtUpdateChpterName?.text = vm.bookList[indexPath.section].chapterName
+        cell.txtBookName?.text = book.bookName
+        cell.txtUpdateTime?.text = book.updateTime
+        cell.txtUpdateChpterName?.text = book.chapterName
         
         
         

@@ -1,8 +1,8 @@
 //
-//  RankViewController.swift
+//  SearchViewController.swift
 //  小说搜索阅读
 //
-//  Created by  ruobin on 2016/10/14.
+//  Created by Ruobin Dang on 16/11/20.
 //  Copyright © 2016年 Ruobin Dang. All rights reserved.
 //
 
@@ -11,86 +11,54 @@ import UIKit
 
 private let cellId = "cellId"
 
-class RankViewController: BaseViewController {
+class SearchViewController: BaseViewController {
     
+    lazy  var  searchView =  UISearchBar()
     
-    var vm =  ViewModelInstance.Instance.rank
+    let vm =  SearchPageViewModel()
     
-    override func initData() {
-        
-        
-        
-        loadData()
-    }
     
     override func loadData() {
         
-        needPullUp = true
-        
-        if  checkIsLoading() {
+        guard  let text = searchView.text?.trimmingCharacters(in: [" "]) else {
             
             return
-        }
-        
-        
-        if isPullup {
-            
-            loadDataByPageIndex(vm.pageIndex + 1)
-            
-        }  else {
-            
-            loadDataByPageIndex(0)
-        }
-        
-    }
-    
-    
-    func loadDataByPageIndex(_ pageindex: Int) {
-        
-        if  pageindex == vm.pageCount {
-            
-            isPullup = false
-            return
             
         }
         
-        isLoading = true
+        ToastView.instance.showLoadingView()
         
-        vm.loadCacheData(self)
-        
-        if pageindex > 0 {
-            
-            
-            setTitleView()
-        }
-        
-        
-        
-        vm.loadRankListDataByPageIndex(pageindex) { (isSuccess) in
+        vm.loadSearchData(text) { (isSuccess) in
             
             if isSuccess {
                 
                 self.tableview?.reloadData()
                 
-                self.navItem.title = "排行榜 - \(pageindex+1) / 8"
-                
-                self.showToast(content: "已加载排行榜第\(pageindex+1)页数据")
-                
                 
             }else {
                 
-                self.showToast(content: "第\(pageindex+1)页数据加载失败", false)
+                self.showToast(content: "暂无搜索结果", false)
             }
             
             super.endLoadData()
+            
+            DispatchQueue.main.async {
+                
+                ToastView.instance.closeLoadingWindos()
+                
+            }
         }
-        
-        
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        
+        ToastView.instance.closeLoadingWindos()
+    }
+    
 }
 
-
-extension RankViewController {
+extension  SearchViewController {
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -114,26 +82,8 @@ extension RankViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CommonBookListTableViewCell
         
-        cell.rankView.isHidden = false
         
-      let book = vm.bookList[indexPath.section]
-        
-        if book.rankChangeValue != nil {
-            
-            if (book.rankChangeValue!.contains("-")) {
-                
-                cell.imgRank.image  =  UIImage(named: "down")
-                cell.txtRank.text = book.rankChangeValue!.replacingOccurrences(of: "-", with: "")
-            } else {
-                
-                cell.imgRank.image  =  UIImage(named: "up")
-                cell.txtRank.text = book.rankChangeValue!
-            }
-            
-        } else {
-            
-            cell.txtRank.text =  "-"
-        }
+        let book = vm.bookList[indexPath.section]
         
         
         cell.txtBookName?.text = book.bookName
@@ -179,18 +129,24 @@ extension RankViewController {
         return [action1]
         
     }
-     
+    
     
 }
 
 
-extension RankViewController {
-    
+extension SearchViewController {
     
     override func setupUI() {
         
-        super.setupUI()
-        super.setupSeachItem()
+        
+        
+        setUpNavigationBar()
+        setBackColor()
+        setupTableview()
+        
+        setSearchBar()
+        
+        // searchView.center.x = (tableview?.center.x)!
         
         let cellNib = UINib(nibName: "CommonBookListTableViewCell", bundle: nil)
         
@@ -198,6 +154,56 @@ extension RankViewController {
         
         tableview?.separatorStyle = .none
         
+        
+        
+    }
+    
+    func  setSearchBar()  {
+        
+        searchView.frame =  CGRect(x: 0, y: (tableview?.contentInset.top)!, width: UIScreen.main.bounds.width , height: 50)
+        
+        self.view.insertSubview(searchView, aboveSubview: tableview!)
+        
+        tableview?.contentInset = UIEdgeInsets(top:  (tableview?.contentInset.top)! + searchView.frame.height, left: 0, bottom: (tableview?.contentInset.bottom)! , right: 0)
+        
+        // 修改指示器的缩进 - 强行解包是为了拿到一个必有的 inset
+        tableview?.scrollIndicatorInsets = tableview!.contentInset
+        
+        searchView.delegate = self
+        
+        searchView.placeholder = "请输入小说名或关键字，支持中文拼音搜索"
+        
+        searchView.becomeFirstResponder()
+        
+    }
+    
+    
+}
+
+extension SearchViewController:UISearchBarDelegate  {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchView.resignFirstResponder()
+        
+        loadData()
+        
+    }
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        let txt  = searchText
+        
+        if (  txt ==  ""  && vm.bookList.count > 0) {
+            
+            vm.bookList.removeAll()
+            
+            self.tableview?.reloadData()
+            
+        }
+        
     }
     
 }
+

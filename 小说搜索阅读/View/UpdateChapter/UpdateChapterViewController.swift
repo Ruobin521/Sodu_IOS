@@ -103,24 +103,8 @@ extension UpdateChapterViewController {
         
         
         let bc = BookContentViewController()
-        // let vc = NavigationViewController(rootViewController: bc)
-        
-        
-        let temp = book.clone()
        
-        bc.currentBook = temp
-        
-        if bc.currentBook == nil {
-            
-            return
-        }
-        
-        //  bc.view.backgroundColor = UIColor.green
-        
-        // present(vc, animated: true, completion: nil)
-        
-        
-        //  navigationController?.pushViewController(bc, animated: true)
+        bc.vm.currentBook = book.clone()
         
         present(bc, animated: true, completion: nil)
         

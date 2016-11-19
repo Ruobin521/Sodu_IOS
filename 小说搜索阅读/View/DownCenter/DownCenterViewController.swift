@@ -26,7 +26,7 @@ extension DownCenterViewController {
         self.navItem.title = "下载中心"
         setBackColor()
         setUpNavigationBar()
-        setuoTableview()
+        setupTableview()
         
         let cellNib1 = UINib(nibName: "SettingTableViewCell", bundle: nil)
         tableview?.register(cellNib1, forCellReuseIdentifier: commonCellId)

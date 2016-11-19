@@ -67,6 +67,9 @@ class RefreshControl: UIControl {
         refreshView.refreshState = .WillRefresh
         
         
+        // 设置刷新视图的父视图高度
+        refreshView.parentViewHeight = refreshOffset
+        
         var inset = sv.contentInset
         
         inset.top += self.refreshOffset
@@ -162,7 +165,16 @@ class RefreshControl: UIControl {
         }
         
         
+        
+        
         self.frame = CGRect(x: 0, y: -height, width: sv.bounds.width, height: height)
+        
+        
+        // --- 传递父视图高度，如果正在刷新中，不传递
+        // --- 把代码放在`最合适`的位置！
+        if refreshView.refreshState != .WillRefresh {
+            refreshView.parentViewHeight = height
+        }
         
         
         if  sv.isDragging {

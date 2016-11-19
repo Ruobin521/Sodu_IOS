@@ -20,17 +20,10 @@ class BookContentViewController: UIViewController {
     
     var isLoading = false
     
-    var isShowMenu: Bool = false  {
-        
-        didSet {
-            
-            topMenu.isHidden = !isShowMenu
-            UIApplication.shared.isStatusBarHidden = !isShowMenu
-            
-        }
-        
-        
-    }
+    var isShowMenu: Bool = false
+    
+    var isShowing = false
+    
     
     @IBOutlet weak var txtChapterName: UILabel!
     @IBOutlet weak var txtContent: UITextView!
@@ -39,10 +32,12 @@ class BookContentViewController: UIViewController {
     @IBOutlet weak var txtBookName: UILabel!
     
     @IBOutlet weak var topMenu: UIView!
+    @IBOutlet weak var botomMenu: UIView!
     
     @IBOutlet weak var txtTime: UILabel!
     
-    var currentBook:Book?
+    
+    @IBOutlet weak var btnRetry: UIButton!
     
     override func viewDidLoad() {
         
@@ -52,7 +47,7 @@ class BookContentViewController: UIViewController {
         
         initData()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(showSetting), name: NSNotification.Name(rawValue: touchBeginNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showSettingBar), name: NSNotification.Name(rawValue: touchBeginNotification), object: nil)
     }
     
     
@@ -61,19 +56,16 @@ class BookContentViewController: UIViewController {
         
         loadingWindow.isHidden = false
         
-        guard let url =   currentBook?.contentPageUrl  else{
+        guard let url =   vm.currentBook?.contentPageUrl  else{
             
             return
         }
         
-        txtChapterName.text = currentBook?.chapterName
+        txtChapterName.text = vm.currentBook?.chapterName
         
         vm.getCuttentChapterContent(url: url) { [weak self] (isSuccess) in
             
             if  isSuccess {
-                
-                self?.txtContent.isHidden = false
-                self?.errorView.isHidden = true
                 
                 self?.txtContent.text = self?.vm.curentChapterText
                 
@@ -81,8 +73,9 @@ class BookContentViewController: UIViewController {
                 
             } else {
                 
+                self?.btnRetry .isHidden = false
                 self?.errorView.isHidden = false
-                self?.errorView.alpha = 0.8
+                
             }
             
             
@@ -95,6 +88,15 @@ class BookContentViewController: UIViewController {
     }
     
     
+    @IBAction func retryAction(_ sender: Any) {
+        
+        
+        errorView.isHidden = true
+        
+        btnRetry .isHidden = true
+        
+        initData()
+    }
     
     @IBAction func closeAciton() {
         
@@ -104,8 +106,8 @@ class BookContentViewController: UIViewController {
     
     deinit {
         
+        
         NotificationCenter.default.removeObserver(self)
-        timer?.invalidate()
         
     }
     
@@ -118,11 +120,103 @@ class BookContentViewController: UIViewController {
 extension BookContentViewController {
     
     
-    func  showSetting() {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        isShowMenu = !isShowMenu
+        if isShowMenu {
+            
+            
+            guard  let p = touches.first?.location(in: self.view)  else{
+                
+                return
+            }
+            
+            print(p)
+            
+            let height = self.view.bounds.height
+            let width = self.view.bounds.width
+            
+            if p.x > width * 1 / 3 && p.x < width * 2 / 3  &&  p.y > height * 1 / 3 && p.y < height * 2 / 3  {
+                
+                showSettingBar()
+                
+            }
+        }
+        
     }
     
+    
+    
+    func  showSettingBar() {
+        
+        if isShowing {
+            
+            return
+        }
+        
+        isShowing = true
+        
+        print(isShowMenu)
+        
+        if !isShowMenu {
+            
+            isShowMenu = true
+            
+            self.topMenu.transform = CGAffineTransform(translationX: 0, y: -self.topMenu.frame.height)
+            
+            self.botomMenu.transform = CGAffineTransform(translationX: 0, y: self.botomMenu.frame.height)
+            
+            
+            self.topMenu.isHidden = false
+            
+            self.botomMenu.isHidden = false
+            
+            txtContent.isUserInteractionEnabled = false
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                
+                self.topMenu.transform = CGAffineTransform(translationX: 0, y: 0)
+                
+                self.botomMenu.transform = CGAffineTransform(translationX: 0, y: 0)
+                
+                UIApplication.shared.setStatusBarHidden(false, with: .slide)
+                
+            }, completion: { (isSucess) in
+                
+                // UIApplication.shared.isStatusBarHidden = false
+                
+                self.isShowing = false
+                
+            })
+            
+        } else {
+            
+            isShowMenu = false
+            
+            txtContent.isUserInteractionEnabled = true
+            
+            UIView.animate(withDuration: 0.25, animations: {
+                
+                self.topMenu.transform = CGAffineTransform(translationX: 0, y: -self.topMenu.frame.height)
+                
+                self.botomMenu.transform = CGAffineTransform(translationX: 0, y: self.botomMenu.frame.height)
+                
+                
+                UIApplication.shared.setStatusBarHidden(true, with: .slide)
+                
+                
+            }, completion: { (isSuccess) in
+                
+                self.topMenu.isHidden = true
+                
+                self.botomMenu.isHidden = true
+                
+                self.isShowing = false
+            })
+            
+        }
+        
+        
+    }
 }
 
 
@@ -139,7 +233,11 @@ extension BookContentViewController {
         
         topMenu.isHidden = true
         
-        txtBookName.text = currentBook?.bookName
+        botomMenu.isHidden = true
+        
+        btnRetry.isHidden = true
+        
+        txtBookName.text = vm.currentBook?.bookName
         
         loadingWindow = ToastView.instance.createLoadingView()
         
@@ -169,15 +267,15 @@ extension BookContentViewController {
         
         if timer == nil {
             
-            timer =  Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(setTiemInfo), userInfo: nil, repeats: true)
-           
-            //timer?.fire()
-      
+            timer =  Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(setTiemInfo), userInfo: nil, repeats: true)
+            
+            timer?.fire()
+            
         } else {
             
             
             let formatter = DateFormatter()
-            formatter.dateFormat = "HH:mm:ss"
+            formatter.dateFormat = "HH:mm"
             let dateString = formatter.string(from: Date())
             
             txtTime.text = dateString
@@ -193,7 +291,7 @@ extension BookContentViewController {
         
         if level == -1 {
             
-            txtBattary.text = "电量:\(Int(level*100))%"
+            txtBattary.text = "电量:加载中"
         } else {
             
             txtBattary.text = "电量:\(Int(level*100))%"
@@ -227,7 +325,12 @@ extension BookContentViewController {
     override func viewWillDisappear(_ animated: Bool) {
         
         super.viewWillDisappear(true)
+        
+        self.loadingWindow.isHidden = true
+        
         UIApplication.shared.isStatusBarHidden = false
+        
+        timer?.invalidate()
         
     }
     

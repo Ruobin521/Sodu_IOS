@@ -17,6 +17,9 @@ class BookContentPageViewModel {
     
     var preChapterText:String?
     
+    var currentBook:Book?
+    
+   
     
     var fontSize:Float = 20
     

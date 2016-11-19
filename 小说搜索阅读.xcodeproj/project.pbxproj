@@ -58,7 +58,8 @@
 		B19B74501DD44E18008D6C5C /* SettingPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B744F1DD44E18008D6C5C /* SettingPageViewModel.swift */; };
 		B19B74531DD4C30D008D6C5C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B74521DD4C30D008D6C5C /* RegisterViewController.swift */; };
 		B19B74551DD4C344008D6C5C /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19B74541DD4C344008D6C5C /* RegisterViewController.xib */; };
-		B1B261531DDEF31F00F28B17 /* SearcheViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B261521DDEF31F00F28B17 /* SearcheViewController.swift */; };
+		B1A73D321DE0C44C00EA4A40 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A73D301DE0C44C00EA4A40 /* SearchViewController.swift */; };
+		B1A73D351DE0D0F900EA4A40 /* SearchPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A73D341DE0D0F900EA4A40 /* SearchPageViewModel.swift */; };
 		B1B6A3531DC1EA2300CF23B7 /* Constaints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6A3521DC1EA2300CF23B7 /* Constaints.swift */; };
 		B1B6A3551DC3409D00CF23B7 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6A3541DC3409D00CF23B7 /* NetworkHelper.swift */; };
 		B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */; };
@@ -125,7 +126,8 @@
 		B19B744F1DD44E18008D6C5C /* SettingPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingPageViewModel.swift; sourceTree = "<group>"; };
 		B19B74521DD4C30D008D6C5C /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B19B74541DD4C344008D6C5C /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
-		B1B261521DDEF31F00F28B17 /* SearcheViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearcheViewController.swift; sourceTree = "<group>"; };
+		B1A73D301DE0C44C00EA4A40 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		B1A73D341DE0D0F900EA4A40 /* SearchPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPageViewModel.swift; sourceTree = "<group>"; };
 		B1B6A3521DC1EA2300CF23B7 /* Constaints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constaints.swift; sourceTree = "<group>"; };
 		B1B6A3541DC3409D00CF23B7 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateChapterViewController.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 				B19B744F1DD44E18008D6C5C /* SettingPageViewModel.swift */,
 				B19B73E61DD9BD5A00171785 /* DownloadCenterPageViewModel.swift */,
 				B133A77B1DDABFC60038B5D2 /* BookContentPageViewModel.swift */,
+				B1A73D341DE0D0F900EA4A40 /* SearchPageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -384,7 +387,7 @@
 		B1B261511DDEF2A900F28B17 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				B1B261521DDEF31F00F28B17 /* SearcheViewController.swift */,
+				B1A73D301DE0C44C00EA4A40 /* SearchViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -574,7 +577,6 @@
 				B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */,
 				B1C2385B1DD388D800C37FA6 /* LonginViewController.swift in Sources */,
 				B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */,
-				B1B261531DDEF31F00F28B17 /* SearcheViewController.swift in Sources */,
 				B162E2161DC0F152008DF1C4 /* CommonPageViewModel.swift in Sources */,
 				B19B74431DD3446E008D6C5C /* CommonBookListTableViewCell.swift in Sources */,
 				B133A7831DDAD1EC0038B5D2 /* BookContentViewController.swift in Sources */,
@@ -585,6 +587,7 @@
 				B1904FB11DB605C900534AD6 /* ToastView.swift in Sources */,
 				B17E03D81DB099380061DD47 /* BookshelfViewController.swift in Sources */,
 				B1B6A3531DC1EA2300CF23B7 /* Constaints.swift in Sources */,
+				B1A73D351DE0D0F900EA4A40 /* SearchPageViewModel.swift in Sources */,
 				B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */,
 				B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */,
 				B1378BD91DB4A5CC000D4FAE /* SettingViewController.swift in Sources */,
@@ -593,6 +596,7 @@
 				B1904FBA1DB79A9800534AD6 /* JSON.swift in Sources */,
 				B1B6A3551DC3409D00CF23B7 /* NetworkHelper.swift in Sources */,
 				B15B846A1DC5EB4500DD1A56 /* UserDefaultsHelper.swift in Sources */,
+				B1A73D321DE0C44C00EA4A40 /* SearchViewController.swift in Sources */,
 				B145D8E31DD7530B00FB09F2 /* PersonCenterViewController.swift in Sources */,
 				B162E2121DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift in Sources */,
 				B1904FB41DB728EA00534AD6 /* ConstantUrl.swift in Sources */,
