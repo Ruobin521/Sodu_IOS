@@ -50,10 +50,10 @@ class UpdateChapterViewModel {
                     
                     self?.pageIndex = pageindex
                     
-                    let array = AnalisysHtmlHelper.analisysUpdateChapterHtml(html)
+                    let array = AnalisysBookListHtmlHelper.analisysUpdateChapterHtml(html)
                     
                     
-                    self?.pageCount =  AnalisysHtmlHelper.analisysUpdateChapterPageCount(html)
+                    self?.pageCount =  AnalisysBookListHtmlHelper.analisysUpdateChapterPageCount(html)
                     
                     if pageindex == 0 {
                         

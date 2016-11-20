@@ -53,7 +53,7 @@ class RankListPageViewModel {
                     
                     self.pageIndex = pageindex
                     
-                    let array = AnalisysHtmlHelper.analisysRankHtml(html)
+                    let array = AnalisysBookListHtmlHelper.analisysRankHtml(html)
                     
                     if pageindex == 0 {
                         

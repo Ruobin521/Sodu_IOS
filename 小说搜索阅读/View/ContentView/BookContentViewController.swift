@@ -63,6 +63,10 @@ class BookContentViewController: UIViewController {
         
         txtChapterName.text = vm.currentBook?.chapterName
         
+        
+         
+        
+        
         vm.getCuttentChapterContent(url: url) { [weak self] (isSuccess) in
             
             if  isSuccess {

@@ -46,7 +46,7 @@ class BookShelfPageViewModel {
                     
                 }  else {
                     
-                    let array = AnalisysHtmlHelper.analisysBookShelfHtml(html)
+                    let array = AnalisysBookListHtmlHelper.analisysBookShelfHtml(html)
                     
                     self.bookList.removeAll()
                     

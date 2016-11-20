@@ -129,8 +129,7 @@ class RefreshControl: UIControl {
         
         super.willMove(toSuperview: newSuperview)
         
-        print(newSuperview ?? "wu")
-        
+            
         guard let sv = newSuperview as? UIScrollView   else {
             
             return

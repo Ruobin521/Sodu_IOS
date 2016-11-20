@@ -46,12 +46,12 @@ class HotAndRecommendPageViewModel {
                     
                 }  else {
                     
-                    let array = AnalisysHtmlHelper.analisysHotHtml(html)
+                    let array = AnalisysBookListHtmlHelper.analisysHotHtml(html)
                     BookCacheHelper.SavaBookListAsFile(array, .Hot)
                     self.bookList.removeAll()
                     self.bookList += array
                     
-                    let array2 = AnalisysHtmlHelper.analisysRecommendHtml(html)
+                    let array2 = AnalisysBookListHtmlHelper.analisysRecommendHtml(html)
                     BookCacheHelper.SavaBookListAsFile(array2, .Recommend)
                     self.bookList += array2
                     

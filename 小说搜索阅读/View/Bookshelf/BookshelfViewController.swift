@@ -59,6 +59,9 @@ class BookshelfViewController: BaseViewController {
                     self.setEmptyBackView()
                     
                 }
+            } else {
+                
+                 self.showToast(content: "个人书架加载失败",false)
             }
             
             super.endLoadData()

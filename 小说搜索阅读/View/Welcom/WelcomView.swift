@@ -30,11 +30,14 @@ class WelcomView: UIView {
         return v
         
     }
+    
+  
   
     
     
     override func didMoveToWindow() {
         
+      
         
         self.layoutIfNeeded()
         
@@ -55,17 +58,14 @@ class WelcomView: UIView {
                     
                     self.removeFromSuperview()
                     
+                  
+
             })
             
             
         }
         
     }
+    
 
-    
-   
-    
-  
-   
- 
-}
+ }

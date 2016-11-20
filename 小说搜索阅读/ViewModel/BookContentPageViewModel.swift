@@ -19,7 +19,7 @@ class BookContentPageViewModel {
     
     var currentBook:Book?
     
-   
+    
     
     var fontSize:Float = 20
     
@@ -37,11 +37,48 @@ class BookContentPageViewModel {
     func getCuttentChapterContent(url:String,completion:@escaping (_ isSuccess:Bool)->())  {
         
         
-        getHtmlByURL(url: url) { (isSuccess, html) in
+        CommonPageViewModel.getHtmlByURL(url: url) { (isSuccess, html) in
             
             if isSuccess {
                 
-                self.curentChapterText = html
+                guard let htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, html!,AnalisysType.Content) else {
+                    
+                    completion(false)
+                    
+                    return
+                    
+                }
+                
+                self.curentChapterText = htmlValue
+                
+            }
+            
+            completion(isSuccess)
+            
+        }
+        
+    }
+    
+    
+    func getBookCatalogs(url:String,completion:@escaping (_ isSuccess:Bool)->())  {
+        
+        
+      //  let catalogPageUrl = ""
+        
+        
+        CommonPageViewModel.getHtmlByURL(url: url) { (isSuccess, html) in
+            
+            if isSuccess {
+                
+                guard let htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, html!,AnalisysType.CatalogPageUrl) else {
+                    
+                    completion(false)
+                    
+                    return
+                    
+                }
+                
+                self.curentChapterText = htmlValue
                 
             }
             
@@ -53,42 +90,8 @@ class BookContentPageViewModel {
     
     
     
-    func   getHtmlByURL(url:String,completion:@escaping (_ isSuccess:Bool ,_ html:String?)->())  {
-        
-        HttpUtil.instance.AFrequest(url: url, requestMethod: .GET, postStr: nil, parameters: nil, timeOut: 30)   { (data,isSuccess) in
-            
-            DispatchQueue.main.async {
-                
-                if !isSuccess {
-                    
-                    completion(false,nil)
-                    
-                }  else {
-                    
-                    let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
-                    
-                    guard  let  str = String(data: data as! Data, encoding: String.Encoding(rawValue: enc)) else {
-                        
-                        completion(false,nil)
-                        
-                        return
-                    }
-                    
-                    guard let htmlValue = AnalisysContentHtmlHelper.AnalisysContentHtml(url, str) else {
-                        
-                        completion(false,nil)
-                        
-                        return
-                        
-                    }
-                    
-                    completion(true,htmlValue)
-                    
-                }
-                
-            }
-        }
-    }
+    
+    
     
 }
 
@@ -98,8 +101,8 @@ extension BookContentPageViewModel {
     func getSettingValues() {
         
         
-//        fontSize = 18
-//        lineSpace = 18
+        //        fontSize = 18
+        //        lineSpace = 18
         
     }
     

@@ -28,7 +28,7 @@ class SearchPageViewModel {
                     
                 }  else {
                     
-                    let array = AnalisysHtmlHelper.analisysSearchHtml(html)
+                    let array = AnalisysBookListHtmlHelper.analisysSearchHtml(html)
                     
                     self.bookList.removeAll()
                     

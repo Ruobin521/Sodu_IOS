@@ -29,7 +29,7 @@ class CommonPageViewModel {
             
             vc.title =  vc.vm.currentBook?.bookName!
         }
-       
+        
         //print(vc.vm.currentBook)
         
         if ViewModelInstance.Instance.Setting.isAutoAddToShelf {
@@ -41,7 +41,7 @@ class CommonPageViewModel {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-
+    
     
     /// 添加小说到个人书架
     ///
@@ -56,7 +56,7 @@ class CommonPageViewModel {
         
         if item != nil {
             
-          //  ToastView.instance.showGlobalToast(content: "\((book.bookName)!)已存个人书架")
+            //  ToastView.instance.showGlobalToast(content: "\((book.bookName)!)已存个人书架")
             return
         }
         
@@ -78,7 +78,7 @@ class CommonPageViewModel {
                         ToastView.instance.showGlobalToast(content: "已添加\((book.bookName)!)至个人书架")
                         
                     }
-                  
+                    
                     
                 }  else {
                     
@@ -94,12 +94,43 @@ class CommonPageViewModel {
     }
     
     
+    ///html的请求方法
     
-  /// 将中文转为utf8
-  ///
-  /// - Parameter str: <#str description#>
-  /// - Returns: <#return value description#>
-  static  func urlEncode(_ str:String) -> String {
+    static func   getHtmlByURL(url:String,completion:@escaping (_ isSuccess:Bool ,_ html:String?)->())  {
+        
+        HttpUtil.instance.AFrequest(url: url, requestMethod: .GET, postStr: nil, parameters: nil, timeOut: 30)   { (data,isSuccess) in
+            
+            DispatchQueue.main.async {
+                
+                if !isSuccess {
+                    
+                    completion(false,nil)
+                    
+                }  else {
+                    
+                    let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
+                    
+                    guard  let  str = String(data: data as! Data, encoding: String.Encoding(rawValue: enc)) else {
+                        
+                        completion(false,nil)
+                        
+                        return
+                    }
+                    
+                    
+                    completion(true,str)
+                    
+                }
+                
+            }
+        }
+    }
+    
+    /// 将中文转为utf8
+    ///
+    /// - Parameter str: <#str description#>
+    /// - Returns: <#return value description#>
+    static  func urlEncode(_ str:String) -> String {
         
         var st = str
         
@@ -108,6 +139,6 @@ class CommonPageViewModel {
         return st
         
     }
-
+    
     
 }
