@@ -9,7 +9,7 @@
 import UIKit
 
 class WelcomView: UIView {
-
+    
     
     @IBOutlet weak var headImage: UIImageView!
     
@@ -31,13 +31,8 @@ class WelcomView: UIView {
         
     }
     
-  
-  
-    
     
     override func didMoveToWindow() {
-        
-      
         
         self.layoutIfNeeded()
         
@@ -54,12 +49,9 @@ class WelcomView: UIView {
                 
                 self.tipLabel.alpha = 1
                 
-                }, completion: { (_) in
-                    
-                    self.removeFromSuperview()
-                    
-                  
-
+            }, completion: { (_) in
+                
+                self.removeFromSuperview()
             })
             
             
@@ -67,5 +59,5 @@ class WelcomView: UIView {
         
     }
     
-
- }
+    
+}

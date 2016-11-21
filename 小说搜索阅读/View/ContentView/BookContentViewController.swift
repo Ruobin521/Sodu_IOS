@@ -82,6 +82,26 @@ class BookContentViewController: UIViewController {
                 
             }
             
+            DispatchQueue.main.async {
+                
+                self?.loadingWindow.isHidden = true
+            }
+            
+        }
+        
+        
+        vm.getBookCatalogs(url: url) { [weak self] (isSuccess) in
+            
+            if  isSuccess {
+                
+                
+                
+                
+            } else {
+                
+                
+                
+            }
             
             DispatchQueue.main.async {
                 
