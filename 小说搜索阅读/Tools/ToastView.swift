@@ -69,7 +69,7 @@ class ToastView : NSObject{
         loadingContainerView.frame = frame
         
         window.windowLevel = UIWindowLevelAlert
-        window.center = CGPoint(x: (rv?.center.x)!, y: (rv?.center.y)!)
+        window.center = CGPoint(x: (rv?.center.x)!, y: (rv?.center.y)! - 50 )
         window.isHidden = false
         window.addSubview(loadingContainerView)
         

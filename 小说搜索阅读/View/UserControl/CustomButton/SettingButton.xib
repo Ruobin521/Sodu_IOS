@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingButton" customModule="小说搜索阅读" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="s5n-hV-afE" id="Iem-74-LMC"/>
+                <outlet property="imageView" destination="OwN-jF-Gui" id="XRX-cl-add"/>
+                <outlet property="titleLabel" destination="0LN-WA-flw" id="UAP-2c-yqB"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="s5n-hV-afE">
+            <rect key="frame" x="0.0" y="0.0" width="188" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="content_bar_dayLight" translatesAutoresizingMaskIntoConstraints="NO" id="OwN-jF-Gui" userLabel="imageView">
+                    <rect key="frame" x="85" y="5" width="18" height="18"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="18" id="DHc-Yd-uk1"/>
+                        <constraint firstAttribute="width" constant="18" id="L7c-s5-Rd2"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设置" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LN-WA-flw">
+                    <rect key="frame" x="0.0" y="27" width="188" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.67843137254901964" green="0.67843137254901964" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="0LN-WA-flw" secondAttribute="bottom" constant="2" id="3J3-bt-BsP"/>
+                <constraint firstItem="OwN-jF-Gui" firstAttribute="centerX" secondItem="s5n-hV-afE" secondAttribute="centerX" id="EIk-uX-SUf"/>
+                <constraint firstAttribute="trailing" secondItem="0LN-WA-flw" secondAttribute="trailing" id="Ee6-zI-ikN"/>
+                <constraint firstItem="0LN-WA-flw" firstAttribute="leading" secondItem="s5n-hV-afE" secondAttribute="leading" id="fcD-bh-rqv"/>
+                <constraint firstItem="OwN-jF-Gui" firstAttribute="top" secondItem="s5n-hV-afE" secondAttribute="top" constant="5" id="zfd-dG-aaS"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-38" y="35.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="content_bar_dayLight" width="30" height="30"/>
+    </resources>
+</document>

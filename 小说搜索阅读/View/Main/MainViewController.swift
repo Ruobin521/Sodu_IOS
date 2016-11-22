@@ -100,8 +100,11 @@ extension MainViewController {
     func login() {
         
         let vc =    NavigationViewController(rootViewController: LonginViewController())
+       // vc.modalTransitionStyle = .flipHorizontal
         
         present(vc, animated: true, completion: nil)
+        
+        
     }
     
 }

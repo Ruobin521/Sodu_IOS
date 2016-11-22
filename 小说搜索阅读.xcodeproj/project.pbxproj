@@ -65,6 +65,8 @@
 		B1C238571DD382FE00C37FA6 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C238551DD382FE00C37FA6 /* SettingTableViewCell.xib */; };
 		B1C2385B1DD388D800C37FA6 /* LonginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C238591DD388D800C37FA6 /* LonginViewController.swift */; };
 		B1C2385C1DD388D800C37FA6 /* LonginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C2385A1DD388D800C37FA6 /* LonginViewController.xib */; };
+		B1D41DBD1DE4191400C0EBB6 /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D41DBC1DE4191400C0EBB6 /* SettingButton.swift */; };
+		B1D41DC11DE4193500C0EBB6 /* SettingButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D41DC01DE4193500C0EBB6 /* SettingButton.xib */; };
 		B1E4727D1DE194C700F50D41 /* AnalisysHtmlHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E4727C1DE194C700F50D41 /* AnalisysHtmlHelper.swift */; };
 		B1E472811DE1955500F50D41 /* LyWebUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E472801DE1955500F50D41 /* LyWebUrls.swift */; };
 		F5DA2AE54C56A2A2976E8D6F /* Pods_______.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C180B4901097B286F23F8F /* Pods_______.framework */; };
@@ -134,6 +136,8 @@
 		B1C238551DD382FE00C37FA6 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		B1C238591DD388D800C37FA6 /* LonginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LonginViewController.swift; sourceTree = "<group>"; };
 		B1C2385A1DD388D800C37FA6 /* LonginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LonginViewController.xib; sourceTree = "<group>"; };
+		B1D41DBC1DE4191400C0EBB6 /* SettingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
+		B1D41DC01DE4193500C0EBB6 /* SettingButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingButton.xib; sourceTree = "<group>"; };
 		B1E4727C1DE194C700F50D41 /* AnalisysHtmlHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalisysHtmlHelper.swift; sourceTree = "<group>"; };
 		B1E472801DE1955500F50D41 /* LyWebUrls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyWebUrls.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -396,6 +400,7 @@
 		B1BEC7421DC05D9100AD8DC3 /* UserControl */ = {
 			isa = PBXGroup;
 			children = (
+				B1D41DBB1DE418ED00C0EBB6 /* CustomButton */,
 				B19B743E1DD34452008D6C5C /* CustomCell */,
 				B19B74371DD33984008D6C5C /* RefreshControl */,
 			);
@@ -417,6 +422,15 @@
 				B1C2385A1DD388D800C37FA6 /* LonginViewController.xib */,
 			);
 			path = longin;
+			sourceTree = "<group>";
+		};
+		B1D41DBB1DE418ED00C0EBB6 /* CustomButton */ = {
+			isa = PBXGroup;
+			children = (
+				B1D41DBC1DE4191400C0EBB6 /* SettingButton.swift */,
+				B1D41DC01DE4193500C0EBB6 /* SettingButton.xib */,
+			);
+			path = CustomButton;
 			sourceTree = "<group>";
 		};
 		B1E472791DE1942300F50D41 /* HtmlService */ = {
@@ -507,6 +521,7 @@
 				B19B74461DD3446E008D6C5C /* UpdateChapterTableViewCell.xib in Resources */,
 				B133A7841DDAD1EC0038B5D2 /* BookContentViewController.xib in Resources */,
 				B19B743D1DD33984008D6C5C /* RefreshView.xib in Resources */,
+				B1D41DC11DE4193500C0EBB6 /* SettingButton.xib in Resources */,
 				B19B74441DD3446E008D6C5C /* CommonBookListTableViewCell.xib in Resources */,
 				B1600A431DC26E76000A4C49 /* WelcomView.xib in Resources */,
 				B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */,
@@ -575,6 +590,7 @@
 				B17E03CF1DB0987A0061DD47 /* NavigationViewController.swift in Sources */,
 				B17E03DB1DB09B830061DD47 /* Bundle+Extensions.swift in Sources */,
 				B19B73E71DD9BD5A00171785 /* DownloadCenterPageViewModel.swift in Sources */,
+				B1D41DBD1DE4191400C0EBB6 /* SettingButton.swift in Sources */,
 				B19B74451DD3446E008D6C5C /* UpdateChapterTableViewCell.swift in Sources */,
 				B1904FB61DB75E9900534AD6 /* AnalisysBookListHtmlHelper.swift in Sources */,
 				B17E03CD1DB0984E0061DD47 /* BaseViewController.swift in Sources */,

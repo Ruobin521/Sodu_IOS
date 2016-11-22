@@ -36,8 +36,14 @@ class BookContentViewController: UIViewController {
     
     @IBOutlet weak var txtTime: UILabel!
     
-    
     @IBOutlet weak var btnRetry: UIButton!
+    
+    /// 按钮数据数组
+    let buttonsInfo = [["imageName": "content_bar_moonlight", "title": "夜间", "actionName": "moonLightAction"],
+                       ["imageName": "content_bar_mulu", "title": "目录","className":"className"],
+                       ["imageName": "content_bar_download", "title": "缓存"],
+                       ["imageName": "content_bar_setting", "title": "设置"],
+                       ]
     
     override func viewDidLoad() {
         
@@ -48,6 +54,7 @@ class BookContentViewController: UIViewController {
         initData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(showSettingBar), name: NSNotification.Name(rawValue: touchBeginNotification), object: nil)
+        
     }
     
     
@@ -63,26 +70,22 @@ class BookContentViewController: UIViewController {
         
         txtChapterName.text = vm.currentBook?.chapterName
         
-        
-         
-        
-        
         vm.getCuttentChapterContent(url: url) { [weak self] (isSuccess) in
             
-            if  isSuccess {
-                
-                self?.txtContent.text = self?.vm.curentChapterText
-                
-                self?.setTextContetAttributes()
-                
-            } else {
-                
-                self?.btnRetry .isHidden = false
-                self?.errorView.isHidden = false
-                
-            }
-            
             DispatchQueue.main.async {
+                
+                if  isSuccess {
+                    
+                    self?.txtContent.text = self?.vm.curentChapterText
+                    
+                    self?.setTextContetAttributes()
+                    
+                } else {
+                    
+                    self?.btnRetry .isHidden = false
+                    self?.errorView.isHidden = false
+                    
+                }
                 
                 self?.loadingWindow.isHidden = true
             }
@@ -249,6 +252,7 @@ extension BookContentViewController {
 extension BookContentViewController {
     
     
+    /// 初始化界面ui
     func setupUI() {
         
         UIApplication.shared.isStatusBarHidden = true
@@ -265,8 +269,6 @@ extension BookContentViewController {
         
         loadingWindow = ToastView.instance.createLoadingView()
         
-        loadingWindow.center = CGPoint(x: self.errorView.center.x, y: self.errorView.center.y - 20)
-        
         txtContent.textContainerInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 8)
         txtContent.textAlignment = .left
         
@@ -274,19 +276,40 @@ extension BookContentViewController {
         setBattaryInfo()
         setTiemInfo()
         
+        setBottonBarButton()
+        
     }
     
+    
+    
+    /// 设置电池信息
     func setBattaryInfo() {
         
-        let device = UIDevice.current
-        device.isBatteryMonitoringEnabled = true
+        UIDevice.current.isBatteryMonitoringEnabled = true
         
-        txtBattary.text = "电量:\(Int(device.batteryLevel*100))%"
+        NotificationCenter.default.addObserver(self, selector: #selector(battaryChanged), name: NSNotification.Name.UIDeviceBatteryLevelDidChange, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(battaryChanged), name: NSNotification.Name.UIDeviceBatteryLevelDidChange, object: device.batteryLevel)
+        battaryChanged()
+    }
+    
+    
+    func battaryChanged()  {
+        
+        if Int(UIDevice.current.batteryLevel) == -1 {
+            
+            txtBattary.text = "电量:加载中"
+        } else {
+            
+            txtBattary.text = "电量:\(Int(UIDevice.current.batteryLevel*100))%"
+        }
         
     }
     
+    
+    
+    
+    
+    /// 设置显示时间
     func setTiemInfo() {
         
         if timer == nil {
@@ -310,21 +333,43 @@ extension BookContentViewController {
     
     
     
-    
-    func battaryChanged(level:Float)  {
+    /// 设置底部菜单
+    func setBottonBarButton() {
         
-        if level == -1 {
+        for (i,btn) in botomMenu.subviews.enumerated() {
             
-            txtBattary.text = "电量:加载中"
-        } else {
+            guard  let settingBtn = btn as? SettingButton else {
+                
+                continue
+            }
             
-            txtBattary.text = "电量:\(Int(level*100))%"
+            let dic =  buttonsInfo[i]
+            
+            
+            guard  let imageName = dic["imageName"] ,let title = dic["title"] else {
+                
+                continue
+            }
+            
+            
+            settingBtn.imageView?.image =  UIImage(named:imageName )
+            settingBtn.titleLabel?.text = title
+            
+            if let actionName = dic["actionName"]  {
+                
+                settingBtn.addTarget(self, action: Selector(actionName), for: .touchUpInside)
+                
+            }
+            
         }
         
     }
     
     
+ 
     
+    
+    /// 设置正文显示属性
     func  setTextContetAttributes() {
         
         
@@ -346,6 +391,10 @@ extension BookContentViewController {
     }
     
     
+    
+    /// 页面即将消失时
+    ///
+    /// - Parameter animated: 释放timer ，显示状态栏
     override func viewWillDisappear(_ animated: Bool) {
         
         super.viewWillDisappear(true)
@@ -381,9 +430,7 @@ extension UITextView {
             
         }
         
-        
     }
-    
     
 }
 

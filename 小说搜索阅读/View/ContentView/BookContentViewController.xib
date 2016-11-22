@@ -56,35 +56,6 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                 </textView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJ8-HL-P5N" userLabel="底部状态栏">
-                    <rect key="frame" x="0.0" y="647" width="375" height="20"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="这里是底部状态栏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKm-xE-6fG">
-                            <rect key="frame" x="261" y="3" width="99" height="15"/>
-                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是电池信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3V-8r-emB">
-                            <rect key="frame" x="15" y="3" width="106" height="15"/>
-                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="NKm-xE-6fG" firstAttribute="leading" secondItem="h3V-8r-emB" secondAttribute="trailing" constant="140" id="435-tb-LUx"/>
-                        <constraint firstItem="NKm-xE-6fG" firstAttribute="leading" secondItem="h3V-8r-emB" secondAttribute="trailing" constant="140" id="5Ei-di-eLU"/>
-                        <constraint firstItem="h3V-8r-emB" firstAttribute="centerY" secondItem="XJ8-HL-P5N" secondAttribute="centerY" id="Pt0-C5-fVE"/>
-                        <constraint firstItem="h3V-8r-emB" firstAttribute="leading" secondItem="XJ8-HL-P5N" secondAttribute="leading" constant="15" id="Yqc-ye-pVh"/>
-                        <constraint firstItem="h3V-8r-emB" firstAttribute="centerY" secondItem="XJ8-HL-P5N" secondAttribute="centerY" id="b2d-lX-HJV"/>
-                        <constraint firstItem="NKm-xE-6fG" firstAttribute="centerY" secondItem="XJ8-HL-P5N" secondAttribute="centerY" id="cTy-c1-cpF"/>
-                        <constraint firstAttribute="trailing" secondItem="NKm-xE-6fG" secondAttribute="trailing" constant="15" id="d3q-WB-PI7"/>
-                        <constraint firstAttribute="height" constant="20" id="daf-Cw-YA2"/>
-                        <constraint firstItem="NKm-xE-6fG" firstAttribute="centerY" secondItem="XJ8-HL-P5N" secondAttribute="centerY" id="n3u-EB-YQu"/>
-                    </constraints>
-                </view>
                 <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Xo-ah-FQB" userLabel="错误提示">
                     <rect key="frame" x="65" y="161" width="245" height="245"/>
                     <subviews>
@@ -136,6 +107,35 @@
                         <action selector="retryAction:" destination="-1" eventType="touchUpInside" id="pv8-PR-HTO"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJ8-HL-P5N" userLabel="底部状态栏">
+                    <rect key="frame" x="0.0" y="647" width="375" height="20"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="这里是底部状态栏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKm-xE-6fG">
+                            <rect key="frame" x="261" y="3" width="99" height="15"/>
+                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是电池信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h3V-8r-emB">
+                            <rect key="frame" x="15" y="3" width="106" height="15"/>
+                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="NKm-xE-6fG" firstAttribute="leading" secondItem="h3V-8r-emB" secondAttribute="trailing" constant="140" id="435-tb-LUx"/>
+                        <constraint firstItem="NKm-xE-6fG" firstAttribute="leading" secondItem="h3V-8r-emB" secondAttribute="trailing" constant="140" id="5Ei-di-eLU"/>
+                        <constraint firstItem="h3V-8r-emB" firstAttribute="centerY" secondItem="XJ8-HL-P5N" secondAttribute="centerY" id="Pt0-C5-fVE"/>
+                        <constraint firstItem="h3V-8r-emB" firstAttribute="leading" secondItem="XJ8-HL-P5N" secondAttribute="leading" constant="15" id="Yqc-ye-pVh"/>
+                        <constraint firstItem="h3V-8r-emB" firstAttribute="centerY" secondItem="XJ8-HL-P5N" secondAttribute="centerY" id="b2d-lX-HJV"/>
+                        <constraint firstItem="NKm-xE-6fG" firstAttribute="centerY" secondItem="XJ8-HL-P5N" secondAttribute="centerY" id="cTy-c1-cpF"/>
+                        <constraint firstAttribute="trailing" secondItem="NKm-xE-6fG" secondAttribute="trailing" constant="15" id="d3q-WB-PI7"/>
+                        <constraint firstAttribute="height" constant="20" id="daf-Cw-YA2"/>
+                        <constraint firstItem="NKm-xE-6fG" firstAttribute="centerY" secondItem="XJ8-HL-P5N" secondAttribute="centerY" id="n3u-EB-YQu"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u9n-WL-cap" userLabel="顶部导航栏">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <subviews>
@@ -168,21 +168,49 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dlW-VN-Egm" userLabel="底部菜单">
-                    <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                    <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是底部菜单，功能视实现中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wU-ni-oHh">
-                            <rect key="frame" x="0.0" y="15" width="375" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q4B-b4-dyQ" customClass="SettingButton" customModule="小说搜索阅读" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="94" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Auq-Cn-IUB" customClass="SettingButton" customModule="小说搜索阅读" customModuleProvider="target">
+                            <rect key="frame" x="188" y="0.0" width="93.5" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55w-Vk-nxa" customClass="SettingButton" customModule="小说搜索阅读" customModuleProvider="target">
+                            <rect key="frame" x="281.5" y="0.0" width="93.5" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HG7-Gk-JPF" customClass="SettingButton" customModule="小说搜索阅读" customModuleProvider="target">
+                            <rect key="frame" x="94" y="0.0" width="94" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="0wU-ni-oHh" secondAttribute="trailing" id="CIz-Ff-AMc"/>
-                        <constraint firstItem="0wU-ni-oHh" firstAttribute="centerY" secondItem="dlW-VN-Egm" secondAttribute="centerY" id="hV2-Gs-VKs"/>
-                        <constraint firstItem="0wU-ni-oHh" firstAttribute="leading" secondItem="dlW-VN-Egm" secondAttribute="leading" id="nki-SP-PJY"/>
-                        <constraint firstAttribute="height" constant="50" id="xVU-lp-ukW"/>
+                        <constraint firstItem="55w-Vk-nxa" firstAttribute="height" secondItem="Auq-Cn-IUB" secondAttribute="height" id="09f-2h-nnV"/>
+                        <constraint firstItem="HG7-Gk-JPF" firstAttribute="centerY" secondItem="Q4B-b4-dyQ" secondAttribute="centerY" id="09m-7Q-AsD"/>
+                        <constraint firstItem="Auq-Cn-IUB" firstAttribute="height" secondItem="HG7-Gk-JPF" secondAttribute="height" id="0f2-dl-327"/>
+                        <constraint firstItem="HG7-Gk-JPF" firstAttribute="width" secondItem="Q4B-b4-dyQ" secondAttribute="width" id="1nK-d7-ozY"/>
+                        <constraint firstItem="55w-Vk-nxa" firstAttribute="width" secondItem="Auq-Cn-IUB" secondAttribute="width" id="NPx-Js-gJK"/>
+                        <constraint firstItem="55w-Vk-nxa" firstAttribute="leading" secondItem="Auq-Cn-IUB" secondAttribute="trailing" id="ODe-N8-NwO"/>
+                        <constraint firstItem="HG7-Gk-JPF" firstAttribute="top" secondItem="Q4B-b4-dyQ" secondAttribute="top" id="P9f-CZ-ynF"/>
+                        <constraint firstItem="Q4B-b4-dyQ" firstAttribute="top" secondItem="dlW-VN-Egm" secondAttribute="top" id="RvF-JG-G1d"/>
+                        <constraint firstAttribute="bottom" secondItem="Q4B-b4-dyQ" secondAttribute="bottom" id="VpA-dF-Ugn"/>
+                        <constraint firstItem="Auq-Cn-IUB" firstAttribute="leading" secondItem="HG7-Gk-JPF" secondAttribute="trailing" id="X21-9f-Fxe"/>
+                        <constraint firstItem="Q4B-b4-dyQ" firstAttribute="leading" secondItem="dlW-VN-Egm" secondAttribute="leading" id="Xku-v2-JgI"/>
+                        <constraint firstItem="55w-Vk-nxa" firstAttribute="bottom" secondItem="Auq-Cn-IUB" secondAttribute="bottom" id="a2N-Eh-q44"/>
+                        <constraint firstItem="Auq-Cn-IUB" firstAttribute="centerY" secondItem="HG7-Gk-JPF" secondAttribute="centerY" id="abM-Me-dcO"/>
+                        <constraint firstItem="Auq-Cn-IUB" firstAttribute="top" secondItem="HG7-Gk-JPF" secondAttribute="top" id="cxz-jU-O31"/>
+                        <constraint firstItem="55w-Vk-nxa" firstAttribute="centerY" secondItem="Auq-Cn-IUB" secondAttribute="centerY" id="glM-k1-Ajj"/>
+                        <constraint firstAttribute="trailing" secondItem="55w-Vk-nxa" secondAttribute="trailing" id="hZn-oQ-5a1"/>
+                        <constraint firstItem="55w-Vk-nxa" firstAttribute="top" secondItem="Auq-Cn-IUB" secondAttribute="top" id="iKZ-Y8-cjP"/>
+                        <constraint firstItem="Auq-Cn-IUB" firstAttribute="bottom" secondItem="HG7-Gk-JPF" secondAttribute="bottom" id="igg-gE-zbc"/>
+                        <constraint firstItem="HG7-Gk-JPF" firstAttribute="bottom" secondItem="Q4B-b4-dyQ" secondAttribute="bottom" id="in4-65-mg5"/>
+                        <constraint firstItem="HG7-Gk-JPF" firstAttribute="leading" secondItem="Q4B-b4-dyQ" secondAttribute="trailing" id="l3e-6z-Q39"/>
+                        <constraint firstItem="Auq-Cn-IUB" firstAttribute="width" secondItem="HG7-Gk-JPF" secondAttribute="width" id="tYp-Ov-Rha"/>
+                        <constraint firstAttribute="height" constant="44" id="xVU-lp-ukW"/>
                     </constraints>
                 </view>
             </subviews>

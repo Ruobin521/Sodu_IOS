@@ -88,7 +88,6 @@ extension HotAndRecommendViewController {
         cell.txtUpdateChpterName?.text = book.chapterName
         
         
-        
         return cell
     }
     
@@ -99,8 +98,7 @@ extension HotAndRecommendViewController {
         
     }
     
-    
-    
+     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -128,6 +126,12 @@ extension HotAndRecommendViewController {
         
         return [action1]
         
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        return  userLogon
     }
     
     

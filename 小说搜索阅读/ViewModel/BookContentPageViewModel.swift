@@ -70,15 +70,14 @@ class BookContentPageViewModel {
             
             if isSuccess {
                 
-                guard let htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, html!,AnalisysType.CatalogPageUrl) else {
-                    
-                    completion(false)
-                    
-                    return
-                    
-                }
+//                guard let htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, html!,AnalisysType.CatalogPageUrl) else {
+//                    
+//                    completion(false)
+//                    
+//                    return
+//                    
+//                }
                 
-                self.curentChapterText = htmlValue
                 
             }
             

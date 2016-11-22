@@ -116,6 +116,11 @@ extension UpdateChapterViewController {
 extension UpdateChapterViewController {
     
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 105
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         
         return vm.chapterList.count
@@ -152,10 +157,10 @@ extension UpdateChapterViewController {
         
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        
-        return 5
-    }
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        
+//        return 10
+//    }
     
 }
 
