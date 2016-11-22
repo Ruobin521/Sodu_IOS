@@ -19,7 +19,8 @@ import UIKit
     
     @IBOutlet weak var titleLabel: UILabel?
     
-    var actionName:String?
+     
+    
     
     override init(frame: CGRect) {
         
@@ -31,6 +32,9 @@ import UIKit
     required init?(coder aDecoder: NSCoder) {
         
         super.init(coder: aDecoder)
+        
+        
+        
         initialFromXib()
     }
     
@@ -44,7 +48,28 @@ import UIKit
         contentView.frame = bounds
         addSubview(contentView)
         
-         
+        contentView.isUserInteractionEnabled = false
+        
+        self.isUserInteractionEnabled = true
+        
+        self.addTarget(self, action: #selector(setHeightlightedBackgroundColor), for: .touchDown)
+        self.addTarget(self, action: #selector(setNormalBackgroundColor), for: .touchUpOutside)
+        self.addTarget(self, action: #selector(setNormalBackgroundColor), for: .touchUpInside)
+    }
+    
+    
+    
+    func setHeightlightedBackgroundColor() {
+        
+        self.contentView.backgroundColor =   #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        
+    }
+    
+    
+    func setNormalBackgroundColor() {
+        
+        self.contentView.backgroundColor =   UIColor.clear
+        
     }
     
 }

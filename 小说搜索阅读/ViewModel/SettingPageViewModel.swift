@@ -12,7 +12,7 @@ class SettingPageViewModel {
     
     lazy var isAutoAddToShelf = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsAutoAddToShelf)
     lazy var IsDownLoadOnWWAN = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsDownLoadOnWWAN)
-    
+    lazy var isMoomlightMode = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsDownLoadOnWWAN)
     
     var secondarySettingList = [SettingEntity]()
     var switchSettingList = [SettingEntity]()
@@ -41,6 +41,10 @@ extension SettingPageViewModel {
         case SettingKey.IsDownLoadOnWWAN:
             
             IsDownLoadOnWWAN = value as! Bool
+            
+        case SettingKey.IsMoomlightMode:
+            
+            isMoomlightMode = value as! Bool
             
         default: break
             

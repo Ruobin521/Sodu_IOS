@@ -39,10 +39,10 @@ class BookContentViewController: UIViewController {
     @IBOutlet weak var btnRetry: UIButton!
     
     /// 按钮数据数组
-    let buttonsInfo = [["imageName": "content_bar_moonlight", "title": "夜间", "actionName": "moonLightAction"],
-                       ["imageName": "content_bar_mulu", "title": "目录","className":"className"],
-                       ["imageName": "content_bar_download", "title": "缓存"],
-                       ["imageName": "content_bar_setting", "title": "设置"],
+    let buttonsInfo = [["imageName": "content_bar_moonlight", "title": "夜间"],
+                       ["imageName": "content_bar_mulu", "title": "目录","className":"className","actionName" : "muluClick"],
+                       ["imageName": "content_bar_download", "title": "缓存","actionName" : "downLoadClick"],
+                       ["imageName": "content_bar_setting", "title": "设置","actionName" :  "settingClick"],
                        ]
     
     override func viewDidLoad() {
@@ -147,6 +147,7 @@ class BookContentViewController: UIViewController {
 extension BookContentViewController {
     
     
+    ///触摸屏幕时，控制菜单的显隐（一般都是隐藏）
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         if isShowMenu {
@@ -172,7 +173,7 @@ extension BookContentViewController {
     }
     
     
-    
+    /// 设置菜单显隐
     func  showSettingBar() {
         
         if isShowing {
@@ -244,6 +245,50 @@ extension BookContentViewController {
         
         
     }
+    
+    
+    
+    func  setMoonlightMode(_ btn:SettingButton) {
+        
+        vm.isMoomlightMode = !vm.isMoomlightMode
+        
+        let imageName =  vm.isMoomlightMode ? "content_bar_dayLight" : "content_bar_moonlight"
+        let title = vm.isMoomlightMode ? "日间" : "夜间"
+        
+        btn.imageView?.image = UIImage(named:   imageName)
+        btn.titleLabel?.text = title
+        
+        setColor()
+    }
+    
+    
+    /// 点击目录
+    func muluClick() {
+        
+        print("点击目录")
+        
+    }
+    
+    
+    
+    
+    //点击缓存
+    func downLoadClick() {
+        
+        print("点击下载按钮")
+        
+        
+    }
+    
+    
+    //点击设置
+    func settingClick() {
+        
+        print("点击设置按钮")
+        
+    }
+    
+    
 }
 
 
@@ -272,11 +317,37 @@ extension BookContentViewController {
         txtContent.textContainerInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 8)
         txtContent.textAlignment = .left
         
+        setColor()
         
         setBattaryInfo()
+        
         setTiemInfo()
         
         setBottonBarButton()
+        
+        setColor()
+        
+        
+    }
+    
+    
+    func  setColor() {
+        
+        if vm.isMoomlightMode {
+            
+            self.view.backgroundColor =  vm.moonlightBackColor
+            self.txtTime.textColor = vm.moonlightForegroundColor
+            self.txtBattary.textColor = vm.moonlightForegroundColor
+            self.txtContent.textColor = vm.moonlightForegroundColor
+            
+        } else {
+            
+            self.view.backgroundColor =  vm.daylightBackColor
+            self.txtTime.textColor = vm.daylightForegroundColor
+            self.txtBattary.textColor = vm.daylightForegroundColor
+            self.txtContent.textColor = vm.daylightForegroundColor
+            
+        }
         
     }
     
@@ -352,13 +423,17 @@ extension BookContentViewController {
             }
             
             
-            settingBtn.imageView?.image =  UIImage(named:imageName )
+            settingBtn.imageView?.image =  UIImage(named:imageName  )
+            
             settingBtn.titleLabel?.text = title
             
             if let actionName = dic["actionName"]  {
                 
                 settingBtn.addTarget(self, action: Selector(actionName), for: .touchUpInside)
                 
+            } else {
+                
+                settingBtn.addTarget(self, action: #selector(setMoonlightMode), for: .touchUpInside)
             }
             
         }
@@ -366,7 +441,7 @@ extension BookContentViewController {
     }
     
     
- 
+    
     
     
     /// 设置正文显示属性
@@ -384,7 +459,19 @@ extension BookContentViewController {
         
         dic[NSParagraphStyleAttributeName] = paragraphStyle
         
-        dic[NSForegroundColorAttributeName] = #colorLiteral(red: 0.1058823529, green: 0.2392156863, blue: 0.1450980392, alpha: 1)
+        
+        var color:UIColor!
+        
+        if vm.isMoomlightMode {
+            
+            color = vm.moonlightForegroundColor
+            
+        } else {
+            
+            color = vm.daylightForegroundColor
+        }
+        
+        dic[NSForegroundColorAttributeName] = color
         
         txtContent.attributedText = NSAttributedString(string: txtContent.text, attributes:dic)
         
@@ -393,8 +480,7 @@ extension BookContentViewController {
     
     
     /// 页面即将消失时
-    ///
-    /// - Parameter animated: 释放timer ，显示状态栏
+    
     override func viewWillDisappear(_ animated: Bool) {
         
         super.viewWillDisappear(true)
@@ -410,9 +496,12 @@ extension BookContentViewController {
     
 }
 
+
+
+
 extension UITextView {
     
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override  open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         guard  let p = touches.first?.location(in: self.superview)  else{
             

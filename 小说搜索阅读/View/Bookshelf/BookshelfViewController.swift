@@ -170,7 +170,7 @@ extension BookshelfViewController {
                 
                 let book =   self.vm.bookList[indexPath.section]
                 
-                self.vm.removeBookFromList(book,indexPath: indexPath) { (success) in
+                self.vm.removeBookFromList(book) { (success) in
                     
                     DispatchQueue.main.async {
                         
@@ -180,7 +180,7 @@ extension BookshelfViewController {
                             
                             array.append(indexPath)
                             
-                            
+                            self.vm.bookList.remove(at: indexPath.section)
                             
                             tableView.deleteSections([indexPath.section], with:  UITableViewRowAnimation.automatic)
                             

@@ -19,6 +19,7 @@ enum SettingKey : String {
     case IsFirstLaunchKey = "IsFirstLaunch"
     case IsAutoAddToShelf = "IsAutoAddToShelf"
     case IsDownLoadOnWWAN = "IsDownLoadOnWWAN"
+    case IsMoomlightMode = "isMoomlightMode"
 }
 
 class UserDefaultsHelper {

@@ -17,7 +17,7 @@ enum AnalisysType {
 
 class AnalisysHtmlHelper {
     
-    static  func AnalisysHtml(_ urlStr:String, _ html:String, _ type:AnalisysType) -> String? {
+    static  func AnalisysHtml(_ urlStr:String, _ html:String, _ type:AnalisysType) -> Any? {
         
         let url = URL(string: urlStr);
         
@@ -388,7 +388,7 @@ class AnalisysHtmlHelper {
             
             if type == .Content {
                 
-                 value = analisysCommonHtml(html,"<div id=\"txtright\">.*?<span id=\"endtips\">")
+                value = analisysCommonHtml(html,"<div id=\"txtright\">.*?<span id=\"endtips\">")
                 
             } else if type == .CatalogPageUrl {
                 
@@ -399,15 +399,15 @@ class AnalisysHtmlHelper {
                 
                 
             }
-
-             
+            
+            
             
         /// 去笔趣阁
         case  LyWebUrls.qbqg:
             
             if type == .Content {
                 
-              value = analisysCommonHtml(html,"<div id=\"?content\"?.*?</div>")
+                value = analisysCommonHtml(html,"<div id=\"?content\"?.*?</div>")
                 
             } else if type == .CatalogPageUrl {
                 
@@ -418,7 +418,7 @@ class AnalisysHtmlHelper {
                 
                 
             }
-           
+            
             
         ///秋水轩
         case  LyWebUrls.qsx:
@@ -437,14 +437,14 @@ class AnalisysHtmlHelper {
                 
             }
             
-           
+            
             
         /// 卓雅居
         case  LyWebUrls.zyj:
             
             if type == .Content {
                 
-                 value = analisysCommonHtml(html,"<div id=\"?content\"?.*?</div>")
+                value = analisysCommonHtml(html,"<div id=\"?content\"?.*?</div>")
                 
             } else if type == .CatalogPageUrl {
                 
@@ -456,7 +456,7 @@ class AnalisysHtmlHelper {
                 
             }
             
-          
+            
             
         /// 81中文网
         case  LyWebUrls.xs81:
@@ -475,14 +475,14 @@ class AnalisysHtmlHelper {
                 
             }
             
-           
+            
             
         /// 风云
         case  LyWebUrls.fyxs:
             
             if type == .Content {
                 
-                 value = analisysCommonHtml(html,"<p id=\"?content\"?.*?</p>")
+                value = analisysCommonHtml(html,"<p id=\"?content\"?.*?</p>")
                 
             } else if type == .CatalogPageUrl {
                 
@@ -494,13 +494,13 @@ class AnalisysHtmlHelper {
                 
             }
             
-          
+            
             
         /// 大书包
         case  LyWebUrls.dsb:
             if type == .Content {
                 
-                 value = analisysCommonHtml(html,"<div class=\"hr101\">.*?<span id=\"endtips\">")
+                value = analisysCommonHtml(html,"<div class=\"hr101\">.*?<span id=\"endtips\">")
                 
             } else if type == .CatalogPageUrl {
                 
@@ -511,7 +511,7 @@ class AnalisysHtmlHelper {
                 
             }
             
-           
+            
             
         default:
             
@@ -576,7 +576,7 @@ extension AnalisysHtmlHelper {
         
         var tempHtml = (str as  NSString).substring(with: listHtml.range)
         
-        tempHtml = tempHtml.replacingOccurrences(of: "书路（www.shu6.cc）最快更新！", with: "")
+         
         
         let tempReg = try? NSRegularExpression(pattern: "记住.*?\\(.*?\\)", options: [])
         
@@ -588,7 +588,8 @@ extension AnalisysHtmlHelper {
         
         
         tempHtml = replaceSymbol(str: tempHtml)
-        
+        tempHtml = tempHtml.replacingOccurrences(of: "书路（www.shu6.cc）最快更新！", with: "")
+
         return tempHtml
     }
     
@@ -1026,10 +1027,10 @@ extension AnalisysHtmlHelper {
         
         //        //http://www.lwtxt.net/html/1213_694101.html
         //        // http://www.lwtxt.net/modules/article/reader.php?aid=1213
-      
+        
         let index1 = lastIndexof(url, "/") + 1
         let index2 = lastIndexof(url, "_")
-         
+        
         let bookid =  (url as NSString).substring(with: NSRange(location: index1,length: index2 - index1))
         
         let  result = "http://www.lwtxt.net/modules/article/reader.php?aid=" + bookid;
@@ -1041,8 +1042,8 @@ extension AnalisysHtmlHelper {
     /// 大书包
     static func analysisDsbCatalogPageUrl( url:String) -> String {
         
-         //http://www.dashubao.cc/html/57509_22892059.html
-         // http://www.dashubao.cc/modules/article/reader.php?aid=57509
+        //http://www.dashubao.cc/html/57509_22892059.html
+        // http://www.dashubao.cc/modules/article/reader.php?aid=57509
         
         let index1 = lastIndexof(url, "/") + 1
         let index2 = lastIndexof(url, "_")

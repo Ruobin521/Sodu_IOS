@@ -39,7 +39,7 @@ class Book: NSObject,JSON {
     var   coverImageName:String?
     
     /// 目录
-    var   catalogs:[Catalog]?
+    var   catalogs:[BookCatalog]?
     
     /// 来源网站名称
     var   lywzName:String?
@@ -76,7 +76,7 @@ extension Book {
 }
 
 
-class Catalog:NSObject {
+class BookCatalog:NSObject {
     
     
     var booKId :String?

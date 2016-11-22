@@ -62,7 +62,7 @@ class BookShelfPageViewModel {
     }
     
     
-    func removeBookFromList(_ book:Book,indexPath:IndexPath,completion:@escaping (_ isSuccess:Bool)->())  {
+    func removeBookFromList(_ book:Book,completion:@escaping (_ isSuccess:Bool)->())  {
         
         HttpUtil.instance.request(url: SoDuUrl.bookShelfPage + "?id=\(book.bookId!)", requestMethod: .GET,postStr:nil,true) { (str, isSuccess) in
             
@@ -71,10 +71,7 @@ class BookShelfPageViewModel {
                 
                 if isSuccess && (str?.contains("取消收藏成功"))!{
                     
-                    self.bookList.remove(at: indexPath.section)
-                    
                     completion(true)
-                    
                     
                     
                 }  else {
