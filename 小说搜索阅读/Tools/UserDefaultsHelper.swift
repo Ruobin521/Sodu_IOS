@@ -1,4 +1,4 @@
-
+//
 //
 //  VersionHelper.swift
 //  小说搜索阅读
@@ -11,16 +11,7 @@ import Foundation
 import UIKit
 
 
-enum SettingKey : String {
-    
-    case UserNameKey = "UserName"
-    case PasswordKey = "Password"
-    case AppVersionKey = "AppVersion"
-    case IsFirstLaunchKey = "IsFirstLaunch"
-    case IsAutoAddToShelf = "IsAutoAddToShelf"
-    case IsDownLoadOnWWAN = "IsDownLoadOnWWAN"
-    case IsMoomlightMode = "isMoomlightMode"
-}
+
 
 class UserDefaultsHelper {
     
@@ -35,11 +26,22 @@ class UserDefaultsHelper {
     static func getBoolUserDefaultByKey(key:SettingKey) -> Bool {
         
         let value = UserDefaults.standard.value(forKey: key.rawValue) as? Bool  ?? false
-        
-        print( "\(key.rawValue) : \(value)")
-        
+                 
         return value
     }
+    
+    
+    static func getFloatUserDefaultByKey(key:SettingKey) -> Float {
+        
+        guard let value = UserDefaults.standard.value(forKey: key.rawValue) as? String else{
+            
+            return 0
+        }
+        
+        
+        return Float(value)!
+    }
+    
     
     
     

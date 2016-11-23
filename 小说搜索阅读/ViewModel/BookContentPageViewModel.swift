@@ -24,14 +24,15 @@ class BookContentPageViewModel {
     
     let moonlightForegroundColor:UIColor = #colorLiteral(red: 0.3529411765, green: 0.3529411765, blue: 0.3529411765, alpha: 1)
     
-    let  daylightBackColor:UIColor = #colorLiteral(red: 0.6666666667, green: 0.7725490196, blue: 0.6666666667, alpha: 1)
     
-    let  daylightForegroundColor:UIColor =  #colorLiteral(red: 0.1058823529, green: 0.2392156863, blue: 0.1450980392, alpha: 1)
+    let  daylightBackColor:UIColor = UIColor.colorWithHexString(hex: ViewModelInstance.Instance.Setting.contentBackColor)
+    
+    let  daylightForegroundColor:UIColor =  UIColor.colorWithHexString(hex: ViewModelInstance.Instance.Setting.contentTextColor)
     
     
-    var fontSize:Float = 20
+    var fontSize:Float = ViewModelInstance.Instance.Setting.contentTextSize
     
-    var lineSpace:Float = 10
+    var lineSpace:Float = ViewModelInstance.Instance.Setting.contentLineSpace
     
     var isMoomlightMode = false {
         
@@ -91,7 +92,7 @@ class BookContentPageViewModel {
             
             if isSuccess {
                 
-                guard let _ = AnalisysHtmlHelper.AnalisysHtml(catalogUrl, html!,AnalisysType.CatalogList) as? ([Book], String, String) else {
+                guard let _ = AnalisysHtmlHelper.AnalisysHtml(catalogUrl, html!,AnalisysType.CatalogList) as? (catalogs:[BookCatalog], introduction:String, cover:String) else {
                     
                     completion(false)
                     
@@ -102,8 +103,6 @@ class BookContentPageViewModel {
             }
             
             completion(isSuccess)
-            
-            
             
         }
         
@@ -124,4 +123,36 @@ extension BookContentPageViewModel {
         
     }
     
+}
+
+extension UIColor {
+    
+    /**
+     Make color with hex string
+     - parameter hex: 16进制字符串
+     - returns: RGB
+     */
+    static func colorWithHexString (hex: String) -> UIColor {
+        
+        var cString: String = hex.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString = (cString as NSString).substring(from: 1)
+        }
+        
+        if (cString.characters.count != 6) {
+            return UIColor.gray
+        }
+        
+        let rString = (cString as NSString).substring(to: 2)
+        let gString = ((cString as NSString).substring(from: 2) as NSString).substring(to: 2)
+        let bString = ((cString as NSString).substring(from: 4) as NSString).substring(to: 2)
+        
+        var r:CUnsignedInt = 0, g:CUnsignedInt = 0, b:CUnsignedInt = 0;
+        Scanner(string: rString).scanHexInt32(&r)
+        Scanner(string: gString).scanHexInt32(&g)
+        Scanner(string: bString).scanHexInt32(&b)
+        
+        return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: CGFloat(1))
+    }
 }

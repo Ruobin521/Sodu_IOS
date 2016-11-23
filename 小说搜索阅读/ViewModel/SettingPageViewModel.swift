@@ -8,11 +8,45 @@
 
 import Foundation
 
+
+enum SettingKey : String {
+    
+    case UserNameKey = "UserName"
+    case PasswordKey = "Password"
+    case AppVersionKey = "AppVersion"
+    case IsFirstLaunchKey = "IsFirstLaunch"
+    case IsAutoAddToShelf = "IsAutoAddToShelf"
+    case IsDownLoadOnWWAN = "IsDownLoadOnWWAN"
+    
+    
+    /// 正文阅读设置选项
+    case IsMoomlightMode = "isMoomlightMode"
+    case ContentTextSize = "ContentTextSize"
+    case ContentLineSpace = "ContentLineSpace"
+    case ContentTextColor = "ContentTextColor"
+    case ContentBackColor = "ContentBackColor"
+}
+
 class SettingPageViewModel {
     
+    
+    
     lazy var isAutoAddToShelf = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsAutoAddToShelf)
-    lazy var IsDownLoadOnWWAN = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsDownLoadOnWWAN)
-    lazy var isMoomlightMode = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsDownLoadOnWWAN)
+    lazy var isDownLoadOnWWAN = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsDownLoadOnWWAN)
+    
+    
+    //正文
+    lazy var isMoomlightMode = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsMoomlightMode)
+    
+    lazy var contentTextSize:Float = (UserDefaultsHelper.getFloatUserDefaultByKey(key: .ContentTextSize)  == Float(0) ) ? Float(20) : UserDefaultsHelper.getFloatUserDefaultByKey(key: .ContentTextSize)
+    
+    lazy var contentLineSpace:Float = (UserDefaultsHelper.getFloatUserDefaultByKey(key: .ContentLineSpace)  == Float(0) ) ? Float(10) :  UserDefaultsHelper.getFloatUserDefaultByKey(key: .ContentLineSpace)
+    
+    lazy var contentBackColor = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentBackColor) ?? "AAC5AA"
+    
+    lazy var contentTextColor = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentTextColor) ??  "1B3D25"
+    
+    
     
     var secondarySettingList = [SettingEntity]()
     var switchSettingList = [SettingEntity]()
@@ -40,11 +74,16 @@ extension SettingPageViewModel {
             
         case SettingKey.IsDownLoadOnWWAN:
             
-            IsDownLoadOnWWAN = value as! Bool
+            isDownLoadOnWWAN = value as! Bool
             
         case SettingKey.IsMoomlightMode:
             
-            isMoomlightMode = value as! Bool
+            if isMoomlightMode != (value as? Bool) {
+                
+                isMoomlightMode = value as! Bool
+            }
+            
+            return
             
         default: break
             
@@ -96,7 +135,7 @@ extension  SettingPageViewModel {
         item2.txtTitle = "在2G/3G/4G下缓存"
         item2.icon =  "wwan"
         item2.key = SettingKey.IsDownLoadOnWWAN
-        item2.value =  IsDownLoadOnWWAN
+        item2.value =  isDownLoadOnWWAN
         
         switchSettingList.append(item2)
         

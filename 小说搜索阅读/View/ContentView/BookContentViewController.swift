@@ -455,7 +455,7 @@ extension BookContentViewController {
         dic[NSFontAttributeName] =  UIFont.systemFont(ofSize: CGFloat(vm.fontSize))
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = CGFloat(8)
+        paragraphStyle.lineSpacing =  CGFloat(vm.lineSpace)
         
         dic[NSParagraphStyleAttributeName] = paragraphStyle
         
