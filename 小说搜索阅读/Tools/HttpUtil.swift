@@ -28,7 +28,12 @@ class  HttpUtil :AFHTTPSessionManager  {
         shared.requestSerializer.setValue("gzip", forHTTPHeaderField: "Content-Encoding")
         
         shared.requestSerializer.setValue("gzip, deflate, sdch", forHTTPHeaderField: "Accept-Encoding")
+       
+        
+        shared.requestSerializer.willChangeValue(forKey: "timeoutInterval")
         shared.requestSerializer.timeoutInterval = 10
+        shared.didChangeValue(forKey: "timeoutInterval")
+        
         
         shared.responseSerializer = AFHTTPResponseSerializer()
         shared.responseSerializer.acceptableContentTypes?.insert("text/html")
@@ -144,6 +149,9 @@ class  HttpUtil :AFHTTPSessionManager  {
             print(error ?? "")
             
         }
+        
+        print ("开始加载数据 \(url) 数据")
+
         
         if requestMethod == .GET {
             

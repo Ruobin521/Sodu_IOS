@@ -540,8 +540,14 @@ extension AnalisysHtmlHelper {
         
         var authorName:String?
         
+        let uri = URL(string: url)
+        
+        
+        let baseUrl = uri?.deletingLastPathComponent().absoluteString
+       
+        
         /// 目录
-        if   let regex = try? NSRegularExpression(pattern: "<dd><a href=\"(.*?)\">(.*?)</a></dd>", options: []) {
+        if   let regex = try? NSRegularExpression(pattern: "<dd><a href=\"/(.*?)\">(.*?)</a></dd>", options: []) {
             
             let matches = regex.matches(in: str, options: [], range: NSRange(location: 0, length: str.characters.count))
             
@@ -559,8 +565,8 @@ extension AnalisysHtmlHelper {
                     
                     let catalog:BookCatalog = BookCatalog()
                     
-                    catalog.chapterIndex =  i
-                    catalog.chapterUrl =  (str as NSString).substring(with: (item.rangeAt(1)))
+                    catalog.chapterIndex =  i + 1
+                    catalog.chapterUrl = baseUrl! +  (str as NSString).substring(with: (item.rangeAt(1)))
                     catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
                     
                     catalogs.append(catalog)

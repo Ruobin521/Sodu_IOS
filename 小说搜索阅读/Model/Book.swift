@@ -73,6 +73,20 @@ extension Book {
         book.updateListPageUrl = self.updateListPageUrl
         book.updateTime = self.updateTime
         
+        if catalogs != nil   {
+            
+            book.catalogs = [BookCatalog]()
+            
+            for item in catalogs! {
+                
+                let temp = item.clone()
+                
+                book.catalogs?.append(temp as! BookCatalog)
+                
+            }
+        }
+        
+        
         return book
     }
     
@@ -82,7 +96,7 @@ extension Book {
 
 class BookCatalog:NSObject {
     
-    var chapterIndex:Int = 0
+    var chapterIndex:Int! = 0
     
     var bookId :String?
     
@@ -100,9 +114,30 @@ class BookCatalog:NSObject {
         temp.bookId = self.bookId
         temp.chapterName = self.chapterName
         temp.chapterUrl = self.chapterUrl
-        temp.chapterName = self.chapterContent
+        temp.chapterContent = self.chapterContent
         
         return temp
+    }
+    
+    override init() {
+        
+        super.init()
+        
+    }
+    
+    
+    convenience init(_ bookId:String?,_ chapterName:String?,_ chapterUrl:String?,_ chapterContent:String?) {
+        
+        self.init()
+        
+        self.bookId = bookId
+        
+        self.chapterName = chapterName
+        
+        self.chapterUrl = chapterUrl
+        
+        self.chapterContent = chapterContent
+        
     }
     
 }

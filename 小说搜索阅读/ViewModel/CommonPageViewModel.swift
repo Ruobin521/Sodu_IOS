@@ -98,7 +98,7 @@ class CommonPageViewModel {
     
     static func   getHtmlByURL(url:String,completion:@escaping (_ isSuccess:Bool ,_ html:String?)->())  {
         
-        HttpUtil.instance.AFrequest(url: url, requestMethod: .GET, postStr: nil, parameters: nil, timeOut: 30)   { (data,isSuccess) in
+        HttpUtil.instance.AFrequest(url: url, requestMethod: .GET, postStr: nil, parameters: nil, timeOut: 10)   { (data,isSuccess) in
             
             DispatchQueue.main.async {
                 
@@ -146,19 +146,22 @@ class CommonPageViewModel {
             
             if isSuccess {
                 
-                guard let result = AnalisysHtmlHelper.AnalisysHtml(catalogPageUrl, html!,AnalisysType.CatalogList) as? (catalogs:[BookCatalog], introduction:String,authorName:String, cover:String) else {
+                guard let result = AnalisysHtmlHelper.AnalisysHtml(catalogPageUrl, html!,AnalisysType.CatalogList) as? (catalogs:[BookCatalog]?, introduction:String?,authorName:String?, cover:String?) else {
                     
                     completion(false,nil)
                     
                     return
                     
                 }
+                print("获取小说目录成功")
+                completion(true,result)
                 
-                completion(false,result)
+                
                 
             } else {
-                
+                print("获取小说目录失败")
                 completion(false,nil)
+                
             }
             
         }

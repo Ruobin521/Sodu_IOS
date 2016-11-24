@@ -11,15 +11,7 @@ import UIKit
 
 class BookContentPageViewModel {
     
-    var curentChapterText:String?
-    
-    var nextChapterText:String?
-    
-    var preChapterText:String?
-    
-    var currentBook:Book?
-    
-    
+    //显示部分
     let  moonlightBackColor:UIColor = #colorLiteral(red: 0.04705882353, green: 0.04705882353, blue: 0.04705882353, alpha: 1)
     
     let  moonlightForegroundColor:UIColor = #colorLiteral(red: 0.3529411765, green: 0.3529411765, blue: 0.3529411765, alpha: 1)
@@ -50,63 +42,134 @@ class BookContentPageViewModel {
     }
     
     
+    //数据部分
+    var contentRetryCount = 0
+    var catalogsRetryCount = 0
     
-    func getCuttentChapterContent(url:String,completion:@escaping (_ isSuccess:Bool)->())  {
+    var isRequestContent = false
+    var isRequestCatalogs = false
+    
+    
+    var curentChapterText:String?
+    
+    var nextChapterText:String?
+    
+    var preChapterText:String?
+    
+    var currentCatalog:BookCatalog?
+    
+    var currentBook:Book?  {
+        
+        didSet {
+            
+            currentCatalog = BookCatalog(currentBook?.bookId, currentBook?.chapterName, currentBook?.contentPageUrl, nil)
+            
+        }
+    }
+    
+    
+    func getCuttentChapterContent(_ url:String,_ completion:@escaping (_ isSuccess:Bool)->())  {
         
         
-        CommonPageViewModel.getHtmlByURL(url: url) { (isSuccess, html) in
+        CommonPageViewModel.getHtmlByURL(url: url) {[weak self] (isSuccess, html) in
             
             if isSuccess {
                 
-                guard let contentHtml = html ,let  htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, contentHtml,AnalisysType.Content) as? String else {
+                let  htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, html!,AnalisysType.Content) as? String
+                self?.curentChapterText = htmlValue
+                completion(true)
+                self?.contentRetryCount = 0
+                self?.isRequestContent = false
+                print("获取\((self?.currentBook?.bookName) ?? " ")正文成功")
+                
+            }  else {
+                
+                self?.contentRetryCount += 1
+                
+                if self?.contentRetryCount  == 4  {
                     
                     completion(false)
+                    self?.contentRetryCount = 0
                     
-                    return
+                    
+                } else {
+                    
+                    self?.getCuttentChapterContent(url,completion)
+                    
+                    print("获取\((self?.currentBook?.bookName) ?? " ")正文失败，正在进行第\(self?.contentRetryCount ?? -1)次尝试")
                     
                 }
                 
-                self.curentChapterText = htmlValue
-                
             }
-            
-            completion(isSuccess)
             
         }
         
     }
     
     
-    func getBookCatalogs(url:String)  {
+    func getBookCatalogs(url:String,completion: ((_ isSuccess:Bool)->())?)  {
         
         
-        guard  let bookid = currentBook?.bookId else {
+        self.isRequestCatalogs = true
+        
+        guard  let bookid = self.currentBook?.bookId else {
+            
+            self.catalogsRetryCount = 0
+            
+            completion?(false)
+            
+            self.isRequestCatalogs = false
             
             return
+            
         }
         
-        CommonPageViewModel.getBookCIAC(url: url, bookid: bookid) { (isSuccess, value:Any?) in
-            
-            guard let result = value as? (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)   else {
-                
-                return
-                
-            }
+        CommonPageViewModel.getBookCIAC(url: url, bookid: bookid) { [weak self] (isSuccess, value:Any?) in
             
             if isSuccess {
                 
-                self.currentBook?.catalogs = result.catalogs
+                let result = value as? (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)
                 
-                self.currentBook?.introduction = result.introduction
+                self?.currentBook?.catalogs = result?.catalogs
                 
-                self.currentBook?.coverImage = result.cover
+                self?.currentBook?.introduction = result?.introduction
                 
-                self.currentBook?.author = result.author
+                self?.currentBook?.coverImage = result?.cover
+                
+                self?.currentBook?.author = result?.author
+                
+                self?.isRequestCatalogs = false
+                
+                self?.catalogsRetryCount = 0
+                
+                print("获取\(self?.currentBook?.bookName ?? " ")目录成功")
+                
+            } else {
+                
+                self?.catalogsRetryCount += 1
+                
+                self?.isRequestCatalogs = false
+                
+                if self?.catalogsRetryCount  == 4 {
+                    
+                    completion?(false)
+                    print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，不再尝试，无解。")
+                    
+                    
+                } else {
+                    
+                    self?.getBookCatalogs(url: url, completion: completion)
+                    print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，正在进行第\(self?.catalogsRetryCount  ?? -1)次尝试")
+                    
+                }
+                
+                
             }
         }
         
     }
 }
+
 
 extension BookContentPageViewModel {
     

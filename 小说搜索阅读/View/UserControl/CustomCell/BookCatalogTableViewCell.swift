@@ -22,7 +22,7 @@ class BookCatalogTableViewCell: UITableViewCell {
             
             if bookCatalog != nil {
                 
-                txtIndex.text = "\(bookCatalog?.chapterIndex)."
+                txtIndex.text = "\((bookCatalog?.chapterIndex)!)."
                 
                 txtChapterName.text = bookCatalog?.chapterName
                 
@@ -32,5 +32,8 @@ class BookCatalogTableViewCell: UITableViewCell {
         }
         
     }
+    
+ 
+
     
 }

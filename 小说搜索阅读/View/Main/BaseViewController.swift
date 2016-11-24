@@ -98,8 +98,7 @@ class BaseViewController: UIViewController {
     func initData()  {
        
         refreshControl?.endRefreshing()
-
-        
+ 
     }
     
     
@@ -182,16 +181,7 @@ extension BaseViewController {
         // 修改指示器的缩进 - 强行解包是为了拿到一个必有的 inset
         tableview?.scrollIndicatorInsets = tableview!.contentInset
         
-        
-        
-        
         tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat.leastNormalMagnitude))
-        
-        //   tableview?.tableHeaderView = UIView(frame: CGRect(x: CGFloat( 0.0), y: CGFloat( 0.0), width:CGFloat( 0.0), height: CGFloat(10)))
-        
-        tableview?.rowHeight = UITableViewAutomaticDimension
-        
-        tableview?.estimatedRowHeight = 70
         
         tableview?.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: CGFloat.leastNormalMagnitude))
         

@@ -45,13 +45,19 @@ class BookContentViewController: UIViewController {
                        ["imageName": "content_bar_setting", "title": "设置","actionName" :  "settingClick"],
                        ]
     
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         setupUI()
         
-        initData()
+        initContentData()
+        
+        txtBookName.text = vm.currentBook?.bookName
+        
+        initCatalogs()
         
         NotificationCenter.default.addObserver(self, selector: #selector(showSettingBar), name: NSNotification.Name(rawValue: touchBeginNotification), object: nil)
         
@@ -59,24 +65,27 @@ class BookContentViewController: UIViewController {
     
     
     
-    func initData() {
+    func initContentData() {
         
         loadingWindow.isHidden = false
         
-        guard let url =   vm.currentBook?.contentPageUrl  else{
+        guard let url = vm.currentCatalog?.chapterUrl else{
             
             return
         }
         
-        txtChapterName.text = vm.currentBook?.chapterName
+        txtChapterName.text = vm.currentCatalog?.chapterName
         
-        vm.getCuttentChapterContent(url: url) { [weak self] (isSuccess) in
+        vm.getCuttentChapterContent(url) { [weak self] (isSuccess) in
             
             DispatchQueue.main.async {
                 
                 if  isSuccess {
                     
                     self?.txtContent.text = self?.vm.curentChapterText
+                    
+                    let point = CGPoint(x: 0, y: 0)
+                    self?.txtContent.setContentOffset(point, animated: false)
                     
                     self?.setTextContetAttributes()
                     
@@ -92,10 +101,17 @@ class BookContentViewController: UIViewController {
             
         }
         
-        /// 获取目录信息
-        vm.getBookCatalogs(url: url)  
     }
     
+    func  initCatalogs(_ completion: ((_ isSuccess:Bool)->())? = nil) {
+        
+        guard let url =   vm.currentBook?.contentPageUrl  else{
+            
+            return
+        }
+        /// 获取目录信息
+        vm.getBookCatalogs(url: url, completion: completion)
+    }
     
     @IBAction func retryAction(_ sender: Any) {
         
@@ -104,7 +120,7 @@ class BookContentViewController: UIViewController {
         
         btnRetry .isHidden = true
         
-        initData()
+        initContentData()
     }
     
     @IBAction func closeAciton() {
@@ -114,7 +130,6 @@ class BookContentViewController: UIViewController {
     
     
     deinit {
-        
         
         NotificationCenter.default.removeObserver(self)
         
@@ -134,13 +149,10 @@ extension BookContentViewController {
         
         if isShowMenu {
             
-            
             guard  let p = touches.first?.location(in: self.view)  else{
                 
                 return
             }
-            
-            print(p)
             
             let height = self.view.bounds.height
             let width = self.view.bounds.width
@@ -165,68 +177,86 @@ extension BookContentViewController {
         
         isShowing = true
         
-        print(isShowMenu)
-        
         if !isShowMenu {
             
-            isShowMenu = true
+            showMenu()
+            
+        } else {
+            
+            hidenMenu()
+        }
+    }
+    
+    func showMenu() {
+        
+        if isShowMenu {
+            
+            return
+        }
+        
+        isShowMenu = true
+        
+        self.topMenu.transform = CGAffineTransform(translationX: 0, y: -self.topMenu.frame.height)
+        
+        self.botomMenu.transform = CGAffineTransform(translationX: 0, y: self.botomMenu.frame.height)
+        
+        
+        self.topMenu.isHidden = false
+        
+        self.botomMenu.isHidden = false
+        
+        txtContent.isUserInteractionEnabled = false
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            
+            self.topMenu.transform = CGAffineTransform(translationX: 0, y: 0)
+            
+            self.botomMenu.transform = CGAffineTransform(translationX: 0, y: 0)
+            
+            UIApplication.shared.setStatusBarHidden(false, with: .slide)
+            
+        }, completion: { (isSucess) in
+            
+            // UIApplication.shared.isStatusBarHidden = false
+            
+            self.isShowing = false
+            
+        })
+        
+    }
+    
+    
+    func hidenMenu() {
+        
+        if !isShowMenu  {
+            
+            return
+        }
+        
+        isShowMenu = false
+        
+        txtContent.isUserInteractionEnabled = true
+        
+        UIView.animate(withDuration: 0.25, animations: {
             
             self.topMenu.transform = CGAffineTransform(translationX: 0, y: -self.topMenu.frame.height)
             
             self.botomMenu.transform = CGAffineTransform(translationX: 0, y: self.botomMenu.frame.height)
             
             
-            self.topMenu.isHidden = false
+            UIApplication.shared.setStatusBarHidden(true, with: .slide)
             
-            self.botomMenu.isHidden = false
             
-            txtContent.isUserInteractionEnabled = false
+        }, completion: { (isSuccess) in
             
-            UIView.animate(withDuration: 0.25, animations: {
-                
-                self.topMenu.transform = CGAffineTransform(translationX: 0, y: 0)
-                
-                self.botomMenu.transform = CGAffineTransform(translationX: 0, y: 0)
-                
-                UIApplication.shared.setStatusBarHidden(false, with: .slide)
-                
-            }, completion: { (isSucess) in
-                
-                // UIApplication.shared.isStatusBarHidden = false
-                
-                self.isShowing = false
-                
-            })
+            self.topMenu.isHidden = true
             
-        } else {
+            self.botomMenu.isHidden = true
             
-            isShowMenu = false
-            
-            txtContent.isUserInteractionEnabled = true
-            
-            UIView.animate(withDuration: 0.25, animations: {
-                
-                self.topMenu.transform = CGAffineTransform(translationX: 0, y: -self.topMenu.frame.height)
-                
-                self.botomMenu.transform = CGAffineTransform(translationX: 0, y: self.botomMenu.frame.height)
-                
-                
-                UIApplication.shared.setStatusBarHidden(true, with: .slide)
-                
-                
-            }, completion: { (isSuccess) in
-                
-                self.topMenu.isHidden = true
-                
-                self.botomMenu.isHidden = true
-                
-                self.isShowing = false
-            })
-            
-        }
-        
-        
+            self.isShowing = false
+        })
     }
+    
     
     
     
@@ -248,6 +278,37 @@ extension BookContentViewController {
     func muluClick() {
         
         print("点击目录")
+        
+        if vm.isRequestCatalogs {
+            
+            showToast(content: "正在获取目录，请稍后")
+            return
+        }
+        
+        
+        if vm.currentBook?.catalogs == nil  || (vm.currentBook?.catalogs?.count)! == 0 {
+            
+            showToast(content: "暂无目录，请换个来源网站重试",false)
+            return
+        }
+        
+        let v  = BookCatalogViewController()
+        
+        v.book = vm.currentBook
+        
+        
+        v.completionBlock = { [weak self] (catalog)  in
+            
+            self?.vm.currentCatalog = catalog
+            
+            self?.initContentData()
+            
+            self?.hidenMenu()
+            
+        }
+        
+        present(v, animated: true, completion: nil)
+        
         
     }
     
@@ -292,7 +353,7 @@ extension BookContentViewController {
         
         btnRetry.isHidden = true
         
-        txtBookName.text = vm.currentBook?.bookName
+        
         
         loadingWindow = ToastView.instance.createLoadingView()
         
@@ -417,7 +478,7 @@ extension BookContentViewController {
                 
                 settingBtn.addTarget(self, action: #selector(setMoonlightMode), for: .touchUpInside)
             }
-          
+            
             
         }
         
@@ -490,8 +551,6 @@ extension UITextView {
             
             return
         }
-        
-        print(p)
         
         let height = self.bounds.height
         let width = self.bounds.width

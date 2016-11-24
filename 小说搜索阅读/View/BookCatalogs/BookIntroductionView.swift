@@ -10,12 +10,18 @@ import UIKit
 
 class BookIntroductionView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    
+    class func bookIntroductionView(bookName:String?,lywz:String?,author:String?,introduction:String?) -> BookIntroductionView {
+        
+        let nib = UINib(nibName: "BookIntroductionView", bundle: nil)
+        
+        let v = nib.instantiate(withOwner: nil, options: nil)[0] as! BookIntroductionView
+        
+        v.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 150)
+                 
+        return v
+        
     }
-    */
-
+    
 }
