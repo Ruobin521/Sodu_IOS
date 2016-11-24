@@ -126,6 +126,46 @@ class CommonPageViewModel {
         }
     }
     
+    
+    
+    /// 获取catalogs introduction coverImage
+    ///
+    /// - Parameters:
+    ///   - url: 任意章节地址
+    ///   - completion: (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)
+    static func   getBookCIAC(url:String,bookid:String,completion:@escaping (_ isSuccess:Bool , _ result: Any?) -> ())  {
+        
+        guard  let catalogPageUrl = AnalisysHtmlHelper.AnalisysHtml(url,"", AnalisysType.CatalogPageUrl) as? String else {
+            
+            completion(false,nil)
+            return
+        }
+        
+        
+        CommonPageViewModel.getHtmlByURL(url: catalogPageUrl) { (isSuccess, html) in
+            
+            if isSuccess {
+                
+                guard let result = AnalisysHtmlHelper.AnalisysHtml(catalogPageUrl, html!,AnalisysType.CatalogList) as? (catalogs:[BookCatalog], introduction:String,authorName:String, cover:String) else {
+                    
+                    completion(false,nil)
+                    
+                    return
+                    
+                }
+                
+                completion(false,result)
+                
+            } else {
+                
+                completion(false,nil)
+            }
+            
+        }
+        
+        
+    }
+    
     /// 将中文转为utf8
     ///
     /// - Parameter str: <#str description#>

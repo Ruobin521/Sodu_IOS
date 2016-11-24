@@ -92,26 +92,8 @@ class BookContentViewController: UIViewController {
             
         }
         
-        
-        vm.getBookCatalogs(url: url) { [weak self] (isSuccess) in
-            
-            if  isSuccess {
-                
-                
-                
-                
-            } else {
-                
-                
-                
-            }
-            
-            DispatchQueue.main.async {
-                
-                self?.loadingWindow.isHidden = true
-            }
-            
-        }
+        /// 获取目录信息
+        vm.getBookCatalogs(url: url)  
     }
     
     
@@ -435,6 +417,7 @@ extension BookContentViewController {
                 
                 settingBtn.addTarget(self, action: #selector(setMoonlightMode), for: .touchUpInside)
             }
+          
             
         }
         

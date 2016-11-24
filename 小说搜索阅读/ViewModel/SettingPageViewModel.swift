@@ -36,14 +36,21 @@ class SettingPageViewModel {
     
     
     //正文
-    lazy var isMoomlightMode = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsMoomlightMode)
     
+    
+    /// 夜间模式
+    lazy var isMoomlightMode = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsMoomlightMode)
+     
+    /// 正文字体大小
     lazy var contentTextSize:Float = (UserDefaultsHelper.getFloatUserDefaultByKey(key: .ContentTextSize)  == Float(0) ) ? Float(20) : UserDefaultsHelper.getFloatUserDefaultByKey(key: .ContentTextSize)
     
+    /// 行高
     lazy var contentLineSpace:Float = (UserDefaultsHelper.getFloatUserDefaultByKey(key: .ContentLineSpace)  == Float(0) ) ? Float(10) :  UserDefaultsHelper.getFloatUserDefaultByKey(key: .ContentLineSpace)
     
+    /// 背景色
     lazy var contentBackColor = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentBackColor) ?? "AAC5AA"
     
+    /// 字体颜色
     lazy var contentTextColor = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentTextColor) ??  "1B3D25"
     
     

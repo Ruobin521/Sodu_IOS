@@ -22,7 +22,7 @@ class BookContentPageViewModel {
     
     let  moonlightBackColor:UIColor = #colorLiteral(red: 0.04705882353, green: 0.04705882353, blue: 0.04705882353, alpha: 1)
     
-    let moonlightForegroundColor:UIColor = #colorLiteral(red: 0.3529411765, green: 0.3529411765, blue: 0.3529411765, alpha: 1)
+    let  moonlightForegroundColor:UIColor = #colorLiteral(red: 0.3529411765, green: 0.3529411765, blue: 0.3529411765, alpha: 1)
     
     
     let  daylightBackColor:UIColor = UIColor.colorWithHexString(hex: ViewModelInstance.Instance.Setting.contentBackColor)
@@ -77,33 +77,32 @@ class BookContentPageViewModel {
     }
     
     
-    func getBookCatalogs(url:String?,completion:@escaping (_ isSuccess:Bool)->())  {
+    func getBookCatalogs(url:String)  {
         
         
-        guard  let catalogUrl = url,  let catalogPageUrl = AnalisysHtmlHelper.AnalisysHtml(catalogUrl,"", AnalisysType.CatalogPageUrl) as? String else {
-            
-            completion(false)
+        guard  let bookid = currentBook?.bookId else {
             
             return
         }
         
-        
-        CommonPageViewModel.getHtmlByURL(url: catalogPageUrl) { (isSuccess, html) in
+        CommonPageViewModel.getBookCIAC(url: url, bookid: bookid) { (isSuccess, value:Any?) in
             
-            if isSuccess {
+            guard let result = value as? (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)   else {
                 
-                guard let _ = AnalisysHtmlHelper.AnalisysHtml(catalogUrl, html!,AnalisysType.CatalogList) as? (catalogs:[BookCatalog], introduction:String, cover:String) else {
-                    
-                    completion(false)
-                    
-                    return
-                    
-                }
+                return
                 
             }
             
-            completion(isSuccess)
-            
+            if isSuccess {
+                
+                self.currentBook?.catalogs = result.catalogs
+                
+                self.currentBook?.introduction = result.introduction
+                
+                self.currentBook?.coverImage = result.cover
+                
+                self.currentBook?.author = result.author
+            }
         }
         
     }

@@ -177,7 +177,7 @@ extension BaseViewController {
         
         tableview?.separatorStyle = .singleLine
         
-        tableview?.contentInset = UIEdgeInsets(top: navigationBar.bounds.height, left: 0, bottom: tabBarController?.tabBar.bounds.height ?? 49, right: 0)
+        tableview?.contentInset = UIEdgeInsets(top: navigationBar.bounds.height, left: 0, bottom: tabBarController?.tabBar.bounds.height ?? 44, right: 0)
         
         // 修改指示器的缩进 - 强行解包是为了拿到一个必有的 inset
         tableview?.scrollIndicatorInsets = tableview!.contentInset

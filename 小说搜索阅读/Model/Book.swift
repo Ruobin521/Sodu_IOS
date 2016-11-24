@@ -36,7 +36,11 @@ class Book: NSObject,JSON {
     var   updateTime:String?
     
     /// 封面名称
-    var   coverImageName:String?
+    var  coverImage:String?
+    
+    
+    /// 简介
+    var   introduction:String?
     
     /// 目录
     var   catalogs:[BookCatalog]?
@@ -63,7 +67,7 @@ extension Book {
         book.chapterName = self.chapterName
         book.chapterName = self.chapterName
         book.contentPageUrl = self.contentPageUrl
-        book.coverImageName = self.coverImageName
+        book.coverImage = self.coverImage
         book.LastReadContentPageUrl = self.LastReadContentPageUrl
         book.lywzName = self.lywzName
         book.updateListPageUrl = self.updateListPageUrl
@@ -71,15 +75,16 @@ extension Book {
         
         return book
     }
-
+    
     
 }
 
 
 class BookCatalog:NSObject {
     
+    var chapterIndex:Int = 0
     
-    var booKId :String?
+    var bookId :String?
     
     var chapterName : String?
     
@@ -87,5 +92,17 @@ class BookCatalog:NSObject {
     
     var chapterContent : String?
     
+    func  clone() -> NSObject {
+        
+        let temp = BookCatalog()
+        
+        temp.chapterIndex = self.chapterIndex
+        temp.bookId = self.bookId
+        temp.chapterName = self.chapterName
+        temp.chapterUrl = self.chapterUrl
+        temp.chapterName = self.chapterContent
+        
+        return temp
+    }
     
 }

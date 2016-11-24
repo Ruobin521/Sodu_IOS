@@ -67,6 +67,12 @@
 		B1C2385C1DD388D800C37FA6 /* LonginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C2385A1DD388D800C37FA6 /* LonginViewController.xib */; };
 		B1D41DBD1DE4191400C0EBB6 /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D41DBC1DE4191400C0EBB6 /* SettingButton.swift */; };
 		B1D41DC11DE4193500C0EBB6 /* SettingButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D41DC01DE4193500C0EBB6 /* SettingButton.xib */; };
+		B1D759D81DE6CF330052C4F4 /* BookCatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D759D61DE6CF330052C4F4 /* BookCatalogViewController.swift */; };
+		B1D759D91DE6CF330052C4F4 /* BookCatalogViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D759D71DE6CF330052C4F4 /* BookCatalogViewController.xib */; };
+		B1D759DD1DE6D8CC0052C4F4 /* BookIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D759DC1DE6D8CC0052C4F4 /* BookIntroductionView.swift */; };
+		B1D759DF1DE6D8DB0052C4F4 /* BookIntroductionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D759DE1DE6D8DB0052C4F4 /* BookIntroductionView.xib */; };
+		B1D759E21DE6ED140052C4F4 /* BookCatalogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D759E01DE6ED140052C4F4 /* BookCatalogTableViewCell.swift */; };
+		B1D759E31DE6ED140052C4F4 /* BookCatalogTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D759E11DE6ED140052C4F4 /* BookCatalogTableViewCell.xib */; };
 		B1E4727D1DE194C700F50D41 /* AnalisysHtmlHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E4727C1DE194C700F50D41 /* AnalisysHtmlHelper.swift */; };
 		B1E472811DE1955500F50D41 /* LyWebUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E472801DE1955500F50D41 /* LyWebUrls.swift */; };
 		F5DA2AE54C56A2A2976E8D6F /* Pods_______.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C180B4901097B286F23F8F /* Pods_______.framework */; };
@@ -138,6 +144,12 @@
 		B1C2385A1DD388D800C37FA6 /* LonginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LonginViewController.xib; sourceTree = "<group>"; };
 		B1D41DBC1DE4191400C0EBB6 /* SettingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
 		B1D41DC01DE4193500C0EBB6 /* SettingButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingButton.xib; sourceTree = "<group>"; };
+		B1D759D61DE6CF330052C4F4 /* BookCatalogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCatalogViewController.swift; sourceTree = "<group>"; };
+		B1D759D71DE6CF330052C4F4 /* BookCatalogViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookCatalogViewController.xib; sourceTree = "<group>"; };
+		B1D759DC1DE6D8CC0052C4F4 /* BookIntroductionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookIntroductionView.swift; sourceTree = "<group>"; };
+		B1D759DE1DE6D8DB0052C4F4 /* BookIntroductionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookIntroductionView.xib; sourceTree = "<group>"; };
+		B1D759E01DE6ED140052C4F4 /* BookCatalogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCatalogTableViewCell.swift; sourceTree = "<group>"; };
+		B1D759E11DE6ED140052C4F4 /* BookCatalogTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookCatalogTableViewCell.xib; sourceTree = "<group>"; };
 		B1E4727C1DE194C700F50D41 /* AnalisysHtmlHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalisysHtmlHelper.swift; sourceTree = "<group>"; };
 		B1E472801DE1955500F50D41 /* LyWebUrls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyWebUrls.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -223,12 +235,13 @@
 			path = Welcom;
 			sourceTree = "<group>";
 		};
-		B162E21D1DC1104A008DF1C4 /* ContentView */ = {
+		B162E21D1DC1104A008DF1C4 /* ContentPage */ = {
 			isa = PBXGroup;
 			children = (
 				B133A7811DDAD1EC0038B5D2 /* BookContentViewController.swift */,
 				B133A7821DDAD1EC0038B5D2 /* BookContentViewController.xib */,
 			);
+			name = ContentPage;
 			path = ContentView;
 			sourceTree = "<group>";
 		};
@@ -259,19 +272,11 @@
 		B17E03C31DB095B90061DD47 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B19B73E81DD9BFCC00171785 /* DownCenter */,
-				B145D8E11DD752F200FB09F2 /* PersonalCenter */,
+				B1D759D41DE6CDF30052C4F4 /* ThirdPage */,
+				B1D759D31DE6CD9E0052C4F4 /* SecondPage */,
+				B1D759D21DE6CD480052C4F4 /* HomePage */,
 				B1600A3B1DC25D7E000A4C49 /* Welcom */,
 				B17E03C51DB095B90061DD47 /* Main */,
-				B17E03D61DB099120061DD47 /* Bookshelf */,
-				B17E03C61DB095B90061DD47 /* Rank */,
-				B194B8CC1DBDE6720061C9A4 /* HotAndRecommend */,
-				B1378BD71DB4A5A0000D4FAE /* Setting */,
-				B1B261511DDEF2A900F28B17 /* Search */,
-				B19B74511DD4C299008D6C5C /* Register */,
-				B1C238581DD3889400C37FA6 /* longin */,
-				B1BEC74D1DC0972E00AD8DC3 /* UpdateChapter */,
-				B162E21D1DC1104A008DF1C4 /* ContentView */,
 				B1BEC7421DC05D9100AD8DC3 /* UserControl */,
 			);
 			path = View;
@@ -376,6 +381,8 @@
 				B19B74481DD344D8008D6C5C /* BookshelfTableViewCell.xib */,
 				B17860BB1DD37A7300E07944 /* SettingTableViewCell.swift */,
 				B1C238551DD382FE00C37FA6 /* SettingTableViewCell.xib */,
+				B1D759E01DE6ED140052C4F4 /* BookCatalogTableViewCell.swift */,
+				B1D759E11DE6ED140052C4F4 /* BookCatalogTableViewCell.xib */,
 			);
 			path = CustomCell;
 			sourceTree = "<group>";
@@ -431,6 +438,50 @@
 				B1D41DC01DE4193500C0EBB6 /* SettingButton.xib */,
 			);
 			path = CustomButton;
+			sourceTree = "<group>";
+		};
+		B1D759D21DE6CD480052C4F4 /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				B17E03D61DB099120061DD47 /* Bookshelf */,
+				B17E03C61DB095B90061DD47 /* Rank */,
+				B194B8CC1DBDE6720061C9A4 /* HotAndRecommend */,
+				B1378BD71DB4A5A0000D4FAE /* Setting */,
+			);
+			name = HomePage;
+			sourceTree = "<group>";
+		};
+		B1D759D31DE6CD9E0052C4F4 /* SecondPage */ = {
+			isa = PBXGroup;
+			children = (
+				B1BEC74D1DC0972E00AD8DC3 /* UpdateChapter */,
+				B1B261511DDEF2A900F28B17 /* Search */,
+				B145D8E11DD752F200FB09F2 /* PersonalCenter */,
+				B1C238581DD3889400C37FA6 /* longin */,
+				B19B74511DD4C299008D6C5C /* Register */,
+				B19B73E81DD9BFCC00171785 /* DownCenter */,
+			);
+			name = SecondPage;
+			sourceTree = "<group>";
+		};
+		B1D759D41DE6CDF30052C4F4 /* ThirdPage */ = {
+			isa = PBXGroup;
+			children = (
+				B1D759D51DE6CE580052C4F4 /* BookCatalogs */,
+				B162E21D1DC1104A008DF1C4 /* ContentPage */,
+			);
+			name = ThirdPage;
+			sourceTree = "<group>";
+		};
+		B1D759D51DE6CE580052C4F4 /* BookCatalogs */ = {
+			isa = PBXGroup;
+			children = (
+				B1D759D61DE6CF330052C4F4 /* BookCatalogViewController.swift */,
+				B1D759D71DE6CF330052C4F4 /* BookCatalogViewController.xib */,
+				B1D759DC1DE6D8CC0052C4F4 /* BookIntroductionView.swift */,
+				B1D759DE1DE6D8DB0052C4F4 /* BookIntroductionView.xib */,
+			);
+			path = BookCatalogs;
 			sourceTree = "<group>";
 		};
 		B1E472791DE1942300F50D41 /* HtmlService */ = {
@@ -515,13 +566,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B19B74551DD4C344008D6C5C /* RegisterViewController.xib in Resources */,
+				B1D759D91DE6CF330052C4F4 /* BookCatalogViewController.xib in Resources */,
 				B19B744A1DD344D8008D6C5C /* BookshelfTableViewCell.xib in Resources */,
 				B1C2385C1DD388D800C37FA6 /* LonginViewController.xib in Resources */,
 				B1C238571DD382FE00C37FA6 /* SettingTableViewCell.xib in Resources */,
 				B19B74461DD3446E008D6C5C /* UpdateChapterTableViewCell.xib in Resources */,
+				B1D759E31DE6ED140052C4F4 /* BookCatalogTableViewCell.xib in Resources */,
 				B133A7841DDAD1EC0038B5D2 /* BookContentViewController.xib in Resources */,
 				B19B743D1DD33984008D6C5C /* RefreshView.xib in Resources */,
 				B1D41DC11DE4193500C0EBB6 /* SettingButton.xib in Resources */,
+				B1D759DF1DE6D8DB0052C4F4 /* BookIntroductionView.xib in Resources */,
 				B19B74441DD3446E008D6C5C /* CommonBookListTableViewCell.xib in Resources */,
 				B1600A431DC26E76000A4C49 /* WelcomView.xib in Resources */,
 				B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */,
@@ -599,6 +653,7 @@
 				B17E03D11DB098CF0061DD47 /* RankViewController.swift in Sources */,
 				B194B8C51DBDC4530061C9A4 /* RankListPageViewModel.swift in Sources */,
 				B162E21C1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift in Sources */,
+				B1D759E21DE6ED140052C4F4 /* BookCatalogTableViewCell.swift in Sources */,
 				B19B74531DD4C30D008D6C5C /* RegisterViewController.swift in Sources */,
 				B17E03C91DB095B90061DD47 /* Book.swift in Sources */,
 				B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */,
@@ -618,12 +673,14 @@
 				B1A73D351DE0D0F900EA4A40 /* SearchPageViewModel.swift in Sources */,
 				B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */,
 				B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */,
+				B1D759D81DE6CF330052C4F4 /* BookCatalogViewController.swift in Sources */,
 				B1378BD91DB4A5CC000D4FAE /* SettingViewController.swift in Sources */,
 				B19B73EA1DD9C01300171785 /* DownCenterViewController.swift in Sources */,
 				B19B74501DD44E18008D6C5C /* SettingPageViewModel.swift in Sources */,
 				B1904FBA1DB79A9800534AD6 /* JSON.swift in Sources */,
 				B1B6A3551DC3409D00CF23B7 /* NetworkHelper.swift in Sources */,
 				B15B846A1DC5EB4500DD1A56 /* UserDefaultsHelper.swift in Sources */,
+				B1D759DD1DE6D8CC0052C4F4 /* BookIntroductionView.swift in Sources */,
 				B1A73D321DE0C44C00EA4A40 /* SearchViewController.swift in Sources */,
 				B145D8E31DD7530B00FB09F2 /* PersonCenterViewController.swift in Sources */,
 				B162E2121DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift in Sources */,
