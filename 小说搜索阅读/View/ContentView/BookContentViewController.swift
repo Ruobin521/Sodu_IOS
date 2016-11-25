@@ -74,43 +74,51 @@ class BookContentViewController: UIViewController {
             return
         }
         
-        txtChapterName.text = vm.currentCatalog?.chapterName
-        
-        vm.getCuttentChapterContent(url) { [weak self] (isSuccess) in
+        DispatchQueue.global().async {
             
-            DispatchQueue.main.async {
+            self.vm.getCuttentChapterContent(url) { [weak self] (isSuccess) in
                 
-                if  isSuccess {
+                DispatchQueue.main.async {
                     
-                    self?.txtContent.text = self?.vm.curentChapterText
+                    if  isSuccess {
+                        
+                        self?.txtChapterName.text = self?.vm.currentCatalog?.chapterName
+                        
+                        self?.txtContent.text = self?.vm.curentChapterText
+                        
+                        let point = CGPoint(x: 0, y: 0)
+                        self?.txtContent.setContentOffset(point, animated: false)
+                        
+                        self?.setTextContetAttributes()
+                        
+                    } else {
+                        
+                        self?.btnRetry .isHidden = false
+                        self?.errorView.isHidden = false
+                        
+                    }
                     
-                    let point = CGPoint(x: 0, y: 0)
-                    self?.txtContent.setContentOffset(point, animated: false)
-                    
-                    self?.setTextContetAttributes()
-                    
-                } else {
-                    
-                    self?.btnRetry .isHidden = false
-                    self?.errorView.isHidden = false
-                    
+                    self?.loadingWindow.isHidden = true
                 }
                 
-                self?.loadingWindow.isHidden = true
             }
             
         }
-        
     }
     
     func  initCatalogs(_ completion: ((_ isSuccess:Bool)->())? = nil) {
         
-        guard let url =   vm.currentBook?.contentPageUrl  else{
+        DispatchQueue.global().async {
             
-            return
+            guard let url =   self.vm.currentBook?.contentPageUrl  else{
+                
+                return
+            }
+            /// 获取目录信息
+            self.vm.getBookCatalogs(url: url, completion: completion)
+            
         }
-        /// 获取目录信息
-        vm.getBookCatalogs(url: url, completion: completion)
+    
     }
     
     @IBAction func retryAction(_ sender: Any) {

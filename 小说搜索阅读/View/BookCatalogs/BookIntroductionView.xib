@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="qsx-ni-E3H">
+        <view contentMode="scaleToFill" id="qsx-ni-E3H" customClass="BookIntroductionView" customModule="小说搜索阅读" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="361" height="263"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -19,10 +19,11 @@
                     <rect key="frame" x="15" y="15" width="80" height="110"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="110" id="etP-zK-pfr"/>
+                        <constraint firstAttribute="width" constant="80" id="xMp-eV-GKH"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我当算命先生那几年" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WX0-qI-kqz">
-                    <rect key="frame" x="110" y="20" width="156" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是书名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WX0-qI-kqz">
+                    <rect key="frame" x="110" y="20" width="87" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -33,8 +34,8 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="东方玄幻" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uaq-8v-iPq">
-                    <rect key="frame" x="155" y="52" width="58" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是作者名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uaq-8v-iPq">
+                    <rect key="frame" x="155" y="52" width="86" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -45,40 +46,50 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第七中文" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ifw-OM-Yp1">
-                    <rect key="frame" x="155" y="80" width="58" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是来源网站" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ifw-OM-Yp1">
+                    <rect key="frame" x="155" y="80" width="100" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="简介：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPQ-mu-0F3">
-                    <rect key="frame" x="15" y="133" width="52" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="15" y="133" width="46" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这里是简介内容巴拉巴拉" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fp-VZ-8hr">
-                    <rect key="frame" x="15" y="162" width="168.5" height="18"/>
+                    <rect key="frame" x="15" y="156" width="331" height="18"/>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7pW-dX-3KW">
+                    <rect key="frame" x="0.0" y="255" width="361" height="8"/>
+                    <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="8" id="WkP-1c-edz"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Ifw-OM-Yp1" firstAttribute="leading" secondItem="uaq-8v-iPq" secondAttribute="leading" id="0s1-Kf-OQr"/>
                 <constraint firstItem="uaq-8v-iPq" firstAttribute="centerY" secondItem="oze-zb-9Ss" secondAttribute="centerY" id="2CB-Ki-X5G"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="7fp-VZ-8hr" secondAttribute="bottom" constant="8" id="3Uh-vR-nN5"/>
                 <constraint firstItem="oze-zb-9Ss" firstAttribute="top" secondItem="WX0-qI-kqz" secondAttribute="bottom" constant="10" id="6aL-La-Cbf"/>
                 <constraint firstItem="WX0-qI-kqz" firstAttribute="top" secondItem="Kz4-Pb-p35" secondAttribute="top" constant="5" id="BW5-Qi-26N"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7fp-VZ-8hr" secondAttribute="trailing" constant="15" id="GeE-34-5cp"/>
-                <constraint firstItem="7fp-VZ-8hr" firstAttribute="top" secondItem="bPQ-mu-0F3" secondAttribute="bottom" constant="8" id="Ypb-WC-ZTg"/>
+                <constraint firstItem="7pW-dX-3KW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="7fp-VZ-8hr" secondAttribute="bottom" constant="8" id="CvG-04-Zr8"/>
+                <constraint firstItem="7pW-dX-3KW" firstAttribute="leading" secondItem="qsx-ni-E3H" secondAttribute="leading" id="DTN-Rk-ziG"/>
+                <constraint firstAttribute="trailing" secondItem="7fp-VZ-8hr" secondAttribute="trailing" constant="15" id="GeE-34-5cp"/>
+                <constraint firstAttribute="bottom" secondItem="7pW-dX-3KW" secondAttribute="bottom" id="OBq-gd-0iV"/>
+                <constraint firstItem="7fp-VZ-8hr" firstAttribute="top" secondItem="bPQ-mu-0F3" secondAttribute="bottom" constant="5" id="Ypb-WC-ZTg"/>
                 <constraint firstItem="oze-zb-9Ss" firstAttribute="leading" secondItem="WX0-qI-kqz" secondAttribute="leading" id="a5i-fn-bu2"/>
                 <constraint firstItem="Kz4-Pb-p35" firstAttribute="leading" secondItem="qsx-ni-E3H" secondAttribute="leading" constant="15" id="bcd-F3-JgH"/>
                 <constraint firstItem="7fp-VZ-8hr" firstAttribute="leading" secondItem="bPQ-mu-0F3" secondAttribute="leading" id="cr9-aC-gt3"/>
                 <constraint firstItem="f0y-4C-ZaW" firstAttribute="leading" secondItem="oze-zb-9Ss" secondAttribute="leading" id="dkW-Zs-kHD"/>
                 <constraint firstItem="bPQ-mu-0F3" firstAttribute="top" secondItem="Kz4-Pb-p35" secondAttribute="bottom" constant="8" id="fhB-Xa-Lme"/>
                 <constraint firstItem="f0y-4C-ZaW" firstAttribute="top" secondItem="oze-zb-9Ss" secondAttribute="bottom" constant="10" id="hYQ-Qv-ad8"/>
+                <constraint firstAttribute="trailing" secondItem="7pW-dX-3KW" secondAttribute="trailing" id="jHb-VW-OW8"/>
                 <constraint firstItem="WX0-qI-kqz" firstAttribute="leading" secondItem="Kz4-Pb-p35" secondAttribute="trailing" constant="15" id="plT-Ro-wij"/>
                 <constraint firstItem="uaq-8v-iPq" firstAttribute="leading" secondItem="oze-zb-9Ss" secondAttribute="trailing" constant="10" id="v9o-py-aXx"/>
                 <constraint firstItem="Kz4-Pb-p35" firstAttribute="top" secondItem="qsx-ni-E3H" secondAttribute="top" constant="15" id="wza-G0-tu0"/>
@@ -87,6 +98,13 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="coverImage" destination="Kz4-Pb-p35" id="hkW-Qx-w4z"/>
+                <outlet property="txtAuthor" destination="uaq-8v-iPq" id="iFH-AI-h2V"/>
+                <outlet property="txtBookName" destination="WX0-qI-kqz" id="dE8-4p-pjP"/>
+                <outlet property="txtIntroduction" destination="7fp-VZ-8hr" id="dc0-pt-5nP"/>
+                <outlet property="txtLywz" destination="Ifw-OM-Yp1" id="Yg9-eK-Oen"/>
+            </connections>
             <point key="canvasLocation" x="-209.5" y="-78.5"/>
         </view>
     </objects>

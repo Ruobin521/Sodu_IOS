@@ -106,13 +106,13 @@ extension BookCatalogViewController {
         tableview.register(cellNib, forCellReuseIdentifier: cellId)
         
         
-        
+        setupTableHeaderView()
     }
     
     
     func  setupTableHeaderView() {
         
-        let v = BookIntroductionView.bookIntroductionView(bookName: book?.bookName, lywz: book?.lywzName, author: book?.author, introduction: book?.introduction)
+        let v = BookIntroductionView.bookIntroductionView(bookName: book?.bookName,cover:book?.coverImage, lywz: book?.lywzName, author: book?.author, introduction: book?.introduction)
         
         
         tableview.tableHeaderView = v

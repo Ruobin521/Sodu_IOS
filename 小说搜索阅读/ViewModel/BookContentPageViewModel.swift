@@ -17,16 +17,54 @@ class BookContentPageViewModel {
     let  moonlightForegroundColor:UIColor = #colorLiteral(red: 0.3529411765, green: 0.3529411765, blue: 0.3529411765, alpha: 1)
     
     
-    let  daylightBackColor:UIColor = UIColor.colorWithHexString(hex: ViewModelInstance.Instance.Setting.contentBackColor)
+    var  daylightBackColor:UIColor = UIColor.colorWithHexString(hex: ViewModelInstance.Instance.Setting.contentBackColor) {
+        
+        didSet {
+            
+          //  ViewModelInstance.Instance.Setting.setValue(SettingKey.ContentBackColor, daylightBackColor.cgColor)
+            
+        }
+        
+    }
+
     
-    let  daylightForegroundColor:UIColor =  UIColor.colorWithHexString(hex: ViewModelInstance.Instance.Setting.contentTextColor)
+    var  daylightForegroundColor:UIColor =  UIColor.colorWithHexString(hex: ViewModelInstance.Instance.Setting.contentTextColor) {
+        
+        didSet {
+            
+           // ViewModelInstance.Instance.Setting.setValue(SettingKey.ContentTextSize, fontSize)
+            
+        }
+        
+    }
+
     
     
-    var fontSize:Float = ViewModelInstance.Instance.Setting.contentTextSize
+    var fontSize:Float = ViewModelInstance.Instance.Setting.contentTextSize   {
+        
+        didSet {
+            
+            ViewModelInstance.Instance.Setting.setValue(SettingKey.ContentTextSize, fontSize)
+            
+        }
+        
+    }
     
-    var lineSpace:Float = ViewModelInstance.Instance.Setting.contentLineSpace
     
-    var isMoomlightMode = false {
+    
+    var lineSpace:Float = ViewModelInstance.Instance.Setting.contentLineSpace  {
+        
+        didSet {
+            
+            ViewModelInstance.Instance.Setting.setValue(SettingKey.ContentLineSpace, lineSpace)
+            
+        }
+        
+    }
+    
+    
+    
+    var isMoomlightMode =  ViewModelInstance.Instance.Setting.isMoomlightMode {
         
         didSet {
             
@@ -34,11 +72,6 @@ class BookContentPageViewModel {
             
         }
         
-    }
-    
-    init() {
-        
-        getSettingValues()
     }
     
     
@@ -174,16 +207,6 @@ class BookContentPageViewModel {
 extension BookContentPageViewModel {
     
     
-    func getSettingValues() {
-        
-        
-        //        fontSize = 18
-        //        lineSpace = 18
-        
-        
-        isMoomlightMode = ViewModelInstance.Instance.Setting.isMoomlightMode
-        
-    }
     
 }
 
