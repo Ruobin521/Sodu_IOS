@@ -21,23 +21,23 @@ class BookContentPageViewModel {
         
         didSet {
             
-          //  ViewModelInstance.Instance.Setting.setValue(SettingKey.ContentBackColor, daylightBackColor.cgColor)
+            //  ViewModelInstance.Instance.Setting.setValue(SettingKey.ContentBackColor, daylightBackColor.cgColor)
             
         }
         
     }
-
+    
     
     var  daylightForegroundColor:UIColor =  UIColor.colorWithHexString(hex: ViewModelInstance.Instance.Setting.contentTextColor) {
         
         didSet {
             
-           // ViewModelInstance.Instance.Setting.setValue(SettingKey.ContentTextSize, fontSize)
+            // ViewModelInstance.Instance.Setting.setValue(SettingKey.ContentTextSize, fontSize)
             
         }
         
     }
-
+    
     
     
     var fontSize:Float = ViewModelInstance.Instance.Setting.contentTextSize   {
@@ -83,11 +83,18 @@ class BookContentPageViewModel {
     var isRequestCatalogs = false
     
     
-    var curentChapterText:String?
+    var currentChapterPageList:[String]?
     
-    var nextChapterText:String?
+    var preChapterPageList:[String]?
     
-    var preChapterText:String?
+    var nextChapterPageList:[String]?
+    
+    //    var curentChapterText:String?
+    //
+    //    var preChapterText:String?
+    //
+    //    var nextChapterText:String?
+     
     
     var currentCatalog:BookCatalog?
     
@@ -103,31 +110,86 @@ class BookContentPageViewModel {
     
     func getCuttentChapterContent(_ url:String,_ completion:@escaping (_ isSuccess:Bool)->())  {
         
+        getContentByUrl(url) { (isSuccess, strs) in
+            
+            if isSuccess {
+                
+                self.currentChapterPageList = strs
+                
+            }
+            
+            completion(isSuccess)
+        }
+    }
+    
+    
+    
+    func getPreCatalogContent(_ url:String,_ completion:@escaping (_ isSuccess:Bool)->()) {
+        
+        
+        getContentByUrl("") { (isSuccess, strs) in
+            
+            if isSuccess {
+                
+                self.preChapterPageList = strs
+                
+            }
+            
+            completion(isSuccess)
+            
+        }
+    }
+    
+    
+    func getNextCatalogContent(_ url:String,_ completion:@escaping (_ isSuccess:Bool)->()) {
+        
+        
+        getContentByUrl("") { (isSuccess, strs) in
+            
+            if isSuccess {
+                
+                self.preChapterPageList = strs
+                
+            }
+            completion(isSuccess)
+        }
+    }
+    
+    
+    
+    func getContentByUrl(_ url:String,_ retryCount:Int = 0,_ completion:@escaping (_ isSuccess:Bool,_ html:[String]?)->())  {
+        
+        self.isRequestContent = true
+        
+        var count = retryCount
         
         CommonPageViewModel.getHtmlByURL(url: url) {[weak self] (isSuccess, html) in
             
             if isSuccess {
                 
                 let  htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, html!,AnalisysType.Content) as? String
-                self?.curentChapterText = htmlValue
-                completion(true)
-                self?.contentRetryCount = 0
+                
+                count = 0
+                
                 self?.isRequestContent = false
-                print("获取\((self?.currentBook?.bookName) ?? " ")正文成功")
+                
+                print("获取\(url)正文成功")
+                
+                completion(true,self?.splitPages(str: htmlValue!))
                 
             }  else {
                 
-                self?.contentRetryCount += 1
+                count += 1
                 
-                if self?.contentRetryCount  == 4  {
+                if count  == 4  {
                     
-                    completion(false)
-                    self?.contentRetryCount = 0
+                    count = 0
                     
+                    completion(false,nil)
                     
                 } else {
                     
-                    self?.getCuttentChapterContent(url,completion)
+                    self?.getContentByUrl(url,count,completion)
                     
                     print("获取\((self?.currentBook?.bookName) ?? " ")正文失败，正在进行第\(self?.contentRetryCount ?? -1)次尝试")
                     
@@ -136,7 +198,6 @@ class BookContentPageViewModel {
             }
             
         }
-        
     }
     
     
@@ -195,8 +256,6 @@ class BookContentPageViewModel {
                     print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，正在进行第\(self?.catalogsRetryCount  ?? -1)次尝试")
                     
                 }
-                
-                
             }
         }
         
@@ -206,7 +265,13 @@ class BookContentPageViewModel {
 
 extension BookContentPageViewModel {
     
-    
+    func splitPages(str:String)  -> [String] {
+        
+        let paragraphes = str.components(separatedBy: "\n")
+        
+        return paragraphes
+        
+    }
     
 }
 

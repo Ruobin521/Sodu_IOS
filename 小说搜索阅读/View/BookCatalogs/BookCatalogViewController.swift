@@ -12,6 +12,9 @@ private let cellId = "cellId"
 
 class BookCatalogViewController: UIViewController {
     
+    
+    
+    
     @IBOutlet weak var txtBookName: UILabel!
     
     @IBOutlet weak var btnScroll: UIButton!
@@ -25,6 +28,37 @@ class BookCatalogViewController: UIViewController {
         
     }
     
+    @IBAction func scrollAction() {
+        
+        if book?.catalogs == nil ||  book?.catalogs?.count == 0 {
+            
+            return
+        }
+        
+        if  btnScroll.titleLabel?.text == "到顶部" {
+            
+            btnScroll.setTitle("到底部", for: .normal)
+            
+            
+            let indexPath = IndexPath(row: 0, section: 0)
+            
+            self.tableview?.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            
+            
+            
+        } else {
+            
+            let indexPath = IndexPath(row: tableview.numberOfRows(inSection: 0) - 1 , section: 0 )
+            
+            btnScroll.setTitle("到顶部", for: .normal)
+            
+            
+            self.tableview?.scrollToRow(at: indexPath, at: .top, animated: true)
+            
+        }
+        
+        
+    }
     
     var completionBlock: ((_ catalog:BookCatalog) -> ())?
     
@@ -79,7 +113,7 @@ extension BookCatalogViewController:UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableview.deselectRow(at: indexPath, animated: true)
-                 
+        
         guard  let catalog = book?.catalogs?[indexPath.row] else {
             
             return
@@ -105,6 +139,7 @@ extension BookCatalogViewController {
         
         tableview.register(cellNib, forCellReuseIdentifier: cellId)
         
+        btnScroll.setTitle("到底部", for: .normal)
         
         setupTableHeaderView()
     }
@@ -118,6 +153,7 @@ extension BookCatalogViewController {
         tableview.tableHeaderView = v
         
     }
+    
     
     
 }

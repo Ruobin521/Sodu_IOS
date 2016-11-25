@@ -16,6 +16,10 @@ class BookContentViewController: UIViewController {
     
     var timer:Timer?
     
+    var currentTime:String?
+    
+    var currentBattery:String?
+    
     var loadingWindow:UIWindow!
     
     var isLoading = false
@@ -24,19 +28,16 @@ class BookContentViewController: UIViewController {
     
     var isShowing = false
     
+    var pageController:UIPageViewController!
     
-    @IBOutlet weak var txtChapterName: UILabel!
-    @IBOutlet weak var txtContent: UITextView!
-    @IBOutlet weak var errorView: UIView!
-    @IBOutlet weak var txtBattary: UILabel!
     @IBOutlet weak var txtBookName: UILabel!
+    
+    @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var btnRetry: UIButton!
     
     @IBOutlet weak var topMenu: UIView!
     @IBOutlet weak var botomMenu: UIView!
     
-    @IBOutlet weak var txtTime: UILabel!
-    
-    @IBOutlet weak var btnRetry: UIButton!
     
     /// 按钮数据数组
     let buttonsInfo = [["imageName": "content_bar_moonlight", "title": "夜间"],
@@ -82,14 +83,15 @@ class BookContentViewController: UIViewController {
                     
                     if  isSuccess {
                         
-                        self?.txtChapterName.text = self?.vm.currentCatalog?.chapterName
+                        let controller:ContentPageViewController =  (self?.getViewControllerByIndex(0))!
                         
-                        self?.txtContent.text = self?.vm.curentChapterText
+                        let viewControllers:[ContentPageViewController] = [controller]
                         
-                        let point = CGPoint(x: 0, y: 0)
-                        self?.txtContent.setContentOffset(point, animated: false)
+                        self?.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
                         
-                        self?.setTextContetAttributes()
+                        self?.btnRetry .isHidden = true
+                        self?.errorView.isHidden = true
+                        
                         
                     } else {
                         
@@ -106,6 +108,7 @@ class BookContentViewController: UIViewController {
         }
     }
     
+    
     func  initCatalogs(_ completion: ((_ isSuccess:Bool)->())? = nil) {
         
         DispatchQueue.global().async {
@@ -118,7 +121,7 @@ class BookContentViewController: UIViewController {
             self.vm.getBookCatalogs(url: url, completion: completion)
             
         }
-    
+        
     }
     
     @IBAction func retryAction(_ sender: Any) {
@@ -145,7 +148,82 @@ class BookContentViewController: UIViewController {
     
 }
 
-
+extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewControllerDataSource {
+    
+    
+    ///上一页
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        
+        
+        var index = (viewController as! ContentPageViewController).tag
+        
+        index -= 1
+        
+        let controller:ContentPageViewController? = getViewControllerByIndex(index)
+        
+        return controller
+    }
+    
+    ///下一页
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        
+        
+        var index = (viewController as! ContentPageViewController).tag
+        
+        index -= 1
+        
+        let controller:ContentPageViewController? = getViewControllerByIndex(index)
+        
+        return controller
+        
+    }
+    
+    
+    func getViewControllerByIndex(_ index:Int) -> ContentPageViewController? {
+        
+        
+        guard let contentList = vm.currentChapterPageList,let catalog = vm.currentCatalog else {
+            
+            return nil
+            
+        }
+        
+        if index  < contentList.count {
+            
+            let controller:ContentPageViewController = ContentPageViewController()
+            
+            controller.chapterName = catalog.chapterName
+            
+            controller.content = contentList[index]
+            
+            print(contentList)
+            
+            controller.battery = currentBattery
+            
+            controller.time = currentTime
+            
+            controller.tag = index
+            
+            return controller
+            
+        } else {
+            
+            guard let nextChapterContentList = vm.nextChapterPageList,let nextChapterCatalog = vm.currentCatalog else {
+                
+                return nil
+                
+            }
+            
+            return nil
+            
+        }
+        
+    }
+    
+    
+    
+    
+}
 
 
 // MARK: - 设置相关
@@ -213,7 +291,7 @@ extension BookContentViewController {
         
         self.botomMenu.isHidden = false
         
-        txtContent.isUserInteractionEnabled = false
+        // txtContent.isUserInteractionEnabled = false
         
         UIView.animate(withDuration: 0.25, animations: {
             
@@ -243,7 +321,7 @@ extension BookContentViewController {
         
         isShowMenu = false
         
-        txtContent.isUserInteractionEnabled = true
+        // txtContent.isUserInteractionEnabled = true
         
         UIView.animate(withDuration: 0.25, animations: {
             
@@ -321,8 +399,6 @@ extension BookContentViewController {
     }
     
     
-    
-    
     //点击缓存
     func downLoadClick() {
         
@@ -365,10 +441,9 @@ extension BookContentViewController {
         
         loadingWindow = ToastView.instance.createLoadingView()
         
-        txtContent.textContainerInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 8)
-        txtContent.textAlignment = .left
+        //        txtContent.textContainerInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 8)
+        //        txtContent.textAlignment = .left
         
-        setColor()
         
         setBattaryInfo()
         
@@ -378,28 +453,50 @@ extension BookContentViewController {
         
         setColor()
         
-        
+        setPageViewController()
     }
     
     
+    
+    func setPageViewController() {
+        
+        pageController = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: nil)
+        
+        pageController.dataSource = self
+        
+        pageController.delegate = self
+        
+        let controller:ContentPageViewController = ContentPageViewController()
+        
+        let viewControllers:[ContentPageViewController] = [controller]
+        
+        pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
+        
+        pageController.view.frame = self.view.bounds
+        
+        self.addChildViewController(pageController)
+        self.view.insertSubview(pageController.view, belowSubview: topMenu)
+        
+    }
+    
     func  setColor() {
         
-        if vm.isMoomlightMode {
-            
-            self.view.backgroundColor =  vm.moonlightBackColor
-            self.txtTime.textColor = vm.moonlightForegroundColor
-            self.txtBattary.textColor = vm.moonlightForegroundColor
-            self.txtContent.textColor = vm.moonlightForegroundColor
-            
-        } else {
-            
-            self.view.backgroundColor =  vm.daylightBackColor
-            self.txtTime.textColor = vm.daylightForegroundColor
-            self.txtBattary.textColor = vm.daylightForegroundColor
-            self.txtContent.textColor = vm.daylightForegroundColor
-            
-        }
-        
+        //        if vm.isMoomlightMode {
+        //
+        //            self.view.backgroundColor =  vm.moonlightBackColor
+        //            self.txtTime.textColor = vm.moonlightForegroundColor
+        //            self.txtBattary.textColor = vm.moonlightForegroundColor
+        //            self.txtContent.textColor = vm.moonlightForegroundColor
+        //
+        //        } else {
+        //
+        //            self.view.backgroundColor =  vm.daylightBackColor
+        //            self.txtTime.textColor = vm.daylightForegroundColor
+        //            self.txtBattary.textColor = vm.daylightForegroundColor
+        //            self.txtContent.textColor = vm.daylightForegroundColor
+        //
+        //        }
+        //
     }
     
     
@@ -419,10 +516,11 @@ extension BookContentViewController {
         
         if Int(UIDevice.current.batteryLevel) == -1 {
             
-            txtBattary.text = "电量:加载中"
+            currentBattery = "电量:加载中"
+            
         } else {
             
-            txtBattary.text = "电量:\(Int(UIDevice.current.batteryLevel*100))%"
+            currentBattery = "电量:\(Int(UIDevice.current.batteryLevel*100))%"
         }
         
     }
@@ -442,13 +540,13 @@ extension BookContentViewController {
             
         } else {
             
-            
             let formatter = DateFormatter()
+            
             formatter.dateFormat = "HH:mm"
+            
             let dateString = formatter.string(from: Date())
             
-            txtTime.text = dateString
-            
+            currentTime = dateString
         }
         
     }
@@ -525,7 +623,7 @@ extension BookContentViewController {
         
         dic[NSForegroundColorAttributeName] = color
         
-        txtContent.attributedText = NSAttributedString(string: txtContent.text, attributes:dic)
+        //txtContent.attributedText = NSAttributedString(string: txtContent.text, attributes:dic)
         
     }
     

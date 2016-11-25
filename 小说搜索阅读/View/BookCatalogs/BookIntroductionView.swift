@@ -24,6 +24,7 @@ class BookIntroductionView: UIView {
     
     @IBOutlet weak var txtIntroduction: UILabel!
     
+    
     class func bookIntroductionView(bookName:String?,cover:String?,lywz:String?,author:String?,introduction:String?) -> BookIntroductionView {
         
         let nib = UINib(nibName: "BookIntroductionView", bundle: nil)
