@@ -11,17 +11,6 @@ import UIKit
 class ContentPageViewController: UIViewController {
     
     
-    @IBOutlet weak var txtChptterName: UILabel!
-    
-    
-    @IBOutlet weak var txtBattery: UILabel!
-    
-    
-    @IBOutlet weak var txtTime: UILabel!
-    
-    @IBOutlet weak var txtContent: UILabel!
-    
-    
     var chapterName:String?
     
     var content:String?
@@ -32,29 +21,35 @@ class ContentPageViewController: UIViewController {
     
     var tag:Int = -1
     
+    var pageIndex:String?
     
-    override func viewWillAppear(_ animated: Bool) {
+    var chapterIndex:String?
+    
+    
+    var contPage:ContentPage?
+    
+    var textAttributeDic:[String:Any]?
+    
+    
+    override func loadView() {
         
-        super.viewWillAppear(animated)
+        contPage = ContentPage.contentPage(chapterName,content,battery,time,textAttributeDic,chapterIndex,pageIndex)
         
-        txtChptterName.text  = chapterName
-        
-        txtContent.text = content
-        
-        txtBattery.text = battery
-        
-        txtTime.text = time
+        self.view = contPage!
     }
-
     
+    
+    func setTextAttribute(_ attributes:[String:Any]?) {
+        
+        contPage?.setTextAttribute(attributes)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
+        
     }
-
-     
     
     
 }

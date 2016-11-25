@@ -19,12 +19,13 @@
 		B145D8E51DD753C900FB09F2 /* PersonCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B145D8E41DD753C900FB09F2 /* PersonCenterViewController.xib */; };
 		B15B846A1DC5EB4500DD1A56 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15B84691DC5EB4500DD1A56 /* UserDefaultsHelper.swift */; };
 		B15D40311DE87FB60038958F /* ContentPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15D402F1DE87FB60038958F /* ContentPageViewController.swift */; };
-		B15D40321DE87FB60038958F /* ContentPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B15D40301DE87FB60038958F /* ContentPageViewController.xib */; };
 		B1600A401DC25ED3000A4C49 /* WelcomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1600A3E1DC25ED3000A4C49 /* WelcomView.swift */; };
 		B1600A431DC26E76000A4C49 /* WelcomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1600A421DC26E76000A4C49 /* WelcomView.xib */; };
 		B162E2121DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E2111DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift */; };
 		B162E2161DC0F152008DF1C4 /* CommonPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E2151DC0F152008DF1C4 /* CommonPageViewModel.swift */; };
 		B162E21C1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E21B1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift */; };
+		B17256671DE8BB2F0077AD5D /* ContentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17256661DE8BB2F0077AD5D /* ContentPage.swift */; };
+		B17256691DE8BB440077AD5D /* ContentPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = B17256681DE8BB440077AD5D /* ContentPage.xib */; };
 		B17860BD1DD37A7300E07944 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17860BB1DD37A7300E07944 /* SettingTableViewCell.swift */; };
 		B17E03C91DB095B90061DD47 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03C11DB095B90061DD47 /* Book.swift */; };
 		B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E03CA1DB098350061DD47 /* MainViewController.swift */; };
@@ -98,12 +99,13 @@
 		B145D8E41DD753C900FB09F2 /* PersonCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonCenterViewController.xib; sourceTree = "<group>"; };
 		B15B84691DC5EB4500DD1A56 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		B15D402F1DE87FB60038958F /* ContentPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentPageViewController.swift; sourceTree = "<group>"; };
-		B15D40301DE87FB60038958F /* ContentPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPageViewController.xib; sourceTree = "<group>"; };
 		B1600A3E1DC25ED3000A4C49 /* WelcomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomView.swift; sourceTree = "<group>"; };
 		B1600A421DC26E76000A4C49 /* WelcomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomView.xib; sourceTree = "<group>"; };
 		B162E2111DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateChapterViewModel.swift; sourceTree = "<group>"; };
 		B162E2151DC0F152008DF1C4 /* CommonPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonPageViewModel.swift; sourceTree = "<group>"; };
 		B162E21B1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
+		B17256661DE8BB2F0077AD5D /* ContentPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentPage.swift; sourceTree = "<group>"; };
+		B17256681DE8BB440077AD5D /* ContentPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPage.xib; sourceTree = "<group>"; };
 		B17860BB1DD37A7300E07944 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		B17E03C11DB095B90061DD47 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		B17E03CA1DB098350061DD47 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -245,7 +247,8 @@
 				B133A7811DDAD1EC0038B5D2 /* BookContentViewController.swift */,
 				B133A7821DDAD1EC0038B5D2 /* BookContentViewController.xib */,
 				B15D402F1DE87FB60038958F /* ContentPageViewController.swift */,
-				B15D40301DE87FB60038958F /* ContentPageViewController.xib */,
+				B17256661DE8BB2F0077AD5D /* ContentPage.swift */,
+				B17256681DE8BB440077AD5D /* ContentPage.xib */,
 			);
 			name = ContentPage;
 			path = ContentView;
@@ -573,6 +576,7 @@
 			files = (
 				B19B74551DD4C344008D6C5C /* RegisterViewController.xib in Resources */,
 				B1D759D91DE6CF330052C4F4 /* BookCatalogViewController.xib in Resources */,
+				B17256691DE8BB440077AD5D /* ContentPage.xib in Resources */,
 				B19B744A1DD344D8008D6C5C /* BookshelfTableViewCell.xib in Resources */,
 				B1C2385C1DD388D800C37FA6 /* LonginViewController.xib in Resources */,
 				B1C238571DD382FE00C37FA6 /* SettingTableViewCell.xib in Resources */,
@@ -583,7 +587,6 @@
 				B1D41DC11DE4193500C0EBB6 /* SettingButton.xib in Resources */,
 				B1D759DF1DE6D8DB0052C4F4 /* BookIntroductionView.xib in Resources */,
 				B19B74441DD3446E008D6C5C /* CommonBookListTableViewCell.xib in Resources */,
-				B15D40321DE87FB60038958F /* ContentPageViewController.xib in Resources */,
 				B1600A431DC26E76000A4C49 /* WelcomView.xib in Resources */,
 				B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */,
 				B145D8E51DD753C900FB09F2 /* PersonCenterViewController.xib in Resources */,
@@ -651,6 +654,7 @@
 				B17E03CF1DB0987A0061DD47 /* NavigationViewController.swift in Sources */,
 				B17E03DB1DB09B830061DD47 /* Bundle+Extensions.swift in Sources */,
 				B19B73E71DD9BD5A00171785 /* DownloadCenterPageViewModel.swift in Sources */,
+				B17256671DE8BB2F0077AD5D /* ContentPage.swift in Sources */,
 				B1D41DBD1DE4191400C0EBB6 /* SettingButton.swift in Sources */,
 				B19B74451DD3446E008D6C5C /* UpdateChapterTableViewCell.swift in Sources */,
 				B15D40311DE87FB60038958F /* ContentPageViewController.swift in Sources */,

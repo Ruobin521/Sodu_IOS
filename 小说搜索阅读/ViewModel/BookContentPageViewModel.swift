@@ -76,7 +76,7 @@ class BookContentPageViewModel {
     
     
     //数据部分
-    var contentRetryCount = 0
+    
     var catalogsRetryCount = 0
     
     var isRequestContent = false
@@ -94,7 +94,15 @@ class BookContentPageViewModel {
     //    var preChapterText:String?
     //
     //    var nextChapterText:String?
-     
+    
+    let topMargin:Float = 30
+    
+    let leftMargin:Float = 15
+    
+    let rightMargin:Float = 8
+    
+    let bottonMargin:Float = 30
+    
     
     var currentCatalog:BookCatalog?
     
@@ -191,7 +199,7 @@ class BookContentPageViewModel {
                     
                     self?.getContentByUrl(url,count,completion)
                     
-                    print("获取\((self?.currentBook?.bookName) ?? " ")正文失败，正在进行第\(self?.contentRetryCount ?? -1)次尝试")
+                    print("获取\((self?.currentBook?.bookName) ?? " ")正文失败，正在进行第\(count)次尝试")
                     
                 }
                 
@@ -265,14 +273,187 @@ class BookContentPageViewModel {
 
 extension BookContentPageViewModel {
     
+    
+    /// 设置正文显示属性
+    func  getTextContetAttributes() -> [String:Any]  {
+        
+        var  dic:[String:Any] = [:]
+        
+        // dic[NSFontAttributeName] = UIFont(name: "PingFangSC-Regular", size: CGFloat(vm.fontSize))
+        dic[NSFontAttributeName] =  UIFont.systemFont(ofSize: CGFloat(fontSize))
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        
+        paragraphStyle.lineSpacing =  CGFloat(lineSpace)
+        
+        dic[NSParagraphStyleAttributeName] = paragraphStyle
+        
+        
+        var color:UIColor!
+        
+        if isMoomlightMode {
+            
+            color = moonlightForegroundColor
+            
+        } else {
+            
+            color = daylightForegroundColor
+        }
+        
+        dic[NSForegroundColorAttributeName] = color
+        
+        return dic
+    }
+    
+    
+    
     func splitPages(str:String)  -> [String] {
         
         let paragraphes = str.components(separatedBy: "\n")
         
-        return paragraphes
+        if paragraphes.count < 2 {
+            
+            return paragraphes
+        }
+        
+        
+        var pages:[String] = [String]()
+        
+        
+        let height = UIScreen.main.bounds.height - 30 - 50
+        
+        let width = UIScreen.main.bounds.width - 15 - 8
+        
+        let viewSize = CGSize(width: width, height: height)
+        
+        let label = UILabel()
+        
+        label.text = "国国国国"
+        
+        label.numberOfLines = 0
+        
+        label.attributedText = NSAttributedString(string: label.text!, attributes: getTextContetAttributes())
+        
+        var size = label.sizeThatFits(CGSize(width: viewSize.width, height: CGFloat(MAXFLOAT)))
+        
+        let perlineHeight = size.height
+        
+        let perTextWidth = size.width / 4
+        
+        
+        //        let rowCount = height.truncatingRemainder(dividingBy:  perlineHeight)  / size.height > 0.8  ? Int(height / perlineHeight) + 1  :Int(height / perlineHeight)
+        //
+        //        let perLineCount =  width.truncatingRemainder(dividingBy: perTextWidth) / size.width > 0.8  ? Int(width / perTextWidth) + 1  : Int(width / perTextWidth)
+        
+        
+        
+        var tempHeight:CGFloat = 0  // 记录临时行高
+        
+        
+        var tempPageContent :String = ""
+        
+        for j in 0..<paragraphes.count {
+            
+            let str = paragraphes[j]
+            
+            label.text = str
+            
+            label.attributedText = NSAttributedString(string: label.text!, attributes: getTextContetAttributes())
+            
+            size =  label.sizeThatFits(CGSize(width: viewSize.width, height: CGFloat(MAXFLOAT)))
+            
+            let num = label.numberOfLines
+            
+            
+        
+            
+            if tempHeight + size.height < height {
+                
+                tempHeight += size.height
+                
+                tempPageContent += str + "\r"
+                
+            } else {
+                
+                label.text = ""
+                
+                for (i,char) in str.characters.enumerated() {
+                    
+                    var temp = label.text
+                    
+                    let ch = String(char)
+                    
+                    label.text = temp! + ch
+                    
+                    label.attributedText = NSAttributedString(string: label.text!, attributes: getTextContetAttributes())
+                    
+                    size =  label.sizeThatFits(CGSize(width: viewSize.width, height: CGFloat(MAXFLOAT)))
+                    
+                    if tempHeight + size.height > height {
+                        
+                        tempPageContent += temp! + "\r'"
+                        
+                        pages.append(tempPageContent)
+                        
+                        tempPageContent = ch
+                        
+                        temp = ""
+                        
+                        label.text = ""
+                        
+                        tempHeight = 0
+                        
+                    }
+                    
+                    if i == str.characters.count - 1 {
+                        
+                        tempPageContent += temp! + "\r'"
+                        
+                        tempHeight += size.height
+                    }
+                }
+                
+                
+//                if tempHeight > height {
+//                    
+//                    pages.append(tempPageContent)
+//                    
+//                    tempPageContent = ""
+//                    
+//                    tempHeight = 0
+//                    
+//                }
+                
+               
+                
+            }
+            
+            
+            if j == (paragraphes.count - 1) && !tempPageContent.isEmpty {
+                
+                pages.append(tempPageContent)
+            }
+            
+        }
+        
+        return pages
         
     }
     
+    
+    func isIncludeChineseIn(string: String) -> Bool {
+        
+        for (_, value) in string.characters.enumerated() {
+            
+            
+            if ("\u{4E00}" <= value  && value <= "\u{9fff}") {
+                
+                return true
+            }
+        }
+        
+        return false
+    }
 }
 
 extension UIColor {

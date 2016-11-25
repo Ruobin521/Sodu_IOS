@@ -89,14 +89,15 @@ class BookContentViewController: UIViewController {
                         
                         self?.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
                         
+                        
                         self?.btnRetry .isHidden = true
                         self?.errorView.isHidden = true
                         
                         
                     } else {
                         
-                        self?.btnRetry .isHidden = false
-                        self?.errorView.isHidden = false
+                        //  self?.btnRetry .isHidden = true
+                        //  self?.errorView.isHidden = true
                         
                     }
                     
@@ -150,7 +151,6 @@ class BookContentViewController: UIViewController {
 
 extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewControllerDataSource {
     
-    
     ///上一页
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
@@ -170,13 +170,14 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         
         var index = (viewController as! ContentPageViewController).tag
         
-        index -= 1
+        index += 1
         
         let controller:ContentPageViewController? = getViewControllerByIndex(index)
         
         return controller
         
     }
+    
     
     
     func getViewControllerByIndex(_ index:Int) -> ContentPageViewController? {
@@ -188,7 +189,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
             
         }
         
-        if index  < contentList.count {
+        if index >= 0 && index  < contentList.count {
             
             let controller:ContentPageViewController = ContentPageViewController()
             
@@ -196,13 +197,15 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
             
             controller.content = contentList[index]
             
-            print(contentList)
-            
             controller.battery = currentBattery
             
             controller.time = currentTime
             
             controller.tag = index
+            
+            controller.textAttributeDic = vm.getTextContetAttributes()
+            
+            controller.view.backgroundColor = self.view.backgroundColor
             
             return controller
             
@@ -437,13 +440,7 @@ extension BookContentViewController {
         
         btnRetry.isHidden = true
         
-        
-        
         loadingWindow = ToastView.instance.createLoadingView()
-        
-        //        txtContent.textContainerInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 8)
-        //        txtContent.textAlignment = .left
-        
         
         setBattaryInfo()
         
@@ -451,20 +448,23 @@ extension BookContentViewController {
         
         setBottonBarButton()
         
+        setPageViewController()
+        
         setColor()
         
-        setPageViewController()
     }
     
     
     
     func setPageViewController() {
         
-        pageController = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: nil)
+        pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
         pageController.dataSource = self
         
         pageController.delegate = self
+        
+        pageController.view.backgroundColor = UIColor.clear
         
         let controller:ContentPageViewController = ContentPageViewController()
         
@@ -475,30 +475,45 @@ extension BookContentViewController {
         pageController.view.frame = self.view.bounds
         
         self.addChildViewController(pageController)
-        self.view.insertSubview(pageController.view, belowSubview: topMenu)
+        
+        self.view.insertSubview(pageController.view, at: 0)
+        
+        
         
     }
+    
+    
     
     func  setColor() {
         
-        //        if vm.isMoomlightMode {
-        //
-        //            self.view.backgroundColor =  vm.moonlightBackColor
-        //            self.txtTime.textColor = vm.moonlightForegroundColor
-        //            self.txtBattary.textColor = vm.moonlightForegroundColor
-        //            self.txtContent.textColor = vm.moonlightForegroundColor
-        //
-        //        } else {
-        //
-        //            self.view.backgroundColor =  vm.daylightBackColor
-        //            self.txtTime.textColor = vm.daylightForegroundColor
-        //            self.txtBattary.textColor = vm.daylightForegroundColor
-        //            self.txtContent.textColor = vm.daylightForegroundColor
-        //
-        //        }
-        //
+        if vm.isMoomlightMode {
+            
+            self.view.backgroundColor =  vm.moonlightBackColor
+            
+        } else {
+            
+            self.view.backgroundColor =  vm.daylightBackColor
+            
+        }
+        
+        
+        
+        for controller in  self.pageController.childViewControllers {
+            
+            guard  let ctr = controller as? ContentPageViewController, let view = controller.view  else{
+                
+                continue
+                
+            }
+            
+            view.backgroundColor =  self.view.backgroundColor
+            
+            ctr.setTextAttribute(self.vm.getTextContetAttributes())
+            
+        }
+        
+        
     }
-    
     
     
     /// 设置电池信息
@@ -591,42 +606,7 @@ extension BookContentViewController {
     }
     
     
-    
-    
-    
-    /// 设置正文显示属性
-    func  setTextContetAttributes() {
-        
-        
-        var  dic:[String:Any] = [:]
-        
-        
-        // dic[NSFontAttributeName] = UIFont(name: "PingFangSC-Regular", size: CGFloat(vm.fontSize))
-        dic[NSFontAttributeName] =  UIFont.systemFont(ofSize: CGFloat(vm.fontSize))
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing =  CGFloat(vm.lineSpace)
-        
-        dic[NSParagraphStyleAttributeName] = paragraphStyle
-        
-        
-        var color:UIColor!
-        
-        if vm.isMoomlightMode {
-            
-            color = vm.moonlightForegroundColor
-            
-        } else {
-            
-            color = vm.daylightForegroundColor
-        }
-        
-        dic[NSForegroundColorAttributeName] = color
-        
-        //txtContent.attributedText = NSAttributedString(string: txtContent.text, attributes:dic)
-        
-    }
-    
+
     
     
     /// 页面即将消失时
@@ -647,28 +627,5 @@ extension BookContentViewController {
 }
 
 
-
-
-extension UITextView {
-    
-    override  open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        guard  let p = touches.first?.location(in: self.superview)  else{
-            
-            return
-        }
-        
-        let height = self.bounds.height
-        let width = self.bounds.width
-        
-        if p.x > width * 1 / 3 && p.x < width * 2 / 3  &&  p.y > height * 1 / 3 && p.y < height * 2 / 3  {
-            
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: touchBeginNotification), object: nil)
-            
-        }
-        
-    }
-    
-}
 
 
