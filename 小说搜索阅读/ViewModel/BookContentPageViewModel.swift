@@ -9,6 +9,15 @@
 import Foundation
 import UIKit
 
+enum CatalogPosion {
+    
+    case Before
+    
+    case Current
+    
+    case Next
+}
+
 class BookContentPageViewModel {
     
     //显示部分
@@ -95,17 +104,6 @@ class BookContentPageViewModel {
     //
     //    var nextChapterText:String?
     
-    let topMargin:Float = 30
-    
-    let leftMargin:Float = 15
-    
-    let rightMargin:Float = 8
-    
-    let bottonMargin:Float = 30
-    
-    
-    var currentCatalog:BookCatalog?
-    
     var currentBook:Book?  {
         
         didSet {
@@ -115,56 +113,123 @@ class BookContentPageViewModel {
         }
     }
     
+    var preCatalog:BookCatalog?
     
-    func getCuttentChapterContent(_ url:String,_ completion:@escaping (_ isSuccess:Bool)->())  {
+    var nextCatalog:BookCatalog?
+    
+    var currentCatalog:BookCatalog? {
+        
+        didSet {
+            //切换到下一章
+            if currentCatalog?.chapterUrl == nextCatalog?.chapterUrl {
+                
+                preChapterPageList = currentChapterPageList
+                
+                currentChapterPageList = nextChapterPageList
+ 
+            }
+                /// 切换到上一章
+            else  if currentCatalog?.chapterUrl == preCatalog?.chapterUrl{
+                
+                nextChapterPageList = currentChapterPageList
+                
+                currentChapterPageList = preChapterPageList
+            }
+                ///随机点的章节
+            else {
+                
+                nextChapterPageList = nil
+                preChapterPageList = nil
+                
+            }
+             
+            
+            if currentBook?.catalogs != nil && (currentBook?.catalogs?.count)! > 0 {
+                
+                setBeforeAndNextCatalog()
+                
+                if nextChapterPageList == nil {
+                    
+                    getCatalogChapterContent(posion: .Next, nil)
+                    
+                }
+                
+                if preChapterPageList == nil {
+                    
+                    getCatalogChapterContent(posion: .Before, nil)
+                    
+                }
+                
+            }
+        }
+        
+    }
+    
+    
+    
+    func  setBeforeAndNextCatalog() {
+        
+        if currentBook?.catalogs != nil && (currentBook?.catalogs?.count)! > 0 {
+            
+            preCatalog = getBeforeOrNextCatalog(posion: .Before)
+            
+            nextCatalog = getBeforeOrNextCatalog(posion: .Next)
+        }
+        
+    }
+    
+    //获取相应目录内容
+    func getCatalogChapterContent(posion:CatalogPosion,_ completion: ((_ isSuccess:Bool)->())?)  {
+        
+        
+        var catalog:BookCatalog?
+        
+        if posion == .Current {
+            
+            catalog = currentCatalog
+            
+        }    else if posion == .Before {
+            
+            catalog = preCatalog
+            
+        }   else  {
+            
+            catalog = nextCatalog
+            
+        }
+        
+        guard let url = catalog?.chapterUrl else{
+            
+            completion?(false)
+            
+            return
+        }
         
         getContentByUrl(url) { (isSuccess, strs) in
             
             if isSuccess {
                 
-                self.currentChapterPageList = strs
+                if posion == .Current {
+                    
+                    self.currentChapterPageList = strs
+                    
+                }    else if posion == .Before {
+                    
+                    self.preChapterPageList = strs
+                    
+                }   else   if posion == .Next {
+                    
+                    self.nextChapterPageList = strs
+                    
+                }
                 
             }
             
-            completion(isSuccess)
+            completion?(isSuccess)
         }
     }
     
-    
-    
-    func getPreCatalogContent(_ url:String,_ completion:@escaping (_ isSuccess:Bool)->()) {
-        
-        
-        getContentByUrl("") { (isSuccess, strs) in
-            
-            if isSuccess {
-                
-                self.preChapterPageList = strs
-                
-            }
-            
-            completion(isSuccess)
-            
-        }
-    }
-    
-    
-    func getNextCatalogContent(_ url:String,_ completion:@escaping (_ isSuccess:Bool)->()) {
-        
-        
-        getContentByUrl("") { (isSuccess, strs) in
-            
-            if isSuccess {
-                
-                self.preChapterPageList = strs
-                
-            }
-            completion(isSuccess)
-        }
-    }
-    
-    
-    
+    /// 获取正文内容
     func getContentByUrl(_ url:String,_ retryCount:Int = 0,_ completion:@escaping (_ isSuccess:Bool,_ html:[String]?)->())  {
         
         self.isRequestContent = true
@@ -175,15 +240,21 @@ class BookContentPageViewModel {
             
             if isSuccess {
                 
-                let  htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, html!,AnalisysType.Content) as? String
+                if  let  htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, html!,AnalisysType.Content) as? String {
+                    
+                    count = 0
+                    
+                    self?.isRequestContent = false
+                    
+                    print("获取\(url)正文成功")
+                    
+                    completion(true,self?.splitPages(str: htmlValue))
+                    
+                } else {
+                    
+                    completion(false,nil)
+                }
                 
-                count = 0
-                
-                self?.isRequestContent = false
-                
-                print("获取\(url)正文成功")
-                
-                completion(true,self?.splitPages(str: htmlValue!))
                 
             }  else {
                 
@@ -208,7 +279,7 @@ class BookContentPageViewModel {
         }
     }
     
-    
+    /// 获取目录列表
     func getBookCatalogs(url:String,completion: ((_ isSuccess:Bool)->())?)  {
         
         
@@ -244,6 +315,10 @@ class BookContentPageViewModel {
                 
                 self?.catalogsRetryCount = 0
                 
+                self?.setBeforeAndNextCatalog()
+                
+                self?.getCatalogChapterContent(posion: .Next, nil)
+                
                 print("获取\(self?.currentBook?.bookName ?? " ")目录成功")
                 
             } else {
@@ -267,6 +342,76 @@ class BookContentPageViewModel {
             }
         }
         
+    }
+    
+    
+    //获取上一个章节 和下一章节信息
+    func getBeforeOrNextCatalog(posion:CatalogPosion) -> BookCatalog? {
+        
+        guard let catalogs = currentBook?.catalogs ,let catalog = currentCatalog else {
+            
+            return nil
+        }
+        
+   
+        guard  let currentIndex = getCatalogIndex(catalog)  else {
+            
+            return nil
+            
+        }
+        
+        
+        var requestIndex = 0
+        
+        if posion == .Before {
+            
+            requestIndex = currentIndex - 1
+            
+        } else {
+            
+            
+            requestIndex = currentIndex + 1
+        }
+        
+        if requestIndex > 0 && requestIndex < catalogs.count  {
+            
+            return catalogs[requestIndex]
+            
+        }
+        
+        
+        return nil
+        
+    }
+    
+    
+    func getCatalogIndex(_ catalog:BookCatalog) ->Int? {
+        
+        
+        guard let catalogs = currentBook?.catalogs else {
+            
+            return nil
+        }
+        
+        
+        guard   let catalog = catalogs.first(where: { (item) -> Bool in
+            
+            item.chapterUrl == currentCatalog?.chapterUrl
+            
+        }) else {
+            
+            return nil
+            
+        }
+        
+        
+        guard  let currentIndex = catalogs.index(of: catalog) else {
+            
+            return nil
+            
+        }
+
+        return currentIndex
     }
 }
 
@@ -309,46 +454,20 @@ extension BookContentPageViewModel {
     
     func splitPages(str:String)  -> [String] {
         
+        
+        
         let paragraphes = str.components(separatedBy: "\n")
         
-        if paragraphes.count < 2 {
+        if paragraphes.count  == 0 {
             
             return paragraphes
         }
         
-        
         var pages:[String] = [String]()
         
+        let height = UIScreen.main.bounds.height - 30 - 30
         
-        let height = UIScreen.main.bounds.height - 30 - 50
-        
-        let width = UIScreen.main.bounds.width - 15 - 8
-        
-        let viewSize = CGSize(width: width, height: height)
-        
-        let label = UILabel()
-        
-        label.text = "国国国国"
-        
-        label.numberOfLines = 0
-        
-        label.attributedText = NSAttributedString(string: label.text!, attributes: getTextContetAttributes())
-        
-        var size = label.sizeThatFits(CGSize(width: viewSize.width, height: CGFloat(MAXFLOAT)))
-        
-        let perlineHeight = size.height
-        
-        let perTextWidth = size.width / 4
-        
-        
-        //        let rowCount = height.truncatingRemainder(dividingBy:  perlineHeight)  / size.height > 0.8  ? Int(height / perlineHeight) + 1  :Int(height / perlineHeight)
-        //
-        //        let perLineCount =  width.truncatingRemainder(dividingBy: perTextWidth) / size.width > 0.8  ? Int(width / perTextWidth) + 1  : Int(width / perTextWidth)
-        
-        
-        
-        var tempHeight:CGFloat = 0  // 记录临时行高
-        
+        let width = UIScreen.main.bounds.width -  15 - 6
         
         var tempPageContent :String = ""
         
@@ -356,75 +475,44 @@ extension BookContentPageViewModel {
             
             let str = paragraphes[j]
             
-            label.text = str
+            var tempStr = tempPageContent == "" ?   str  : tempPageContent +  "\r" + str
             
-            label.attributedText = NSAttributedString(string: label.text!, attributes: getTextContetAttributes())
-            
-            size =  label.sizeThatFits(CGSize(width: viewSize.width, height: CGFloat(MAXFLOAT)))
-            
-            let num = label.numberOfLines
+            let  size =  tempStr.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: getTextContetAttributes(), context: nil)
             
             
-        
-            
-            if tempHeight + size.height < height {
+            if  size.height < height {
                 
-                tempHeight += size.height
-                
-                tempPageContent += str + "\r"
+                tempPageContent =   tempStr
                 
             } else {
                 
-                label.text = ""
+                tempPageContent += "\r"
                 
-                for (i,char) in str.characters.enumerated() {
-                    
-                    var temp = label.text
+                for (_,char) in str.characters.enumerated() {
                     
                     let ch = String(char)
                     
-                    label.text = temp! + ch
+                    tempStr = tempPageContent + ch
                     
-                    label.attributedText = NSAttributedString(string: label.text!, attributes: getTextContetAttributes())
+                    let   tempSize =  tempStr.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: getTextContetAttributes(), context: nil)
                     
-                    size =  label.sizeThatFits(CGSize(width: viewSize.width, height: CGFloat(MAXFLOAT)))
                     
-                    if tempHeight + size.height > height {
-                        
-                        tempPageContent += temp! + "\r'"
+                    if  tempSize.height > height {
                         
                         pages.append(tempPageContent)
                         
+                        //                        let temp =  tempPageContent.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: getTextContetAttributes(), context: nil)
+                        
+                        // print("将要添加到页面的文本大小:\(temp)")
+                        
                         tempPageContent = ch
                         
-                        temp = ""
+                    } else {
                         
-                        label.text = ""
-                        
-                        tempHeight = 0
-                        
+                        tempPageContent += ch
                     }
                     
-                    if i == str.characters.count - 1 {
-                        
-                        tempPageContent += temp! + "\r'"
-                        
-                        tempHeight += size.height
-                    }
                 }
-                
-                
-//                if tempHeight > height {
-//                    
-//                    pages.append(tempPageContent)
-//                    
-//                    tempPageContent = ""
-//                    
-//                    tempHeight = 0
-//                    
-//                }
-                
-               
                 
             }
             

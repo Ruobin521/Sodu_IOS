@@ -25,17 +25,28 @@ class ContentPageViewController: UIViewController {
     
     var chapterIndex:String?
     
+    var backColor:UIColor?
+    
     
     var contPage:ContentPage?
     
     var textAttributeDic:[String:Any]?
+    
+    var test:String?
+    
+    var catalog:BookCatalog?
+    
+    
     
     
     override func loadView() {
         
         contPage = ContentPage.contentPage(chapterName,content,battery,time,textAttributeDic,chapterIndex,pageIndex)
         
+        contPage?.backgroundColor = backColor ?? UIColor.clear
+        
         self.view = contPage!
+                
     }
     
     
@@ -44,6 +55,8 @@ class ContentPageViewController: UIViewController {
         contPage?.setTextAttribute(attributes)
         
     }
+    
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -10,476 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501703464.3548"
+            timestampString = "501879133.044147"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "BookContentPageViewModel"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentPageViewModel.(getCuttentChapterContent (url : Swift.String, completion : (Swift.Bool) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/ViewModel/BookContentPageViewModel.swift"
-                  timestampString = "501702995.30708"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "172">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentPageViewModel.(getCuttentChapterContent (url : Swift.String, completion : (Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/ViewModel/BookContentPageViewModel.swift"
-                  timestampString = "501702995.308821"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "68">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501703464.3548"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "BookContentPageViewModel"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentPageViewModel.(getCuttentChapterContent (url : Swift.String, completion : (Swift.Bool) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/ViewModel/BookContentPageViewModel.swift"
-                  timestampString = "501703000.219825"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "172">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentPageViewModel.(getCuttentChapterContent (url : Swift.String, completion : (Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/ViewModel/BookContentPageViewModel.swift"
-                  timestampString = "501703000.222573"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "68">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501740400.862214"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "BookContentPageViewModel"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookIntroductionView.swift"
-            timestampString = "501753367.076422"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "bookIntroductionView(bookName:cover:lywz:author:introduction:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookIntroductionView.swift"
-            timestampString = "501753367.076422"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "bookIntroductionView(bookName:cover:lywz:author:introduction:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookIntroductionView.bookIntroductionView (bookName : Swift.Optional&lt;Swift.String&gt;, cover : Swift.Optional&lt;Swift.String&gt;, lywz : Swift.Optional&lt;Swift.String&gt;, author : Swift.Optional&lt;Swift.String&gt;, introduction : Swift.Optional&lt;Swift.String&gt;) -&gt; &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookIntroductionView"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/files/SoDu_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/BookCatalogs/BookIntroductionView.swift"
-                  timestampString = "501745923.014463"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "3576">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookIntroductionView.bookIntroductionView (bookName : Swift.Optional&lt;Swift.String&gt;, cover : Swift.Optional&lt;Swift.String&gt;, lywz : Swift.Optional&lt;Swift.String&gt;, author : Swift.Optional&lt;Swift.String&gt;, introduction : Swift.Optional&lt;Swift.String&gt;) -&gt; &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookIntroductionView"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/files/SoDu_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/BookCatalogs/BookIntroductionView.swift"
-                  timestampString = "501745923.017475"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "3636">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501801024.597919"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "getBookCatalogs(url:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
-            timestampString = "501747664.750298"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "700"
-            endingLineNumber = "700"
-            landmarkName = "analisysDjzwCIAC(_:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
-            timestampString = "501747664.750298"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "694"
-            endingLineNumber = "694"
-            landmarkName = "analisysDjzwCIAC(_:_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.AnalisysHtmlHelper.analisysDjzwCIAC (Swift.String, Swift.String) -&gt; (catalogs : Swift.Optional&lt;Swift.Array&lt;&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookCatalog&gt;&gt;, introduction : Swift.Optional&lt;Swift.String&gt;, author : Swift.Optional&lt;Swift.String&gt;, cover : Swift.Optional&lt;Swift.String&gt;)"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/files/SoDu_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/Tools/AnalisysHtmlHelper.swift"
-                  timestampString = "501746519.08773"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "692"
-                  endingLineNumber = "692"
-                  offsetFromSymbolStart = "4232">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.AnalisysHtmlHelper.analisysDjzwCIAC (Swift.String, Swift.String) -&gt; (catalogs : Swift.Optional&lt;Swift.Array&lt;&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookCatalog&gt;&gt;, introduction : Swift.Optional&lt;Swift.String&gt;, author : Swift.Optional&lt;Swift.String&gt;, cover : Swift.Optional&lt;Swift.String&gt;)"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/files/SoDu_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/Tools/AnalisysHtmlHelper.swift"
-                  timestampString = "501746519.091381"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "692"
-                  endingLineNumber = "692"
-                  offsetFromSymbolStart = "4420">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookIntroductionView.swift"
-            timestampString = "501753367.076422"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "bookIntroductionView(bookName:cover:lywz:author:introduction:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookIntroductionView.swift"
-            timestampString = "501753367.076422"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "bookIntroductionView(bookName:cover:lywz:author:introduction:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookIntroductionView.swift"
-            timestampString = "501753367.076422"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "bookIntroductionView(bookName:cover:lywz:author:introduction:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookIntroductionView.swift"
-            timestampString = "501753367.076422"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "bookIntroductionView(bookName:cover:lywz:author:introduction:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookIntroductionView.swift"
-            timestampString = "501752561.663117"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "bookIntroductionView(bookName:cover:lywz:author:introduction:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookCatalogViewController.swift"
-            timestampString = "501773006.947186"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "scrollAction()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookCatalogViewController.swift"
-            timestampString = "501773006.947186"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "scrollAction()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookCatalogViewController.swift"
-            timestampString = "501775081.34522"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "scrollAction()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookCatalogViewController.swift"
-            timestampString = "501775081.34522"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "scrollAction()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookCatalogViewController.swift"
-            timestampString = "501775081.34522"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "scrollAction()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookCatalogViewController.swift"
-            timestampString = "501775081.34522"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "scrollAction()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookCatalogViewController.swift"
-            timestampString = "501775081.34522"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "scrollAction()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookCatalogViewController.swift"
-            timestampString = "501775081.34522"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "scrollAction()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/BookCatalogs/BookCatalogViewController.swift"
-            timestampString = "501775032.227676"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "setupUI()"
+            startingLineNumber = "521"
+            endingLineNumber = "521"
+            landmarkName = "splitPages(str:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -490,12 +26,268 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501801024.597919"
+            timestampString = "501879133.044147"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
-            landmarkName = "getContentByUrl(_:_:_:)"
+            startingLineNumber = "495"
+            endingLineNumber = "495"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "497"
+            endingLineNumber = "497"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "505"
+            endingLineNumber = "505"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "496"
+            endingLineNumber = "496"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "487"
+            endingLineNumber = "487"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "491"
+            endingLineNumber = "491"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "506"
+            endingLineNumber = "506"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "483"
+            endingLineNumber = "483"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "486"
+            endingLineNumber = "486"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "502"
+            endingLineNumber = "502"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "479"
+            endingLineNumber = "479"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "485"
+            endingLineNumber = "485"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "501"
+            endingLineNumber = "501"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "508"
+            endingLineNumber = "508"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "509"
+            endingLineNumber = "509"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "484"
+            endingLineNumber = "484"
+            landmarkName = "splitPages(str:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "492"
+            endingLineNumber = "492"
+            landmarkName = "splitPages(str:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -506,203 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
-            timestampString = "501784597.707968"
+            timestampString = "501880052.182892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "initContentData()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentViewController.(initContentData () -&gt; ()).(closure #1).(closure #1).(closure #1)"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/BookContentViewController.swift"
-                  timestampString = "501785369.356711"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "48">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentViewController.(initContentData () -&gt; ()).(closure #1).(closure #1).(closure #1)"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/BookContentViewController.swift"
-                  timestampString = "501785369.358168"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "86"
-                  endingLineNumber = "86"
-                  offsetFromSymbolStart = "2648">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501801024.597919"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "getCuttentChapterContent(_:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501801024.597919"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "getCuttentChapterContent(_:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
-            timestampString = "501798131.901006"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "pageViewController(_:viewControllerAfter:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501801024.597919"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "getContentByUrl(_:_:_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "function signature specialization &lt;Arg[1] = Owned To Guaranteed, Arg[2] = Owned To Guaranteed and Exploded, Arg[3] = Owned To Guaranteed, Arg[4] = Owned To Guaranteed, Arg[5] = Owned To Guaranteed&gt; of &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentPageViewModel.(getContentByUrl (Swift.String, Swift.Int, (Swift.Bool, Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/ViewModel/BookContentPageViewModel.swift"
-                  timestampString = "501784843.520588"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "162"
-                  endingLineNumber = "162"
-                  offsetFromSymbolStart = "912">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed and Exploded&gt; of &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentViewController.(initContentData () -&gt; ()).(closure #1)"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/ViewModel/BookContentPageViewModel.swift"
-                  timestampString = "501784843.522448"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "162"
-                  endingLineNumber = "162"
-                  offsetFromSymbolStart = "148">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501801024.597919"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "getContentByUrl(_:_:_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "function signature specialization &lt;Arg[1] = Owned To Guaranteed, Arg[2] = Owned To Guaranteed and Exploded, Arg[3] = Owned To Guaranteed, Arg[4] = Owned To Guaranteed, Arg[5] = Owned To Guaranteed&gt; of &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentPageViewModel.(getContentByUrl (Swift.String, Swift.Int, (Swift.Bool, Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;) -&gt; ()) -&gt; ()).(closure #1)"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/ViewModel/BookContentPageViewModel.swift"
-                  timestampString = "501784844.031998"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "162"
-                  endingLineNumber = "162"
-                  offsetFromSymbolStart = "912">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "function signature specialization &lt;Arg[0] = Owned To Guaranteed, Arg[1] = Owned To Guaranteed and Exploded&gt; of &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentViewController.(initContentData () -&gt; ()).(closure #1)"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/ViewModel/BookContentPageViewModel.swift"
-                  timestampString = "501784844.034839"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "162"
-                  endingLineNumber = "162"
-                  offsetFromSymbolStart = "148">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
-            timestampString = "501798131.901006"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "pageViewController(_:viewControllerBefore:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -714,13 +314,61 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
-            timestampString = "501798131.901006"
+            timestampString = "501880052.182892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "BookContentViewController"
-            landmarkType = "4">
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "pageViewController(_:viewControllerAfter:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
+            landmarkName = "getBeforeOrNextCatalog(posion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "349"
+            endingLineNumber = "349"
+            landmarkName = "getBeforeOrNextCatalog(posion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "getCatalogChapterContent(posion:_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -730,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
-            timestampString = "501798131.901006"
+            timestampString = "501880415.734687"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
             landmarkName = "getViewControllerByIndex(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -746,12 +394,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501801024.597919"
+            timestampString = "501873874.357671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "getCuttentChapterContent(_:_:)"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "BookContentPageViewModel"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501873920.531234"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "initContentData()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -762,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
-            timestampString = "501798131.901006"
+            timestampString = "501880052.182892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "getViewControllerByIndex(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -778,153 +442,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
-            timestampString = "501798131.901006"
+            timestampString = "501874056.859238"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "pageViewController(_:viewControllerAfter:)"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "initContentData()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
-            timestampString = "501798131.901006"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "touchesBegan(_:with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPageViewController.swift"
-            timestampString = "501798960.235091"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "ContentPageViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPageVIiew.swift"
-            timestampString = "501789937.288163"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "touchesBegan(_:with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPageView.swift"
-            timestampString = "501791246.826805"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "contentPageVIiew(_:_:_:_:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPage.swift"
-            timestampString = "501791884.181656"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "ContentPage"
-            landmarkType = "3">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.ContentPage.txtContent.getter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
+                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentViewController.(initContentData () -&gt; ()).(closure #1).(closure #1).(closure #1)"
                   moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/ContentPage.swift"
-                  timestampString = "501792128.378133"
+                  urlString = "file:///Volumes/%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/BookContentViewController.swift"
+                  timestampString = "501874151.440173"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "40">
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "48">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.ContentPage.txtContent.setter : weak Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
+                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentViewController.(initContentData () -&gt; ()).(closure #1).(closure #1).(closure #1)"
                   moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/ContentPage.swift"
-                  timestampString = "501792128.379532"
+                  urlString = "file:///Volumes/%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/BookContentViewController.swift"
+                  timestampString = "501874151.441766"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "52">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.ContentPage.init (frame : __C.CGRect) -&gt; &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.ContentPage"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/ContentPage.swift"
-                  timestampString = "501792128.380948"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "204">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.ContentPage.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.ContentPage&gt;"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/ContentPage.swift"
-                  timestampString = "501792128.382395"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "200">
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "2184">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -935,13 +489,125 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPage.swift"
-            timestampString = "501792151.62419"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "ContentPage"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "getBeforeOrNextCatalog(posion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
+            landmarkName = "getViewControllerByIndex(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501874276.504965"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "initContentData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentViewController.(initContentData () -&gt; ()).(closure #1).(closure #1).(closure #1)"
+                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/BookContentViewController.swift"
+                  timestampString = "501875006.314477"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentViewController.(initContentData () -&gt; ()).(closure #1).(closure #1).(closure #1)"
+                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/BookContentViewController.swift"
+                  timestampString = "501875006.316686"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "81"
+                  endingLineNumber = "81"
+                  offsetFromSymbolStart = "2184">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "378"
+            endingLineNumber = "378"
+            landmarkName = "getBeforeOrNextCatalog(posion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
+            landmarkName = "getBeforeOrNextCatalog(posion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "BookContentPageViewModel"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
@@ -951,8 +617,40 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
+            landmarkName = "getBeforeOrNextCatalog(posion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPageViewController.swift"
+            timestampString = "501877439.138806"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPage.swift"
-            timestampString = "501798960.235091"
+            timestampString = "501875745.199793"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "40"
@@ -967,13 +665,77 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPage.swift"
-            timestampString = "501798960.235091"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPageViewController.swift"
+            timestampString = "501877439.138806"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "touchesBegan(_:with:)"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "loadView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "getViewControllerByIndex(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880415.734687"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
+            landmarkName = "getViewControllerByIndex(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "getViewControllerByIndex(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
+            landmarkName = "getViewControllerByIndex(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -984,12 +746,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPage.swift"
-            timestampString = "501798960.235091"
+            timestampString = "501876509.908402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "touchesBegan(_:with:)"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "contentPage(_:_:_:_:_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1000,11 +762,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPage.swift"
-            timestampString = "501798960.235091"
+            timestampString = "501876672.573514"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "contentPage(_:_:_:_:_:_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1016,108 +778,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
-            timestampString = "501798131.901006"
+            timestampString = "501880415.734687"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "489"
-            endingLineNumber = "489"
-            landmarkName = "setColor()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPageViewController.swift"
-            timestampString = "501798960.235091"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "setTextAttribute(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPageViewController.swift"
-            timestampString = "501798960.235091"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "setTextAttribute(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPage.swift"
-            timestampString = "501798960.235091"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "setTextAttribute(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.ContentPage.setTextAttribute (Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;) -&gt; ()"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/ContentPage.swift"
-                  timestampString = "501794938.373031"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.ContentPage.setTextAttribute (Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Any&gt;&gt;) -&gt; ()"
-                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/ContentPage.swift"
-                  timestampString = "501794938.374399"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "140">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
-            timestampString = "501798131.901006"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "453"
-            endingLineNumber = "453"
-            landmarkName = "setupUI()"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
+            landmarkName = "createEmptyContenPageController()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1128,12 +794,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
-            timestampString = "501798131.901006"
+            timestampString = "501880415.734687"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362"
-            landmarkName = "setMoonlightMode(_:)"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "getViewControllerByIndex(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1144,11 +810,235 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
-            timestampString = "501798131.901006"
+            timestampString = "501880052.182892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "getViewControllerByIndex(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "pageViewController(_:didFinishAnimating:previousViewControllers:transitionCompleted:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880415.734687"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
+            landmarkName = "getViewControllerByIndex(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "319"
+            endingLineNumber = "319"
+            landmarkName = "getBookCatalogs(url:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
+            landmarkName = "getBookCatalogs(url:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "318"
+            endingLineNumber = "318"
+            landmarkName = "getBookCatalogs(url:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "getCatalogChapterContent(posion:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
+            timestampString = "501879133.044147"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "getCatalogChapterContent(posion:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
+            landmarkName = "getViewControllerByIndex(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
+            landmarkName = "getViewControllerByIndex(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "getViewControllerByIndex(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "pageViewController(_:didFinishAnimating:previousViewControllers:transitionCompleted:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
+            landmarkName = "pageViewController(_:didFinishAnimating:previousViewControllers:transitionCompleted:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "pageViewController(_:didFinishAnimating:previousViewControllers:transitionCompleted:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "getViewControllerByIndex(_:)"
             landmarkType = "7">
             <Locations>
@@ -1159,13 +1049,13 @@
                   symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentViewController.getViewControllerByIndex (Swift.Int) -&gt; Swift.Optional&lt;&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.ContentPageViewController&gt;"
                   moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/BookContentViewController.swift"
-                  timestampString = "501796683.771966"
+                  urlString = "file:///Volumes/%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/BookContentViewController.swift"
+                  timestampString = "501879168.470049"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "193"
-                  endingLineNumber = "193"
-                  offsetFromSymbolStart = "32">
+                  startingLineNumber = "226"
+                  endingLineNumber = "226"
+                  offsetFromSymbolStart = "1480">
                </Location>
                <Location
                   shouldBeEnabled = "No"
@@ -1174,13 +1064,13 @@
                   symbolName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookContentViewController.getViewControllerByIndex (Swift.Int) -&gt; Swift.Optional&lt;&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.ContentPageViewController&gt;"
                   moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Ruobin/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/BookContentViewController.swift"
-                  timestampString = "501796683.774201"
+                  urlString = "file:///Volumes/%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/View/ContentView/BookContentViewController.swift"
+                  timestampString = "501879168.472204"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "193"
-                  endingLineNumber = "193"
-                  offsetFromSymbolStart = "128">
+                  startingLineNumber = "226"
+                  endingLineNumber = "226"
+                  offsetFromSymbolStart = "1572">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1191,13 +1081,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/ContentPageViewController.swift"
-            timestampString = "501798960.235091"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "loadView()"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "getViewControllerByIndex(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "pageViewController(_:didFinishAnimating:previousViewControllers:transitionCompleted:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1208,12 +1114,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501806468.68296"
+            timestampString = "501879725.072794"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
-            landmarkName = "splitPages(str:)"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "getCatalogChapterContent(posion:_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1224,12 +1130,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501806625.814478"
+            timestampString = "501879777.008928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "439"
-            endingLineNumber = "439"
-            landmarkName = "splitPages(str:)"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "BookContentPageViewModel"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/View/ContentView/BookContentViewController.swift"
+            timestampString = "501880052.182892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "pageViewController(_:didFinishAnimating:previousViewControllers:transitionCompleted:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1240,12 +1162,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501801060.150096"
+            timestampString = "501880005.224654"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
-            landmarkName = "splitPages(str:)"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "getCatalogChapterContent(posion:_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1256,12 +1178,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501801060.807334"
+            timestampString = "501880098.987998"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
-            landmarkName = "splitPages(str:)"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
+            landmarkName = "getBookCatalogs(url:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "849"
+            endingLineNumber = "849"
+            landmarkName = "analisys7dswCIAC(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1271,13 +1209,157 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501806468.68296"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "344"
-            endingLineNumber = "344"
-            landmarkName = "splitPages(str:)"
+            startingLineNumber = "734"
+            endingLineNumber = "734"
+            landmarkName = "analisysDjzwCIAC(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501881597.144593"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "AnalisysHtml(_:_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "874"
+            endingLineNumber = "874"
+            landmarkName = "analisys7dswCIAC(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "852"
+            endingLineNumber = "852"
+            landmarkName = "analisys7dswCIAC(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "863"
+            endingLineNumber = "863"
+            landmarkName = "analisys7dswCIAC(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "900"
+            endingLineNumber = "900"
+            landmarkName = "analisys7dswCIAC(_:_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.AnalisysHtmlHelper.analisys7dswCIAC (Swift.String, Swift.String) -&gt; (catalogs : Swift.Optional&lt;Swift.Array&lt;&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookCatalog&gt;&gt;, introduction : Swift.Optional&lt;Swift.String&gt;, author : Swift.Optional&lt;Swift.String&gt;, cover : Swift.Optional&lt;Swift.String&gt;)"
+                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/Tools/AnalisysHtmlHelper.swift"
+                  timestampString = "501886701.567808"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "900"
+                  endingLineNumber = "900"
+                  offsetFromSymbolStart = "3644">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.AnalisysHtmlHelper.analisys7dswCIAC (Swift.String, Swift.String) -&gt; (catalogs : Swift.Optional&lt;Swift.Array&lt;&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookCatalog&gt;&gt;, introduction : Swift.Optional&lt;Swift.String&gt;, author : Swift.Optional&lt;Swift.String&gt;, cover : Swift.Optional&lt;Swift.String&gt;)"
+                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/Tools/AnalisysHtmlHelper.swift"
+                  timestampString = "501886701.569372"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "900"
+                  endingLineNumber = "900"
+                  offsetFromSymbolStart = "3820">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1773"
+            endingLineNumber = "1773"
+            landmarkName = "AnalisysHtmlHelper"
+            landmarkType = "4">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "533"
+            endingLineNumber = "533"
+            landmarkName = "analisysCommonCIAC(url:coverBaseUrl:html:htmlPattern:catalogPattern:introPattern:coverPattern:AuthorPattern:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1287,13 +1369,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501806625.814478"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "370"
-            endingLineNumber = "370"
-            landmarkName = "splitPages(str:)"
+            startingLineNumber = "534"
+            endingLineNumber = "534"
+            landmarkName = "analisysCommonCIAC(url:coverBaseUrl:html:htmlPattern:catalogPattern:introPattern:coverPattern:AuthorPattern:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1303,13 +1385,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501806625.814478"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "378"
-            endingLineNumber = "378"
-            landmarkName = "splitPages(str:)"
+            startingLineNumber = "634"
+            endingLineNumber = "634"
+            landmarkName = "analisysCommonCIAC(url:coverBaseUrl:html:htmlPattern:catalogPattern:introPattern:coverPattern:AuthorPattern:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1319,13 +1401,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501806625.814478"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "392"
-            endingLineNumber = "392"
-            landmarkName = "splitPages(str:)"
+            startingLineNumber = "548"
+            endingLineNumber = "548"
+            landmarkName = "analisysCommonCIAC(url:coverBaseUrl:html:htmlPattern:catalogPattern:introPattern:coverPattern:AuthorPattern:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1335,13 +1417,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501806625.814478"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "393"
-            endingLineNumber = "393"
-            landmarkName = "splitPages(str:)"
+            startingLineNumber = "554"
+            endingLineNumber = "554"
+            landmarkName = "analisysCommonCIAC(url:coverBaseUrl:html:htmlPattern:catalogPattern:introPattern:coverPattern:AuthorPattern:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1351,13 +1433,61 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501806625.814478"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381"
-            landmarkName = "splitPages(str:)"
+            startingLineNumber = "562"
+            endingLineNumber = "562"
+            landmarkName = "analisysCommonCIAC(url:coverBaseUrl:html:htmlPattern:catalogPattern:introPattern:coverPattern:AuthorPattern:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.AnalisysHtmlHelper.analisysCommonCIAC (url : Swift.String, coverBaseUrl : Swift.String, html : Swift.String, htmlPattern : Swift.String, catalogPattern : Swift.String, introPattern : Swift.String, coverPattern : Swift.String, AuthorPattern : Swift.String) -&gt; (catalogs : Swift.Optional&lt;Swift.Array&lt;&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookCatalog&gt;&gt;, introduction : Swift.Optional&lt;Swift.String&gt;, author : Swift.Optional&lt;Swift.String&gt;, cover : Swift.Optional&lt;Swift.String&gt;)"
+                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/Tools/AnalisysHtmlHelper.swift"
+                  timestampString = "501885104.295815"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "558"
+                  endingLineNumber = "558"
+                  offsetFromSymbolStart = "1872">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static &#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.AnalisysHtmlHelper.analisysCommonCIAC (url : Swift.String, coverBaseUrl : Swift.String, html : Swift.String, htmlPattern : Swift.String, catalogPattern : Swift.String, introPattern : Swift.String, coverPattern : Swift.String, AuthorPattern : Swift.String) -&gt; (catalogs : Swift.Optional&lt;Swift.Array&lt;&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;.BookCatalog&gt;&gt;, introduction : Swift.Optional&lt;Swift.String&gt;, author : Swift.Optional&lt;Swift.String&gt;, cover : Swift.Optional&lt;Swift.String&gt;)"
+                  moduleName = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0/SoDo_IOS/%E5%B0%8F%E8%AF%B4%E6%90%9C%E7%B4%A2%E9%98%85%E8%AF%BB/Tools/AnalisysHtmlHelper.swift"
+                  timestampString = "501885104.297304"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "558"
+                  endingLineNumber = "558"
+                  offsetFromSymbolStart = "2000">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "563"
+            endingLineNumber = "563"
+            landmarkName = "analisysCommonCIAC(url:coverBaseUrl:html:htmlPattern:catalogPattern:introPattern:coverPattern:AuthorPattern:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1367,13 +1497,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/ViewModel/BookContentPageViewModel.swift"
-            timestampString = "501806625.814478"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886384.470874"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
-            landmarkName = "splitPages(str:)"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "AnalisysHtml(_:_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x5c0f;&#x8bf4;&#x641c;&#x7d22;&#x9605;&#x8bfb;/Tools/AnalisysHtmlHelper.swift"
+            timestampString = "501886588.910617"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "594"
+            endingLineNumber = "594"
+            landmarkName = "analisysCommonCIAC(url:coverBaseUrl:html:htmlPattern:catalogPattern:introPattern:coverPattern:AuthorPattern:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

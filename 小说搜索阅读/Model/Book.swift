@@ -81,7 +81,7 @@ extension Book {
                 
                 let temp = item.clone()
                 
-                book.catalogs?.append(temp as! BookCatalog)
+                book.catalogs?.append(temp)
                 
             }
         }
@@ -106,7 +106,7 @@ class BookCatalog:NSObject {
     
     var chapterContent : String?
     
-    func  clone() -> NSObject {
+    func  clone() -> BookCatalog {
         
         let temp = BookCatalog()
         

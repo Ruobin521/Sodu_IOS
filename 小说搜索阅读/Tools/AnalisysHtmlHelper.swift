@@ -60,7 +60,7 @@ class AnalisysHtmlHelper {
             } else if type == .CatalogList {
                 
                 
-                
+                value = analisys7dswCIAC(urlStr,html)
             }
             
             
@@ -99,7 +99,7 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
-                
+                value = analisysQfxsCIAC(urlStr,html)
                 
             }
             
@@ -137,7 +137,7 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
-                
+                value = analisys7dswCIAC(urlStr,html)
                 
             }
             
@@ -156,7 +156,7 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
-                
+                value =  analisysCommonCIAC(url: urlStr,coverBaseUrl:"", html: html, htmlPattern: "<head>.*?</html>", catalogPattern: "<td class=\"L\".*?href=\"(.*?)\".*?>(.*?)</a></td>", introPattern: "<div class=\"js\">.*?<p><b>", coverPattern: "<div class=\"pic\">.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern: "<i>作者：(.*?)</i>")
                 
             }
             
@@ -175,8 +175,7 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
-                
-                
+                value = analisys7dswCIAC(urlStr,html)
             }
             
             
@@ -193,7 +192,7 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
-                
+                value = analisysSqsCIAC(urlStr,html)
                 
             }
             
@@ -212,7 +211,7 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
-                
+                value = analisysQfxsCIAC(urlStr,html)
                 
             }
             
@@ -265,7 +264,11 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
+                let uri = URL(string: urlStr)
+                let tempUrl = uri?.deletingLastPathComponent().absoluteString
                 
+                
+                value =  analisysCommonCIAC(url: tempUrl!,coverBaseUrl:"", html: html, htmlPattern: "<div id=\"content\">.*?</div>", catalogPattern: "<dd><a href=\"(.*?)\">(.*?)</a></dd>", introPattern: "<p class=\"intro\">.*?</p>", coverPattern: "<div class=\"book_info_top_l\">.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern: "<p class=\"author\">(.*?)</p>")
                 
             }
             
@@ -526,6 +529,111 @@ class AnalisysHtmlHelper {
 ///解析目录，简介，作者，封面
 extension AnalisysHtmlHelper {
     
+    ///  通用
+    static func analisysCommonCIAC(url:String,coverBaseUrl:String,html:String,htmlPattern:String,catalogPattern:String,introPattern:String,coverPattern:String,AuthorPattern:String) -> (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)   {
+        
+        var str = html.replacingOccurrences(of: "\r", with: "").replacingOccurrences(of: "\t", with: "").replacingOccurrences(of: "\n", with: "")
+        
+        let htmlValue = str
+        
+        var catalogs:[BookCatalog] = [BookCatalog]()
+        
+        var introduction:String?
+        
+        var coverImage:String?
+        
+        var authorName:String?
+        
+        
+        guard let strRegex = try? NSRegularExpression(pattern: htmlPattern, options: []) else {
+            
+            return (catalogs,introduction,authorName,coverImage)
+        }
+        
+        guard   let htmlMatch = strRegex.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.characters.count)) else {
+            
+            return (catalogs,introduction,authorName,coverImage)
+            
+        }
+        
+        str =  (str as NSString).substring(with: htmlMatch.range)
+        
+        /// 目录
+        if   let regex = try? NSRegularExpression(pattern: catalogPattern, options: []) {
+            
+            let matches = regex.matches(in: str, options: [], range: NSRange(location: 0, length: str.characters.count))
+            
+            
+            if matches.count == 0 {
+                
+                return (catalogs,introduction,authorName,coverImage)
+            }
+            
+            for (i,item) in matches.enumerated() {
+                
+                // let catalogStr = (str as  NSString).substring(with: item.range)
+                
+                if item.range.length > 2 {
+                    
+                    let catalog:BookCatalog = BookCatalog()
+                    
+                    catalog.chapterIndex =  i + 1
+                    catalog.chapterUrl = url +  (str as NSString).substring(with: (item.rangeAt(1)))
+                    catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
+                    
+                    catalogs.append(catalog)
+                }
+                
+            }
+            
+        }
+        
+        
+        //简介
+        if  let introRegex = try? NSRegularExpression(pattern: introPattern, options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let  introStr = (htmlValue as  NSString).substring(with: match.range)
+                
+                introduction = replaceSymbol(str: introStr)
+                
+            }
+            
+        }
+        
+        
+        
+        
+        //封面
+        if  let introRegex = try? NSRegularExpression(pattern: coverPattern, options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let coverStr = (htmlValue as  NSString).substring(with: match.rangeAt(1))
+                
+                coverImage = coverBaseUrl +   replaceSymbol(str: coverStr,false)
+                
+            }
+            
+        }
+        
+        
+        //作者
+        if  let introRegex = try? NSRegularExpression(pattern: AuthorPattern, options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let coverStr = (htmlValue as  NSString).substring(with: match.rangeAt(1))
+                
+                authorName = replaceSymbol(str: coverStr,false)
+            }
+            
+        }
+        
+        return  (catalogs,introduction,authorName,coverImage)
+    }
+    
     
     /// 第七中文
     static func analisysDqzwCIAC(_ url:String,_ html:String) -> (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)   {
@@ -718,6 +826,454 @@ extension AnalisysHtmlHelper {
         
         return  (catalogs,introduction,authorName,coverImage)
     }
+    
+    
+    /// 七度书屋  大海中文  少年文学
+    static func analisys7dswCIAC(_ url:String,_ html:String) -> (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)   {
+        
+        var str = html.replacingOccurrences(of: "\r", with: "").replacingOccurrences(of: "\t", with: "").replacingOccurrences(of: "\n", with: "")
+        
+        let htmlValue = str
+        
+        var catalogs:[BookCatalog] = [BookCatalog]()
+        
+        var introduction:String?
+        
+        var coverImage:String?
+        
+        var authorName:String?
+        
+        // let uri = URL(string: url)
+        
+        
+        // let baseUrl = uri?.deletingLastPathComponent().absoluteString
+        
+        
+        guard let strRegex = try? NSRegularExpression(pattern: "<div id=\"list\">.*?</div>", options: []) else {
+            
+            return (catalogs,introduction,authorName,coverImage)
+        }
+        
+        guard   let htmlMatch = strRegex.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.characters.count)) else {
+            
+            return (catalogs,introduction,authorName,coverImage)
+            
+        }
+        
+        str =  (str as NSString).substring(with: htmlMatch.range)
+        
+        
+        //<dd><a href="9494646.html" title="第一章 科技结晶">第一章 科技结晶</a></dd>
+        
+        /// 目录
+        if   let regex = try? NSRegularExpression(pattern: "<dd><a href=\"(.*?)\".*?>(.*?)</a></dd>", options: []) {
+            
+            let matches = regex.matches(in: str, options: [], range: NSRange(location: 0, length: str.characters.count))
+            
+            
+            if matches.count == 0 {
+                
+                return (catalogs,introduction,authorName,coverImage)
+            }
+            
+            for (i,item) in matches.enumerated() {
+                
+                // let catalogStr = (str as  NSString).substring(with: item.range)
+                
+                if item.range.length > 2 {
+                    
+                    let catalog:BookCatalog = BookCatalog()
+                    
+                    catalog.chapterIndex =  i + 1
+                    catalog.chapterUrl = url +  (str as NSString).substring(with: (item.rangeAt(1)))
+                    catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
+                    
+                    catalogs.append(catalog)
+                }
+                
+            }
+            
+        }
+        
+        
+        //简介
+        if  let introRegex = try? NSRegularExpression(pattern: "<div class=\"intro\">.*?</div>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let  introStr = (htmlValue as  NSString).substring(with: match.range)
+                
+                introduction = replaceSymbol(str: introStr)
+                
+            }
+            
+        }
+        
+        
+        
+        
+        //封面
+        if  let introRegex = try? NSRegularExpression(pattern: "<div id=\"fmimg\">.*?<img.*?src=\"(.*?)\".*?>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let coverStr = (htmlValue as  NSString).substring(with: match.rangeAt(1))
+                
+                coverImage =  replaceSymbol(str: coverStr,false)
+                
+            }
+            
+        }
+        
+        
+        //作者
+        if  let introRegex = try? NSRegularExpression(pattern: "<i>作者：(.*?)</i>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let coverStr = (htmlValue as  NSString).substring(with: match.rangeAt(1))
+                
+                authorName = replaceSymbol(str: coverStr,false)
+            }
+            
+        }
+        
+        return  (catalogs,introduction,authorName,coverImage)
+    }
+    
+    
+    ///  清风小说 找书
+    static func analisysQfxsCIAC(_ url:String,_ html:String) -> (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)   {
+        
+        var str = html.replacingOccurrences(of: "\r", with: "").replacingOccurrences(of: "\t", with: "").replacingOccurrences(of: "\n", with: "")
+        
+        let htmlValue = str
+        
+        var catalogs:[BookCatalog] = [BookCatalog]()
+        
+        var introduction:String?
+        
+        var coverImage:String?
+        
+        var authorName:String?
+        
+        let uri = URL(string: url)
+        let baseUrl = uri?.deletingLastPathComponent().absoluteString
+        
+        
+        guard let strRegex = try? NSRegularExpression(pattern: "<div class=\"book_list\">.*?</div>", options: []) else {
+            
+            return (catalogs,introduction,authorName,coverImage)
+        }
+        
+        guard   let htmlMatch = strRegex.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.characters.count)) else {
+            
+            return (catalogs,introduction,authorName,coverImage)
+            
+        }
+        
+        str =  (str as NSString).substring(with: htmlMatch.range)
+        
+        
+        
+        /// 目录
+        if   let regex = try? NSRegularExpression(pattern: "<li><a href=\"(.*?)\".*?>(.*?)</a></li>", options: []) {
+            
+            let matches = regex.matches(in: str, options: [], range: NSRange(location: 0, length: str.characters.count))
+            
+            
+            if matches.count == 0 {
+                
+                return (catalogs,introduction,authorName,coverImage)
+            }
+            
+            for (i,item) in matches.enumerated() {
+                
+                // let catalogStr = (str as  NSString).substring(with: item.range)
+                
+                if item.range.length > 2 {
+                    
+                    let catalog:BookCatalog = BookCatalog()
+                    
+                    catalog.chapterIndex =  i + 1
+                    catalog.chapterUrl = baseUrl! +  (str as NSString).substring(with: (item.rangeAt(1)))
+                    catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
+                    
+                    catalogs.append(catalog)
+                }
+                
+            }
+            
+        }
+        
+        
+        //简介
+        if  let introRegex = try? NSRegularExpression(pattern: "<div class=\'upd\'>.*?</div>.*?<p>(.*?)</p>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let  introStr = (htmlValue as  NSString).substring(with: match.range)
+                
+                introduction = replaceSymbol(str: introStr)
+                
+            }
+            
+        }
+        
+        
+        
+        
+        //封面
+        if  let introRegex = try? NSRegularExpression(pattern: "<div class=\'pic\'>.*?src=\"(.*?)\".*?>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let coverStr = (htmlValue as  NSString).substring(with: match.rangeAt(1))
+                
+                coverImage = baseUrl! +  replaceSymbol(str: coverStr,false)
+                
+            }
+            
+        }
+        
+        
+        //作者
+        if  let introRegex = try? NSRegularExpression(pattern: "<li class=\"author\">作者：(.*?)</li>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let coverStr = (htmlValue as  NSString).substring(with: match.rangeAt(1))
+                
+                authorName = replaceSymbol(str: coverStr,false)
+            }
+            
+        }
+        
+        return  (catalogs,introduction,authorName,coverImage)
+    }
+    
+    ///  手牵手
+    static func analisysSqsCIAC(_ url:String,_ html:String) -> (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)   {
+        
+        var str = html.replacingOccurrences(of: "\r", with: "").replacingOccurrences(of: "\t", with: "").replacingOccurrences(of: "\n", with: "")
+        
+        let htmlValue = str
+        
+        var catalogs:[BookCatalog] = [BookCatalog]()
+        
+        var introduction:String?
+        
+        var coverImage:String?
+        
+        var authorName:String?
+        
+        let uri = URL(string: url)
+        let baseUrl = uri?.deletingLastPathComponent().absoluteString
+        
+        
+        guard let strRegex = try? NSRegularExpression(pattern: "<div id=\"list\">.*?</div>", options: []) else {
+            
+            return (catalogs,introduction,authorName,coverImage)
+        }
+        
+        guard   let htmlMatch = strRegex.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.characters.count)) else {
+            
+            return (catalogs,introduction,authorName,coverImage)
+            
+        }
+        
+        str =  (str as NSString).substring(with: htmlMatch.range)
+        
+        
+        
+        /// 目录
+        if   let regex = try? NSRegularExpression(pattern: "<dd><a href=\"(.*?)\".*?>(.*?)</a></a></dd>", options: []) {
+            
+            let matches = regex.matches(in: str, options: [], range: NSRange(location: 0, length: str.characters.count))
+            
+            
+            if matches.count == 0 {
+                
+                return (catalogs,introduction,authorName,coverImage)
+            }
+            
+            for (i,item) in matches.enumerated() {
+                
+                // let catalogStr = (str as  NSString).substring(with: item.range)
+                
+                if item.range.length > 2 {
+                    
+                    let catalog:BookCatalog = BookCatalog()
+                    
+                    catalog.chapterIndex =  i + 1
+                    catalog.chapterUrl = url +  (str as NSString).substring(with: (item.rangeAt(1)))
+                    catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
+                    
+                    catalogs.append(catalog)
+                }
+                
+            }
+            
+        }
+        
+        
+        //简介
+        if  let introRegex = try? NSRegularExpression(pattern: "<div id=\"intro\">.*?</div>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let  introStr = (htmlValue as  NSString).substring(with: match.range)
+                
+                introduction = replaceSymbol(str: introStr)
+                
+            }
+            
+        }
+        
+        
+        
+        
+        //封面
+        if  let introRegex = try? NSRegularExpression(pattern: "<div id=\"fmimg\">.*?<img.*?src=\"(.*?)\".*?>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let coverStr = (htmlValue as  NSString).substring(with: match.rangeAt(1))
+                
+                coverImage = baseUrl! +  replaceSymbol(str: coverStr,false)
+                
+            }
+            
+        }
+        
+        
+        //作者
+        if  let introRegex = try? NSRegularExpression(pattern: "<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：(.*？)</p>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let coverStr = (htmlValue as  NSString).substring(with: match.rangeAt(1))
+                
+                authorName = replaceSymbol(str: coverStr,false)
+            }
+            
+        }
+        
+        return  (catalogs,introduction,authorName,coverImage)
+    }
+    
+    
+    ///  古古
+    static func analisysGGCIAC(_ url:String,_ html:String) -> (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)   {
+        
+        var str = html.replacingOccurrences(of: "\r", with: "").replacingOccurrences(of: "\t", with: "").replacingOccurrences(of: "\n", with: "")
+        
+        let htmlValue = str
+        
+        var catalogs:[BookCatalog] = [BookCatalog]()
+        
+        var introduction:String?
+        
+        var coverImage:String?
+        
+        var authorName:String?
+        
+        let uri = URL(string: url)
+        let baseUrl = uri?.deletingLastPathComponent().absoluteString
+        
+        
+        guard let strRegex = try? NSRegularExpression(pattern: "<table.*?</table>", options: []) else {
+            
+            return (catalogs,introduction,authorName,coverImage)
+        }
+        
+        guard   let htmlMatch = strRegex.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.characters.count)) else {
+            
+            return (catalogs,introduction,authorName,coverImage)
+            
+        }
+        
+        str =  (str as NSString).substring(with: htmlMatch.range)
+        
+        
+        
+        /// 目录
+        if   let regex = try? NSRegularExpression(pattern: "<dd><a href=\"(.*?)\".*?>(.*?)</a></a></dd>", options: []) {
+            
+            let matches = regex.matches(in: str, options: [], range: NSRange(location: 0, length: str.characters.count))
+            
+            
+            if matches.count == 0 {
+                
+                return (catalogs,introduction,authorName,coverImage)
+            }
+            
+            for (i,item) in matches.enumerated() {
+                
+                // let catalogStr = (str as  NSString).substring(with: item.range)
+                
+                if item.range.length > 2 {
+                    
+                    let catalog:BookCatalog = BookCatalog()
+                    
+                    catalog.chapterIndex =  i + 1
+                    catalog.chapterUrl = url +  (str as NSString).substring(with: (item.rangeAt(1)))
+                    catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
+                    
+                    catalogs.append(catalog)
+                }
+                
+            }
+            
+        }
+        
+        
+        //简介
+        if  let introRegex = try? NSRegularExpression(pattern: "<div id=\"intro\">.*?</div>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let  introStr = (htmlValue as  NSString).substring(with: match.range)
+                
+                introduction = replaceSymbol(str: introStr)
+                
+            }
+            
+        }
+        
+        
+        
+        
+        //封面
+        if  let introRegex = try? NSRegularExpression(pattern: "<div id=\"fmimg\">.*?<img.*?src=\"(.*?)\".*?>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let coverStr = (htmlValue as  NSString).substring(with: match.rangeAt(1))
+                
+                coverImage = baseUrl! +  replaceSymbol(str: coverStr,false)
+                
+            }
+            
+        }
+        
+        
+        //作者
+        if  let introRegex = try? NSRegularExpression(pattern: "<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：(.*？)</p>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let coverStr = (htmlValue as  NSString).substring(with: match.rangeAt(1))
+                
+                authorName = replaceSymbol(str: coverStr,false)
+            }
+            
+        }
+        
+        return  (catalogs,introduction,authorName,coverImage)
+    }
+    
+    
     
     
     
@@ -1101,8 +1657,12 @@ extension AnalisysHtmlHelper {
         
         
         tempHtml = tempHtml.replacingOccurrences(of: "无弹窗", with: "")
+        
         tempHtml = tempHtml.replacingOccurrences(of: "里面更新速度快、广告少、章节完整、破防盗】", with: "")
+        
         tempHtml = replaceSymbol(str: tempHtml)
+        
+        tempHtml = tempHtml.replacingOccurrences(of: "[玄界之门http://www.xuanjiexiaoshuo.com/]", with: "")
         
         return tempHtml
     }

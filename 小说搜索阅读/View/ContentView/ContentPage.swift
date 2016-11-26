@@ -37,7 +37,7 @@ class ContentPage: UIView {
         
         v.txtChptterName.text  = chapterName ?? "加载中"
         
-        v.txtContent.text = content ?? " "
+        v.txtContent.text = content ??  ""
         
         v.txtBattery.text = battery ?? "加载中"
         
@@ -49,8 +49,6 @@ class ContentPage: UIView {
         
         v.setTextAttribute(textAttributeDic)
         
-        
-        
         v.txtContent.textAlignment = .left
         
         return v
@@ -61,26 +59,23 @@ class ContentPage: UIView {
     
     func setTextAttribute(_ attributes:[String:Any]?) {
         
-        DispatchQueue.main.async {
+        
+        
+        if let dic = attributes   {
             
-            if let dic = attributes   {
-                
-                self.txtContent.attributedText = NSAttributedString(string:self.txtContent.text!, attributes:dic)
-                
-                let color = self.txtContent.textColor
-                
-                self.txtTime.textColor = color
-                
-                self.txtChptterName.textColor = color
-                
-                self.txtBattery.textColor = color
-                
-                self.txtChapterIndex.textColor = color
-                
-                self.txtPageIndex.textColor = color
-                
-            }
+            self.txtContent.attributedText = NSAttributedString(string:self.txtContent.text!, attributes:dic)
             
+            let color = self.txtContent.textColor
+            
+            self.txtTime.textColor = color
+            
+            self.txtChptterName.textColor = color
+            
+            self.txtBattery.textColor = color
+            
+            self.txtChapterIndex.textColor = color
+            
+            self.txtPageIndex.textColor = color
             
         }
         

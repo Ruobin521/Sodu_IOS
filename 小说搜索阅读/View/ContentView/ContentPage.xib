@@ -19,7 +19,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="加载中，请稍后..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tA6-ZP-ntt">
-                            <rect key="frame" x="15" y="7" width="212" height="17"/>
+                            <rect key="frame" x="15" y="7" width="313" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -36,7 +36,7 @@
                         <constraint firstAttribute="height" constant="30" id="0cw-oG-DX9"/>
                         <constraint firstAttribute="trailing" secondItem="SCJ-px-d8U" secondAttribute="trailing" constant="8" id="9WN-MU-MN4"/>
                         <constraint firstItem="tA6-ZP-ntt" firstAttribute="centerY" secondItem="he8-ag-xb0" secondAttribute="centerY" id="HMx-mX-N1h"/>
-                        <constraint firstAttribute="trailing" secondItem="tA6-ZP-ntt" secondAttribute="trailing" constant="148" id="ee7-jq-0Ih"/>
+                        <constraint firstItem="SCJ-px-d8U" firstAttribute="leading" secondItem="tA6-ZP-ntt" secondAttribute="trailing" constant="10" id="YAx-li-TdA"/>
                         <constraint firstItem="SCJ-px-d8U" firstAttribute="centerY" secondItem="he8-ag-xb0" secondAttribute="centerY" id="kJd-CR-Z1J"/>
                         <constraint firstItem="tA6-ZP-ntt" firstAttribute="leading" secondItem="he8-ag-xb0" secondAttribute="leading" constant="15" id="zX7-Kz-x81"/>
                     </constraints>
@@ -45,21 +45,21 @@
                     <rect key="frame" x="0.0" y="637" width="375" height="30"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电量" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BpL-wf-Xw4">
-                            <rect key="frame" x="15" y="7" width="29" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <rect key="frame" x="15" y="8.5" width="25" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6w-AL-Fun">
-                            <rect key="frame" x="331" y="7" width="36" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <rect key="frame" x="336" y="8.5" width="31" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YM6-bQ-dfW">
-                            <rect key="frame" x="170" y="6.5" width="35.5" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <nil key="textColor"/>
+                            <rect key="frame" x="172.5" y="8.5" width="31" height="14.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -77,19 +77,20 @@
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMJ-XW-uqt">
                     <rect key="frame" x="0.0" y="30" width="375" height="607"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正文内容加载中..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LII-sY-Oew">
-                            <rect key="frame" x="15" y="0.0" width="352" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fli-3H-UTt">
+                            <rect key="frame" x="15" y="0.0" width="354" height="21"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="LII-sY-Oew" firstAttribute="top" secondItem="dMJ-XW-uqt" secondAttribute="top" id="41n-4V-jrL"/>
-                        <constraint firstAttribute="trailing" secondItem="LII-sY-Oew" secondAttribute="trailing" constant="8" id="Lwh-VW-3QD"/>
-                        <constraint firstItem="LII-sY-Oew" firstAttribute="leading" secondItem="dMJ-XW-uqt" secondAttribute="leading" constant="15" id="ZAO-EX-7WM"/>
-                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="LII-sY-Oew" secondAttribute="bottom" id="oog-Ol-WLg"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Fli-3H-UTt" secondAttribute="bottom" id="Cmt-fG-okb"/>
+                        <constraint firstAttribute="trailing" secondItem="Fli-3H-UTt" secondAttribute="trailing" constant="6" id="EBW-pH-z6m"/>
+                        <constraint firstItem="Fli-3H-UTt" firstAttribute="top" secondItem="dMJ-XW-uqt" secondAttribute="top" id="nmb-WH-z1p"/>
+                        <constraint firstItem="Fli-3H-UTt" firstAttribute="leading" secondItem="dMJ-XW-uqt" secondAttribute="leading" constant="15" id="ycJ-yN-ygj"/>
                     </constraints>
                 </view>
             </subviews>
@@ -111,10 +112,11 @@
                 <outlet property="txtBattery" destination="BpL-wf-Xw4" id="PBJ-SO-TDI"/>
                 <outlet property="txtChapterIndex" destination="YM6-bQ-dfW" id="5ym-jR-C9m"/>
                 <outlet property="txtChptterName" destination="tA6-ZP-ntt" id="adS-2x-obk"/>
-                <outlet property="txtContent" destination="LII-sY-Oew" id="fIg-Vq-xTv"/>
+                <outlet property="txtContent" destination="Fli-3H-UTt" id="kyd-I3-Oib"/>
                 <outlet property="txtPageIndex" destination="z6w-AL-Fun" id="htC-Ny-Qej"/>
                 <outlet property="txtTime" destination="SCJ-px-d8U" id="Ozh-nD-1mP"/>
             </connections>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
     </objects>
 </document>
