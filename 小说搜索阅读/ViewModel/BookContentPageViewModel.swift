@@ -83,87 +83,203 @@ class BookContentPageViewModel {
         
     }
     
+    //滚动方向 默认横向
+    var orientation : UIPageViewControllerNavigationOrientation  = .horizontal
+    
+    // h  / v
+    var direction =  ViewModelInstance.Instance.Setting.contentOrientation ??  "h"   {
+        
+        didSet {
+            
+            if direction == "h" {
+                
+                orientation = UIPageViewControllerNavigationOrientation.horizontal
+                
+            } else  if direction == "v" {
+                
+                orientation = UIPageViewControllerNavigationOrientation.vertical
+            }
+            
+        }
+        
+    }
+    
     
     //数据部分
     
-    var catalogsRetryCount = 0
+    
     
     var isRequestContent = false
     var isRequestCatalogs = false
-    
-    
-    var currentChapterPageList:[String]?
-    
-    var preChapterPageList:[String]?
-    
-    var nextChapterPageList:[String]?
-    
-    //    var curentChapterText:String?
-    //
-    //    var preChapterText:String?
-    //
-    //    var nextChapterText:String?
     
     var currentBook:Book?  {
         
         didSet {
             
-            currentCatalog = BookCatalog(currentBook?.bookId, currentBook?.chapterName, currentBook?.contentPageUrl, nil)
+            _currentCatalog = BookCatalog(currentBook?.bookId, currentBook?.chapterName, currentBook?.contentPageUrl, nil)
             
         }
     }
+    
+    
+    var preChapterPageList:[String]?
+    
+    var currentChapterPageList:[String]?
+    
+    var nextChapterPageList:[String]?
+    
     
     var preCatalog:BookCatalog?
     
     var nextCatalog:BookCatalog?
     
+    private var _currentCatalog:BookCatalog?
+    
     var currentCatalog:BookCatalog? {
         
-        didSet {
-            //切换到下一章
-            if currentCatalog?.chapterUrl == nextCatalog?.chapterUrl {
-                
-                preChapterPageList = currentChapterPageList
-                
-                currentChapterPageList = nextChapterPageList
- 
-            }
-                /// 切换到上一章
-            else  if currentCatalog?.chapterUrl == preCatalog?.chapterUrl{
-                
-                nextChapterPageList = currentChapterPageList
-                
-                currentChapterPageList = preChapterPageList
-            }
-                ///随机点的章节
-            else {
-                
-                nextChapterPageList = nil
-                preChapterPageList = nil
-                
-            }
-             
+        get {
             
-            if currentBook?.catalogs != nil && (currentBook?.catalogs?.count)! > 0 {
+            return _currentCatalog
+            
+        }
+        
+    }
+    
+    
+    func SetCurrentCatalog(catalog:BookCatalog?,completion:(()->())?) {
+        
+        
+        if catalog == nil {
+            
+            completion?()
+            
+            return
+        }
+        
+        
+        if catalog?.chapterUrl == currentCatalog?.chapterUrl {
+            
+            return
+            
+        }
+        
+        if currentBook?.catalogs != nil && (currentBook?.catalogs?.count)! > 0 {
+            
+            guard   let index = getCatalogIndex(catalog!) else {
                 
-                setBeforeAndNextCatalog()
+                completion?()
+                return
+            }
+            
+            _currentCatalog =  currentBook?.catalogs?[index]
+            
+        }
+        else {
+            
+            _currentCatalog = catalog
+        }
+        
+        
+        
+        // 滑到了下一章
+        if nextCatalog?.chapterUrl == currentCatalog?.chapterUrl {
+            
+            currentChapterPageList = nextChapterPageList
+            
+        }
+            
+            //滑到了上一章
+        else if preCatalog?.chapterUrl == currentCatalog?.chapterUrl {
+            
+            currentChapterPageList = preChapterPageList
+            
+        } else {
+            
+            currentChapterPageList = nil
+            
+            preChapterPageList = nil
+            
+            nextChapterPageList = nil
+            
+        }
+        
+        
+        if currentChapterPageList == nil  {
+            
+            if currentCatalog?.chapterContent == nil {
                 
-                if nextChapterPageList == nil {
+                //                getCatalogChapterContent(catalog: currentCatalog) { [weak self]  (isSuccess,html) in
+                //
+                //                    if isSuccess {
+                //
+                //                        self?.currentChapterPageList = self?.splitPages(html: html)
+                //
+                //                    }
+                //                }
+                
+            } else {
+                
+                self.currentChapterPageList = self.splitPages(html: currentCatalog?.chapterContent)
+                
+            }
+            
+        }
+        
+        
+        DispatchQueue.global().async {
+            
+            if self.currentBook?.catalogs != nil && (self.currentBook?.catalogs?.count)! > 0 {
+                
+                self.setBeforeAndNextCatalog()
+                
+                if self.nextCatalog != nil && self.nextCatalog?.chapterContent == nil  {
                     
-                    getCatalogChapterContent(posion: .Next, nil)
+                    self.getCatalogChapterContent(catalog: self.nextCatalog) { [weak self]  (isSuccess,html) in
+                        
+                        if isSuccess {
+                            
+                            self?.nextChapterPageList = self?.splitPages(html: html)
+                            
+                        }
+                    }
+                    
+                }
+                    
+                else {
+                    
+                    self.nextChapterPageList = self.splitPages(html: self.nextCatalog?.chapterContent)
                     
                 }
                 
-                if preChapterPageList == nil {
+                
+                if self.preCatalog != nil && self.preCatalog?.chapterContent == nil {
                     
-                    getCatalogChapterContent(posion: .Before, nil)
+                    self.getCatalogChapterContent(catalog: self.preCatalog) { [weak self]  (isSuccess,html) in
+                        
+                        if isSuccess {
+                            
+                            self?.preChapterPageList = self?.splitPages(html: html)
+                            
+                        }
+                    }
+                    
+                    
+                }
+                    
+                else {
+                    
+                    self.preChapterPageList = self.splitPages(html: self.preCatalog?.chapterContent)
                     
                 }
                 
             }
         }
         
+        
+        
+        
     }
+    
     
     
     
@@ -171,66 +287,45 @@ class BookContentPageViewModel {
         
         if currentBook?.catalogs != nil && (currentBook?.catalogs?.count)! > 0 {
             
-            preCatalog = getBeforeOrNextCatalog(posion: .Before)
+            preCatalog = getCatalogByPosion(posion: .Before)
             
-            nextCatalog = getBeforeOrNextCatalog(posion: .Next)
+            nextCatalog = getCatalogByPosion(posion: .Next)
         }
         
     }
     
     //获取相应目录内容
-    func getCatalogChapterContent(posion:CatalogPosion,_ completion: ((_ isSuccess:Bool)->())?)  {
+    func getCatalogChapterContent(catalog:BookCatalog?,_ completion: ((_ isSuccess:Bool,_ strs:String?)->())?)  {
         
-        
-        var catalog:BookCatalog?
-        
-        if posion == .Current {
-            
-            catalog = currentCatalog
-            
-        }    else if posion == .Before {
-            
-            catalog = preCatalog
-            
-        }   else  {
-            
-            catalog = nextCatalog
-            
-        }
         
         guard let url = catalog?.chapterUrl else{
             
-            completion?(false)
+            completion?(false,nil)
             
             return
         }
         
-        getContentByUrl(url) { (isSuccess, strs) in
+        print("开始加载章节：\((catalog?.chapterName)!)")
+        
+        getContentByUrl(url) { (isSuccess, html) in
             
             if isSuccess {
                 
-                if posion == .Current {
-                    
-                    self.currentChapterPageList = strs
-                    
-                }    else if posion == .Before {
-                    
-                    self.preChapterPageList = strs
-                    
-                }   else   if posion == .Next {
-                    
-                    self.nextChapterPageList = strs
-                    
-                }
+                catalog?.chapterContent = html
+                  print("章节：\((catalog?.chapterName)!) 加载成功")
                 
+            } else {
+                
+                print("章节：\(catalog?.chapterName) 加载失败")
             }
             
-            completion?(isSuccess)
+            completion?(isSuccess,html)
         }
     }
     
+    
     /// 获取正文内容
-    func getContentByUrl(_ url:String,_ retryCount:Int = 0,_ completion:@escaping (_ isSuccess:Bool,_ html:[String]?)->())  {
+    func getContentByUrl(_ url:String,_ retryCount:Int = 0,_ completion:@escaping (_ isSuccess:Bool,_ html:String?)->())  {
         
         self.isRequestContent = true
         
@@ -246,9 +341,7 @@ class BookContentPageViewModel {
                     
                     self?.isRequestContent = false
                     
-                    print("获取\(url)正文成功")
-                    
-                    completion(true,self?.splitPages(str: htmlValue))
+                    completion(true,htmlValue)
                     
                 } else {
                     
@@ -270,7 +363,7 @@ class BookContentPageViewModel {
                     
                     self?.getContentByUrl(url,count,completion)
                     
-                    print("获取\((self?.currentBook?.bookName) ?? " ")正文失败，正在进行第\(count)次尝试")
+                       print("获取\(url)正文失败，正在进行第\(count)次尝试")
                     
                 }
                 
@@ -280,14 +373,12 @@ class BookContentPageViewModel {
     }
     
     /// 获取目录列表
-    func getBookCatalogs(url:String,completion: ((_ isSuccess:Bool)->())?)  {
+    func getBookCatalogs(url:String,retryCount:Int,completion: ((_ isSuccess:Bool)->())?)  {
         
         
         self.isRequestCatalogs = true
         
         guard  let bookid = self.currentBook?.bookId else {
-            
-            self.catalogsRetryCount = 0
             
             completion?(false)
             
@@ -298,6 +389,8 @@ class BookContentPageViewModel {
         }
         
         CommonPageViewModel.getBookCIAC(url: url, bookid: bookid) { [weak self] (isSuccess, value:Any?) in
+            
+            var count = retryCount
             
             if isSuccess {
                 
@@ -313,30 +406,62 @@ class BookContentPageViewModel {
                 
                 self?.isRequestCatalogs = false
                 
-                self?.catalogsRetryCount = 0
                 
-                self?.setBeforeAndNextCatalog()
                 
-                self?.getCatalogChapterContent(posion: .Next, nil)
+                let  catalog = self?.getCatalogByPosion(posion: .Current)
                 
-                print("获取\(self?.currentBook?.bookName ?? " ")目录成功")
+                catalog?.chapterContent = self?.currentCatalog?.chapterContent
+                
+                self?.nextCatalog = self?.getCatalogByPosion(posion: .Next)
+                
+                self?.preCatalog = self?.getCatalogByPosion(posion: .Before)
+                
+                
+                DispatchQueue.global().async {
+                    
+                    self?.getCatalogChapterContent(catalog: self?.nextCatalog) { (isSuccess,html) in
+                        
+                        if isSuccess {
+                            
+                            
+                            
+                            self?.nextChapterPageList  = self?.splitPages(html: html)
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    self?.getCatalogChapterContent(catalog: self?.preCatalog) { (isSuccess,html) in
+                        
+                        if isSuccess {
+                            
+                            self?.preChapterPageList  = self?.splitPages(html: html)
+                        }
+                        
+                        
+                    }
+                }
+                
+                  print("获取\(self?.currentBook?.bookName ?? " ")目录成功")
+                
+                
                 
             } else {
                 
-                self?.catalogsRetryCount += 1
+                count += 1
                 
                 self?.isRequestCatalogs = false
                 
-                if self?.catalogsRetryCount  == 4 {
+                if count  == 4 {
                     
                     completion?(false)
-                    print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，不再尝试，无解。")
-                    
+                     print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，不再尝试，操蛋")
                     
                 } else {
                     
-                    self?.getBookCatalogs(url: url, completion: completion)
-                    print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，正在进行第\(self?.catalogsRetryCount  ?? -1)次尝试")
+                    self?.getBookCatalogs(url: url,retryCount:count, completion: completion)
+                     print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，正在进行第\(count)次尝试")
                     
                 }
             }
@@ -346,14 +471,14 @@ class BookContentPageViewModel {
     
     
     //获取上一个章节 和下一章节信息
-    func getBeforeOrNextCatalog(posion:CatalogPosion) -> BookCatalog? {
+    func getCatalogByPosion(posion:CatalogPosion) -> BookCatalog? {
         
         guard let catalogs = currentBook?.catalogs ,let catalog = currentCatalog else {
             
             return nil
         }
         
-   
+        
         guard  let currentIndex = getCatalogIndex(catalog)  else {
             
             return nil
@@ -367,18 +492,22 @@ class BookContentPageViewModel {
             
             requestIndex = currentIndex - 1
             
-        } else {
-            
+        } else if  posion == .Next {
             
             requestIndex = currentIndex + 1
+            
+        } else if posion == .Current {
+            
+            
+            requestIndex = currentIndex
         }
+        
         
         if requestIndex > 0 && requestIndex < catalogs.count  {
             
             return catalogs[requestIndex]
             
         }
-        
         
         return nil
         
@@ -394,9 +523,9 @@ class BookContentPageViewModel {
         }
         
         
-        guard   let catalog = catalogs.first(where: { (item) -> Bool in
+        guard   let tempCatalog = catalogs.first(where: { (item) -> Bool in
             
-            item.chapterUrl == currentCatalog?.chapterUrl
+            item.chapterUrl == catalog.chapterUrl
             
         }) else {
             
@@ -405,12 +534,12 @@ class BookContentPageViewModel {
         }
         
         
-        guard  let currentIndex = catalogs.index(of: catalog) else {
+        guard  let currentIndex = catalogs.index(of: tempCatalog) else {
             
             return nil
             
         }
-
+        
         return currentIndex
     }
 }
@@ -452,9 +581,12 @@ extension BookContentPageViewModel {
     
     
     
-    func splitPages(str:String)  -> [String] {
+    func splitPages(html:String?)  -> [String]? {
         
-        
+        guard  let str = html else {
+            
+            return nil
+        }
         
         let paragraphes = str.components(separatedBy: "\n")
         

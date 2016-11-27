@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContentPage: UIView {
+class ContentPage: UIControl {
     
     
     @IBOutlet weak var txtChptterName: UILabel!
@@ -51,11 +51,12 @@ class ContentPage: UIView {
         
         v.txtContent.textAlignment = .left
         
+         
+        
         return v
         
     }
-    
-    
+ 
     
     func setTextAttribute(_ attributes:[String:Any]?) {
         
@@ -83,9 +84,9 @@ class ContentPage: UIView {
     }
     
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        guard  let p = touches.first?.location(in: self.superview)  else{
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+      
+        guard  let p = touches.first?.location(in: self)  else{
             
             return
         }
@@ -95,10 +96,19 @@ class ContentPage: UIView {
         
         if p.x > width * 1 / 3 && p.x < width * 2 / 3  &&  p.y > height * 1 / 3 && p.y < height * 2 / 3  {
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: touchBeginNotification), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: contentPageMenuNotification), object: nil)
             
+        }  else if  p.x <= width * 1 / 3  {
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: contentPageSwitchNotification), object: "-1")
+            
+        } else if  p.x >= width * 2 / 3  {
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: contentPageSwitchNotification), object: "1")
         }
         
+
     }
+ 
     
 }

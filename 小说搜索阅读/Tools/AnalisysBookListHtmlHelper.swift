@@ -42,7 +42,7 @@ class AnalisysBookListHtmlHelper {
         return analisysRankPageHtml(str)
     }
     
-
+    
     
     ///返回更新列表数据
     static func analisysUpdateChapterHtml(_ str:String?) -> [Book]  {
@@ -55,7 +55,7 @@ class AnalisysBookListHtmlHelper {
     static func analisysUpdateChapterPageCount(_ str:String?) -> Int {
         
         return  getUpdateChapterPageCount(str!)
-    
+        
     }
     
     
@@ -286,7 +286,7 @@ extension AnalisysBookListHtmlHelper {
                 let reg = try? NSRegularExpression(pattern: pattern, options: [])
                 
                 let res = reg?.firstMatch(in: item, options: [], range: NSRange(location: 0, length: item.characters.count))
-            
+                
                 
                 if res != nil {
                     
@@ -299,10 +299,10 @@ extension AnalisysBookListHtmlHelper {
                         
                     } else {
                         
-                         b.rankChangeValue =  "-" + value
+                        b.rankChangeValue =  "-" + value
                     }
                     
-                
+                    
                 }
             }
             
@@ -314,8 +314,8 @@ extension AnalisysBookListHtmlHelper {
         
         return list
     }
-   
-    ///MARK: - 解析排行榜页面数据
+    
+    ///MARK: - 解析更新章节列表页
     fileprivate static func analisysUpdateChapterPageHtml(_ str:String?)  -> [Book]  {
         
         var  list = [Book]()
@@ -368,6 +368,21 @@ extension AnalisysBookListHtmlHelper {
             }
             
             b.contentPageUrl = (item as NSString).substring(with: (result?.rangeAt(1))!)
+            
+            
+            
+            guard   let url = b.contentPageUrl, let uri = URL(string:url),let host = uri.host  else{
+                
+                continue
+            }
+            
+            if !LyWebUrls.instance.getAllValues().contains(host) {
+                
+                continue
+                
+            }
+            
+            
             b.chapterName = (item as NSString).substring(with: (result?.rangeAt(2))!)
             b.lywzName = (item as NSString).substring(with: (result?.rangeAt(3))!)
             b.updateTime = (item as NSString).substring(with: (result?.rangeAt(4))!)
@@ -379,6 +394,7 @@ extension AnalisysBookListHtmlHelper {
         
         return list
     }
+    
     
     
     fileprivate static func getUpdateChapterPageCount(_ html:String) -> Int {

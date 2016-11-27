@@ -106,6 +106,8 @@ class BookCatalog:NSObject {
     
     var chapterContent : String?
     
+    
+    
     func  clone() -> BookCatalog {
         
         let temp = BookCatalog()
@@ -115,6 +117,8 @@ class BookCatalog:NSObject {
         temp.chapterName = self.chapterName
         temp.chapterUrl = self.chapterUrl
         temp.chapterContent = self.chapterContent
+        temp.chapterContent = self.chapterContent
+        
         
         return temp
     }

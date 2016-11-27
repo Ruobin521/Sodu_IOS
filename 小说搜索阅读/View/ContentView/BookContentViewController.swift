@@ -8,7 +8,8 @@
 
 import UIKit
 
-let touchBeginNotification = "touchBeginNotification"
+
+
 
 class BookContentViewController: UIViewController {
     
@@ -27,6 +28,8 @@ class BookContentViewController: UIViewController {
     var isShowMenu: Bool = false
     
     var isShowing = false
+    
+    var isSwitching = false
     
     var pageController:UIPageViewController!
     
@@ -60,35 +63,45 @@ class BookContentViewController: UIViewController {
         
         initCatalogs()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(showSettingBar), name: NSNotification.Name(rawValue: touchBeginNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showSettingBar), name: NSNotification.Name(rawValue: contentPageMenuNotification), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(moveToPage), name: NSNotification.Name(rawValue: contentPageSwitchNotification), object: nil)
         
     }
     
     
-    
+    // MARK: 获取当前页面数据
     func initContentData() {
         
         loadingWindow.isHidden = false
         
         DispatchQueue.global().async {
             
-            self.vm.getCatalogChapterContent(posion: .Current){ [weak self] (isSuccess) in
+            self.vm.getCatalogChapterContent(catalog: self.vm.currentCatalog){ [weak self] (isSuccess, html) in
                 
                 DispatchQueue.main.async {
                     
                     if  isSuccess {
+                        
+                        self?.vm.currentChapterPageList = self?.vm.splitPages(html: html)
                         
                         let controller:ContentPageViewController =  (self?.getViewControllerByIndex(0))!
                         
                         let viewControllers:[ContentPageViewController] = [controller]
                         
                         self?.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
-                         
                         
                     } else {
                         
-                        self?.btnRetry .isHidden = true
-                        self?.errorView.isHidden = true
+                        
+                        let controller:ContentPageViewController =  (self?.createEmptyContenPageController())!
+                        
+                        let viewControllers:[ContentPageViewController] = [controller]
+                        
+                        self?.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
+                        
+                        self?.btnRetry .isHidden = false
+                        self?.errorView.isHidden = false
                         
                     }
                     
@@ -101,6 +114,7 @@ class BookContentViewController: UIViewController {
     }
     
     
+    // MARK: 获取目录数据
     func  initCatalogs(_ completion: ((_ isSuccess:Bool)->())? = nil) {
         
         DispatchQueue.global().async {
@@ -110,12 +124,13 @@ class BookContentViewController: UIViewController {
                 return
             }
             /// 获取目录信息
-            self.vm.getBookCatalogs(url: url, completion: completion)
+            self.vm.getBookCatalogs(url: url,retryCount: 0, completion: completion)
             
         }
         
     }
     
+    //MARK: 点击重试按钮事件
     @IBAction func retryAction(_ sender: Any) {
         
         
@@ -126,12 +141,15 @@ class BookContentViewController: UIViewController {
         initContentData()
     }
     
+    
+    // MARK: 点击关闭按钮事件
     @IBAction func closeAciton() {
         
         dismiss(animated: true, completion: nil)
     }
     
     
+    //MARK:  析构函数
     deinit {
         
         NotificationCenter.default.removeObserver(self)
@@ -145,7 +163,7 @@ class BookContentViewController: UIViewController {
 // MARK: - 页面切换 代理 数据
 extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewControllerDataSource {
     
-    ///上一页
+    // MARK: 准备上一页数据
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         
@@ -158,7 +176,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         return controller
     }
     
-    ///下一页
+    ///MARK: 准备下一页数据
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         
@@ -172,18 +190,19 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         
     }
     
-    //在动画的时候先将用户交互关闭
+    // MARK: 将要切换到下一页之前
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         
-       // pageViewController.view.isUserInteractionEnabled = false
+        // pageController.view.isUserInteractionEnabled = false
     }
     
     
-    ///动画结束后 开启交互
+    // MARK: 切换结束后
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
         if (completed && finished) {
             
+            // pageController.view.isUserInteractionEnabled = true
             
             let precontroller = previousViewControllers[0] as? ContentPageViewController
             
@@ -191,7 +210,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
             
             if currentController?.catalog?.chapterUrl !=  precontroller?.catalog?.chapterUrl {
                 
-                vm.currentCatalog = currentController?.catalog
+                vm.SetCurrentCatalog(catalog: currentController?.catalog, completion: nil)
                 
             }
             
@@ -200,10 +219,52 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
     }
     
     
+    
+    // MARK: 点击前后切换
+    func moveToPage(obj:NSNotification) {
+        
+        if vm.orientation == .vertical   || isShowMenu {
+            
+            return
+        }
+        
+        guard   let controller  =  pageController.viewControllers?[0] as? ContentPageViewController else {
+            
+            return
+        }
+        
+        
+        
+        var index:Int = controller.tag
+        
+        if obj.object as? String == "-1" {
+            
+            index -= 1
+            
+        } else if obj.object as? String  == "1" {
+            
+            index  += 1
+        }
+        
+        
+        if   let  result = getViewControllerByIndex(index)
+        {
+            let direction = (obj.object as? String == "1") ? UIPageViewControllerNavigationDirection.forward : UIPageViewControllerNavigationDirection.reverse
+            
+            vm.SetCurrentCatalog(catalog: result.catalog, completion: nil)
+            pageController.setViewControllers([result], direction:direction, animated: false, completion: nil)
+            
+            
+            
+        }
+    }
+    
+    
+    // MARK: 根据索引获取数据
     func getViewControllerByIndex(_ index:Int) -> ContentPageViewController? {
         
         
-        if vm.currentChapterPageList == nil || (vm.currentChapterPageList?.count)! == 0 {
+        guard let currentList =  vm.currentChapterPageList else{
             
             return  nil
             
@@ -218,19 +279,13 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         controller.textAttributeDic = vm.getTextContetAttributes()
         
         controller.backColor = self.view.backgroundColor
-
-    
+        
+        
         
         //当前章节正常切换
-        if index >= 0  &&  index < (vm.currentChapterPageList?.count)! {
+        if index >= 0  &&  index < currentList.count {
             
-            guard let contentList = vm.currentChapterPageList,let catalog = vm.currentCatalog else {
-                
-                return nil
-                
-            }
-            
-            if  contentList.count == 0 {
+            guard let catalog = vm.currentCatalog else {
                 
                 return nil
                 
@@ -239,17 +294,17 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
             
             controller.chapterName = catalog.chapterName
             
-            controller.content = contentList[index]
+            controller.content = currentList[index]
             
             controller.tag = index
             
-            controller.pageIndex = "第\(index + 1)/\(contentList.count)页"
+            controller.pageIndex = "第\(index + 1)/\(currentList.count)页"
             
             if let currentIndex  = vm.getCatalogIndex(catalog) {
                 
-                  controller.chapterIndex = "第\(currentIndex + 1)/\((vm.currentBook?.catalogs?.count)!)章"
+                controller.chapterIndex = "第\(currentIndex + 1)/\((vm.currentBook?.catalogs?.count)!)章"
             }
-          
+            
             
             controller.catalog = catalog.clone()
             
@@ -258,15 +313,16 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         }
             
             //需要切换到下一章
-        else  if index == vm.currentChapterPageList?.count {
+        else  if index == currentList.count {
             
             
-            guard  let next = vm.getBeforeOrNextCatalog(posion: .Next)  else{
+            guard  let next = vm.getCatalogByPosion(posion: .Next)  else{
                 
                 // 如果没有下一章 那么返回 nil
                 return nil
                 
             }
+            
             
             //如果有下一章
             
@@ -275,15 +331,17 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
             /// 1.1 如果存在,直接取数据,并赋值
             if vm.nextChapterPageList != nil && (vm.nextChapterPageList?.count)! > 0 {
                 
+                let nextList = vm.nextChapterPageList!
+                
                 controller.chapterName = next.chapterName
                 
-                controller.content = vm.nextChapterPageList?[0]
+                controller.content = nextList[0]
                 
                 controller.tag = 0
                 
                 controller.catalog = next.clone()
                 
-                controller.pageIndex = "第\(1)/\((vm.nextChapterPageList?.count)!)页"
+                controller.pageIndex = "第\(1)/\(nextList.count)页"
                 
                 if let currentIndex  = vm.getCatalogIndex(next) {
                     
@@ -306,35 +364,59 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
             ///需要切换到上一章
         else if index == -1 {
             
-//            guard let pageList = vm.preChapterPageList,let catalog = vm.preCatalog else {
-//                
-//                return nil
-//                
-//            }
-//            
-//            if pageList.count == 0 {
-//                
-//                return nil
-//            }
-//            
-//            
-//            controller.chapterName = catalog.chapterName
-//            
-//            controller.content = pageList[0]
-//            
-//            controller.tag = 0
-//            
-//            controller.catalog = catalog.clone()
-//            
-//            return controller
+            guard  let catalog = vm.getCatalogByPosion(posion: .Before)  else{
+                
+                // 如果没有上一章 那么返回 nil
+                return nil
+                
+            }
+            
+            //如果有上一章
+            
+            // 1 先判断上一章的数据是否存在
+            
+            /// 1.1 如果存在,直接取数据,并赋值
+            if vm.preChapterPageList != nil && ( vm.preChapterPageList?.count)! > 0 {
+                
+                let preList =  vm.preChapterPageList!
+                
+                let currentTag = preList.count - 1
+                
+                controller.chapterName = catalog.chapterName
+                
+                controller.content = preList[currentTag]
+                
+                controller.tag =  currentTag
+                
+                controller.catalog = catalog.clone()
+                
+                controller.pageIndex = "第\(currentTag + 1)/\(preList.count)页"
+                
+                if let currentIndex  = vm.getCatalogIndex(catalog) {
+                    
+                    controller.chapterIndex = "第\(currentIndex + 1)/\((vm.currentBook?.catalogs?.count)!)章"
+                }
+                
+                return controller
+                
+            }
+                /// 1.2 数据不存在，那么需要去请求数据
+            else {
+                
+                
+                
+                
+            }
             
         }
-        
         
         return nil
     }
     
     
+    
+    
+    //MARK: 创建空白数据页
     func createEmptyContenPageController()  -> ContentPageViewController{
         
         
@@ -360,30 +442,30 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
 extension BookContentViewController {
     
     
-    ///触摸屏幕时，控制菜单的显隐（一般都是隐藏）
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        if isShowMenu {
-            
-            guard  let p = touches.first?.location(in: self.view)  else{
-                
-                return
-            }
-            
-            let height = self.view.bounds.height
-            let width = self.view.bounds.width
-            
-            if p.x > width * 1 / 3 && p.x < width * 2 / 3  &&  p.y > height * 1 / 3 && p.y < height * 2 / 3  {
-                
-                showSettingBar()
-                
-            }
-        }
-        
-    }
+    //    //MARK: 触摸屏幕时，控制菜单的显隐（一般都是隐藏）
+    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //
+    //        if isShowMenu {
+    //
+    //            guard  let p = touches.first?.location(in: self.view)  else{
+    //
+    //                return
+    //            }
+    //
+    //            let height = self.view.bounds.height
+    //            let width = self.view.bounds.width
+    //
+    //            if p.x > width * 1 / 3 && p.x < width * 2 / 3  &&  p.y > height * 1 / 3 && p.y < height * 2 / 3  {
+    //
+    //                showSettingBar()
+    //
+    //            }
+    //        }
+    //
+    //    }
     
     
-    /// 设置菜单显隐
+    // MARK: 设置菜单显隐
     func  showSettingBar() {
         
         if isShowing {
@@ -403,6 +485,8 @@ extension BookContentViewController {
         }
     }
     
+    
+    // MARK: 显示菜单
     func showMenu() {
         
         if isShowMenu {
@@ -422,23 +506,35 @@ extension BookContentViewController {
         self.botomMenu.isHidden = false
         
         
+        
+        for v in  self.pageController.view.subviews {
+            
+            if v.isKind(of:UIScrollView.self) {
+                
+                (v as! UIScrollView).isScrollEnabled = false
+                
+            }
+            
+        }
+        
+        UIApplication.shared.setStatusBarHidden(false, with: .slide)
+        
         UIView.animate(withDuration: 0.25, animations: {
             
             self.topMenu.transform = CGAffineTransform(translationX: 0, y: 0)
             
             self.botomMenu.transform = CGAffineTransform(translationX: 0, y: 0)
             
-            UIApplication.shared.setStatusBarHidden(false, with: .slide)
-            
         }, completion: { (isSucess) in
             
             self.isShowing = false
+            
             
         })
         
     }
     
-    
+    // MARK: 隐藏菜单
     func hidenMenu() {
         
         if !isShowMenu  {
@@ -448,16 +544,24 @@ extension BookContentViewController {
         
         isShowMenu = false
         
-     
+        
+        for v in  self.pageController.view.subviews {
+            
+            if v.isKind(of: UIScrollView.self) {
+                
+                (v as! UIScrollView).isScrollEnabled = true
+                
+            }
+            
+        }
+        
+        UIApplication.shared.setStatusBarHidden(true, with: .slide)
         
         UIView.animate(withDuration: 0.25, animations: {
             
             self.topMenu.transform = CGAffineTransform(translationX: 0, y: -self.topMenu.frame.height)
             
             self.botomMenu.transform = CGAffineTransform(translationX: 0, y: self.botomMenu.frame.height)
-            
-            
-            UIApplication.shared.setStatusBarHidden(true, with: .slide)
             
             
         }, completion: { (isSuccess) in
@@ -467,12 +571,12 @@ extension BookContentViewController {
             self.botomMenu.isHidden = true
             
             self.isShowing = false
+            
         })
     }
     
     
-    
-    
+    //MARK:  日间、夜间模式切换
     func  setMoonlightMode(_ btn:SettingButton) {
         
         vm.isMoomlightMode = !vm.isMoomlightMode
@@ -487,7 +591,7 @@ extension BookContentViewController {
     }
     
     
-    /// 点击目录
+    // MARK: 点击目录按钮
     func muluClick() {
         
         print("点击目录")
@@ -512,21 +616,20 @@ extension BookContentViewController {
         
         v.completionBlock = { [weak self] (catalog)  in
             
-            self?.vm.currentCatalog = catalog
-            
+            self?.vm.SetCurrentCatalog(catalog: catalog, completion: nil)
             self?.initContentData()
             
-            self?.hidenMenu()
-            
-        }
+         }
         
         present(v, animated: true, completion: nil)
+        
+        hidenMenu()
         
         
     }
     
     
-    //点击缓存
+    // MARK: 点击缓存按钮
     func downLoadClick() {
         
         print("点击下载按钮")
@@ -535,7 +638,7 @@ extension BookContentViewController {
     }
     
     
-    //点击设置
+    //MARK: 点击设置按钮
     func settingClick() {
         
         print("点击设置按钮")
@@ -551,7 +654,7 @@ extension BookContentViewController {
 extension BookContentViewController {
     
     
-    /// 初始化界面ui
+    // MARK: 初始化界面
     func setupUI() {
         
         UIApplication.shared.isStatusBarHidden = true
@@ -579,7 +682,7 @@ extension BookContentViewController {
     }
     
     
-    
+    // MARK: 初始化PageViewController
     func setPageViewController() {
         
         pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -603,7 +706,7 @@ extension BookContentViewController {
     }
     
     
-    
+    // MARK: 初始化颜色
     func  setColor() {
         
         if vm.isMoomlightMode {
@@ -634,7 +737,7 @@ extension BookContentViewController {
     }
     
     
-    /// 设置电池信息
+    // MARK: 设置电池信息
     func setBattaryInfo() {
         
         UIDevice.current.isBatteryMonitoringEnabled = true
@@ -645,6 +748,7 @@ extension BookContentViewController {
     }
     
     
+    // MARK: 电池信息发生变化时，处理当前显示
     func battaryChanged()  {
         
         if Int(UIDevice.current.batteryLevel) == -1 {
@@ -662,7 +766,7 @@ extension BookContentViewController {
     
     
     
-    /// 设置显示时间
+    // MARK: 设置显示时间
     func setTiemInfo() {
         
         if timer == nil {
@@ -686,7 +790,7 @@ extension BookContentViewController {
     
     
     
-    /// 设置底部菜单
+    // MARK: 设置底部菜单
     func setBottonBarButton() {
         
         for (i,btn) in botomMenu.subviews.enumerated() {
@@ -727,7 +831,7 @@ extension BookContentViewController {
     
     
     
-    /// 页面即将消失时
+    // MARK: 页面即将消失时
     
     override func viewWillDisappear(_ animated: Bool) {
         

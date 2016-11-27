@@ -15,3 +15,8 @@ let LogonSuccessNotification = "LogonSuccessNotification"
 let AddToBookshelfSuccessNotification = "AddToBookshelfSuccessNotification"
 
 let LogoutNotification = "LogoutNotification"
+
+
+let contentPageMenuNotification = "contentPageMenuNotification"
+
+let contentPageSwitchNotification = "contentPageSwitchNotification"

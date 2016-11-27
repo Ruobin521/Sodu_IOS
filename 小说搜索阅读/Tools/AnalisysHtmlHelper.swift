@@ -28,7 +28,7 @@ class AnalisysHtmlHelper {
         switch host! {
             
         ///第七中文
-        case  LyWebUrls.dqzw:
+        case  LyWebUrls.instance.dqzw:
             
             if type == .Content {
                 
@@ -47,7 +47,7 @@ class AnalisysHtmlHelper {
             
             
         ///七度书屋
-        case  LyWebUrls.qdsw:
+        case  LyWebUrls.instance.qdsw:
             
             if type == .Content {
                 
@@ -67,7 +67,7 @@ class AnalisysHtmlHelper {
             
             
         ///第九中文网
-        case  LyWebUrls.dijiuzww:
+        case  LyWebUrls.instance.dijiuzww:
             
             if type == .Content {
                 
@@ -86,7 +86,7 @@ class AnalisysHtmlHelper {
             
             
         ///清风小说
-        case  LyWebUrls.qfxs:
+        case  LyWebUrls.instance.qfxs:
             
             if type == .Content {
                 
@@ -104,27 +104,27 @@ class AnalisysHtmlHelper {
             }
             
             
-        ///窝窝小说网
-        case  LyWebUrls.wwxsw2:
-            
-            if type == .Content {
-                
-                value = analisysDjzwwHtml(urlStr,html)
-                
-                
-            } else if type == .CatalogPageUrl {
-                
-                value = analysisCommonCatalogPageUrl(url: urlStr)  + "mulu.html"
-                
-            } else if type == .CatalogList {
-                
-                
-                
-            }
-            
+//        ///窝窝小说网
+//        case  LyWebUrls.instance.wwxsw2:
+//            
+//            if type == .Content {
+//                
+//                value = analisysDjzwwHtml(urlStr,html)
+//                
+//                
+//            } else if type == .CatalogPageUrl {
+//                
+//                value = analysisCommonCatalogPageUrl(url: urlStr)  + "mulu.html"
+//                
+//            } else if type == .CatalogList {
+//                
+//                //                value =  analisysCommonCIAC(url: urlStr,coverBaseUrl:"", html: html, htmlPattern: "<head>.*?</html>", catalogPattern: "<td class=\"L\".*?href=\"(.*?)\".*?>(.*?)</a></td>", introPattern: "<div class=\"js\">.*?<p><b>", coverPattern: "<div class=\"pic\">.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern: "<i>作者：(.*?)</i>")
+//                
+//            }
+//            
             
         ///大海中文
-        case  LyWebUrls.dhzw:
+        case  LyWebUrls.instance.dhzw:
             
             if type == .Content {
                 
@@ -144,7 +144,7 @@ class AnalisysHtmlHelper {
             
             
         //爱上中文
-        case  LyWebUrls.aszw:
+        case  LyWebUrls.instance.aszw:
             
             if type == .Content {
                 
@@ -162,7 +162,7 @@ class AnalisysHtmlHelper {
             
             
         ///少年文学
-        case  LyWebUrls.snwx:
+        case  LyWebUrls.instance.snwx:
             
             
             if type == .Content {
@@ -180,7 +180,7 @@ class AnalisysHtmlHelper {
             
             
         ///手牵手
-        case  LyWebUrls.sqsxs:
+        case  LyWebUrls.instance.sqsxs:
             
             if type == .Content {
                 
@@ -197,7 +197,7 @@ class AnalisysHtmlHelper {
             }
             
         ///找书网
-        case  LyWebUrls.zsw:
+        case  LyWebUrls.instance.zsw:
             
             
             
@@ -216,8 +216,8 @@ class AnalisysHtmlHelper {
             }
             
             
-        /// 新笔趣阁
-        case  LyWebUrls.xbiquge:
+        ///  去笔阁网
+        case  LyWebUrls.instance.xbiquge:
             
             if type == .Content {
                 
@@ -229,13 +229,14 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
+                let baseUrl = "http://" + host!
                 
-                
+                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "<div id=\"list\".*?</div>", catalogPattern: "<dd><a href=\"(.*?)\">(.*?)</a></dd>", introPattern: "<div id=\"intro\">.*?</div>", coverPattern: "<div id=\"fmimg\"><img.*?src=\"(.*?)\".*?>", AuthorPattern: "<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：(.*?)</p>")
             }
             
             
         /// 古古小说
-        case  LyWebUrls.ggxs:
+        case  LyWebUrls.instance.ggxs:
             
             if type == .Content {
                 
@@ -247,12 +248,13 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
+                let baseUrl = "http://" + host!
                 
-                
+                value =  analisysCommonCIAC(url: urlStr,coverBaseUrl:baseUrl, html: html, htmlPattern: "<table.*?</table>", catalogPattern: "<td><a href=\"(.*?)\" title=.*?>(.*?)</a></td>", introPattern: "<div class=\"msgarea\">.*?</p>", coverPattern: "<div class=\"img1\"><img src=\"(.*?)\".*?</div>", AuthorPattern: "<a href=\"/modules/article/authorarticle.php\\?author=.*?>(.*?)</a>")
             }
             
         /// 书6
-        case  LyWebUrls.shu6:
+        case  LyWebUrls.instance.shu6:
             
             if type == .Content {
                 
@@ -274,7 +276,7 @@ class AnalisysHtmlHelper {
             
             
         /// 风华居
-        case  LyWebUrls.fenghuaju:
+        case  LyWebUrls.instance.fenghuaju:
             
             if type == .Content {
                 
@@ -287,14 +289,15 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
+                let baseUrl = "http://" + host!
                 
-                
+                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "<div id=\"list\".*?</div>", catalogPattern: "<dd><a href=\"(.*?)\">(.*?)</a></dd>", introPattern: "<div id=\"intro\">.*?</div>", coverPattern: "<div id=\"fmimg\"><img.*?src=\"(.*?)\".*?>", AuthorPattern: "<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：(.*?)</p>")
             }
             
             
             
         /// 云来阁
-        case  LyWebUrls.ylg:
+        case  LyWebUrls.instance.ylg:
             
             if type == .Content {
                 
@@ -306,13 +309,16 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
+                let baseUrl =  urlStr.replacingOccurrences(of: "index.html", with: "")
+                
+                value = analisyYlgCIAC(baseUrl,html)
                 
                 
             }
             
             
         /// 4K中文
-        case  LyWebUrls.fourkzw:
+        case  LyWebUrls.instance.fourkzw:
             
             if type == .Content {
                 
@@ -325,12 +331,13 @@ class AnalisysHtmlHelper {
             } else if type == .CatalogList {
                 
                 
+                value =  analisysCommonCIAC(url: "",coverBaseUrl:"", html: html, htmlPattern: " <div class=\"book_list\">.*?</div>", catalogPattern: "<li><a href=\"(.*?)\">(.*?)</a></li>", introPattern: " <h3 class=\"bookinfo_intro\">.*?</h3>", coverPattern: "<div class=\'pic\'>.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern: "<span class=\"item red\">作者：(.*?)</span>")
                 
             }
             
             
         /// 幼狮
-        case  LyWebUrls.yssm:
+        case  LyWebUrls.instance.yssm:
             
             
             if type == .Content {
@@ -343,14 +350,14 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
-                
+                value =  analisysCommonCIAC(url: "",coverBaseUrl:"", html: html, htmlPattern: "<div class=\"book_list\">.*?</div>", catalogPattern: "<li><a href=\"(.*?)\">(.*?)</a></li>", introPattern: "<h3 class=\"bookinfo_intro\">.*?</h3>", coverPattern: "<div class=\'pic\'>.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern: "<span class=\"item red\">作者：(.*?)</span>")
                 
             }
             
             
             
         ///木鱼哥
-        case  LyWebUrls.myg:
+        case  LyWebUrls.instance.myg:
             
             
             if type == .Content {
@@ -364,13 +371,15 @@ class AnalisysHtmlHelper {
             } else if type == .CatalogList {
                 
                 
+                value =  analisysCommonCIAC(url: "",coverBaseUrl:"", html: html, htmlPattern: "<div id=\"xslist\">.*?</div>", catalogPattern: "<li><a href=\"(.*?)\".*?>(.*?)</a></li>", introPattern: "<p>&nbsp;&nbsp;&nbsp;&nbsp;.*?</p", coverPattern: "<div id=\"fmimg\">.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern: "</h1>&nbsp;&nbsp;&nbsp;&nbsp;(.*?)/著</div>")
+                
                 
             }
             
             
             
-        /// 轻语
-        case  LyWebUrls.qyxs:
+        /// 轻语 (封面。简介在另外一个页面，暂不处理)
+        case  LyWebUrls.instance.qyxs:
             
             if type == .Content {
                 
@@ -382,12 +391,15 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
+                let baseUrl = "http://" + host!
                 
+                
+                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "<div id=\"readerlist\">.*?<div class=\"clearfix\">", catalogPattern: "<li><a href=\"(.*?)\">(.*?)</a></li>", introPattern: "<div id=\"bookintro\">(.*?)</div>", coverPattern: "<div id=\"bookimg\"><img.*?src=\"(.*?)\".*?>", AuthorPattern: "作者：<span><a href=\"/modules/article/authorarticle.php\\?author.*?>(.*?)</a></span>")
                 
             }
             
         /// 乐文
-        case  LyWebUrls.lww:
+        case  LyWebUrls.instance.lww:
             
             if type == .Content {
                 
@@ -399,32 +411,38 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
+                let baseUrl = "http://" + host!
+                
+                
+                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "<h2 class=\"bookTitle\">.*?<div id=\"uyan_frame\">", catalogPattern: "<a href=\"(.*?)\">(.*?)</a>", introPattern: "<div class=\"reBook borderF\">(.*?)</div>", coverPattern: "<div style=\"width:600px; padding:5px\">.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern:"<p>作者：(.*?)&nbsp;&nbsp;&nbsp;</p>")
                 
                 
             }
             
             
             
-        /// 去笔趣阁
-        case  LyWebUrls.qbqg:
-            
-            if type == .Content {
-                
-                value = analisysCommonHtml(html,"<div id=\"?content\"?.*?</div>")
-                
-            } else if type == .CatalogPageUrl {
-                
-                value = analysisCommonCatalogPageUrl(url: urlStr)
-                
-            } else if type == .CatalogList {
-                
-                
-                
-            }
-            
+//        /// 去笔趣阁
+//        case  LyWebUrls.instance.qbqg:
+//            
+//            if type == .Content {
+//                
+//                value = analisysCommonHtml(html,"<div id=\"?content\"?.*?</div>")
+//                
+//            } else if type == .CatalogPageUrl {
+//                
+//                value = analysisCommonCatalogPageUrl(url: urlStr)
+//                
+//            } else if type == .CatalogList {
+//                
+//                
+//                //                let baseUrl = "http://" + host!
+//                //
+//                //                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "<h2 class=\"bookTitle\">.*?<div id=\"uyan_frame\">", catalogPattern: "<a href=\"(.*?)\">(.*?)</a>", introPattern: "<div class=\"reBook borderF\">(.*?)</div>", coverPattern: "<div style=\"float:left; margin-right:10px\"><img src=\"(.*?)\".*?>", AuthorPattern:"<p>作者：(.*?)&nbsp;&nbsp;&nbsp;</p>")
+//            }
+//            
             
         ///秋水轩
-        case  LyWebUrls.qsx:
+        case  LyWebUrls.instance.qsx:
             
             if type == .Content {
                 
@@ -437,13 +455,16 @@ class AnalisysHtmlHelper {
             } else if type == .CatalogList {
                 
                 
+                let baseUrl = "http://" + host!
+                
+                value =  analisysCommonCIAC(url: urlStr,coverBaseUrl:baseUrl, html: html, htmlPattern: "<div class=\"chapter\">.*?</div>", catalogPattern: "<dd><a href=\"(.*?)\".*?>(.*?)</a></dd>", introPattern: "<div class=\"list\">.*?<div class=\"clear\"></div>", coverPattern: "<div class=\"list\">.*?<img.*?src=\"(.*?)\".*?/>", AuthorPattern:"<span class=\"author\">作者：(.*?)  分类.*?</span>")
                 
             }
             
             
             
         /// 卓雅居
-        case  LyWebUrls.zyj:
+        case  LyWebUrls.instance.zyj:
             
             if type == .Content {
                 
@@ -456,13 +477,16 @@ class AnalisysHtmlHelper {
             } else if type == .CatalogList {
                 
                 
+                let baseUrl = "http://" + host!
+                
+                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "<div id=\"readerlist\">.*?<div class=\"bottoma\">", catalogPattern: "<li><a href=\"(.*?)\".*?>(.*?)</a></li>", introPattern: "<div id=\"bookintro\">.*?</div>", coverPattern: "<div id=\"bookimg\"><img.*?src=\"(.*?)\".*?/>", AuthorPattern:"<div id=\"author\">.*?>(.*?)</a></div>")
                 
             }
             
             
             
         /// 81中文网
-        case  LyWebUrls.xs81:
+        case  LyWebUrls.instance.xs81:
             
             if type == .Content {
                 
@@ -474,14 +498,14 @@ class AnalisysHtmlHelper {
                 
             } else if type == .CatalogList {
                 
+                let baseUrl = "http://" + host!
                 
+                value =  analisysCommonCIAC(url: urlStr,coverBaseUrl:baseUrl, html: html, htmlPattern: "<div id=\"list\">.*?</div>", catalogPattern: "<dd><a href=\"(.*?)\">(.*?)</a></dd>", introPattern: "<div id=\"intro\">.*?</div>", coverPattern: "<div id=\"fmimg\"><img.*?src=\"(.*?)\".*?/>", AuthorPattern:"<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：(.*?)</p>")
                 
             }
             
-            
-            
-        /// 风云
-        case  LyWebUrls.fyxs:
+        /// 风云  没有封面，简介，作者
+        case  LyWebUrls.instance.fyxs:
             
             if type == .Content {
                 
@@ -494,13 +518,14 @@ class AnalisysHtmlHelper {
             } else if type == .CatalogList {
                 
                 
+                value =  analisysCommonCIAC(url: "",coverBaseUrl:"", html: html, htmlPattern: "<div class=\"readerListShow\".*?</div>", catalogPattern: "<td.*?href=\"(.*?)\".*?>(.*?)</a></td>", introPattern: "", coverPattern: "", AuthorPattern:"")
                 
             }
             
             
             
-        /// 大书包
-        case  LyWebUrls.dsb:
+        /// 大书包  封面取不到
+        case  LyWebUrls.instance.dsb:
             if type == .Content {
                 
                 value = analisysCommonHtml(html,"<div class=\"hr101\">.*?<span id=\"endtips\">")
@@ -511,7 +536,10 @@ class AnalisysHtmlHelper {
             } else if type == .CatalogList {
                 
                 
+                let baseUrl = "http://" + host!
                 
+                
+                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "<h2 class=\"bookTitle\">.*?<div id=\"uyan_frame\">", catalogPattern: "<a href=\"(.*?)\">(.*?)</a>", introPattern: "<div class=\"reBook borderF\">(.*?)</div>", coverPattern: "<div style=\"width:600px; padding:5px\">.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern:"<p>作者：(.*?)&nbsp;&nbsp;&nbsp;</p>")
             }
             
             
@@ -1274,6 +1302,119 @@ extension AnalisysHtmlHelper {
     }
     
     
+    /// 云来阁
+    static func analisyYlgCIAC(_ url:String,_ html:String) -> (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)   {
+        
+        var str = html.replacingOccurrences(of: "\r", with: "").replacingOccurrences(of: "\t", with: "").replacingOccurrences(of: "\n", with: "")
+        
+        let htmlValue = str
+        
+        var catalogs:[BookCatalog] = [BookCatalog]()
+        
+        var introduction:String?
+        
+        var coverImage:String?
+        
+        var authorName:String?
+        
+        // let uri = URL(string: url)
+        
+        
+        // let baseUrl = uri?.deletingLastPathComponent().absoluteString
+        
+        
+        guard let strRegex = try? NSRegularExpression(pattern: "<table.*?</table>", options: []) else {
+            
+            return (catalogs,introduction,authorName,coverImage)
+        }
+        
+        guard   let htmlMatch = strRegex.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.characters.count)) else {
+            
+            return (catalogs,introduction,authorName,coverImage)
+            
+        }
+        
+        str =  (str as NSString).substring(with: htmlMatch.range)
+        
+        
+        //<dd><a href="9494646.html" title="第一章 科技结晶">第一章 科技结晶</a></dd>
+        
+        /// 目录
+        if   let regex = try? NSRegularExpression(pattern: "<a href=\"(.*?)\">(.*?)</a>", options: []) {
+            
+            let matches = regex.matches(in: str, options: [], range: NSRange(location: 0, length: str.characters.count))
+            
+            
+            if matches.count == 0 {
+                
+                return (catalogs,introduction,authorName,coverImage)
+            }
+            
+            for (i,item) in matches.enumerated() {
+                
+                // let catalogStr = (str as  NSString).substring(with: item.range)
+                
+                if item.range.length > 2 {
+                    
+                    let catalog:BookCatalog = BookCatalog()
+                    
+                    catalog.chapterIndex =  i + 1
+                    catalog.chapterUrl = url +  (str as NSString).substring(with: (item.rangeAt(1)))
+                    catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
+                    
+                    catalogs.append(catalog)
+                }
+                
+            }
+            
+        }
+        
+        
+        //简介
+        if  let introRegex = try? NSRegularExpression(pattern: "<meta property=\"og:description\" content=\"(.*?)\"/>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let  introStr = (htmlValue as  NSString).substring(with: match.rangeAt(1))
+                
+                introduction = replaceSymbol(str: introStr)
+                
+            }
+            
+        }
+        
+        
+        
+        
+        //封面
+        if  let introRegex = try? NSRegularExpression(pattern: "<meta property=\"og:image\" content=\"(.*?)\"/>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let coverStr = (htmlValue as  NSString).substring(with: match.rangeAt(1))
+                
+                coverImage =  replaceSymbol(str: coverStr,false)
+                
+            }
+            
+        }
+        
+        
+        //作者
+        if  let introRegex = try? NSRegularExpression(pattern: "<meta property=\"og:novel:author\" content=\"(.*?)\"/>", options: []) {
+            
+            if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
+                
+                let coverStr = (htmlValue as  NSString).substring(with: match.rangeAt(1))
+                
+                authorName = replaceSymbol(str: coverStr,false)
+            }
+            
+        }
+        
+        return  (catalogs,introduction,authorName,coverImage)
+    }
+    
     
     
     
@@ -1573,7 +1714,7 @@ extension AnalisysHtmlHelper {
         var str = html.replacingOccurrences(of: "\r", with: "").replacingOccurrences(of: "\t", with: "").replacingOccurrences(of: "\n", with: "")
         
         
-        guard   let reg = try? NSRegularExpression(pattern: "<div id=\"content\".*?<div class=\"tc\".*?>", options: []) else {
+        guard   let reg = try? NSRegularExpression(pattern: "<div id=\"content\">.*?<div class=\"bottomlink tc\">", options: []) else {
             
             return nil
         }

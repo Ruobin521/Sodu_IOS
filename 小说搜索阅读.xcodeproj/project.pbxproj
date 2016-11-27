@@ -62,7 +62,7 @@
 		B19B74551DD4C344008D6C5C /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B19B74541DD4C344008D6C5C /* RegisterViewController.xib */; };
 		B1A73D321DE0C44C00EA4A40 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A73D301DE0C44C00EA4A40 /* SearchViewController.swift */; };
 		B1A73D351DE0D0F900EA4A40 /* SearchPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A73D341DE0D0F900EA4A40 /* SearchPageViewModel.swift */; };
-		B1B6A3531DC1EA2300CF23B7 /* Constaints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6A3521DC1EA2300CF23B7 /* Constaints.swift */; };
+		B1B6A3531DC1EA2300CF23B7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6A3521DC1EA2300CF23B7 /* Constant.swift */; };
 		B1B6A3551DC3409D00CF23B7 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6A3541DC3409D00CF23B7 /* NetworkHelper.swift */; };
 		B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */; };
 		B1C238571DD382FE00C37FA6 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C238551DD382FE00C37FA6 /* SettingTableViewCell.xib */; };
@@ -91,7 +91,7 @@
 		B120E2311DA9E72800921288 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B120E2331DA9E72800921288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B12CD5561DB687EE00377450 /* HttpUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpUtil.swift; sourceTree = "<group>"; };
-		B133A77B1DDABFC60038B5D2 /* BookContentPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookContentPageViewModel.swift; sourceTree = "<group>"; };
+		B133A77B1DDABFC60038B5D2 /* BookContentPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookContentPageViewModel.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		B133A7811DDAD1EC0038B5D2 /* BookContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookContentViewController.swift; sourceTree = "<group>"; };
 		B133A7821DDAD1EC0038B5D2 /* BookContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookContentViewController.xib; sourceTree = "<group>"; };
 		B1378BD81DB4A5CC000D4FAE /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 		B19B74541DD4C344008D6C5C /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		B1A73D301DE0C44C00EA4A40 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B1A73D341DE0D0F900EA4A40 /* SearchPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPageViewModel.swift; sourceTree = "<group>"; };
-		B1B6A3521DC1EA2300CF23B7 /* Constaints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constaints.swift; sourceTree = "<group>"; };
+		B1B6A3521DC1EA2300CF23B7 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		B1B6A3541DC3409D00CF23B7 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateChapterViewController.swift; sourceTree = "<group>"; };
 		B1C238551DD382FE00C37FA6 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
@@ -347,7 +347,7 @@
 		B1904FB21DB728BD00534AD6 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				B1B6A3521DC1EA2300CF23B7 /* Constaints.swift */,
+				B1B6A3521DC1EA2300CF23B7 /* Constant.swift */,
 				B1904FB31DB728EA00534AD6 /* ConstantUrl.swift */,
 			);
 			path = Constants;
@@ -681,7 +681,7 @@
 				B1904FB11DB605C900534AD6 /* ToastView.swift in Sources */,
 				B17E03D81DB099380061DD47 /* BookshelfViewController.swift in Sources */,
 				B1E472811DE1955500F50D41 /* LyWebUrls.swift in Sources */,
-				B1B6A3531DC1EA2300CF23B7 /* Constaints.swift in Sources */,
+				B1B6A3531DC1EA2300CF23B7 /* Constant.swift in Sources */,
 				B1A73D351DE0D0F900EA4A40 /* SearchPageViewModel.swift in Sources */,
 				B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */,
 				B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */,

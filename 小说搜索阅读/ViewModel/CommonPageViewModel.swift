@@ -100,28 +100,24 @@ class CommonPageViewModel {
         
         HttpUtil.instance.AFrequest(url: url, requestMethod: .GET, postStr: nil, parameters: nil, timeOut: 10)   { (data,isSuccess) in
             
-            DispatchQueue.main.async {
+            
+            
+            if !isSuccess {
                 
-                if !isSuccess {
+                completion(false,nil)
+                
+            }  else {
+                
+                let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
+                
+                guard  let  str = String(data: data as! Data, encoding: String.Encoding(rawValue: enc)) else {
                     
                     completion(false,nil)
                     
-                }  else {
-                    
-                    let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
-                    
-                    guard  let  str = String(data: data as! Data, encoding: String.Encoding(rawValue: enc)) else {
-                        
-                        completion(false,nil)
-                        
-                        return
-                    }
-                    
-                    
-                    completion(true,str)
-                    
+                    return
                 }
                 
+                completion(true,str)
             }
         }
     }
@@ -153,13 +149,11 @@ class CommonPageViewModel {
                     return
                     
                 }
-                print("获取小说目录成功")
                 completion(true,result)
                 
                 
-                
             } else {
-                print("获取小说目录失败")
+                
                 completion(false,nil)
                 
             }

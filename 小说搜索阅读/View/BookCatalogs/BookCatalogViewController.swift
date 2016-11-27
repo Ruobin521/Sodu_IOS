@@ -13,8 +13,6 @@ private let cellId = "cellId"
 class BookCatalogViewController: UIViewController {
     
     
-    
-    
     @IBOutlet weak var txtBookName: UILabel!
     
     @IBOutlet weak var btnScroll: UIButton!
@@ -24,7 +22,10 @@ class BookCatalogViewController: UIViewController {
     
     @IBAction func closeAction() {
         
+        UIApplication.shared.setStatusBarHidden(true, with: .slide)
+        
         dismiss(animated: true, completion: nil)
+        
         
     }
     
@@ -81,6 +82,9 @@ class BookCatalogViewController: UIViewController {
     }
     
 }
+
+
+
 extension BookCatalogViewController:UITableViewDataSource,UITableViewDelegate {
     
     
@@ -103,7 +107,7 @@ extension BookCatalogViewController:UITableViewDataSource,UITableViewDelegate {
         
         let catalog = book?.catalogs?[indexPath.row]
         
-        cell.bookCatalog = catalog?.clone() as! BookCatalog?
+        cell.bookCatalog = catalog?.clone() 
         
         
         return cell

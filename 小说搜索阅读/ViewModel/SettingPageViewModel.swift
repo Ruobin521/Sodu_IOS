@@ -20,7 +20,8 @@ enum SettingKey : String {
     
     
     /// 正文阅读设置选项
-    case IsMoomlightMode = "isMoomlightMode"
+    case ContentOrientation = "ContentOrientatione"
+    case IsMoomlightMode = "IsMoomlightMode"
     case ContentTextSize = "ContentTextSize"
     case ContentLineSpace = "ContentLineSpace"
     case ContentTextColor = "ContentTextColor"
@@ -37,6 +38,8 @@ class SettingPageViewModel {
     
     //正文
     
+    /// 滚动方向
+    lazy var contentOrientation = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentOrientation)
     
     /// 夜间模式
     lazy var isMoomlightMode = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsMoomlightMode)
@@ -52,6 +55,8 @@ class SettingPageViewModel {
     
     /// 字体颜色
     lazy var contentTextColor = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentTextColor) ??  "1B3D25"
+    
+    
     
     
     

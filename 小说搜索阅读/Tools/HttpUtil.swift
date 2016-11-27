@@ -28,7 +28,10 @@ class  HttpUtil :AFHTTPSessionManager  {
         shared.requestSerializer.setValue("gzip", forHTTPHeaderField: "Content-Encoding")
         
         shared.requestSerializer.setValue("gzip, deflate, sdch", forHTTPHeaderField: "Accept-Encoding")
-       
+        
+        
+        shared.requestSerializer.setValue("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.97 Safari/537.36", forHTTPHeaderField: "User-Agent")
+
         
         shared.requestSerializer.willChangeValue(forKey: "timeoutInterval")
         shared.requestSerializer.timeoutInterval = 10
