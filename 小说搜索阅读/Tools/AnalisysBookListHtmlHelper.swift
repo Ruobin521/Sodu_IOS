@@ -377,7 +377,7 @@ extension AnalisysBookListHtmlHelper {
                 continue
             }
             
-            if ！lyList.contains(host) {
+            if !lyList.contains(host) {
                 
                 continue
                 
