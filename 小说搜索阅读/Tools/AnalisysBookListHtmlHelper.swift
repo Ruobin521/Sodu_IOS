@@ -347,6 +347,7 @@ extension AnalisysBookListHtmlHelper {
             return list
         }
         
+        let lyList = LyWebUrls.instance.getAllValues()
         
         for  checkRange in  result
         {
@@ -376,7 +377,7 @@ extension AnalisysBookListHtmlHelper {
                 continue
             }
             
-            if !LyWebUrls.instance.getAllValues().contains(host) {
+            if ！lyList.contains(host) {
                 
                 continue
                 
