@@ -267,10 +267,11 @@ class AnalisysHtmlHelper {
             } else if type == .CatalogList {
                 
                 let uri = URL(string: urlStr)
-                let tempUrl = uri?.deletingLastPathComponent().absoluteString
+                
+                let tempUrl = "http://" + (uri?.host!)!
                 
                 
-                value =  analisysCommonCIAC(url: tempUrl!,coverBaseUrl:"", html: html, htmlPattern: "<div id=\"content\">.*?</div>", catalogPattern: "<dd><a href=\"(.*?)\">(.*?)</a></dd>", introPattern: "<p class=\"intro\">.*?</p>", coverPattern: "<div class=\"book_info_top_l\">.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern: "<p class=\"author\">(.*?)</p>")
+                value =  analisysCommonCIAC(url: tempUrl,coverBaseUrl:"", html: html, htmlPattern: "<div id=\"content\">.*?</div>", catalogPattern: "<dd><a href=\"(.*?)\">(.*?)</a></dd>", introPattern: "<p class=\"intro\">.*?</p>", coverPattern: "<div class=\"book_info_top_l\">.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern: "<p class=\"author\">(.*?)</p>")
                 
             }
             
@@ -1005,7 +1006,7 @@ extension AnalisysHtmlHelper {
         
         
         /// 目录
-        if   let regex = try? NSRegularExpression(pattern: "<li><a href=\"(.*?)\".*?>(.*?)</a></li>", options: []) {
+        if   let regex = try? NSRegularExpression(pattern: "<li><a href=\"/(.*?)\".*?>(.*?)</a></li>", options: []) {
             
             let matches = regex.matches(in: str, options: [], range: NSRange(location: 0, length: str.characters.count))
             

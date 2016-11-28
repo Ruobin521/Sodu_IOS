@@ -198,7 +198,7 @@ extension BaseViewController {
         
         refreshControl = RefreshControl()
         
-        refreshControl?.tintColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)
+        refreshControl?.tintColor = SoDuDefaultTinkColor
         
         refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
         
@@ -213,7 +213,7 @@ extension BaseViewController {
         
         navigationBar.items = [navItem]
         
-        navigationBar.barTintColor = self.view.tintColor
+        navigationBar.barTintColor =  SoDuDefaultTinkColor
         
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         

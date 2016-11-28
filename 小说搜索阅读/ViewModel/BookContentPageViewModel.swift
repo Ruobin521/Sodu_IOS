@@ -148,6 +148,7 @@ class BookContentPageViewModel {
     }
     
     
+    /// MARK: 设置当前章节，这是设置当前章节的唯一入口
     func SetCurrentCatalog(catalog:BookCatalog?,completion:(()->())?) {
         
         
@@ -287,7 +288,7 @@ class BookContentPageViewModel {
     
     
     
-    
+    // MARK:  设置前后 章节
     func  setBeforeAndNextCatalog() {
         
         if currentBook?.catalogs != nil && (currentBook?.catalogs?.count)! > 0 {
@@ -299,7 +300,7 @@ class BookContentPageViewModel {
         
     }
     
-    //获取相应目录内容
+    //MARK: 获取相应目录内容
     func getCatalogChapterContent(catalog:BookCatalog?,_ completion: ((_ isSuccess:Bool,_ strs:String?)->())?)  {
         
         
@@ -329,55 +330,60 @@ class BookContentPageViewModel {
     }
     
     
-    /// 获取正文内容
+    ///MARK:  获取正文内容
     func getContentByUrl(_ url:String,_ retryCount:Int = 0,_ completion:@escaping (_ isSuccess:Bool,_ html:String?)->())  {
         
         self.isRequestContent = true
         
         var count = retryCount
         
-        CommonPageViewModel.getHtmlByURL(url: url) {[weak self] (isSuccess, html) in
+        DispatchQueue.global().async {
             
-            if isSuccess {
+            CommonPageViewModel.getHtmlByURL(url: url) {[weak self] (isSuccess, html) in
                 
-                if  let  htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, html!,AnalisysType.Content) as? String {
+                if isSuccess {
                     
-                    count = 0
+                    if  let  htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, html!,AnalisysType.Content) as? String {
+                        
+                        count = 0
+                        
+                        self?.isRequestContent = false
+                        
+                        completion(true,htmlValue)
+                        
+                    } else {
+                        
+                        completion(false,nil)
+                    }
                     
-                    self?.isRequestContent = false
                     
-                    completion(true,htmlValue)
+                }  else {
                     
-                } else {
+                    count += 1
                     
-                    completion(false,nil)
-                }
-                
-                
-            }  else {
-                
-                count += 1
-                
-                if count  == 4  {
-                    
-                    count = 0
-                    
-                    completion(false,nil)
-                    
-                } else {
-                    
-                    self?.getContentByUrl(url,count,completion)
-                    
-                    print("获取\(url)正文失败，正在进行第\(count)次尝试")
+                    if count  == 4  {
+                        
+                        count = 0
+                        
+                        completion(false,nil)
+                        
+                    } else {
+                        
+                        self?.getContentByUrl(url,count,completion)
+                        
+                        print("获取\(url)正文失败，正在进行第\(count)次尝试")
+                        
+                    }
                     
                 }
                 
             }
             
         }
+        
     }
     
-    /// 获取目录列表
+    /// MARK: 获取目录列表
     func getBookCatalogs(url:String,retryCount:Int,completion: ((_ isSuccess:Bool)->())?)  {
         
         
@@ -475,7 +481,7 @@ class BookContentPageViewModel {
     }
     
     
-    //获取上一个章节 和下一章节信息
+    //MARK: 根据枚举值获取上一个章节 和下一章节信息
     func getCatalogByPosion(posion:CatalogPosion) -> BookCatalog? {
         
         guard let catalogs = currentBook?.catalogs ,let catalog = currentCatalog else {

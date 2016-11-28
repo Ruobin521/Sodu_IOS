@@ -50,7 +50,7 @@ class BookIntroductionView: UIView {
             
         } else {
             
-            v.txtIntroduction.text = "暂无"
+            v.txtIntroduction.text = "简介是什么鬼,章节名称已经说明一切!"
             height +=  17
         }
         
@@ -58,8 +58,8 @@ class BookIntroductionView: UIView {
         
         
         v.txtBookName.text = bookName ?? "暂无"
-        v.txtAuthor.text = author ?? "暂无"
-        v.txtLywz.text = lywz ?? "暂无"
+        v.txtAuthor.text = author ?? "某位大神"
+        v.txtLywz.text = lywz ?? "某个网站"
         //v.txtIntroduction.text = introduction ?? "暂无"
         
         if let url = cover {

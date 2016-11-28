@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="537" height="105"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="537" height="104"/>
+                <rect key="frame" x="0.0" y="0.0" width="537" height="105"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i0K-2a-G1I">
@@ -111,8 +111,6 @@
                 <outlet property="txtBookName" destination="Fvp-VS-fwd" id="HVD-dO-HcA"/>
                 <outlet property="txtChapterName" destination="Jgk-oN-x40" id="vpP-iA-ylB"/>
                 <outlet property="txtTime" destination="B74-v1-wLa" id="li6-nT-pIe"/>
-                <outlet property="txtUpdateChpterName" destination="Jgk-oN-x40" id="ff2-gZ-xaE"/>
-                <outlet property="txtUpdateTime" destination="B74-v1-wLa" id="hPu-Vl-SXp"/>
             </connections>
             <point key="canvasLocation" x="-19.5" y="55.5"/>
         </tableViewCell>

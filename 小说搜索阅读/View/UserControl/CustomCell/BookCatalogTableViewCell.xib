@@ -19,31 +19,44 @@
                 <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="wWP-mi-qHH">
+                        <rect key="frame" x="8" y="13.5" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="oEu-ZU-wgw"/>
+                            <constraint firstAttribute="width" constant="16" id="uvJ-UJ-9iF"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kHF-ca-Uxf">
-                        <rect key="frame" x="18" y="12.5" width="32" height="18"/>
+                        <rect key="frame" x="26" y="13" width="32" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正文 第九百三十二章" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6n-E4-4YA">
-                        <rect key="frame" x="55" y="13" width="142" height="18"/>
+                        <rect key="frame" x="63" y="13" width="142" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="kHF-ca-Uxf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="Kc6-em-2Mi"/>
+                    <constraint firstItem="wWP-mi-qHH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="FSM-M7-9Ah"/>
+                    <constraint firstItem="kHF-ca-Uxf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="18" id="Kc6-em-2Mi"/>
                     <constraint firstItem="u6n-E4-4YA" firstAttribute="leading" secondItem="kHF-ca-Uxf" secondAttribute="trailing" constant="5" id="QB6-uq-32Y"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="u6n-E4-4YA" secondAttribute="trailing" constant="8" id="b1u-gQ-bl8"/>
+                    <constraint firstItem="wWP-mi-qHH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="dOp-54-9aH"/>
                     <constraint firstItem="u6n-E4-4YA" firstAttribute="centerY" secondItem="kHF-ca-Uxf" secondAttribute="centerY" id="mrc-7u-dz4"/>
                     <constraint firstItem="kHF-ca-Uxf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pdO-0K-pDg"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="imageLocation" destination="wWP-mi-qHH" id="Wfu-K9-WU6"/>
                 <outlet property="txtChapterName" destination="u6n-E4-4YA" id="UrM-UE-3SN"/>
                 <outlet property="txtIndex" destination="kHF-ca-Uxf" id="2EC-Me-i1o"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="location" width="30" height="30"/>
+    </resources>
 </document>

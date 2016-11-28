@@ -24,28 +24,15 @@ extension HistoryPageViewModel {
     func insertNewHistoryItem(_ insertBook:Book) {
         
         
-        if let book = booklist.first(where: { (item) -> Bool in
+        let book = booklist.first(where: { (item) -> Bool in
             
             item.bookId == insertBook.bookId
             
-        }) {
+        })
+        
+        if book == nil
             
-            
-            let formatter = DateFormatter()
-            
-            formatter.dateFormat = "yyyy-MM-dd HH:mm"
-            
-            let dateString = formatter.string(from: Date())
-            
-            book.updateTime = dateString
-            
-            book.chapterName = insertBook.chapterName
-            
-            booklist.append(book)
-            
-        }
-            
-        else {
+        {
             
             let formatter = DateFormatter()
             
@@ -59,9 +46,32 @@ extension HistoryPageViewModel {
             
             tempBook.chapterName = insertBook.chapterName
             
-            booklist.append(tempBook)
+            booklist.insert(tempBook, at: 0)
+            
+            return
+            
+        } else {
+            
+            
+            let formatter = DateFormatter()
+            
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+            
+            let dateString = formatter.string(from: Date())
+            
+            book?.updateTime = dateString
+            
+            book?.chapterName = insertBook.chapterName
+            
+            let index = booklist.index(of: book!)
+            
+            booklist.remove(at: index!)
+            
+            booklist.insert(book!, at: 0)
+            
             
         }
+        
         
     }
     

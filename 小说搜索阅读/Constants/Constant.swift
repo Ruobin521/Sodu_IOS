@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 let NeedLoginNotification = "NeedLoginNotification"
 
@@ -22,3 +23,9 @@ let ContentPageMenuNotification = "ContentPageMenuNotification"
 let ContentPageSwitchNotification = "ContentPageSwitchNotification"
 
 let  AddHistoryNotification = "AddHistoryNotification"
+
+
+
+
+
+let SoDuDefaultTinkColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)

@@ -65,6 +65,8 @@ class BookCatalogViewController: UIViewController {
     
     var book:Book?
     
+    var catalog:BookCatalog?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,8 +81,64 @@ class BookCatalogViewController: UIViewController {
         
         setupUI()
         
+        MoveToCurrentCatalog()
+        
+        if tableview.contentOffset.y > (self.tableview.tableHeaderView?.frame.height)! {
+            
+            btnScroll.setTitle("到顶部", for: .normal)
+            
+        }
     }
     
+    
+    func   MoveToCurrentCatalog() {
+        
+        if catalog == nil  {
+            
+            return
+        }
+        
+        var ca:BookCatalog?
+        
+        if catalog?.chapterIndex == 0 {
+            
+            ca =  self.book?.catalogs?.first(where: { (item) -> Bool in
+                
+                item.chapterUrl == catalog?.chapterUrl
+                
+            })
+            
+        }  else {
+            
+            ca =  self.book?.catalogs?.first(where: { (item) -> Bool in
+                
+                item.chapterUrl == catalog?.chapterUrl  && item.chapterIndex == catalog?.chapterIndex
+                
+            })
+        }
+        
+        if ca == nil {
+            
+            return
+        }
+        
+        var index = (self.book?.catalogs?.index(of: ca!))!
+        
+        
+        if index >= 4 {
+            
+            index = index - 4
+            
+        }
+        
+        
+        let indexPath = IndexPath(item: index, section: 0)
+        
+        self.tableview.scrollToRow(at: indexPath, at: .top, animated: false)
+        
+        
+        
+    }
 }
 
 
@@ -105,9 +163,27 @@ extension BookCatalogViewController:UITableViewDataSource,UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BookCatalogTableViewCell
         
-        let catalog = book?.catalogs?[indexPath.row]
+        let ca = book?.catalogs?[indexPath.row]
         
-        cell.bookCatalog = catalog?.clone() 
+        cell.bookCatalog = ca?.clone()
+        
+        if ca?.chapterUrl != self.catalog?.chapterUrl {
+            
+            cell.txtChapterName.textColor = UIColor.black
+            
+            cell.txtIndex.textColor = UIColor.darkGray
+            
+            cell.imageLocation.isHidden = true
+            
+        } else {
+            
+            
+            cell.txtChapterName.textColor =  #colorLiteral(red: 0.8470588235, green: 0.1176470588, blue: 0.02352941176, alpha: 1)
+            
+            cell.txtIndex.textColor =  #colorLiteral(red: 0.8470588235, green: 0.1176470588, blue: 0.02352941176, alpha: 1)
+            
+            cell.imageLocation.isHidden = false
+        }
         
         
         return cell

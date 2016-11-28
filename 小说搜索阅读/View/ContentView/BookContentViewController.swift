@@ -31,7 +31,7 @@ class BookContentViewController: UIViewController {
     
     var isSwitching = false
     
-    var pageController:UIPageViewController!
+    var pageController:UIPageViewController = UIPageViewController()
     
     @IBOutlet weak var txtBookName: UILabel!
     
@@ -43,7 +43,7 @@ class BookContentViewController: UIViewController {
     
     @IBOutlet weak var botomMenu: UIView!
     
- 
+    
     
     override func viewDidLoad() {
         
@@ -144,6 +144,9 @@ class BookContentViewController: UIViewController {
     // MARK: 点击关闭按钮事件
     @IBAction func closeAciton() {
         
+        //销毁定时器
+        timer?.invalidate()
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -152,7 +155,7 @@ class BookContentViewController: UIViewController {
     deinit {
         
         NotificationCenter.default.removeObserver(self)
-        
+                
     }
     
 }
@@ -612,6 +615,8 @@ extension BookContentViewController {
         
         v.book = vm.currentBook
         
+        v.catalog = vm.currentCatalog
+        
         
         v.completionBlock = { [weak self] (catalog)  in
             
@@ -620,9 +625,11 @@ extension BookContentViewController {
             
         }
         
+        hidenMenu()
+        
         present(v, animated: true, completion: nil)
         
-        hidenMenu()
+       
         
         
     }
@@ -668,8 +675,6 @@ extension BookContentViewController {
         
         loadingWindow = ToastView.instance.createLoadingView()
         
-        setBattaryInfo()
-        
         
         
         setBottonBarButton()
@@ -679,6 +684,8 @@ extension BookContentViewController {
         setColor()
         
         setTiemInfo()
+        
+        setBattaryInfo()
         
     }
     
@@ -773,10 +780,10 @@ extension BookContentViewController {
                     continue
                 }
                 
-                page.contPage?.txtTime.text = currentBattery
+                page.contPage?.txtBattery.text = currentBattery
                 
             }
-
+            
         }
         
     }
@@ -790,7 +797,7 @@ extension BookContentViewController {
         
         if timer == nil {
             
-            timer =  Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(setTiemInfo), userInfo: nil, repeats: true)
+            timer =  Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(setTiemInfo), userInfo: nil, repeats: true)
             
             timer?.fire()
             
@@ -817,7 +824,11 @@ extension BookContentViewController {
                     continue
                 }
                 
-                page.contPage?.txtTime.text = dateString
+                DispatchQueue.main.async {
+                    
+                    page.contPage?.txtTime.text = dateString
+                    
+                }
                 
             }
             
@@ -880,13 +891,12 @@ extension BookContentViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         
-        super.viewWillDisappear(true)
+        super.viewWillDisappear(animated)
         
         self.loadingWindow.isHidden = true
         
         UIApplication.shared.isStatusBarHidden = false
         
-        timer?.invalidate()
         
     }
     

@@ -15,6 +15,7 @@ class BookCatalogTableViewCell: UITableViewCell {
     
     @IBOutlet weak var txtChapterName: UILabel!
     
+    @IBOutlet weak var imageLocation: UIImageView!
     
     var bookCatalog:BookCatalog?  {
         
