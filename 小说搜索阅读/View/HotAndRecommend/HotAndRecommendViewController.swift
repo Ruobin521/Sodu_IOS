@@ -14,7 +14,7 @@ private let cellId = "cellId"
 
 class HotAndRecommendViewController: BaseViewController {
     
-    let vm = ViewModelInstance.Instance.HotAndRecommend
+    let vm = ViewModelInstance.instance.hotAndRecommend
     
     override func initData() {
         

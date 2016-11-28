@@ -8,14 +8,19 @@
 
 import UIKit
 
+/// 属性值要都是string类型的，在写入数据库之前，是写入文件的
 class Book: NSObject,JSON {
     
+
     
     /// bookId
     var   bookId :String?
     
     /// 书名
     var   bookName : String?
+    
+    /// 标记是否为本地图书 1 是本地  0  不是本地
+    var  isLocal : String  =  "0"
     
     /// 作者
     var   author: String?

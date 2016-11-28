@@ -26,10 +26,11 @@ class MainViewController: UITabBarController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(login), name: NSNotification.Name(rawValue: NeedLoginNotification), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(addBookShelfTabbar), name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(logonSuccess), name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(logout), name: NSNotification.Name(rawValue: LogoutNotification), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(addHistory), name: NSNotification.Name(rawValue: AddHistoryNotification), object: nil)
         
         delegate = self
         
@@ -41,7 +42,7 @@ class MainViewController: UITabBarController {
     }
     
     
-    func addBookShelfTabbar() {
+    func logonSuccess() {
         
         let item =  ["clsName": "BookshelfViewController", "title": "个人书架", "imageName" : "profile"]
         
@@ -60,6 +61,18 @@ class MainViewController: UITabBarController {
     func logout()  {
         
         self.viewControllers?.remove(at: 0)
+        
+    }
+    
+    
+    func addHistory(notif:NSNotification) {
+        
+        guard  let book = notif.object as? Book  else{
+            
+            return
+        }
+        
+        ViewModelInstance.instance.history.insertNewHistoryItem(book)
         
     }
     

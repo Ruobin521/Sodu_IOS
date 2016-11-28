@@ -26,7 +26,7 @@ class BookContentPageViewModel {
     let  moonlightForegroundColor:UIColor = #colorLiteral(red: 0.3529411765, green: 0.3529411765, blue: 0.3529411765, alpha: 1)
     
     
-    var  daylightBackColor:UIColor = UIColor.colorWithHexString(hex: ViewModelInstance.Instance.Setting.contentBackColor) {
+    var  daylightBackColor:UIColor = UIColor.colorWithHexString(hex: ViewModelInstance.instance.setting.contentBackColor) {
         
         didSet {
             
@@ -37,7 +37,7 @@ class BookContentPageViewModel {
     }
     
     
-    var  daylightForegroundColor:UIColor =  UIColor.colorWithHexString(hex: ViewModelInstance.Instance.Setting.contentTextColor) {
+    var  daylightForegroundColor:UIColor =  UIColor.colorWithHexString(hex: ViewModelInstance.instance.setting.contentTextColor) {
         
         didSet {
             
@@ -49,11 +49,11 @@ class BookContentPageViewModel {
     
     
     
-    var fontSize:Float = ViewModelInstance.Instance.Setting.contentTextSize   {
+    var fontSize:Float = ViewModelInstance.instance.setting.contentTextSize   {
         
         didSet {
             
-            ViewModelInstance.Instance.Setting.setValue(SettingKey.ContentTextSize, fontSize)
+            ViewModelInstance.instance.setting.setValue(SettingKey.ContentTextSize, fontSize)
             
         }
         
@@ -61,11 +61,11 @@ class BookContentPageViewModel {
     
     
     
-    var lineSpace:Float = ViewModelInstance.Instance.Setting.contentLineSpace  {
+    var lineSpace:Float = ViewModelInstance.instance.setting.contentLineSpace  {
         
         didSet {
             
-            ViewModelInstance.Instance.Setting.setValue(SettingKey.ContentLineSpace, lineSpace)
+            ViewModelInstance.instance.setting.setValue(SettingKey.ContentLineSpace, lineSpace)
             
         }
         
@@ -73,11 +73,11 @@ class BookContentPageViewModel {
     
     
     
-    var isMoomlightMode =  ViewModelInstance.Instance.Setting.isMoomlightMode {
+    var isMoomlightMode =  ViewModelInstance.instance.setting.isMoomlightMode {
         
         didSet {
             
-            ViewModelInstance.Instance.Setting.setValue(SettingKey.IsMoomlightMode, isMoomlightMode)
+            ViewModelInstance.instance.setting.setValue(SettingKey.IsMoomlightMode, isMoomlightMode)
             
         }
         
@@ -87,7 +87,7 @@ class BookContentPageViewModel {
     var orientation : UIPageViewControllerNavigationOrientation  = .horizontal
     
     // h  / v
-    var direction =  ViewModelInstance.Instance.Setting.contentOrientation ??  "h"   {
+    var direction =  ViewModelInstance.instance.setting.contentOrientation ??  "h"   {
         
         didSet {
             
@@ -116,7 +116,9 @@ class BookContentPageViewModel {
         
         didSet {
             
-            _currentCatalog = BookCatalog(currentBook?.bookId, currentBook?.chapterName, currentBook?.contentPageUrl, nil)
+            let  catalog = BookCatalog(currentBook?.bookId, currentBook?.chapterName, currentBook?.contentPageUrl, nil)
+            
+            SetCurrentCatalog(catalog: catalog, completion: nil)
             
         }
     }
@@ -180,6 +182,7 @@ class BookContentPageViewModel {
         }
         
         
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddHistoryNotification), object: currentBook)
         
         // 滑到了下一章
         if nextCatalog?.chapterUrl == currentCatalog?.chapterUrl {
@@ -202,6 +205,8 @@ class BookContentPageViewModel {
             nextChapterPageList = nil
             
         }
+        
+        
         
         
         if currentChapterPageList == nil  {
@@ -312,7 +317,7 @@ class BookContentPageViewModel {
             if isSuccess {
                 
                 catalog?.chapterContent = html
-                  print("章节：\((catalog?.chapterName)!) 加载成功")
+                print("章节：\((catalog?.chapterName)!) 加载成功")
                 
             } else {
                 
@@ -363,7 +368,7 @@ class BookContentPageViewModel {
                     
                     self?.getContentByUrl(url,count,completion)
                     
-                       print("获取\(url)正文失败，正在进行第\(count)次尝试")
+                    print("获取\(url)正文失败，正在进行第\(count)次尝试")
                     
                 }
                 
@@ -443,7 +448,7 @@ class BookContentPageViewModel {
                     }
                 }
                 
-                  print("获取\(self?.currentBook?.bookName ?? " ")目录成功")
+                print("获取\(self?.currentBook?.bookName ?? " ")目录成功")
                 
                 
                 
@@ -456,12 +461,12 @@ class BookContentPageViewModel {
                 if count  == 4 {
                     
                     completion?(false)
-                     print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，不再尝试，操蛋")
+                    print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，不再尝试，操蛋")
                     
                 } else {
                     
                     self?.getBookCatalogs(url: url,retryCount:count, completion: completion)
-                     print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，正在进行第\(count)次尝试")
+                    print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，正在进行第\(count)次尝试")
                     
                 }
             }

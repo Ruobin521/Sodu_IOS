@@ -17,6 +17,8 @@ let AddToBookshelfSuccessNotification = "AddToBookshelfSuccessNotification"
 let LogoutNotification = "LogoutNotification"
 
 
-let contentPageMenuNotification = "contentPageMenuNotification"
+let ContentPageMenuNotification = "ContentPageMenuNotification"
 
-let contentPageSwitchNotification = "contentPageSwitchNotification"
+let ContentPageSwitchNotification = "ContentPageSwitchNotification"
+
+let  AddHistoryNotification = "AddHistoryNotification"

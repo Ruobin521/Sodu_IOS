@@ -96,15 +96,15 @@ class ContentPage: UIControl {
         
         if p.x > width * 1 / 3 && p.x < width * 2 / 3  &&  p.y > height * 1 / 3 && p.y < height * 2 / 3  {
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: contentPageMenuNotification), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: ContentPageMenuNotification), object: nil)
             
         }  else if  p.x <= width * 1 / 3  {
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: contentPageSwitchNotification), object: "-1")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: ContentPageSwitchNotification), object: "-1")
             
         } else if  p.x >= width * 2 / 3  {
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: contentPageSwitchNotification), object: "1")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: ContentPageSwitchNotification), object: "1")
         }
         
 

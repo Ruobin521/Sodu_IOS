@@ -8,22 +8,10 @@
 
 import UIKit
 
-class PersonCenterViewController: UIViewController {
+class PersonCenterViewController: BaseViewController {
     
     @IBOutlet weak var txtUserName: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        txtUserName.text = UserDefaultsHelper.getUserDefaultByKey(key: .UserNameKey)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
- 
     
     @IBAction func logout() {
         
@@ -43,18 +31,26 @@ class PersonCenterViewController: UIViewController {
         //发送logout通知
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: LogoutNotification), object: nil)
         
-      _ =  navigationController?.popViewController(animated: true)
+        _ =  navigationController?.popViewController(animated: true)
         
         
         ToastView.instance.showGlobalToast(content: "注销成功")
         
     }
     
+}
+
+
+extension  PersonCenterViewController {
     
-    
-    @IBAction func goBack(_ sender: Any) {
+    override func setupUI() {
         
-        _ =  navigationController?.popViewController(animated: true)
+        
+        setUpNavigationBar()
+        
+        self.view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
+        
+        txtUserName.text = UserDefaultsHelper.getUserDefaultByKey(key: .UserNameKey)
         
     }
 }

@@ -36,20 +36,14 @@ class BookContentViewController: UIViewController {
     @IBOutlet weak var txtBookName: UILabel!
     
     @IBOutlet weak var errorView: UIView!
+    
     @IBOutlet weak var btnRetry: UIButton!
     
     @IBOutlet weak var topMenu: UIView!
+    
     @IBOutlet weak var botomMenu: UIView!
     
-    
-    /// 按钮数据数组
-    let buttonsInfo = [["imageName": "content_bar_moonlight", "title": "夜间"],
-                       ["imageName": "content_bar_mulu", "title": "目录","className":"className","actionName" : "muluClick"],
-                       ["imageName": "content_bar_download", "title": "缓存","actionName" : "downLoadClick"],
-                       ["imageName": "content_bar_setting", "title": "设置","actionName" :  "settingClick"],
-                       ]
-    
-    
+ 
     
     override func viewDidLoad() {
         
@@ -63,9 +57,9 @@ class BookContentViewController: UIViewController {
         
         initCatalogs()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(showSettingBar), name: NSNotification.Name(rawValue: contentPageMenuNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showSettingBar), name: NSNotification.Name(rawValue: ContentPageMenuNotification), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(moveToPage), name: NSNotification.Name(rawValue: contentPageSwitchNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(moveToPage), name: NSNotification.Name(rawValue: ContentPageSwitchNotification), object: nil)
         
     }
     
@@ -80,6 +74,11 @@ class BookContentViewController: UIViewController {
             self.vm.getCatalogChapterContent(catalog: self.vm.currentCatalog){ [weak self] (isSuccess, html) in
                 
                 DispatchQueue.main.async {
+                    
+                    if self == nil {
+                        
+                        return
+                    }
                     
                     if  isSuccess {
                         
@@ -619,7 +618,7 @@ extension BookContentViewController {
             self?.vm.SetCurrentCatalog(catalog: catalog, completion: nil)
             self?.initContentData()
             
-         }
+        }
         
         present(v, animated: true, completion: nil)
         
@@ -671,13 +670,15 @@ extension BookContentViewController {
         
         setBattaryInfo()
         
-        setTiemInfo()
+        
         
         setBottonBarButton()
         
         setPageViewController()
         
         setColor()
+        
+        setTiemInfo()
         
     }
     
@@ -758,6 +759,24 @@ extension BookContentViewController {
         } else {
             
             currentBattery = "电量:\(Int(UIDevice.current.batteryLevel*100))%"
+            
+            guard  let controllers = pageController.viewControllers else  {
+                
+                return
+                
+            }
+            
+            for item in controllers {
+                
+                guard  let  page = item as? ContentPageViewController  else {
+                    
+                    continue
+                }
+                
+                page.contPage?.txtTime.text = currentBattery
+                
+            }
+
         }
         
     }
@@ -771,7 +790,7 @@ extension BookContentViewController {
         
         if timer == nil {
             
-            timer =  Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(setTiemInfo), userInfo: nil, repeats: true)
+            timer =  Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(setTiemInfo), userInfo: nil, repeats: true)
             
             timer?.fire()
             
@@ -783,7 +802,25 @@ extension BookContentViewController {
             
             let dateString = formatter.string(from: Date())
             
-            currentTime = dateString
+            currentTime  = dateString
+            
+            guard  let controllers = pageController.viewControllers else  {
+                
+                return
+                
+            }
+            
+            for item in controllers {
+                
+                guard  let  page = item as? ContentPageViewController  else {
+                    
+                    continue
+                }
+                
+                page.contPage?.txtTime.text = dateString
+                
+            }
+            
         }
         
     }
@@ -792,6 +829,14 @@ extension BookContentViewController {
     
     // MARK: 设置底部菜单
     func setBottonBarButton() {
+        
+        /// 按钮数据数组
+        let buttonsInfo = [["imageName": "content_bar_moonlight", "title": "夜间"],
+                           ["imageName": "content_bar_mulu", "title": "目录","className":"className","actionName" : "muluClick"],
+                           ["imageName": "content_bar_download", "title": "缓存","actionName" : "downLoadClick"],
+                           ["imageName": "content_bar_setting", "title": "设置","actionName" :  "settingClick"],
+                           ]
+        
         
         for (i,btn) in botomMenu.subviews.enumerated() {
             

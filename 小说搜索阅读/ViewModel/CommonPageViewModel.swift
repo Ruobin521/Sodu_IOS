@@ -14,8 +14,12 @@ import  UIKit
 class CommonPageViewModel {
     
     ///导航到更新章节列表页
-    static  func navigateToUpdateChapterPage(_ book:Book, _ navigationController : UINavigationController?)  {
+    static  func navigateToUpdateChapterPage(_ naviBook:Book?, _ navigationController : UINavigationController?)  {
         
+        guard let book  = naviBook else {
+            
+            return
+        }
         
         let vc = UpdateChapterViewController()
         
@@ -32,11 +36,12 @@ class CommonPageViewModel {
         
         //print(vc.vm.currentBook)
         
-        if ViewModelInstance.Instance.Setting.isAutoAddToShelf {
-            
+        if ViewModelInstance.instance.setting.isAutoAddToShelf {
             
             AddBookToShelf(book: book.clone(),false)
         }
+        
+      
         
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -48,7 +53,7 @@ class CommonPageViewModel {
     /// - parameter book: 需要添加的小说
     static func AddBookToShelf(book:Book,_ notice:Bool = true) {
         
-        let item = ViewModelInstance.Instance.bookShelf.bookList.first(where: { (b) -> Bool in
+        let item = ViewModelInstance.instance.bookShelf.bookList.first(where: { (b) -> Bool in
             
             b.bookId == book.bookId
             

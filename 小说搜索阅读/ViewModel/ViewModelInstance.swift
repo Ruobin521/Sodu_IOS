@@ -10,14 +10,16 @@ import Foundation
 
 class ViewModelInstance {
     
-    static  var Instance = ViewModelInstance()
+    static  var instance = ViewModelInstance()
     
     lazy var rank = RankListPageViewModel()
     
     lazy var bookShelf = BookShelfPageViewModel()
     
-    lazy var HotAndRecommend = HotAndRecommendPageViewModel()
+    lazy var hotAndRecommend = HotAndRecommendPageViewModel()
     
-    lazy var Setting = SettingPageViewModel()
+    lazy var setting = SettingPageViewModel()
+    
+    lazy var history = HistoryPageViewModel()
     
 }

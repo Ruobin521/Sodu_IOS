@@ -8,10 +8,10 @@
 
 import Foundation
 
-enum SettingType {
+enum SettingType :String {
     
-    case  Secondary
-    case  Swich
+    case  Secondary = "0"
+    case  Swich = "1"
     
 }
 
@@ -24,13 +24,13 @@ class SettingEntity :NSObject {
     var settingType:SettingType?
     
     ///标题
-    var txtTitle:String?
+    var title:String?
     
     ///标题
     var icon:String?
     
     ///key 用户存储
-    var key:SettingKey?
+    var settingKey:SettingKey?
     
     ///值
     var value:Any?

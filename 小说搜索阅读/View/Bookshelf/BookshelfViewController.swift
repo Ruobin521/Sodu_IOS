@@ -16,7 +16,7 @@ private let cellId = "cellId"
 class BookshelfViewController: BaseViewController {
     
     
-    let vm = ViewModelInstance.Instance.bookShelf
+    let vm = ViewModelInstance.instance.bookShelf
     
     var isDeleting:Bool = false
     

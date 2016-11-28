@@ -23,13 +23,13 @@ extension DownCenterViewController {
     
     override func setupUI() {
         
-        self.navItem.title = "下载中心"
+      
         setBackColor()
         setUpNavigationBar()
         setupTableview()
         
-        let cellNib1 = UINib(nibName: "SettingTableViewCell", bundle: nil)
-        tableview?.register(cellNib1, forCellReuseIdentifier: commonCellId)
+//        let cellNib1 = UINib(nibName: "SettingTableViewCell", bundle: nil)
+//        tableview?.register(cellNib1, forCellReuseIdentifier: commonCellId)
     }
     
     

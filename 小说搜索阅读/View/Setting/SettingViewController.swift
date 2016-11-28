@@ -13,7 +13,7 @@ private let commonCellId = "commonCellId"
 
 class SettingViewController: BaseViewController {
     
-    let vm = ViewModelInstance.Instance.Setting
+    let vm = ViewModelInstance.instance.setting
     
     
 }
@@ -67,7 +67,7 @@ extension SettingViewController {
         
         cell.imgIcon.image = UIImage(named: (setting?.icon) ?? "")
         
-        cell.txtSetting.text = setting?.txtTitle
+        cell.txtSetting.text = setting?.title
         
         cell.btnSwitch?.addTarget(self, action: #selector(switchAtion), for: .touchUpInside)
         
@@ -94,20 +94,28 @@ extension SettingViewController {
             return
             
         }
+      
         
-        guard   let clsName = vm.secondarySettingList[indexPath.row].controller  else {
+        let setting = vm.secondarySettingList[indexPath.row]
+        
+        guard let clsName = setting.controller  else {
             
             showToast(content: "该功能暂未实现")
             
             return
         }
         
-        guard  let cls = NSClassFromString(Bundle.main.namespace + "." + clsName) as? UIViewController.Type  else {
+        guard  let cls = NSClassFromString(Bundle.main.namespace + "." + clsName) as? BaseViewController.Type  else {
             
             return
         }
         
-        navigationController?.pushViewController(cls.init(), animated: true)
+        
+        let vc = cls.init()
+        
+        vc.title = setting.title
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -133,7 +141,12 @@ extension SettingViewController {
             return
         }
         
-        vm.setValue((setting.key)!,btnSwitch.isOn)
+        
+        if setting.settingKey != nil {
+            
+            vm.setValue((setting.settingKey)!,btnSwitch.isOn)
+             
+        }
         
     }
     

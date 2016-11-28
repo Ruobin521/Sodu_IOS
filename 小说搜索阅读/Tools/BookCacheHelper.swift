@@ -63,12 +63,17 @@ class BookCacheHelper {
         
         
         //反序列化data
-        guard  let array = try? JSONSerialization.jsonObject(with: data as Data, options: []) as! [[String:String]] else {
+        guard  let array = try? JSONSerialization.jsonObject(with: data as Data, options: []) as? [[String:String]] else {
+            
+            return list
+        }
+    
+        if array ==  nil  {
             
             return list
         }
         
-        for item in array {
+        for item in array! {
             
             let b = Book()
            

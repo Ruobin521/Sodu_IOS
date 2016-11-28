@@ -14,7 +14,7 @@ private let cellId = "cellId"
 class RankViewController: BaseViewController {
     
     
-    var vm =  ViewModelInstance.Instance.rank
+    var vm =  ViewModelInstance.instance.rank
     
     override func initData() {
         
