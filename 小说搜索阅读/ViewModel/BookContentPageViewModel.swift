@@ -226,31 +226,10 @@ class BookContentPageViewModel {
         }
         
         
-//        if catalog?.chapterUrl == currentCatalog?.chapterUrl {
-//            
-//            return
-//            
-//        }
-        
-        
-        if currentBook?.catalogs != nil && (currentBook?.catalogs?.count)! > 0 {
+        if catalog?.chapterUrl != currentCatalog?.chapterUrl {
             
-            guard   let index = getCatalogIndex(catalog!) else {
-                
-                completion?()
-                return
-            }
-            
-            _currentCatalog =  currentBook?.catalogs?[index]
-            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddHistoryNotification), object: currentBook)            
         }
-        else {
-            
-            _currentCatalog = catalog
-        }
-        
-        
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddHistoryNotification), object: currentBook)
         
         // 滑到了下一章
         if nextCatalog?.chapterUrl == catalog?.chapterUrl {
@@ -269,6 +248,10 @@ class BookContentPageViewModel {
             preChapterPageList = nil
             
             
+        } else  if currentCatalog?.chapterUrl == catalog?.chapterUrl{
+            
+            
+            
         } else {
             
             currentChapterPageList = nil
@@ -276,8 +259,27 @@ class BookContentPageViewModel {
             preChapterPageList = nil
             
             nextChapterPageList = nil
+        }
+
+        
+        
+        if currentBook?.catalogs != nil && (currentBook?.catalogs?.count)! > 0 {
+            
+            guard   let index = getCatalogIndex(catalog!) else {
+                
+                completion?()
+                return
+            }
+            
+            _currentCatalog =  currentBook?.catalogs?[index]
             
         }
+        else {
+            
+            _currentCatalog = catalog
+        }
+        
+                
         
         
         self.setBeforeAndNextCatalog()
