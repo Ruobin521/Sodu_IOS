@@ -72,6 +72,10 @@
 		B1C238571DD382FE00C37FA6 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C238551DD382FE00C37FA6 /* SettingTableViewCell.xib */; };
 		B1C2385B1DD388D800C37FA6 /* LonginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C238591DD388D800C37FA6 /* LonginViewController.swift */; };
 		B1C2385C1DD388D800C37FA6 /* LonginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1C2385A1DD388D800C37FA6 /* LonginViewController.xib */; };
+		B1D0E85D1DEDB295008209C7 /* FailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D0E85C1DEDB295008209C7 /* FailedView.swift */; };
+		B1D0E85F1DEDB2A3008209C7 /* FailedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D0E85E1DEDB2A3008209C7 /* FailedView.xib */; };
+		B1D0E8621DEDC2C4008209C7 /* LoadingWidthColoseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D0E8611DEDC2C4008209C7 /* LoadingWidthColoseButtonView.swift */; };
+		B1D0E8641DEDC2D0008209C7 /* LoadingWidthColoseButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D0E8631DEDC2D0008209C7 /* LoadingWidthColoseButtonView.xib */; };
 		B1D41DBD1DE4191400C0EBB6 /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D41DBC1DE4191400C0EBB6 /* SettingButton.swift */; };
 		B1D41DC11DE4193500C0EBB6 /* SettingButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D41DC01DE4193500C0EBB6 /* SettingButton.xib */; };
 		B1D759D81DE6CF330052C4F4 /* BookCatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D759D61DE6CF330052C4F4 /* BookCatalogViewController.swift */; };
@@ -156,6 +160,10 @@
 		B1C238551DD382FE00C37FA6 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		B1C238591DD388D800C37FA6 /* LonginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LonginViewController.swift; sourceTree = "<group>"; };
 		B1C2385A1DD388D800C37FA6 /* LonginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LonginViewController.xib; sourceTree = "<group>"; };
+		B1D0E85C1DEDB295008209C7 /* FailedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FailedView.swift; sourceTree = "<group>"; };
+		B1D0E85E1DEDB2A3008209C7 /* FailedView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FailedView.xib; sourceTree = "<group>"; };
+		B1D0E8611DEDC2C4008209C7 /* LoadingWidthColoseButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingWidthColoseButtonView.swift; sourceTree = "<group>"; };
+		B1D0E8631DEDC2D0008209C7 /* LoadingWidthColoseButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingWidthColoseButtonView.xib; sourceTree = "<group>"; };
 		B1D41DBC1DE4191400C0EBB6 /* SettingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
 		B1D41DC01DE4193500C0EBB6 /* SettingButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingButton.xib; sourceTree = "<group>"; };
 		B1D759D61DE6CF330052C4F4 /* BookCatalogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCatalogViewController.swift; sourceTree = "<group>"; };
@@ -435,6 +443,8 @@
 		B1BEC7421DC05D9100AD8DC3 /* UserControl */ = {
 			isa = PBXGroup;
 			children = (
+				B1D0E8601DEDC29E008209C7 /* LoadingWithColoseButtonControl */,
+				B1D0E85B1DEDB263008209C7 /* FailedControl */,
 				B1D41DBB1DE418ED00C0EBB6 /* CustomButton */,
 				B19B743E1DD34452008D6C5C /* CustomCell */,
 				B19B74371DD33984008D6C5C /* RefreshControl */,
@@ -457,6 +467,24 @@
 				B1C2385A1DD388D800C37FA6 /* LonginViewController.xib */,
 			);
 			path = longin;
+			sourceTree = "<group>";
+		};
+		B1D0E85B1DEDB263008209C7 /* FailedControl */ = {
+			isa = PBXGroup;
+			children = (
+				B1D0E85C1DEDB295008209C7 /* FailedView.swift */,
+				B1D0E85E1DEDB2A3008209C7 /* FailedView.xib */,
+			);
+			path = FailedControl;
+			sourceTree = "<group>";
+		};
+		B1D0E8601DEDC29E008209C7 /* LoadingWithColoseButtonControl */ = {
+			isa = PBXGroup;
+			children = (
+				B1D0E8611DEDC2C4008209C7 /* LoadingWidthColoseButtonView.swift */,
+				B1D0E8631DEDC2D0008209C7 /* LoadingWidthColoseButtonView.xib */,
+			);
+			path = LoadingWithColoseButtonControl;
 			sourceTree = "<group>";
 		};
 		B1D41DBB1DE418ED00C0EBB6 /* CustomButton */ = {
@@ -612,6 +640,8 @@
 				B145D8E51DD753C900FB09F2 /* PersonCenterViewController.xib in Resources */,
 				B15F7AA11DEC217600687DB6 /* HistoryTableViewCell.xib in Resources */,
 				B120E22F1DA9E72800921288 /* Assets.xcassets in Resources */,
+				B1D0E8641DEDC2D0008209C7 /* LoadingWidthColoseButtonView.xib in Resources */,
+				B1D0E85F1DEDB2A3008209C7 /* FailedView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +725,7 @@
 				B15F7A9B1DEC068500687DB6 /* HistoryPageViewController.swift in Sources */,
 				B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */,
 				B162E2161DC0F152008DF1C4 /* CommonPageViewModel.swift in Sources */,
+				B1D0E85D1DEDB295008209C7 /* FailedView.swift in Sources */,
 				B15F7A9D1DEC1E7A00687DB6 /* HistoryPageViewModel.swift in Sources */,
 				B19B74431DD3446E008D6C5C /* CommonBookListTableViewCell.swift in Sources */,
 				B133A7831DDAD1EC0038B5D2 /* BookContentViewController.swift in Sources */,
@@ -711,6 +742,7 @@
 				B17E03CB1DB098350061DD47 /* MainViewController.swift in Sources */,
 				B1D759D81DE6CF330052C4F4 /* BookCatalogViewController.swift in Sources */,
 				B1378BD91DB4A5CC000D4FAE /* SettingViewController.swift in Sources */,
+				B1D0E8621DEDC2C4008209C7 /* LoadingWidthColoseButtonView.swift in Sources */,
 				B19B73EA1DD9C01300171785 /* DownCenterViewController.swift in Sources */,
 				B19B74501DD44E18008D6C5C /* SettingPageViewModel.swift in Sources */,
 				B1904FBA1DB79A9800534AD6 /* JSON.swift in Sources */,

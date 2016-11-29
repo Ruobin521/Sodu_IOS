@@ -146,6 +146,8 @@ extension SearchViewController {
         
         setSearchBar()
         
+        setupFailedView()
+        
         // searchView.center.x = (tableview?.center.x)!
         
         let cellNib = UINib(nibName: "CommonBookListTableViewCell", bundle: nil)

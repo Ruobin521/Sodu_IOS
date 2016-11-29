@@ -21,13 +21,19 @@ class BookContentViewController: UIViewController {
     
     var currentBattery:String?
     
-    var loadingWindow:UIWindow!
+    var loadingWindow:LoadingWidthColoseButtonView!
     
     var isLoading = false {
         
+        
         didSet {
             
-            btnCancle.isHidden = !isLoading
+            loadingWindow.isHidden = !isLoading
+            
+            setPageViewBounces(bool: !isLoading)
+            
+            
+            
         }
     }
     
@@ -49,13 +55,12 @@ class BookContentViewController: UIViewController {
     
     @IBOutlet weak var botomMenu: UIView!
     
-    @IBOutlet weak var btnCancle: UIButton!
     
-    @IBAction func cancleRequest() {
+    func cancleAction() {
         
         vm.isCurrentCanclled = true
-        vm.currentTask?.cancel()
         
+        vm.currentTask?.cancel()
         
         print("取消请求")
     }
@@ -68,9 +73,9 @@ class BookContentViewController: UIViewController {
         
         initContentData()
         
-        txtBookName.text = vm.currentBook?.bookName
-        
         initCatalogs()
+        
+        txtBookName.text = vm.currentBook?.bookName
         
         NotificationCenter.default.addObserver(self, selector: #selector(showSettingBar), name: NSNotification.Name(rawValue: ContentPageMenuNotification), object: nil)
         
@@ -80,12 +85,15 @@ class BookContentViewController: UIViewController {
     
     
     // MARK: 获取当前页面数据
-    func initContentData() {
+    func initContentData(_ isHead:Bool = true) {
         
-        self.loadingWindow.isHidden = false
+        
         self.isLoading = true
         
-        setFailedUI(false)
+        self.btnRetry.isHidden = true
+        
+        self.errorView.isHidden = true
+        
         
         self.vm.getCatalogContentByPosin(posion: .Current) {[weak self] (isSuccess) in
             
@@ -97,7 +105,13 @@ class BookContentViewController: UIViewController {
                 
                 if isSuccess {
                     
-                    guard let controller:ContentPageViewController =  (self?.getViewControllerByIndex(0)) else{
+                    
+                    if self?.vm.currentChapterPageList == nil   {
+                        
+                        return
+                    }
+                    
+                    guard let controller:ContentPageViewController =  (self?.getViewControllerByIndex( isHead ? 0 : (self?.vm.currentChapterPageList?.count)! - 1)) else{
                         
                         return
                     }
@@ -115,11 +129,16 @@ class BookContentViewController: UIViewController {
                     
                     self?.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
                     
-                    self?.setFailedUI(true)
+                    
+                    self?.btnRetry.isHidden = false
+                    
+                    self?.errorView.isHidden = false
                 }
                 
                 self?.loadingWindow.isHidden = true
+                
                 self?.isLoading = false
+                
             }
         }
         
@@ -176,16 +195,22 @@ class BookContentViewController: UIViewController {
     
     
     // MARK: 点击关闭按钮事件
-    @IBAction func closeAciton() {
+    func closeAciton() {
         
         //销毁定时器
         timer?.invalidate()
         
+        vm.isCurrentCanclled = true
+        vm.isPreCanclled = true
+        vm.isNextCanclled = true
+        vm.isCatalogCanclled = true
+        
         vm.currentTask?.cancel()
-        
         vm.preTask?.cancel()
-        
         vm.nextTask?.cancel()
+        vm.catalogTask?.cancel()
+        
+        loadingWindow.removeFromSuperview()
         
         dismiss(animated: true, completion: nil)
     }
@@ -235,28 +260,63 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
     // MARK: 将要切换到下一页之前
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         
-        // pageController.view.isUserInteractionEnabled = false
+        pageController.view.isUserInteractionEnabled = false
     }
     
     
     // MARK: 切换结束后
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
+        
+        if finished {
+            
+            pageController.view.isUserInteractionEnabled = false
+        }
+        
+        
+        
         if (completed && finished) {
             
-            // pageController.view.isUserInteractionEnabled = true
-            
-            let precontroller = previousViewControllers[0] as? ContentPageViewController
-            
-            let currentController = pageViewController.viewControllers?[0] as? ContentPageViewController;
-            
-            if currentController?.catalog?.chapterUrl !=  precontroller?.catalog?.chapterUrl {
+            guard   let preCatalog = (previousViewControllers[0] as? ContentPageViewController)?.catalog,
                 
-                vm.SetCurrentCatalog(catalog: currentController?.catalog, completion: nil)
+                let currentCatalog = (pageViewController.viewControllers?[0] as? ContentPageViewController)?.catalog
+                
+                else {
+                    
+                    return
+            }
+            
+            if  preCatalog.chapterUrl !=  currentCatalog.chapterUrl {
+                
+                vm.SetCurrentCatalog(catalog: currentCatalog, completion: nil)
+                
+                if vm.currentChapterPageList == nil {
+                    
+                    if currentCatalog.chapterIndex > preCatalog.chapterIndex {
+                        
+                        self.vm.nextTask?.cancel()
+                        
+                        self.vm.isNextCanclled = true
+                        
+                        self.initContentData(true)
+                    }
+                        
+                    else {
+                        
+                        self.vm.preTask?.cancel()
+                        
+                        self.vm.isPreCanclled = true
+                        
+                        self.initContentData(false)
+                    }
+                    
+                }
                 
             }
             
         }
+        
+        pageController.view.isUserInteractionEnabled = true
         
     }
     
@@ -289,14 +349,22 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         }
         
         
-        if   let  result = getViewControllerByIndex(index)
-        {
-            let direction = (obj.object as? String == "1") ? UIPageViewControllerNavigationDirection.forward : UIPageViewControllerNavigationDirection.reverse
+        if   let  result = getViewControllerByIndex(index)  {
             
-            vm.SetCurrentCatalog(catalog: result.catalog, completion: nil)
-            pageController.setViewControllers([result], direction:direction, animated: false, completion: nil)
-            
-            
+            DispatchQueue.main.async {
+                
+                self.vm.SetCurrentCatalog(catalog: result.catalog, completion: nil)
+                
+                let direction = (obj.object as? String == "1") ? UIPageViewControllerNavigationDirection.forward : UIPageViewControllerNavigationDirection.reverse
+                
+                self.pageController.setViewControllers([result], direction:direction, animated: false, completion: nil)
+                
+                if self.vm.currentChapterPageList == nil {
+                    
+                    self.initContentData( (obj.object as? String == "1") ? true : false)
+                    
+                }
+            }
             
         }
     }
@@ -396,7 +464,11 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                 /// 1.2 数据不存在，那么需要去请求数据
             else {
                 
+                controller.chapterName = next.chapterName
                 
+                controller.catalog = next.clone()
+                
+                return controller
                 
                 
             }
@@ -445,8 +517,11 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                 /// 1.2 数据不存在，那么需要去请求数据
             else {
                 
+                controller.chapterName = catalog.chapterName
                 
+                controller.catalog = catalog.clone()
                 
+                return controller
                 
             }
             
@@ -525,16 +600,8 @@ extension BookContentViewController {
         self.botomMenu.isHidden = false
         
         
+        setPageViewBounces(bool: false)
         
-        for v in  self.pageController.view.subviews {
-            
-            if v.isKind(of:UIScrollView.self) {
-                
-                (v as! UIScrollView).isScrollEnabled = false
-                
-            }
-            
-        }
         
         UIApplication.shared.setStatusBarHidden(false, with: .slide)
         
@@ -564,15 +631,7 @@ extension BookContentViewController {
         isShowMenu = false
         
         
-        for v in  self.pageController.view.subviews {
-            
-            if v.isKind(of: UIScrollView.self) {
-                
-                (v as! UIScrollView).isScrollEnabled = true
-                
-            }
-            
-        }
+        setPageViewBounces(bool: true)
         
         UIApplication.shared.setStatusBarHidden(true, with: .slide)
         
@@ -689,6 +748,8 @@ extension BookContentViewController {
         
         UIApplication.shared.isStatusBarHidden = true
         
+        self.view.frame = UIScreen.main.bounds
+        
         errorView?.isHidden = true
         
         topMenu.isHidden = true
@@ -697,16 +758,11 @@ extension BookContentViewController {
         
         btnRetry.isHidden = true
         
-        loadingWindow = ToastView.instance.createLoadingView()
-        
-        loadingWindow.isHidden = true
-        
-        btnCancle.isHidden = true
-        
-        
         setBottonBarButton()
         
         setPageViewController()
+        
+        setupLoadingView()
         
         setColor()
         
@@ -716,6 +772,22 @@ extension BookContentViewController {
         
     }
     
+    
+    
+    //MARK: 设置加载指示器
+    func setupLoadingView() {
+        
+        loadingWindow =  LoadingWidthColoseButtonView.loadingWidthColoseButtonView()
+        
+        loadingWindow.btnClose.addTarget(self, action: #selector(cancleAction), for: .touchUpInside)
+        
+        loadingWindow.isHidden = true
+        
+        loadingWindow.center = CGPoint(x: self.view.center.x, y: self.view.center.y - 50)
+        
+        self.view.insertSubview(loadingWindow, at: self.view.subviews.count)
+        
+    }
     
     // MARK: 初始化PageViewController
     func setPageViewController() {
@@ -754,6 +826,8 @@ extension BookContentViewController {
             if v.isKind(of:UIScrollView.self) {
                 
                 (v as! UIScrollView).bounces = bool
+                
+                (v as! UIScrollView).isScrollEnabled = bool
                 
             }
             
@@ -931,14 +1005,6 @@ extension BookContentViewController {
         
     }
     
-    // 是否失败
-    func setFailedUI(_ bool:Bool) {
-        
-        self.btnRetry.isHidden = !bool
-        self.errorView.isHidden = !bool
-        setPageViewBounces(bool: !bool)
-        
-    }
     
     
     

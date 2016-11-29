@@ -36,12 +36,6 @@ class BookshelfViewController: BaseViewController {
             return
         }
         
-        loadDataByPageIndex()
-    }
-    
-    
-    func loadDataByPageIndex() {
-        
         isLoading = true
         
         vm.loadCacheData(self)
@@ -61,15 +55,14 @@ class BookshelfViewController: BaseViewController {
                 }
             } else {
                 
-                 self.showToast(content: "个人书架加载失败",false)
+                self.showToast(content: "个人书架加载失败",false)
             }
             
             super.endLoadData()
             
         }
-        
+
     }
-    
     
     
     func addBookToShelf(_ notification:Notification) {

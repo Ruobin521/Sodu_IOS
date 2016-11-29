@@ -57,6 +57,7 @@ class UpdateChapterViewController: BaseViewController {
         }
         
         isLoading = true
+        self.failedView?.isHidden = true
         
         vm.loadUpdateChapterListDataByPageIndex(pageindex) { [weak self]  (isSuccess) in
             
@@ -70,8 +71,11 @@ class UpdateChapterViewController: BaseViewController {
                 
                 self?.showToast(content: "已加载\((self?.vm.currentBook?.bookName) ?? " ")更新列表第\(pageindex+1)页数据")
                 
+                self?.failedView?.removeFromSuperview()
+                
             }else {
                 
+                self?.failedView?.isHidden = false
                 self?.showToast(content: "第\(pageindex+1)页数据加载失败", false)
             }
             
@@ -103,7 +107,7 @@ extension UpdateChapterViewController {
         
         
         let bc = BookContentViewController()
-       
+        
         bc.vm.currentBook = book.clone()
         
         present(bc, animated: true, completion: nil)
@@ -157,10 +161,10 @@ extension UpdateChapterViewController {
         
     }
     
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        
-//        return 10
-//    }
+    //    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    //
+    //        return 10
+    //    }
     
 }
 
@@ -171,6 +175,8 @@ extension UpdateChapterViewController {
     override func setupUI() {
         
         super.setupUI()
+        
+        super.setupFailedView()
         
         let cellNib = UINib(nibName: "UpdateChapterTableViewCell", bundle: nil)
         

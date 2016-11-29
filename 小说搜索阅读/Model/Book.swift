@@ -101,7 +101,7 @@ extension Book {
 
 class BookCatalog:NSObject {
     
-    var chapterIndex:Int! = 0
+    var chapterIndex:Int! = -99
     
     var bookId :String?
     

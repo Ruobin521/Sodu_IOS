@@ -43,6 +43,8 @@ class BaseViewController: UIViewController {
     
     var refreshControl:RefreshControl?
     
+    var failedView:FailedView?
+    
     lazy var navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64))
     
     lazy var navItem = UINavigationItem()
@@ -96,9 +98,9 @@ class BaseViewController: UIViewController {
     
     
     func initData()  {
-       
+        
         refreshControl?.endRefreshing()
- 
+        
     }
     
     
@@ -190,7 +192,6 @@ extension BaseViewController {
         //  tableview?.sectionFooterHeight = CGFloat.leastNormalMagnitude
         
         view.insertSubview(tableview!, belowSubview: navigationBar)
-        
     }
     
     
@@ -262,6 +263,17 @@ extension BaseViewController {
     }
     
     
+    func setupFailedView() {
+        
+        failedView = FailedView.failedView()
+        
+        failedView?.center = CGPoint(x: self.view.center.x, y: self.view.center.y - 30)
+        
+        self.view.insertSubview(failedView!, aboveSubview: tableview!)
+        
+        failedView?.isHidden = true
+    }
+    
     
     
     func  setBackColor()  {
@@ -277,7 +289,7 @@ extension BaseViewController {
         let vc = SearchViewController()
         
         vc.title = "搜索"
-      
+        
         navigationController?.pushViewController(vc, animated: true)
         
         
@@ -411,5 +423,5 @@ extension UIViewController {
         
     }
     
- 
+    
 }

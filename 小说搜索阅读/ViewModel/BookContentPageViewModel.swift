@@ -38,7 +38,7 @@ class BookContentPageViewModel {
     
     var isCatalogCanclled = false
     
- 
+    
     
     //显示部分
     let  moonlightBackColor:UIColor = #colorLiteral(red: 0.04705882353, green: 0.04705882353, blue: 0.04705882353, alpha: 1)
@@ -226,11 +226,12 @@ class BookContentPageViewModel {
         }
         
         
-        if catalog?.chapterUrl == currentCatalog?.chapterUrl {
-            
-            return
-            
-        }
+//        if catalog?.chapterUrl == currentCatalog?.chapterUrl {
+//            
+//            return
+//            
+//        }
+        
         
         if currentBook?.catalogs != nil && (currentBook?.catalogs?.count)! > 0 {
             
@@ -252,16 +253,21 @@ class BookContentPageViewModel {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddHistoryNotification), object: currentBook)
         
         // 滑到了下一章
-        if nextCatalog?.chapterUrl == currentCatalog?.chapterUrl {
+        if nextCatalog?.chapterUrl == catalog?.chapterUrl {
             
+            preChapterPageList = currentChapterPageList
             currentChapterPageList = nextChapterPageList
+            nextChapterPageList = nil
+            
             
         }
             
             //滑到了上一章
-        else if preCatalog?.chapterUrl == currentCatalog?.chapterUrl {
-            
+        else if preCatalog?.chapterUrl == catalog?.chapterUrl {
+            nextChapterPageList = currentChapterPageList
             currentChapterPageList = preChapterPageList
+            preChapterPageList = nil
+            
             
         } else {
             
@@ -278,7 +284,7 @@ class BookContentPageViewModel {
         
         if preCatalog != nil {
             
-            getCatalogContentByPosin(posion: .Before, completion: nil)
+            // getCatalogContentByPosin(posion: .Before, completion: nil)
             
         }
         
@@ -419,15 +425,10 @@ class BookContentPageViewModel {
                 let  catalog = self?.getCatalogByPosion(posion: .Current)
                 
                 catalog?.chapterContent = self?.currentCatalog?.chapterContent
+                 
                 
+                self?.SetCurrentCatalog(catalog: catalog, completion: nil)
                 
-                self?.nextCatalog = self?.getCatalogByPosion(posion: .Next)
-                
-                self?.preCatalog = self?.getCatalogByPosion(posion: .Before)
-                
-                self?.getCatalogContentByPosin(posion: .Next, completion: nil)
-                
-                self?.getCatalogContentByPosin(posion: .Before, completion: nil)
                 
                 print("获取\(self?.currentBook?.bookName ?? " ")目录成功")
                 
@@ -445,7 +446,7 @@ class BookContentPageViewModel {
                     
                     self?.getBookCatalogs(url: url,retryCount:count, completion: completion)
                     print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，正在进行第\(count)次尝试")
-
+                    
                     
                 } else {
                     
@@ -557,6 +558,8 @@ class BookContentPageViewModel {
                             
                         } else {
                             
+                            
+                            self.isPreCanclled = false
                             completion?(false)
                             
                         }
@@ -577,9 +580,9 @@ class BookContentPageViewModel {
             
             if catalog.chapterContent != nil {
                 
-                self.preTask?.cancel()
+                self.nextTask?.cancel()
                 
-                self.preTask = nil
+                self.nextTask = nil
                 
                 self.splitPages(html: catalog.chapterContent, completion: { (pages) in
                     
@@ -616,6 +619,7 @@ class BookContentPageViewModel {
                             
                         } else {
                             
+                            self.isNextCanclled = false
                             completion?(false)
                             
                         }
@@ -674,6 +678,7 @@ class BookContentPageViewModel {
                             
                         } else {
                             
+                            self.isCurrentCanclled = false
                             completion?(false)
                             
                         }
@@ -695,12 +700,18 @@ class BookContentPageViewModel {
             return nil
         }
         
+        var tempList = [BookCatalog]()
         
-        guard   let tempCatalog = catalogs.first(where: { (item) -> Bool in
+        for item in catalogs {
             
-            item.chapterUrl == catalog.chapterUrl
+            if item.chapterUrl == catalog.chapterUrl {
+                
+                tempList.append(item)
+            }
             
-        }) else {
+        }
+        
+        guard   let tempCatalog =  tempList.last else {
             
             return nil
             
@@ -832,7 +843,14 @@ extension BookContentPageViewModel {
                 
             }
             
-            completion(pages)
+            if pages.count == 0 {
+                
+                completion(nil)
+                
+            } else {
+                
+                completion(pages)
+            }
             
         }
         
