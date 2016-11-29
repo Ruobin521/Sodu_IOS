@@ -41,7 +41,7 @@ class CommonPageViewModel {
             AddBookToShelf(book: book.clone(),false)
         }
         
-      
+        
         
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -100,12 +100,9 @@ class CommonPageViewModel {
     
     
     ///html的请求方法
-    
-    static func   getHtmlByURL(url:String,completion:@escaping (_ isSuccess:Bool ,_ html:String?)->())  {
+    static func   getHtmlByURL(url:String,completion:@escaping (_ isSuccess:Bool ,_ html:String?)->()) -> URLSessionDataTask? {
         
-        HttpUtil.instance.AFrequest(url: url, requestMethod: .GET, postStr: nil, parameters: nil, timeOut: 10)   { (data,isSuccess) in
-            
-            
+        let task =  HttpUtil.instance.AFrequest(url: url, requestMethod: .GET, postStr: nil, parameters: nil, timeOut: 10)   { (data,isSuccess) in
             
             if !isSuccess {
                 
@@ -125,6 +122,8 @@ class CommonPageViewModel {
                 completion(true,str)
             }
         }
+        
+        return task
     }
     
     
@@ -134,16 +133,16 @@ class CommonPageViewModel {
     /// - Parameters:
     ///   - url: 任意章节地址
     ///   - completion: (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)
-    static func   getBookCIAC(url:String,bookid:String,completion:@escaping (_ isSuccess:Bool , _ result: Any?) -> ())  {
+    static func   getBookCIAC(url:String,bookid:String,completion:@escaping (_ isSuccess:Bool , _ result: Any?) -> ()) -> URLSessionDataTask? {
         
         guard  let catalogPageUrl = AnalisysHtmlHelper.AnalisysHtml(url,"", AnalisysType.CatalogPageUrl) as? String else {
             
             completion(false,nil)
-            return
+            return nil
         }
         
         
-        CommonPageViewModel.getHtmlByURL(url: catalogPageUrl) { (isSuccess, html) in
+        let task =  CommonPageViewModel.getHtmlByURL(url: catalogPageUrl) { (isSuccess, html) in
             
             if isSuccess {
                 
@@ -165,7 +164,7 @@ class CommonPageViewModel {
             
         }
         
-        
+        return task
     }
     
     /// 将中文转为utf8

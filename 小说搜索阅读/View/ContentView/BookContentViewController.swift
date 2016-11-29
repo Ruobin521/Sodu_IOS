@@ -23,7 +23,13 @@ class BookContentViewController: UIViewController {
     
     var loadingWindow:UIWindow!
     
-    var isLoading = false
+    var isLoading = false {
+        
+        didSet {
+            
+            btnCancle.isHidden = !isLoading
+        }
+    }
     
     var isShowMenu: Bool = false
     
@@ -43,7 +49,16 @@ class BookContentViewController: UIViewController {
     
     @IBOutlet weak var botomMenu: UIView!
     
+    @IBOutlet weak var btnCancle: UIButton!
     
+    @IBAction func cancleRequest() {
+        
+        vm.isCurrentCanclled = true
+        vm.currentTask?.cancel()
+        
+        
+        print("取消请求")
+    }
     
     override func viewDidLoad() {
         
@@ -67,54 +82,52 @@ class BookContentViewController: UIViewController {
     // MARK: 获取当前页面数据
     func initContentData() {
         
-        loadingWindow.isHidden = false
+        self.loadingWindow.isHidden = false
+        self.isLoading = true
         
-        DispatchQueue.global().async {
+        setFailedUI(false)
+        
+        self.vm.getCatalogContentByPosin(posion: .Current) {[weak self] (isSuccess) in
             
-            self.vm.getCatalogChapterContent(catalog: self.vm.currentCatalog){ [weak self] (isSuccess, html) in
+            if self == nil {
                 
-                DispatchQueue.main.async {
+                return
+            }
+            DispatchQueue.main.async {
+                
+                if isSuccess {
                     
-                    if self == nil {
+                    guard let controller:ContentPageViewController =  (self?.getViewControllerByIndex(0)) else{
                         
                         return
                     }
                     
-                    if  isSuccess {
-                        
-                        self?.vm.currentChapterPageList = self?.vm.splitPages(html: html)
-                        
-                        let controller:ContentPageViewController =  (self?.getViewControllerByIndex(0))!
-                        
-                        let viewControllers:[ContentPageViewController] = [controller]
-                        
-                        self?.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
-                        
-                    } else {
-                        
-                        
-                        let controller:ContentPageViewController =  (self?.createEmptyContenPageController())!
-                        
-                        let viewControllers:[ContentPageViewController] = [controller]
-                        
-                        self?.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
-                        
-                        self?.btnRetry .isHidden = false
-                        self?.errorView.isHidden = false
-                        
-                    }
+                    let viewControllers:[ContentPageViewController] = [controller]
                     
-                    self?.loadingWindow.isHidden = true
+                    self?.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
+                    
+                    
+                } else {
+                    
+                    let controller:ContentPageViewController =  (self?.createEmptyContenPageController())!
+                    
+                    let viewControllers:[ContentPageViewController] = [controller]
+                    
+                    self?.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
+                    
+                    self?.setFailedUI(true)
                 }
                 
+                self?.loadingWindow.isHidden = true
+                self?.isLoading = false
             }
-            
         }
+        
     }
     
     
     // MARK: 获取目录数据
-    func  initCatalogs(_ completion: ((_ isSuccess:Bool)->())? = nil) {
+    func  initCatalogs() {
         
         DispatchQueue.global().async {
             
@@ -123,7 +136,28 @@ class BookContentViewController: UIViewController {
                 return
             }
             /// 获取目录信息
-            self.vm.getBookCatalogs(url: url,retryCount: 0, completion: completion)
+            self.vm.getBookCatalogs(url: url,retryCount: 0, completion: { (isSucces) in
+                
+                DispatchQueue.main.async {
+                    
+                    for controller in  self.pageController.childViewControllers {
+                        
+                        guard  let ctr = controller as? ContentPageViewController,
+                            let view = controller.view as? ContentPage,
+                            let catalog = ctr.catalog,
+                            let currentIndex  = self.vm.getCatalogIndex(catalog) else{
+                                
+                                continue
+                                
+                        }
+                        
+                        view.txtChapterIndex.text  = "第\(currentIndex + 1)/\((self.vm.currentBook?.catalogs?.count)!)章"
+                        
+                    }
+                    
+                }
+                
+            })
             
         }
         
@@ -147,6 +181,12 @@ class BookContentViewController: UIViewController {
         //销毁定时器
         timer?.invalidate()
         
+        vm.currentTask?.cancel()
+        
+        vm.preTask?.cancel()
+        
+        vm.nextTask?.cancel()
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -155,7 +195,7 @@ class BookContentViewController: UIViewController {
     deinit {
         
         NotificationCenter.default.removeObserver(self)
-                
+        
     }
     
 }
@@ -444,29 +484,6 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
 extension BookContentViewController {
     
     
-    //    //MARK: 触摸屏幕时，控制菜单的显隐（一般都是隐藏）
-    //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //
-    //        if isShowMenu {
-    //
-    //            guard  let p = touches.first?.location(in: self.view)  else{
-    //
-    //                return
-    //            }
-    //
-    //            let height = self.view.bounds.height
-    //            let width = self.view.bounds.width
-    //
-    //            if p.x > width * 1 / 3 && p.x < width * 2 / 3  &&  p.y > height * 1 / 3 && p.y < height * 2 / 3  {
-    //
-    //                showSettingBar()
-    //
-    //            }
-    //        }
-    //
-    //    }
-    
-    
     // MARK: 设置菜单显隐
     func  showSettingBar() {
         
@@ -618,10 +635,17 @@ extension BookContentViewController {
         v.catalog = vm.currentCatalog
         
         
-        v.completionBlock = { [weak self] (catalog)  in
+        v.completionBlock = { (catalog)  in
             
-            self?.vm.SetCurrentCatalog(catalog: catalog, completion: nil)
-            self?.initContentData()
+            
+            if (self.isLoading) {
+                
+                
+                
+            }
+            
+            self.vm.SetCurrentCatalog(catalog: catalog, completion: nil)
+            self.initContentData()
             
         }
         
@@ -629,7 +653,7 @@ extension BookContentViewController {
         
         present(v, animated: true, completion: nil)
         
-       
+        
         
         
     }
@@ -675,6 +699,9 @@ extension BookContentViewController {
         
         loadingWindow = ToastView.instance.createLoadingView()
         
+        loadingWindow.isHidden = true
+        
+        btnCancle.isHidden = true
         
         
         setBottonBarButton()
@@ -701,6 +728,7 @@ extension BookContentViewController {
         
         pageController.view.backgroundColor = UIColor.clear
         
+        
         let viewControllers:[ContentPageViewController] = [createEmptyContenPageController()]
         
         pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
@@ -710,6 +738,26 @@ extension BookContentViewController {
         self.addChildViewController(pageController)
         
         self.view.insertSubview(pageController.view, at: 0)
+        
+        
+        
+        
+    }
+    
+    
+    // MARK:设置禁用，或开启反弹效果
+    
+    func setPageViewBounces(bool:Bool) {
+        
+        for v in  self.pageController.view.subviews {
+            
+            if v.isKind(of:UIScrollView.self) {
+                
+                (v as! UIScrollView).bounces = bool
+                
+            }
+            
+        }
         
     }
     
@@ -883,7 +931,14 @@ extension BookContentViewController {
         
     }
     
-    
+    // 是否失败
+    func setFailedUI(_ bool:Bool) {
+        
+        self.btnRetry.isHidden = !bool
+        self.errorView.isHidden = !bool
+        setPageViewBounces(bool: !bool)
+        
+    }
     
     
     
@@ -893,14 +948,9 @@ extension BookContentViewController {
         
         super.viewWillDisappear(animated)
         
-        self.loadingWindow.isHidden = true
-        
         UIApplication.shared.isStatusBarHidden = false
         
-        
     }
-    
-    
 }
 
 

@@ -39,7 +39,7 @@ class SettingPageViewModel {
     //正文
     
     /// 滚动方向
-    lazy var contentOrientation = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentOrientation)
+    lazy var contentOrientation = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentOrientation) ?? "H"
     
     /// 夜间模式
     lazy var isMoomlightMode = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsMoomlightMode)

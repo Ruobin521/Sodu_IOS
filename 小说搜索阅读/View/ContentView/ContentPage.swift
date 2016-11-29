@@ -37,7 +37,7 @@ class ContentPage: UIControl {
         
         v.txtChptterName.text  = chapterName ?? "加载中"
         
-        v.txtContent.text = content ??  ""
+        v.txtContent.text = content ??  "  "
         
         v.txtBattery.text = battery ?? "加载中"
         

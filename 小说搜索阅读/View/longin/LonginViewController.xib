@@ -22,14 +22,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head" translatesAutoresizingMaskIntoConstraints="NO" id="TdR-hX-qRX">
-                    <rect key="frame" x="120" y="72" width="80" height="80"/>
+                    <rect key="frame" x="120" y="100" width="80" height="80"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="5TL-fP-1Cx"/>
                         <constraint firstAttribute="height" constant="80" id="SSX-SL-Qig"/>
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IKh-gV-nBs" userLabel="用户名">
-                    <rect key="frame" x="0.0" y="160" width="320" height="80"/>
+                    <rect key="frame" x="0.0" y="188" width="320" height="80"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XcD-yA-WK3" userLabel="用户名下划线">
                             <rect key="frame" x="30" y="62" width="260" height="1"/>
@@ -68,7 +68,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YRn-15-f22" userLabel="密码">
-                    <rect key="frame" x="0.0" y="248" width="320" height="70"/>
+                    <rect key="frame" x="0.0" y="276" width="320" height="70"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rlY-kT-syr" userLabel="用户名下划线">
                             <rect key="frame" x="30" y="52" width="260" height="1"/>
@@ -107,7 +107,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKU-ex-iIt">
-                    <rect key="frame" x="35" y="353" width="251" height="40"/>
+                    <rect key="frame" x="35" y="381" width="251" height="40"/>
                     <color key="backgroundColor" red="0.15408889561958017" green="0.46824675984640685" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="AIi-P8-HIo"/>
@@ -142,13 +142,13 @@
                 <constraint firstItem="YRn-15-f22" firstAttribute="leading" secondItem="IKh-gV-nBs" secondAttribute="leading" id="6OQ-2H-ddg"/>
                 <constraint firstItem="IKh-gV-nBs" firstAttribute="top" secondItem="TdR-hX-qRX" secondAttribute="bottom" constant="8" symbolic="YES" id="7nJ-yE-lwL"/>
                 <constraint firstItem="IKh-gV-nBs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="FRy-FT-Mpb"/>
+                <constraint firstItem="TdR-hX-qRX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="IWb-8b-M5d"/>
                 <constraint firstItem="QKU-ex-iIt" firstAttribute="top" secondItem="YRn-15-f22" secondAttribute="bottom" constant="35" id="TnU-bl-uxx"/>
                 <constraint firstItem="QKU-ex-iIt" firstAttribute="centerX" secondItem="YRn-15-f22" secondAttribute="centerX" id="UQ7-yF-noI"/>
                 <constraint firstItem="FEf-Ha-RIF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="UQF-Bc-WNT"/>
                 <constraint firstAttribute="trailing" secondItem="IKh-gV-nBs" secondAttribute="trailing" id="UW1-ow-B02"/>
                 <constraint firstAttribute="trailing" secondItem="QKU-ex-iIt" secondAttribute="trailing" constant="34" id="aTs-YT-9fJ"/>
                 <constraint firstItem="QKU-ex-iIt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="35" id="jj8-T1-Fan"/>
-                <constraint firstItem="IKh-gV-nBs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="160" id="ok9-Ha-ZIn"/>
                 <constraint firstAttribute="trailing" secondItem="FEf-Ha-RIF" secondAttribute="trailing" constant="10" id="rCH-CW-Vbp"/>
                 <constraint firstAttribute="bottom" secondItem="FEf-Ha-RIF" secondAttribute="bottom" constant="15" id="uyi-54-Fm4"/>
                 <constraint firstItem="IKh-gV-nBs" firstAttribute="centerX" secondItem="TdR-hX-qRX" secondAttribute="centerX" id="vq9-EZ-pRy"/>

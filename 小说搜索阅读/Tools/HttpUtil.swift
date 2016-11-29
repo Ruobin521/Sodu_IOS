@@ -31,7 +31,7 @@ class  HttpUtil :AFHTTPSessionManager  {
         
         
         shared.requestSerializer.setValue("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.97 Safari/537.36", forHTTPHeaderField: "User-Agent")
-
+        
         
         shared.requestSerializer.willChangeValue(forKey: "timeoutInterval")
         shared.requestSerializer.timeoutInterval = 10
@@ -85,10 +85,10 @@ class  HttpUtil :AFHTTPSessionManager  {
         
         if isIndicatorVisible {
             
-              requestCount += 1
+            requestCount += 1
         }
         
-      
+        
         
         // 设置请求超时时间
         
@@ -134,8 +134,9 @@ class  HttpUtil :AFHTTPSessionManager  {
     }
     
     
-    func AFrequest(url:String ,requestMethod: RequestMethod, postStr: String?,parameters: [String: AnyObject]?, timeOut:TimeInterval = 15.0, completion: @escaping (_ result:Any?, _ isSuccess :Bool) ->() )  {
+    func AFrequest(url:String ,requestMethod: RequestMethod, postStr: String?,parameters: [String: AnyObject]?, timeOut:TimeInterval = 15.0, completion: @escaping (_ result:Any?, _ isSuccess :Bool) ->() ) ->  URLSessionDataTask? {
         
+        var task:URLSessionDataTask?
         
         let success  = { (task: URLSessionDataTask? , json: Any?) -> () in
             
@@ -154,16 +155,18 @@ class  HttpUtil :AFHTTPSessionManager  {
         }
         
         print ("开始加载数据 \(url) 数据")
-
+        
         
         if requestMethod == .GET {
             
-            get(url, parameters: parameters, progress: nil, success: success, failure: failure)
+            task =  get(url, parameters: parameters, progress: nil, success: success, failure: failure)
             
         } else {
             
-            post(url, parameters: parameters, progress: nil, success: success, failure: failure)
+            task =   post(url, parameters: parameters, progress: nil, success: success, failure: failure)
         }
+        
+        return task
     }
     
 }

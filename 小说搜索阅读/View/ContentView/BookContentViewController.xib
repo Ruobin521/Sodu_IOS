@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookContentViewController" customModule="小说搜索阅读" customModuleProvider="target">
             <connections>
                 <outlet property="botomMenu" destination="dlW-VN-Egm" id="Qcy-RL-EdT"/>
+                <outlet property="btnCancle" destination="PdN-Uw-HsA" id="nBK-aQ-g9U"/>
                 <outlet property="btnRetry" destination="jvV-LO-KOT" id="dAG-RP-w4h"/>
                 <outlet property="errorView" destination="6Xo-ah-FQB" id="TUh-5A-JWz"/>
                 <outlet property="topMenu" destination="u9n-WL-cap" id="sim-zu-cmv"/>
@@ -45,13 +46,20 @@
                                 <action selector="closeAciton" destination="-1" eventType="touchUpInside" id="EBe-J0-e8Y"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehQ-Z0-D8l">
+                            <rect key="frame" x="293" y="15" width="74" height="34"/>
+                            <state key="normal" title="取消请求"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="13N-Y0-eVG"/>
                         <constraint firstItem="VTg-2H-9eb" firstAttribute="leading" secondItem="u9n-WL-cap" secondAttribute="leading" id="1hE-gD-fUJ"/>
+                        <constraint firstAttribute="trailing" secondItem="ehQ-Z0-D8l" secondAttribute="trailing" constant="8" id="Em7-a9-9lN"/>
                         <constraint firstItem="qCu-4l-NAI" firstAttribute="centerX" secondItem="u9n-WL-cap" secondAttribute="centerX" id="GZU-9R-72P"/>
                         <constraint firstItem="VTg-2H-9eb" firstAttribute="centerY" secondItem="qCu-4l-NAI" secondAttribute="centerY" id="PVA-8U-oWL"/>
+                        <constraint firstItem="ehQ-Z0-D8l" firstAttribute="centerY" secondItem="u9n-WL-cap" secondAttribute="centerY" id="huI-ee-bjJ"/>
+                        <constraint firstItem="ehQ-Z0-D8l" firstAttribute="centerY" secondItem="u9n-WL-cap" secondAttribute="centerY" id="k2D-6u-VZJ"/>
                         <constraint firstItem="qCu-4l-NAI" firstAttribute="centerY" secondItem="u9n-WL-cap" secondAttribute="centerY" constant="11" id="vzX-sb-OX0"/>
                     </constraints>
                 </view>
@@ -147,6 +155,23 @@
                         <constraint firstItem="55w-Vk-nxa" firstAttribute="leading" secondItem="Q4B-b4-dyQ" secondAttribute="trailing" id="zYh-Rl-IER"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PdN-Uw-HsA">
+                    <rect key="frame" x="77" y="491" width="220" height="40"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Swl-se-Ioz"/>
+                        <constraint firstAttribute="width" constant="220" id="vAn-H2-K90"/>
+                    </constraints>
+                    <state key="normal" title="取消"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="cancleRequest" destination="-1" eventType="touchUpInside" id="g0h-z0-5Zq"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.66666666669999997" green="0.7725490196" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -154,9 +179,11 @@
                 <constraint firstAttribute="bottom" secondItem="dlW-VN-Egm" secondAttribute="bottom" id="7fJ-GA-DAc"/>
                 <constraint firstAttribute="trailing" secondItem="u9n-WL-cap" secondAttribute="trailing" id="9IR-J5-uAY"/>
                 <constraint firstItem="u9n-WL-cap" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Ebw-jX-q1F"/>
+                <constraint firstItem="PdN-Uw-HsA" firstAttribute="centerX" secondItem="6Xo-ah-FQB" secondAttribute="centerX" id="SkS-Cc-5WL"/>
                 <constraint firstItem="jvV-LO-KOT" firstAttribute="top" secondItem="6Xo-ah-FQB" secondAttribute="bottom" constant="35" id="VMr-pB-YBR"/>
                 <constraint firstItem="6Xo-ah-FQB" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-50" id="bsy-4j-zdk"/>
                 <constraint firstItem="dlW-VN-Egm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bz8-sf-AVc"/>
+                <constraint firstItem="PdN-Uw-HsA" firstAttribute="top" secondItem="6Xo-ah-FQB" secondAttribute="bottom" constant="85" id="eFQ-rb-LZR"/>
                 <constraint firstItem="jvV-LO-KOT" firstAttribute="centerX" secondItem="6Xo-ah-FQB" secondAttribute="centerX" id="is2-sq-Gzw"/>
                 <constraint firstAttribute="trailing" secondItem="dlW-VN-Egm" secondAttribute="trailing" id="me4-qA-IRO"/>
                 <constraint firstItem="u9n-WL-cap" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="syL-Yb-rWx"/>

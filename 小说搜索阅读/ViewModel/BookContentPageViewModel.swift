@@ -20,52 +20,61 @@ enum CatalogPosion {
 
 class BookContentPageViewModel {
     
+    var currentTask : URLSessionDataTask?
+    
+    var preTask : URLSessionDataTask?
+    
+    var nextTask : URLSessionDataTask?
+    
+    var catalogTask : URLSessionDataTask?
+    
+    let retryNumber = 3
+    
+    var isCurrentCanclled = false
+    
+    var isPreCanclled = false
+    
+    var isNextCanclled = false
+    
+    var isCatalogCanclled = false
+    
+ 
+    
     //显示部分
     let  moonlightBackColor:UIColor = #colorLiteral(red: 0.04705882353, green: 0.04705882353, blue: 0.04705882353, alpha: 1)
     
     let  moonlightForegroundColor:UIColor = #colorLiteral(red: 0.3529411765, green: 0.3529411765, blue: 0.3529411765, alpha: 1)
     
     
-    var  daylightBackColor:UIColor = UIColor.colorWithHexString(hex: ViewModelInstance.instance.setting.contentBackColor) {
+    var  daylightBackColor:UIColor  {
         
-        didSet {
+        
+        get {
             
-            //  ViewModelInstance.Instance.Setting.setValue(SettingKey.ContentBackColor, daylightBackColor.cgColor)
+            return UIColor.colorWithHexString(hex: ViewModelInstance.instance.setting.contentBackColor)
+            
+        }
+        
+        set{
+            
+            ViewModelInstance.instance.setting.setValue(SettingKey.ContentBackColor, newValue)
             
         }
         
     }
     
     
-    var  daylightForegroundColor:UIColor =  UIColor.colorWithHexString(hex: ViewModelInstance.instance.setting.contentTextColor) {
+    var  daylightForegroundColor:UIColor  {
         
-        didSet {
+        
+        get {
             
-            // ViewModelInstance.Instance.Setting.setValue(SettingKey.ContentTextSize, fontSize)
-            
+            return  UIColor.colorWithHexString(hex: ViewModelInstance.instance.setting.contentTextColor)
         }
         
-    }
-    
-    
-    
-    var fontSize:Float = ViewModelInstance.instance.setting.contentTextSize   {
-        
-        didSet {
+        set{
             
-            ViewModelInstance.instance.setting.setValue(SettingKey.ContentTextSize, fontSize)
-            
-        }
-        
-    }
-    
-    
-    
-    var lineSpace:Float = ViewModelInstance.instance.setting.contentLineSpace  {
-        
-        didSet {
-            
-            ViewModelInstance.instance.setting.setValue(SettingKey.ContentLineSpace, lineSpace)
+            ViewModelInstance.instance.setting.setValue(SettingKey.ContentTextColor, newValue)
             
         }
         
@@ -73,36 +82,91 @@ class BookContentPageViewModel {
     
     
     
-    var isMoomlightMode =  ViewModelInstance.instance.setting.isMoomlightMode {
+    var fontSize:Float {
         
-        didSet {
+        get {
             
-            ViewModelInstance.instance.setting.setValue(SettingKey.IsMoomlightMode, isMoomlightMode)
+            return ViewModelInstance.instance.setting.contentTextSize
+            
+        }
+        set {
+            
+            ViewModelInstance.instance.setting.setValue(SettingKey.ContentTextSize, newValue)
+        }
+        
+        
+    }
+    
+    
+    
+    var lineSpace:Float  {
+        
+        get {
+            
+            return ViewModelInstance.instance.setting.contentLineSpace
+            
+        }
+        set {
+            
+            ViewModelInstance.instance.setting.setValue(SettingKey.ContentLineSpace, newValue)
             
         }
         
     }
     
-    //滚动方向 默认横向
-    var orientation : UIPageViewControllerNavigationOrientation  = .horizontal
     
-    // h  / v
-    var direction =  ViewModelInstance.instance.setting.contentOrientation ??  "h"   {
+    
+    var isMoomlightMode:Bool {
         
-        didSet {
+        get {
             
-            if direction == "h" {
+            return ViewModelInstance.instance.setting.isMoomlightMode
+            
+        }
+        set {
+            
+            ViewModelInstance.instance.setting.setValue(SettingKey.IsMoomlightMode, newValue)
+            
+        }
+        
+        
+        
+    }
+    
+    //滚动方向 默认横向 H   纵向 V
+    var orientation : UIPageViewControllerNavigationOrientation  {
+        
+        get  {
+            
+            let ori =   ViewModelInstance.instance.setting.contentOrientation
+            
+            if ori == "H" {
                 
-                orientation = UIPageViewControllerNavigationOrientation.horizontal
+                return  UIPageViewControllerNavigationOrientation.horizontal
                 
-            } else  if direction == "v" {
+            } else {
                 
-                orientation = UIPageViewControllerNavigationOrientation.vertical
+                return  UIPageViewControllerNavigationOrientation.vertical
             }
             
         }
+        set {
+            
+            if newValue == UIPageViewControllerNavigationOrientation.horizontal {
+                
+                return    ViewModelInstance.instance.setting.setValue(SettingKey.IsMoomlightMode, "H")
+                
+                
+            } else {
+                
+                return    ViewModelInstance.instance.setting.setValue(SettingKey.IsMoomlightMode, "V")
+                
+            }
+        }
         
     }
+    
+    
     
     
     //数据部分
@@ -135,6 +199,8 @@ class BookContentPageViewModel {
     
     var nextCatalog:BookCatalog?
     
+    
+    
     private var _currentCatalog:BookCatalog?
     
     var currentCatalog:BookCatalog? {
@@ -148,7 +214,7 @@ class BookContentPageViewModel {
     }
     
     
-    /// MARK: 设置当前章节，这是设置当前章节的唯一入口
+    //MARK: 设置当前章节，这是设置当前章节的唯一入口
     func SetCurrentCatalog(catalog:BookCatalog?,completion:(()->())?) {
         
         
@@ -208,87 +274,24 @@ class BookContentPageViewModel {
         }
         
         
+        self.setBeforeAndNextCatalog()
         
-        
-        if currentChapterPageList == nil  {
+        if preCatalog != nil {
             
-            if currentCatalog?.chapterContent == nil {
-                
-                //                getCatalogChapterContent(catalog: currentCatalog) { [weak self]  (isSuccess,html) in
-                //
-                //                    if isSuccess {
-                //
-                //                        self?.currentChapterPageList = self?.splitPages(html: html)
-                //
-                //                    }
-                //                }
-                
-            } else {
-                
-                self.currentChapterPageList = self.splitPages(html: currentCatalog?.chapterContent)
-                
-            }
+            getCatalogContentByPosin(posion: .Before, completion: nil)
             
         }
         
-        
-        DispatchQueue.global().async {
+        if nextCatalog != nil {
             
-            if self.currentBook?.catalogs != nil && (self.currentBook?.catalogs?.count)! > 0 {
-                
-                self.setBeforeAndNextCatalog()
-                
-                if self.nextCatalog != nil && self.nextCatalog?.chapterContent == nil  {
-                    
-                    self.getCatalogChapterContent(catalog: self.nextCatalog) { [weak self]  (isSuccess,html) in
-                        
-                        if isSuccess {
-                            
-                            self?.nextChapterPageList = self?.splitPages(html: html)
-                            
-                        }
-                    }
-                    
-                }
-                    
-                else {
-                    
-                    self.nextChapterPageList = self.splitPages(html: self.nextCatalog?.chapterContent)
-                    
-                }
-                
-                
-                if self.preCatalog != nil && self.preCatalog?.chapterContent == nil {
-                    
-                    self.getCatalogChapterContent(catalog: self.preCatalog) { [weak self]  (isSuccess,html) in
-                        
-                        if isSuccess {
-                            
-                            self?.preChapterPageList = self?.splitPages(html: html)
-                            
-                        }
-                    }
-                    
-                    
-                }
-                    
-                else {
-                    
-                    self.preChapterPageList = self.splitPages(html: self.preCatalog?.chapterContent)
-                    
-                }
-                
-            }
+            getCatalogContentByPosin(posion: .Next, completion: nil)
         }
-        
-        
-        
         
     }
     
     
     
-    // MARK:  设置前后 章节
+    //MARK:  设置前后 章节
     func  setBeforeAndNextCatalog() {
         
         if currentBook?.catalogs != nil && (currentBook?.catalogs?.count)! > 0 {
@@ -300,20 +303,19 @@ class BookContentPageViewModel {
         
     }
     
-    //MARK: 获取相应目录内容
-    func getCatalogChapterContent(catalog:BookCatalog?,_ completion: ((_ isSuccess:Bool,_ strs:String?)->())?)  {
-        
+    //MARK: 获取相应章节内容
+    func getCatalogChapterContent(catalog:BookCatalog?,_ completion: ((_ isSuccess:Bool,_ strs:String?)->())?) -> URLSessionDataTask?  {
         
         guard let url = catalog?.chapterUrl else{
             
             completion?(false,nil)
             
-            return
+            return nil
         }
-        
         print("开始加载章节：\((catalog?.chapterName)!)")
         
-        getContentByUrl(url) { (isSuccess, html) in
+        
+        let task =  getContentByUrl(url) { (isSuccess, html) in
             
             if isSuccess {
                 
@@ -327,63 +329,54 @@ class BookContentPageViewModel {
             
             completion?(isSuccess,html)
         }
+        
+        return task
     }
     
     
-    ///MARK:  获取正文内容
-    func getContentByUrl(_ url:String,_ retryCount:Int = 0,_ completion:@escaping (_ isSuccess:Bool,_ html:String?)->())  {
+    //MARK:  获取正文内容
+    func getContentByUrl(_ url:String,_ completion:@escaping (_ isSuccess:Bool,_ html:String?)->()) -> URLSessionDataTask? {
         
         self.isRequestContent = true
         
-        var count = retryCount
+        //var count = retryCount
         
-        DispatchQueue.global().async {
+        var task :  URLSessionDataTask?
+        
+        
+        
+        task =  CommonPageViewModel.getHtmlByURL(url: url) {[weak self] (isSuccess, html) in
             
-            CommonPageViewModel.getHtmlByURL(url: url) {[weak self] (isSuccess, html) in
+            if self == nil {
                 
-                if isSuccess {
+                completion(false,nil)
+            }
+            
+            if isSuccess {
+                
+                if  let  htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, html!,AnalisysType.Content) as? String {
                     
-                    if  let  htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, html!,AnalisysType.Content) as? String {
-                        
-                        count = 0
-                        
-                        self?.isRequestContent = false
-                        
-                        completion(true,htmlValue)
-                        
-                    } else {
-                        
-                        completion(false,nil)
-                    }
+                    self?.isRequestContent = false
                     
+                    completion(true,htmlValue)
                     
-                }  else {
+                } else {
                     
-                    count += 1
-                    
-                    if count  == 4  {
-                        
-                        count = 0
-                        
-                        completion(false,nil)
-                        
-                    } else {
-                        
-                        self?.getContentByUrl(url,count,completion)
-                        
-                        print("获取\(url)正文失败，正在进行第\(count)次尝试")
-                        
-                    }
-                    
+                    completion(false,nil)
                 }
                 
+                
+            }  else {
+                
+                completion(false,nil)
             }
             
         }
         
+        return task
     }
     
-    /// MARK: 获取目录列表
+    //MARK: 获取目录列表
     func getBookCatalogs(url:String,retryCount:Int,completion: ((_ isSuccess:Bool)->())?)  {
         
         
@@ -399,7 +392,12 @@ class BookContentPageViewModel {
             
         }
         
-        CommonPageViewModel.getBookCIAC(url: url, bookid: bookid) { [weak self] (isSuccess, value:Any?) in
+        catalogTask = CommonPageViewModel.getBookCIAC(url: url, bookid: bookid) { [weak self] (isSuccess, value:Any?) in
+            
+            if self == nil {
+                
+                completion?(false)
+            }
             
             var count = retryCount
             
@@ -418,45 +416,24 @@ class BookContentPageViewModel {
                 self?.isRequestCatalogs = false
                 
                 
-                
                 let  catalog = self?.getCatalogByPosion(posion: .Current)
                 
                 catalog?.chapterContent = self?.currentCatalog?.chapterContent
+                
                 
                 self?.nextCatalog = self?.getCatalogByPosion(posion: .Next)
                 
                 self?.preCatalog = self?.getCatalogByPosion(posion: .Before)
                 
+                self?.getCatalogContentByPosin(posion: .Next, completion: nil)
                 
-                DispatchQueue.global().async {
-                    
-                    self?.getCatalogChapterContent(catalog: self?.nextCatalog) { (isSuccess,html) in
-                        
-                        if isSuccess {
-                            
-                            
-                            
-                            self?.nextChapterPageList  = self?.splitPages(html: html)
-                        }
-                        
-                        
-                    }
-                    
-                    
-                    self?.getCatalogChapterContent(catalog: self?.preCatalog) { (isSuccess,html) in
-                        
-                        if isSuccess {
-                            
-                            self?.preChapterPageList  = self?.splitPages(html: html)
-                        }
-                        
-                        
-                    }
-                }
+                self?.getCatalogContentByPosin(posion: .Before, completion: nil)
                 
                 print("获取\(self?.currentBook?.bookName ?? " ")目录成功")
                 
+                self?.catalogTask = nil
                 
+                return
                 
             } else {
                 
@@ -464,15 +441,16 @@ class BookContentPageViewModel {
                 
                 self?.isRequestCatalogs = false
                 
-                if count  == 4 {
-                    
-                    completion?(false)
-                    print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，不再尝试，操蛋")
-                    
-                } else {
+                if count <= (self?.retryNumber)! && !(self?.isCatalogCanclled)! {
                     
                     self?.getBookCatalogs(url: url,retryCount:count, completion: completion)
                     print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，正在进行第\(count)次尝试")
+
+                    
+                } else {
+                    
+                    completion?(false)
+                    print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，不再尝试，操蛋")
                     
                 }
             }
@@ -481,21 +459,20 @@ class BookContentPageViewModel {
     }
     
     
-    //MARK: 根据枚举值获取上一个章节 和下一章节信息
+    //MARK: 根据枚举值获取章节 catalog
     func getCatalogByPosion(posion:CatalogPosion) -> BookCatalog? {
         
         guard let catalogs = currentBook?.catalogs ,let catalog = currentCatalog else {
             
+            
             return nil
         }
-        
         
         guard  let currentIndex = getCatalogIndex(catalog)  else {
             
             return nil
             
         }
-        
         
         var requestIndex = 0
         
@@ -504,7 +481,6 @@ class BookContentPageViewModel {
             requestIndex = currentIndex - 1
             
         } else if  posion == .Next {
-            
             requestIndex = currentIndex + 1
             
         } else if posion == .Current {
@@ -514,13 +490,199 @@ class BookContentPageViewModel {
         }
         
         
-        if requestIndex > 0 && requestIndex < catalogs.count  {
+        if requestIndex >= 0 && requestIndex < catalogs.count  {
             
             return catalogs[requestIndex]
             
         }
         
         return nil
+        
+    }
+    
+    
+    
+    
+    //MARK: 根据枚举值获章节内容 content
+    func getCatalogContentByPosin(posion:CatalogPosion,retryCount:Int = 0,completion: ((_ isSuccess:Bool)->())?) {
+        
+        var count = retryCount
+        
+        ///上一章节
+        if posion == CatalogPosion.Before {
+            
+            guard let catalog = self.preCatalog else {
+                
+                return
+            }
+            
+            if catalog.chapterContent != nil {
+                
+                self.preTask?.cancel()
+                
+                self.preTask = nil
+                
+                self.splitPages(html: catalog.chapterContent, completion: { (pages) in
+                    
+                    self.preChapterPageList  = pages
+                    
+                    completion?(true)
+                    
+                })
+                
+            } else {
+                
+                preTask = self.getCatalogChapterContent(catalog: catalog) { (isSuccess,html) in
+                    
+                    self.preTask = nil
+                    
+                    if isSuccess {
+                        
+                        self.splitPages(html: html, completion: { (pages) in
+                            
+                            self.preChapterPageList  = pages
+                            
+                            completion?(true)
+                            
+                        })
+                        
+                    } else {
+                        
+                        count += 1
+                        
+                        if count  <= self.retryNumber && !self.isPreCanclled {
+                            
+                            self.getCatalogContentByPosin(posion: posion,retryCount:count, completion: completion)
+                            
+                            
+                        } else {
+                            
+                            completion?(false)
+                            
+                        }
+                        
+                    }
+                }
+                
+            }
+        }
+            
+            /// 下一章节
+        else if posion == CatalogPosion.Next {
+            
+            guard let catalog = self.nextCatalog else {
+                
+                return
+            }
+            
+            if catalog.chapterContent != nil {
+                
+                self.preTask?.cancel()
+                
+                self.preTask = nil
+                
+                self.splitPages(html: catalog.chapterContent, completion: { (pages) in
+                    
+                    self.nextChapterPageList  = pages
+                    
+                    completion?(true)
+                    
+                })
+                
+            } else {
+                
+                nextTask = self.getCatalogChapterContent(catalog: catalog) { (isSuccess,html) in
+                    
+                    self.nextTask = nil
+                    
+                    if isSuccess {
+                        
+                        self.splitPages(html: html, completion: { (pages) in
+                            
+                            self.nextChapterPageList  = pages
+                            
+                            completion?(true)
+                            
+                        })
+                        
+                    } else {
+                        
+                        count += 1
+                        
+                        if count  <= self.retryNumber && !self.isNextCanclled {
+                            
+                            self.getCatalogContentByPosin(posion: posion,retryCount:count, completion: completion)
+                            
+                            
+                        } else {
+                            
+                            completion?(false)
+                            
+                        }
+                    }
+                    
+                }
+                
+            }
+            
+        }
+            
+            
+            /// 当前章节
+        else if posion == CatalogPosion.Current {
+            
+            guard let catalog = self.currentCatalog else {
+                
+                return
+            }
+            
+            if catalog.chapterContent != nil {
+                
+                self.splitPages(html: catalog.chapterContent, completion: { (pages) in
+                    
+                    self.currentChapterPageList  = pages
+                    
+                    completion?(true)
+                    
+                })
+                
+                
+            } else {
+                
+                currentTask = self.getCatalogChapterContent(catalog: catalog) { (isSuccess,html) in
+                    
+                    self.currentTask = nil
+                    
+                    if isSuccess {
+                        
+                        self.splitPages(html: html, completion: { (pages) in
+                            
+                            self.currentChapterPageList  = pages
+                            
+                            completion?(true)
+                            
+                        })
+                        
+                    } else {
+                        
+                        count += 1
+                        
+                        if count  <= self.retryNumber && !self.isCurrentCanclled {
+                            
+                            self.getCatalogContentByPosin(posion: posion,retryCount:count, completion: completion)
+                            
+                            
+                        } else {
+                            
+                            completion?(false)
+                            
+                        }
+                    }
+                    
+                }
+                
+            }
+        }
         
     }
     
@@ -592,82 +754,87 @@ extension BookContentPageViewModel {
     
     
     
-    func splitPages(html:String?)  -> [String]? {
-        
-        guard  let str = html else {
-            
-            return nil
-        }
-        
-        let paragraphes = str.components(separatedBy: "\n")
-        
-        if paragraphes.count  == 0 {
-            
-            return paragraphes
-        }
+    func splitPages(html:String?,completion:@escaping ([String]?)->()){
         
         var pages:[String] = [String]()
         
-        let height = UIScreen.main.bounds.height - 30 - 30
-        
-        let width = UIScreen.main.bounds.width -  15 - 6
-        
-        var tempPageContent :String = ""
-        
-        for j in 0..<paragraphes.count {
+        DispatchQueue.global().async {
             
-            let str = paragraphes[j]
-            
-            var tempStr = tempPageContent == "" ?   str  : tempPageContent +  "\r" + str
-            
-            let  size =  tempStr.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: getTextContetAttributes(), context: nil)
-            
-            
-            if  size.height < height {
+            guard  let str = html else {
                 
-                tempPageContent =   tempStr
+                return
+            }
+            
+            let paragraphes = str.components(separatedBy: "\n")
+            
+            if paragraphes.count  == 0 {
                 
-            } else {
+                return
+            }
+            
+            
+            let height = UIScreen.main.bounds.height - 30 - 30
+            
+            let width = UIScreen.main.bounds.width -  15 - 6
+            
+            var tempPageContent :String = ""
+            
+            for j in 0..<paragraphes.count {
                 
-                tempPageContent += "\r"
+                let str = paragraphes[j]
                 
-                for (_,char) in str.characters.enumerated() {
+                var tempStr = tempPageContent == "" ?   str  : tempPageContent +  "\r" + str
+                
+                let  size =  tempStr.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: self.getTextContetAttributes(), context: nil)
+                
+                
+                if  size.height < height {
                     
-                    let ch = String(char)
+                    tempPageContent =   tempStr
                     
-                    tempStr = tempPageContent + ch
+                } else {
                     
-                    let   tempSize =  tempStr.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: getTextContetAttributes(), context: nil)
+                    tempPageContent += "\r"
                     
-                    
-                    if  tempSize.height > height {
+                    for (_,char) in str.characters.enumerated() {
                         
-                        pages.append(tempPageContent)
+                        let ch = String(char)
                         
-                        //                        let temp =  tempPageContent.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: getTextContetAttributes(), context: nil)
+                        tempStr = tempPageContent + ch
                         
-                        // print("将要添加到页面的文本大小:\(temp)")
+                        let   tempSize =  tempStr.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: self.getTextContetAttributes(), context: nil)
                         
-                        tempPageContent = ch
                         
-                    } else {
+                        if  tempSize.height > height {
+                            
+                            pages.append(tempPageContent)
+                            
+                            //                        let temp =  tempPageContent.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: getTextContetAttributes(), context: nil)
+                            
+                            // print("将要添加到页面的文本大小:\(temp)")
+                            
+                            tempPageContent = ch
+                            
+                        } else {
+                            
+                            tempPageContent += ch
+                        }
                         
-                        tempPageContent += ch
                     }
                     
                 }
                 
-            }
-            
-            
-            if j == (paragraphes.count - 1) && !tempPageContent.isEmpty {
                 
-                pages.append(tempPageContent)
+                if j == (paragraphes.count - 1) && !tempPageContent.isEmpty {
+                    
+                    pages.append(tempPageContent)
+                }
+                
             }
+            
+            completion(pages)
             
         }
-        
-        return pages
         
     }
     
