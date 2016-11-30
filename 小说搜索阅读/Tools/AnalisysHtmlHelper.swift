@@ -1765,15 +1765,7 @@ extension AnalisysHtmlHelper {
         tempHtml = tempHtml.replacingOccurrences(of: "一秒记住秋水轩：qiushuixuan.cc", with: "")
         tempHtml = tempHtml.replacingOccurrences(of: "秋水轩", with: "")
         tempHtml = tempHtml.replacingOccurrences(of: "www.qiushuixuan.cc", with: "")
-        
-        let tempReg = try? NSRegularExpression(pattern: "如果觉得.*?请把本站网址推荐给您的朋友吧！", options: [])
-        
-        if tempReg != nil {
-            
-            tempHtml =  tempReg!.stringByReplacingMatches(in: tempHtml, options: [], range:NSRange(location: 0, length: tempHtml.characters.count), withTemplate: "")
-            
-        }
-        
+                
         tempHtml = replaceSymbol(str: tempHtml)
         
         return tempHtml

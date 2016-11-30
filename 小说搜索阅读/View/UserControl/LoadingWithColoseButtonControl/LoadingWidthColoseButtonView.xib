@@ -15,11 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSa-gW-bmk">
-                    <rect key="frame" x="15" y="25" width="80" height="60"/>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSa-gW-bmk">
+                    <rect key="frame" x="20" y="25" width="70" height="55"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nwm-5D-UJt">
-                            <rect key="frame" x="57" y="-12" width="35" height="35"/>
+                            <rect key="frame" x="47" y="-12" width="35" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="35" id="5o7-l1-xOF"/>
                                 <constraint firstAttribute="height" constant="35" id="dxT-Fc-mGi"/>
@@ -42,9 +42,9 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="lSa-gW-bmk" firstAttribute="top" secondItem="CBE-yV-vin" secondAttribute="top" constant="25" id="1G4-w1-hGw"/>
-                <constraint firstAttribute="trailing" secondItem="lSa-gW-bmk" secondAttribute="trailing" constant="15" id="9NH-Gq-cfC"/>
-                <constraint firstAttribute="bottom" secondItem="lSa-gW-bmk" secondAttribute="bottom" constant="25" id="SvV-2f-AAi"/>
-                <constraint firstItem="lSa-gW-bmk" firstAttribute="leading" secondItem="CBE-yV-vin" secondAttribute="leading" constant="15" id="Z7R-pF-gyJ"/>
+                <constraint firstAttribute="trailing" secondItem="lSa-gW-bmk" secondAttribute="trailing" constant="20" id="9NH-Gq-cfC"/>
+                <constraint firstAttribute="bottom" secondItem="lSa-gW-bmk" secondAttribute="bottom" constant="30" id="SvV-2f-AAi"/>
+                <constraint firstItem="lSa-gW-bmk" firstAttribute="leading" secondItem="CBE-yV-vin" secondAttribute="leading" constant="20" id="Z7R-pF-gyJ"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

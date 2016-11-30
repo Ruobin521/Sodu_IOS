@@ -121,6 +121,8 @@ class BookContentViewController: UIViewController {
                     
                     self?.setRequestScuccess(isHead)
                     
+                    self?.pageController.view.isUserInteractionEnabled = true
+                    
                 } else {
                     
                     self?.setRequestFailed()
@@ -132,6 +134,7 @@ class BookContentViewController: UIViewController {
                 self?.isLoading = false
                 
             }
+            
         }
         
     }
@@ -151,9 +154,14 @@ class BookContentViewController: UIViewController {
         
         if  controller != nil {
             
-            let viewControllers:[ContentPageViewController] = [controller!]
+            DispatchQueue.main.async {
+                
+                let viewControllers:[ContentPageViewController] = [controller!]
+                
+                self.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
+                
+            }
             
-            self.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
         }
         
     }
@@ -170,6 +178,8 @@ class BookContentViewController: UIViewController {
         self.btnRetry.isHidden = false
         
         self.errorView.isHidden = false
+        
+        self.pageController.view.isUserInteractionEnabled = false
         
     }
     
@@ -324,12 +334,19 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                 
                 if controller.tag == 99  {
                     
+                    
+                    self.pageController.view.isUserInteractionEnabled = false
+                    
                     vm.SetCurrentCatalog(catalog: catalog, completion: nil)
+                    
                     self.initContentData(true)
                     
                 }  else if controller.tag == -99 {
                     
                     vm.SetCurrentCatalog(catalog: catalog, completion: nil)
+                    
+                    self.pageController.view.isUserInteractionEnabled = false
+                    
                     self.initContentData(false)
                     
                 }   else {
@@ -366,6 +383,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         var index:Int = controller.tag
         
         let catalog = controller.catalog
+        
         
         if obj.object as? String == "-1" {
             
@@ -588,140 +606,6 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
             
         }
         
-        //            //需要切换到下一章
-        //        else  if index == pages.count {
-        //
-        //            let tempIndex = vm.getCatalogIndex(catalog)! + 1
-        //
-        //
-        //            if tempIndex  >=  (vm.currentBook?.catalogs?.count)! {
-        //
-        //                return nil
-        //            }
-        //
-        //            guard  let next = vm.currentBook?.catalogs?[tempIndex]  else{
-        //
-        //                // 如果没有下一章 那么返回 nil
-        //                return nil
-        //
-        //            }
-        //
-        //            //如果有下一章
-        //            // let pages = vm.contentDic[next.chapterUrl!]
-        //
-        //            // 1 先判断下一章的数据是否存在
-        //
-        //            /// 1.1 如果存在,直接取数据,并赋值
-        //
-        //            controller.chapterName = next.chapterName
-        //
-        //            controller.catalog = next.clone()
-        //
-        //            return controller
-        //
-        //
-        //            //            if pages != nil && (pages?.count)! > 0 {
-        //            //
-        //            //
-        //            //                controller.chapterName = next.chapterName
-        //            //
-        //            //                controller.content = pages?[0]
-        //            //
-        //            //                controller.tag = 0
-        //            //
-        //            //                controller.catalog = next.clone()
-        //            //
-        //            //                controller.pageIndex = "第\(1)/\((pages?.count)!)页"
-        //            //
-        //            //                if let currentIndex  = vm.getCatalogIndex(next) {
-        //            //
-        //            //                    controller.chapterIndex = "第\(currentIndex + 1)/\((vm.currentBook?.catalogs?.count)!)章"
-        //            //                }
-        //            //
-        //            //                return controller
-        //            //
-        //            //            }
-        //            //                /// 1.2 数据不存在，那么需要去请求数据
-        //            //            else {
-        //            //
-        //            //                controller.chapterName = next.chapterName
-        //            //
-        //            //                controller.catalog = next.clone()
-        //            //
-        //            //                return controller
-        //            //
-        //            //
-        //            //            }
-        //
-        //        }
-        //
-        //            ///需要切换到上一章
-        //        else if index < 0 {
-        //
-        //            let tempIndex = vm.getCatalogIndex(catalog)! - 1
-        //
-        //
-        //            if tempIndex  < 0 {
-        //
-        //                return nil
-        //            }
-        //
-        //
-        //            guard  let catalog = vm.currentBook?.catalogs?[tempIndex]  else{
-        //
-        //                // 如果没有上一章 那么返回 nil
-        //                return nil
-        //
-        //            }
-        //            controller.chapterName = catalog.chapterName
-        //
-        //            controller.catalog = catalog.clone()
-        //
-        //            return controller
-        //
-        //
-        //
-        //            //            let pages = vm.contentDic[catalog.chapterUrl!]
-        //            //
-        //            //            //如果有上一章
-        //            //
-        //            //            // 1 先判断上一章的数据是否存在
-        //            //
-        //            //            /// 1.1 如果存在,直接取数据,并赋值
-        //            //            if pages != nil && (pages?.count)! > 0 {
-        //            //
-        //            //                let currentTag = (pages?.count)! - 1
-        //            //
-        //            //                controller.chapterName = catalog.chapterName
-        //            //
-        //            //                controller.content = pages?[currentTag]
-        //            //
-        //            //                controller.tag =  currentTag
-        //            //
-        //            //                controller.catalog = catalog.clone()
-        //            //
-        //            //                controller.pageIndex = "第\(currentTag + 1)/\((pages?.count)!)页"
-        //            //
-        //            //                if let currentIndex  = vm.getCatalogIndex(catalog) {
-        //            //
-        //            //                    controller.chapterIndex = "第\(currentIndex + 1)/\((vm.currentBook?.catalogs?.count)!)章"
-        //            //                }
-        //            //
-        //            //                return controller
-        //            //
-        //            //            }
-        //            //                /// 1.2 数据不存在，那么需要去请求数据
-        //            //            else {
-        //            //
-        //            //                controller.chapterName = catalog.chapterName
-        //            //
-        //            //                controller.catalog = catalog.clone()
-        //            //
-        //            //                return controller
-        //            //
-        //            //            }
-        //
-        //        }
         
         return nil
     }
@@ -827,7 +711,11 @@ extension BookContentViewController {
         isShowMenu = false
         
         
-        setPageViewBounces(bool: true)
+        if !isLoading {
+            
+            setPageViewBounces(bool: true)
+        }
+        
         
         UIApplication.shared.setStatusBarHidden(true, with: .slide)
         
