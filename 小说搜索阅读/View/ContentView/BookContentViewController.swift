@@ -162,7 +162,7 @@ class BookContentViewController: UIViewController {
             }
             
         }
-        
+       
     }
     
     
@@ -339,7 +339,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                 }  else if controller.tag == -99 {
                     
                     vm.SetCurrentCatalog(catalog: catalog, completion: nil)
-                                         
+                    
                     self.initContentData(false)
                     
                 }   else {
