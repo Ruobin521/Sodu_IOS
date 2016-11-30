@@ -145,7 +145,9 @@ class BookContentViewController: UIViewController {
             return
         }
         
-        let controller:ContentPageViewController? =  self.getViewControllerByCatalog(vm.currentCatalog?.chapterUrl, index: 0)
+        let index = isHead ? 0 : (vm.currentChapterPageList?.count)! - 1
+        
+        let controller:ContentPageViewController? =  self.getViewControllerByCatalog(vm.currentCatalog?.chapterUrl, index: index)
         
         if  controller != nil {
             
@@ -493,9 +495,9 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         }
         
         
-        if index > currentPages.count {
+        if index >= currentPages.count {
             
-            guard let _ = vm.currentBook?.catalogs else {
+            guard let catalogs = vm.currentBook?.catalogs else {
                 
                 return nil
             }
@@ -506,9 +508,9 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                 
             }
             
-            tempIndex -= 1
+            tempIndex += 1
             
-            if tempIndex  < 0 {
+            if tempIndex  >=  catalogs.count {
                 
                 return nil
             }
@@ -531,7 +533,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                 
                 controller.tag = 0
                 
-                controller.pageIndex = "第\(1)/\(pages?.count)页"
+                controller.pageIndex = "第\(1)/\((pages?.count)!)页"
                 
                 if let currentIndex  = vm.getCatalogIndex(catalog.chapterUrl!) {
                     
