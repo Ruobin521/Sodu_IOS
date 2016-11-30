@@ -121,7 +121,6 @@ class BookContentViewController: UIViewController {
                     
                     self?.setRequestScuccess(isHead)
                     
-                    self?.pageController.view.isUserInteractionEnabled = true
                     
                 } else {
                     
@@ -179,7 +178,6 @@ class BookContentViewController: UIViewController {
         
         self.errorView.isHidden = false
         
-        self.pageController.view.isUserInteractionEnabled = false
         
     }
     
@@ -334,9 +332,6 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                 
                 if controller.tag == 99  {
                     
-                    
-                    self.pageController.view.isUserInteractionEnabled = false
-                    
                     vm.SetCurrentCatalog(catalog: catalog, completion: nil)
                     
                     self.initContentData(true)
@@ -344,9 +339,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                 }  else if controller.tag == -99 {
                     
                     vm.SetCurrentCatalog(catalog: catalog, completion: nil)
-                    
-                    self.pageController.view.isUserInteractionEnabled = false
-                    
+                                         
                     self.initContentData(false)
                     
                 }   else {
