@@ -606,7 +606,7 @@ extension AnalisysHtmlHelper {
                     
                     let catalog:BookCatalog = BookCatalog()
                     
-                    catalog.chapterIndex =  i + 1
+                    catalog.chapterIndex =  i
                     catalog.chapterUrl = url +  (str as NSString).substring(with: (item.rangeAt(1)))
                     catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
                     
@@ -702,7 +702,7 @@ extension AnalisysHtmlHelper {
                     
                     let catalog:BookCatalog = BookCatalog()
                     
-                    catalog.chapterIndex =  i + 1
+                    catalog.chapterIndex =  i
                     catalog.chapterUrl = baseUrl! +  (str as NSString).substring(with: (item.rangeAt(1)))
                     catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
                     
@@ -799,7 +799,7 @@ extension AnalisysHtmlHelper {
                     
                     let catalog:BookCatalog = BookCatalog()
                     
-                    catalog.chapterIndex =  i + 1
+                    catalog.chapterIndex =  i
                     catalog.chapterUrl = baseUrl! +  (str as NSString).substring(with: (item.rangeAt(1)))
                     catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
                     
@@ -913,7 +913,7 @@ extension AnalisysHtmlHelper {
                     
                     let catalog:BookCatalog = BookCatalog()
                     
-                    catalog.chapterIndex =  i + 1
+                    catalog.chapterIndex =  i
                     catalog.chapterUrl = url +  (str as NSString).substring(with: (item.rangeAt(1)))
                     catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
                     
@@ -1024,7 +1024,7 @@ extension AnalisysHtmlHelper {
                     
                     let catalog:BookCatalog = BookCatalog()
                     
-                    catalog.chapterIndex =  i + 1
+                    catalog.chapterIndex =  i
                     catalog.chapterUrl = baseUrl! +  (str as NSString).substring(with: (item.rangeAt(1)))
                     catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
                     
@@ -1134,7 +1134,7 @@ extension AnalisysHtmlHelper {
                     
                     let catalog:BookCatalog = BookCatalog()
                     
-                    catalog.chapterIndex =  i + 1
+                    catalog.chapterIndex =  i
                     catalog.chapterUrl = url +  (str as NSString).substring(with: (item.rangeAt(1)))
                     catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
                     
@@ -1245,7 +1245,7 @@ extension AnalisysHtmlHelper {
                     
                     let catalog:BookCatalog = BookCatalog()
                     
-                    catalog.chapterIndex =  i + 1
+                    catalog.chapterIndex =  i
                     catalog.chapterUrl = url +  (str as NSString).substring(with: (item.rangeAt(1)))
                     catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
                     
@@ -1359,7 +1359,7 @@ extension AnalisysHtmlHelper {
                     
                     let catalog:BookCatalog = BookCatalog()
                     
-                    catalog.chapterIndex =  i + 1
+                    catalog.chapterIndex =  i
                     catalog.chapterUrl = url +  (str as NSString).substring(with: (item.rangeAt(1)))
                     catalog.chapterName =  (str as NSString).substring(with: (item.rangeAt(2)))
                     

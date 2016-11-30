@@ -19,7 +19,7 @@ class ContentPageViewController: UIViewController {
     
     var time:String?
     
-    var tag:Int = -1
+    var tag:Int = 0
     
     var pageIndex:String?
     

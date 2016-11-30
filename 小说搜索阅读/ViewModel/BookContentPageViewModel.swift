@@ -20,23 +20,6 @@ enum CatalogPosion {
 
 class BookContentPageViewModel {
     
-    var currentTask : URLSessionDataTask?
-    
-    var preTask : URLSessionDataTask?
-    
-    var nextTask : URLSessionDataTask?
-    
-    var catalogTask : URLSessionDataTask?
-    
-    let retryNumber = 3
-    
-    var isCurrentCanclled = false
-    
-    var isPreCanclled = false
-    
-    var isNextCanclled = false
-    
-    var isCatalogCanclled = false
     
     
     
@@ -172,28 +155,46 @@ class BookContentPageViewModel {
     //数据部分
     
     
+    var currentTask : URLSessionDataTask?
+    
+    var preTask : URLSessionDataTask?
+    
+    var nextTask : URLSessionDataTask?
+    
+    var catalogTask : URLSessionDataTask?
+    
+    let retryNumber = 3
+    
+    var isCurrentCanclled = false
+    
+    var isPreCanclled = false
+    
+    var isNextCanclled = false
+    
+    var isCatalogCanclled = false
     
     var isRequestContent = false
+    
     var isRequestCatalogs = false
+    
     
     var currentBook:Book?  {
         
         didSet {
             
-            let  catalog = BookCatalog(currentBook?.bookId, currentBook?.chapterName, currentBook?.contentPageUrl, nil)
-            
-            SetCurrentCatalog(catalog: catalog, completion: nil)
+            _currentCatalog = BookCatalog(currentBook?.bookId, currentBook?.chapterName, currentBook?.contentPageUrl, nil)
             
         }
     }
     
+    var contentDic = [String:[String]]()
     
-    var preChapterPageList:[String]?
     
     var currentChapterPageList:[String]?
     
-    var nextChapterPageList:[String]?
+    var preChapterPageList:[String]?
     
+    var nextChapterPageList:[String]?
     
     var preCatalog:BookCatalog?
     
@@ -225,74 +226,49 @@ class BookContentPageViewModel {
             return
         }
         
-        
-        if catalog?.chapterUrl != currentCatalog?.chapterUrl {
+        if currentCatalog?.chapterUrl == catalog?.chapterUrl {
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddHistoryNotification), object: currentBook)            
+            return
         }
         
-        // 滑到了下一章
-        if nextCatalog?.chapterUrl == catalog?.chapterUrl {
-            
-            preChapterPageList = currentChapterPageList
-            currentChapterPageList = nextChapterPageList
-            nextChapterPageList = nil
-            
-            
-        }
-            
-            //滑到了上一章
-        else if preCatalog?.chapterUrl == catalog?.chapterUrl {
-            nextChapterPageList = currentChapterPageList
-            currentChapterPageList = preChapterPageList
-            preChapterPageList = nil
-            
-            
-        } else  if currentCatalog?.chapterUrl == catalog?.chapterUrl{
-            
-            
-            
-        } else {
-            
-            currentChapterPageList = nil
-            
-            preChapterPageList = nil
-            
-            nextChapterPageList = nil
-        }
-
         
         
-        if currentBook?.catalogs != nil && (currentBook?.catalogs?.count)! > 0 {
+        if currentCatalog?.chapterUrl != catalog?.chapterUrl ,let index = getCatalogIndex((catalog?.chapterUrl)!)  {
             
-            guard   let index = getCatalogIndex(catalog!) else {
-                
-                completion?()
-                return
-            }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddHistoryNotification), object: currentBook)
             
             _currentCatalog =  currentBook?.catalogs?[index]
             
         }
-        else {
-            
-            _currentCatalog = catalog
-        }
-        
-                
         
         
         self.setBeforeAndNextCatalog()
         
         if preCatalog != nil {
             
-            // getCatalogContentByPosin(posion: .Before, completion: nil)
+            getCatalogContentByPosin(posion: .Before, completion: { (isSuccess) in
+                
+                if isSuccess {
+                    
+                    self.preChapterPageList = self.contentDic[(self.preCatalog?.chapterUrl)!]
+                }
+                
+            })
             
         }
         
+        
         if nextCatalog != nil {
             
-            getCatalogContentByPosin(posion: .Next, completion: nil)
+            getCatalogContentByPosin(posion: .Next, completion: { (isSuccess) in
+                
+                if isSuccess {
+                    
+                    self.nextChapterPageList = self.contentDic[(self.nextCatalog?.chapterUrl)!]
+                }
+                
+            })
+            
         }
         
     }
@@ -427,10 +403,8 @@ class BookContentPageViewModel {
                 let  catalog = self?.getCatalogByPosion(posion: .Current)
                 
                 catalog?.chapterContent = self?.currentCatalog?.chapterContent
-                 
                 
-                self?.SetCurrentCatalog(catalog: catalog, completion: nil)
-                
+                self?._currentCatalog = catalog
                 
                 print("获取\(self?.currentBook?.bookName ?? " ")目录成功")
                 
@@ -471,7 +445,7 @@ class BookContentPageViewModel {
             return nil
         }
         
-        guard  let currentIndex = getCatalogIndex(catalog)  else {
+        guard  let currentIndex = getCatalogIndex((catalog.chapterUrl)!)  else {
             
             return nil
             
@@ -484,6 +458,7 @@ class BookContentPageViewModel {
             requestIndex = currentIndex - 1
             
         } else if  posion == .Next {
+            
             requestIndex = currentIndex + 1
             
         } else if posion == .Current {
@@ -519,7 +494,12 @@ class BookContentPageViewModel {
                 return
             }
             
-            if catalog.chapterContent != nil {
+            if  let _ = contentDic[catalog.chapterUrl!] {
+                
+                completion?(true)
+            }
+                
+            else  if catalog.chapterContent != nil {
                 
                 self.preTask?.cancel()
                 
@@ -527,7 +507,7 @@ class BookContentPageViewModel {
                 
                 self.splitPages(html: catalog.chapterContent, completion: { (pages) in
                     
-                    self.preChapterPageList  = pages
+                    self.contentDic[catalog.chapterUrl!] = pages
                     
                     completion?(true)
                     
@@ -543,7 +523,8 @@ class BookContentPageViewModel {
                         
                         self.splitPages(html: html, completion: { (pages) in
                             
-                            self.preChapterPageList  = pages
+                            
+                            self.contentDic[catalog.chapterUrl!] = pages
                             
                             completion?(true)
                             
@@ -580,7 +561,12 @@ class BookContentPageViewModel {
                 return
             }
             
-            if catalog.chapterContent != nil {
+            if  let _ = contentDic[catalog.chapterUrl!] {
+                
+                completion?(true)
+            }
+                
+            else  if catalog.chapterContent != nil {
                 
                 self.nextTask?.cancel()
                 
@@ -588,7 +574,7 @@ class BookContentPageViewModel {
                 
                 self.splitPages(html: catalog.chapterContent, completion: { (pages) in
                     
-                    self.nextChapterPageList  = pages
+                    self.contentDic[catalog.chapterUrl!] = pages
                     
                     completion?(true)
                     
@@ -604,7 +590,8 @@ class BookContentPageViewModel {
                         
                         self.splitPages(html: html, completion: { (pages) in
                             
-                            self.nextChapterPageList  = pages
+                            
+                            self.contentDic[catalog.chapterUrl!] = pages
                             
                             completion?(true)
                             
@@ -642,11 +629,18 @@ class BookContentPageViewModel {
                 return
             }
             
-            if catalog.chapterContent != nil {
+            if  let _ = contentDic[catalog.chapterUrl!] {
+                
+                completion?(true)
+            }
+                
+            else  if catalog.chapterContent != nil {
                 
                 self.splitPages(html: catalog.chapterContent, completion: { (pages) in
                     
                     self.currentChapterPageList  = pages
+                    
+                    self.contentDic[catalog.chapterUrl!] = pages
                     
                     completion?(true)
                     
@@ -664,6 +658,8 @@ class BookContentPageViewModel {
                         self.splitPages(html: html, completion: { (pages) in
                             
                             self.currentChapterPageList  = pages
+                            
+                            self.contentDic[catalog.chapterUrl!] = pages
                             
                             completion?(true)
                             
@@ -694,7 +690,7 @@ class BookContentPageViewModel {
     }
     
     
-    func getCatalogIndex(_ catalog:BookCatalog) ->Int? {
+    func getCatalogIndex(_ url:String) ->Int? {
         
         
         guard let catalogs = currentBook?.catalogs else {
@@ -706,7 +702,7 @@ class BookContentPageViewModel {
         
         for item in catalogs {
             
-            if item.chapterUrl == catalog.chapterUrl {
+            if item.chapterUrl == url {
                 
                 tempList.append(item)
             }
@@ -719,15 +715,28 @@ class BookContentPageViewModel {
             
         }
         
+        return tempCatalog.chapterIndex
         
-        guard  let currentIndex = catalogs.index(of: tempCatalog) else {
+    }
+    
+    
+    
+    func appendContentToDictionary(dic: (key: String, value: [String]) ) {
+        
+        if !contentDic.contains(where: { (temp: (key: String, value: [String])) -> Bool in
             
-            return nil
+            temp.key ==  dic.key
+            
+        }) {
+            
+            self.contentDic[dic.key]  = dic.value
             
         }
         
-        return currentIndex
+        
     }
+    
+    
 }
 
 

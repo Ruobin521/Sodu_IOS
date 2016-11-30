@@ -87,6 +87,20 @@ class BookContentViewController: UIViewController {
     // MARK: 获取当前页面数据
     func initContentData(_ isHead:Bool = true) {
         
+        guard let url = vm.currentCatalog?.chapterUrl else {
+            
+            return
+        }
+        
+        if let pages = vm.contentDic[url] {
+            
+            vm.currentChapterPageList = pages
+            
+            setRequestScuccess(isHead)
+            
+            return
+            
+        }
         
         self.isLoading = true
         
@@ -94,45 +108,23 @@ class BookContentViewController: UIViewController {
         
         self.errorView.isHidden = true
         
-        
         self.vm.getCatalogContentByPosin(posion: .Current) {[weak self] (isSuccess) in
             
             if self == nil {
                 
                 return
             }
+            
             DispatchQueue.main.async {
                 
                 if isSuccess {
                     
-                    
-                    if self?.vm.currentChapterPageList == nil   {
-                        
-                        return
-                    }
-                    
-                    guard let controller:ContentPageViewController =  (self?.getViewControllerByIndex( isHead ? 0 : (self?.vm.currentChapterPageList?.count)! - 1)) else{
-                        
-                        return
-                    }
-                    
-                    let viewControllers:[ContentPageViewController] = [controller]
-                    
-                    self?.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
-                    
+                    self?.setRequestScuccess(isHead)
                     
                 } else {
                     
-                    let controller:ContentPageViewController =  (self?.createEmptyContenPageController())!
+                    self?.setRequestFailed()
                     
-                    let viewControllers:[ContentPageViewController] = [controller]
-                    
-                    self?.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
-                    
-                    
-                    self?.btnRetry.isHidden = false
-                    
-                    self?.errorView.isHidden = false
                 }
                 
                 self?.loadingWindow.isHidden = true
@@ -145,8 +137,43 @@ class BookContentViewController: UIViewController {
     }
     
     
+    func setRequestScuccess(_ isHead:Bool) {
+        
+        
+        if self.vm.currentChapterPageList == nil  {
+            
+            return
+        }
+        
+        let controller:ContentPageViewController? =  self.getViewControllerByCatalog(vm.currentCatalog?.chapterUrl, index: 0)
+        
+        if  controller != nil {
+            
+            let viewControllers:[ContentPageViewController] = [controller!]
+            
+            self.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
+        }
+        
+    }
+    
+    
+    func setRequestFailed() {
+        
+        let controller:ContentPageViewController =  (self.createEmptyContenPageController())
+        
+        let viewControllers:[ContentPageViewController] = [controller]
+        
+        self.pageController.setViewControllers(viewControllers, direction: .reverse, animated: false, completion: nil)
+        
+        self.btnRetry.isHidden = false
+        
+        self.errorView.isHidden = false
+        
+    }
+    
     // MARK: 获取目录数据
     func  initCatalogs() {
+        
         
         DispatchQueue.global().async {
             
@@ -164,7 +191,7 @@ class BookContentViewController: UIViewController {
                         guard  let ctr = controller as? ContentPageViewController,
                             let view = controller.view as? ContentPage,
                             let catalog = ctr.catalog,
-                            let currentIndex  = self.vm.getCatalogIndex(catalog) else{
+                            let currentIndex  = self.vm.getCatalogIndex(catalog.chapterUrl!) else{
                                 
                                 continue
                                 
@@ -233,12 +260,20 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
     // MARK: 准备上一页数据
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
+        //        print("准备上一页数据")
+        //        var index = (viewController as! ContentPageViewController).tag
+        //
+        
+        guard let catalog = (viewController as! ContentPageViewController).catalog else {
+            
+            return nil
+        }
         
         var index = (viewController as! ContentPageViewController).tag
         
         index -= 1
         
-        let controller:ContentPageViewController? = getViewControllerByIndex(index)
+        let controller:ContentPageViewController? = getViewControllerByCatalog(catalog.chapterUrl,index: index)
         
         return controller
     }
@@ -247,11 +282,18 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         
+        //print("准备下一页数据")
+        guard  let catalog = (viewController as! ContentPageViewController).catalog else {
+            
+            return nil
+        }
+        
+        
         var index = (viewController as! ContentPageViewController).tag
         
         index += 1
         
-        let controller:ContentPageViewController? = getViewControllerByIndex(index)
+        let controller:ContentPageViewController? = getViewControllerByCatalog((catalog.chapterUrl)!,index: index)
         
         return controller
         
@@ -260,63 +302,45 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
     // MARK: 将要切换到下一页之前
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         
-        pageController.view.isUserInteractionEnabled = false
+        // pageController.view.isUserInteractionEnabled = false
     }
     
     
     // MARK: 切换结束后
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         
-        
-        if finished {
+        if (finished && completed) {
             
-            pageController.view.isUserInteractionEnabled = false
-        }
-        
-        
-        
-        if (completed && finished) {
-            
-            guard   let preCatalog = (previousViewControllers[0] as? ContentPageViewController)?.catalog,
+            guard  let controller = (pageViewController.viewControllers?[0] as? ContentPageViewController) ,let catalog = controller.catalog else{
                 
-                let currentCatalog = (pageViewController.viewControllers?[0] as? ContentPageViewController)?.catalog
+                return
                 
-                else {
-                    
-                    return
             }
             
-            if  preCatalog.chapterUrl !=  currentCatalog.chapterUrl {
+            
+            if vm.currentCatalog?.chapterUrl != catalog.chapterUrl {
                 
-                vm.SetCurrentCatalog(catalog: currentCatalog, completion: nil)
-                
-                if vm.currentChapterPageList == nil {
+                if controller.tag == 99  {
                     
-                    if currentCatalog.chapterIndex > preCatalog.chapterIndex {
-                        
-                        self.vm.nextTask?.cancel()
-                        
-                        self.vm.isNextCanclled = true
-                        
-                        self.initContentData(true)
-                    }
-                        
-                    else {
-                        
-                        self.vm.preTask?.cancel()
-                        
-                        self.vm.isPreCanclled = true
-                        
-                        self.initContentData(false)
-                    }
+                    vm.SetCurrentCatalog(catalog: catalog, completion: nil)
+                    self.initContentData(true)
                     
+                }  else if controller.tag == -99 {
+                    
+                    vm.SetCurrentCatalog(catalog: catalog, completion: nil)
+                    self.initContentData(false)
+                    
+                }   else {
+                    
+                    vm.SetCurrentCatalog(catalog: catalog, completion: nil)
                 }
-                
             }
             
+            
+            
+            print(controller.catalog?.chapterName ?? "无章节名")
+            
         }
-        
-        pageController.view.isUserInteractionEnabled = true
         
     }
     
@@ -339,6 +363,8 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         
         var index:Int = controller.tag
         
+        let catalog = controller.catalog
+        
         if obj.object as? String == "-1" {
             
             index -= 1
@@ -349,7 +375,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         }
         
         
-        if   let  result = getViewControllerByIndex(index)  {
+        if   let  result = getViewControllerByCatalog(catalog?.chapterUrl,index:index)  {
             
             DispatchQueue.main.async {
                 
@@ -371,12 +397,11 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
     
     
     // MARK: 根据索引获取数据
-    func getViewControllerByIndex(_ index:Int) -> ContentPageViewController? {
+    func getViewControllerByCatalog(_ catalogUrl:String?,index:Int) -> ContentPageViewController? {
         
-        
-        guard let currentList =  vm.currentChapterPageList else{
+        if catalogUrl == nil {
             
-            return  nil
+            return nil
             
         }
         
@@ -391,26 +416,165 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         controller.backColor = self.view.backgroundColor
         
         
-        
-        //当前章节正常切换
-        if index >= 0  &&  index < currentList.count {
+        guard  let currentPages = vm.contentDic[catalogUrl!] else {
             
-            guard let catalog = vm.currentCatalog else {
+            return nil
+        }
+        
+        if currentPages.count == 0 {
+            
+            return nil
+        }
+        
+        
+        if index == -1 {
+            
+            guard let _ = vm.currentBook?.catalogs else {
+                
+                return nil
+            }
+            
+            guard  var tempIndex = vm.getCatalogIndex(catalogUrl!)  else {
                 
                 return nil
                 
             }
             
+            tempIndex -= 1
+            
+            if tempIndex  < 0 {
+                
+                return nil
+            }
+            
+            guard  let catalog = vm.currentBook?.catalogs?[tempIndex]  else{
+                
+                // 如果没有上一章 那么返回 nil
+                return nil
+                
+            }
+            
+            
+            let pages = vm.contentDic[catalog.chapterUrl!]
+            
+            if pages != nil  && (pages?.count)! > 0 {
+                
+                controller.chapterName = catalog.chapterName
+                
+                controller.content = pages?[((pages?.count)! - 1)]
+                
+                controller.tag = (pages?.count)! - 1
+                
+                controller.pageIndex = "第\((pages?.count)!)/\((pages?.count)!)页"
+                
+                if let currentIndex  = vm.getCatalogIndex(catalog.chapterUrl!) {
+                    
+                    controller.chapterIndex = "第\(currentIndex + 1)/\((vm.currentBook?.catalogs?.count)!)章"
+                }
+                
+                controller.catalog = catalog.clone()
+                
+                return controller
+                
+            }  else {
+                
+                controller.chapterName = catalog.chapterName
+                
+                controller.catalog = catalog.clone()
+                
+                controller.tag = -99
+                
+                controller.content = "数据尚未加载"
+                
+                return controller
+                
+            }
+            
+        }
+        
+        
+        if index > currentPages.count {
+            
+            guard let _ = vm.currentBook?.catalogs else {
+                
+                return nil
+            }
+            
+            guard  var tempIndex = vm.getCatalogIndex(catalogUrl!)  else {
+                
+                return nil
+                
+            }
+            
+            tempIndex -= 1
+            
+            if tempIndex  < 0 {
+                
+                return nil
+            }
+            
+            guard  let catalog = vm.currentBook?.catalogs?[tempIndex]  else{
+                
+                // 如果没有下一章 那么返回 nil
+                return nil
+                
+            }
+            
+            
+            let pages = vm.contentDic[catalog.chapterUrl!]
+            
+            if pages != nil  && (pages?.count)! > 0 {
+                
+                controller.chapterName = catalog.chapterName
+                
+                controller.content = pages?[0]
+                
+                controller.tag = 0
+                
+                controller.pageIndex = "第\(1)/\(pages?.count)页"
+                
+                if let currentIndex  = vm.getCatalogIndex(catalog.chapterUrl!) {
+                    
+                    controller.chapterIndex = "第\(currentIndex + 1)/\((vm.currentBook?.catalogs?.count)!)章"
+                }
+                
+                controller.catalog = catalog.clone()
+                
+                return controller
+                
+            }  else {
+                
+                controller.chapterName = catalog.chapterName
+                
+                controller.catalog = catalog.clone()
+                
+                controller.tag = 99
+                
+                controller.content = "数据尚未加载"
+                
+                return controller
+                
+            }
+        }
+        
+        
+        //正常切换
+        if index >= 0  &&  index < currentPages.count {
+            
+            guard let catalog = vm.currentCatalog else {
+                
+                return nil
+            }
             
             controller.chapterName = catalog.chapterName
             
-            controller.content = currentList[index]
+            controller.content = currentPages[index]
             
             controller.tag = index
             
-            controller.pageIndex = "第\(index + 1)/\(currentList.count)页"
+            controller.pageIndex = "第\(index + 1)/\(currentPages.count)页"
             
-            if let currentIndex  = vm.getCatalogIndex(catalog) {
+            if let currentIndex  = vm.getCatalogIndex(catalog.chapterUrl!) {
                 
                 controller.chapterIndex = "第\(currentIndex + 1)/\((vm.currentBook?.catalogs?.count)!)章"
             }
@@ -421,111 +585,141 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
             return controller
             
         }
-            
-            //需要切换到下一章
-        else  if index == currentList.count {
-            
-            
-            guard  let next = vm.getCatalogByPosion(posion: .Next)  else{
-                
-                // 如果没有下一章 那么返回 nil
-                return nil
-                
-            }
-            
-            
-            //如果有下一章
-            
-            // 1 先判断下一章的数据是否存在
-            
-            /// 1.1 如果存在,直接取数据,并赋值
-            if vm.nextChapterPageList != nil && (vm.nextChapterPageList?.count)! > 0 {
-                
-                let nextList = vm.nextChapterPageList!
-                
-                controller.chapterName = next.chapterName
-                
-                controller.content = nextList[0]
-                
-                controller.tag = 0
-                
-                controller.catalog = next.clone()
-                
-                controller.pageIndex = "第\(1)/\(nextList.count)页"
-                
-                if let currentIndex  = vm.getCatalogIndex(next) {
-                    
-                    controller.chapterIndex = "第\(currentIndex + 1)/\((vm.currentBook?.catalogs?.count)!)章"
-                }
-                
-                return controller
-                
-            }
-                /// 1.2 数据不存在，那么需要去请求数据
-            else {
-                
-                controller.chapterName = next.chapterName
-                
-                controller.catalog = next.clone()
-                
-                return controller
-                
-                
-            }
-            
-        }
-            
-            ///需要切换到上一章
-        else if index == -1 {
-            
-            guard  let catalog = vm.getCatalogByPosion(posion: .Before)  else{
-                
-                // 如果没有上一章 那么返回 nil
-                return nil
-                
-            }
-            
-            //如果有上一章
-            
-            // 1 先判断上一章的数据是否存在
-            
-            /// 1.1 如果存在,直接取数据,并赋值
-            if vm.preChapterPageList != nil && ( vm.preChapterPageList?.count)! > 0 {
-                
-                let preList =  vm.preChapterPageList!
-                
-                let currentTag = preList.count - 1
-                
-                controller.chapterName = catalog.chapterName
-                
-                controller.content = preList[currentTag]
-                
-                controller.tag =  currentTag
-                
-                controller.catalog = catalog.clone()
-                
-                controller.pageIndex = "第\(currentTag + 1)/\(preList.count)页"
-                
-                if let currentIndex  = vm.getCatalogIndex(catalog) {
-                    
-                    controller.chapterIndex = "第\(currentIndex + 1)/\((vm.currentBook?.catalogs?.count)!)章"
-                }
-                
-                return controller
-                
-            }
-                /// 1.2 数据不存在，那么需要去请求数据
-            else {
-                
-                controller.chapterName = catalog.chapterName
-                
-                controller.catalog = catalog.clone()
-                
-                return controller
-                
-            }
-            
-        }
+        
+        //            //需要切换到下一章
+        //        else  if index == pages.count {
+        //
+        //            let tempIndex = vm.getCatalogIndex(catalog)! + 1
+        //
+        //
+        //            if tempIndex  >=  (vm.currentBook?.catalogs?.count)! {
+        //
+        //                return nil
+        //            }
+        //
+        //            guard  let next = vm.currentBook?.catalogs?[tempIndex]  else{
+        //
+        //                // 如果没有下一章 那么返回 nil
+        //                return nil
+        //
+        //            }
+        //
+        //            //如果有下一章
+        //            // let pages = vm.contentDic[next.chapterUrl!]
+        //
+        //            // 1 先判断下一章的数据是否存在
+        //
+        //            /// 1.1 如果存在,直接取数据,并赋值
+        //
+        //            controller.chapterName = next.chapterName
+        //
+        //            controller.catalog = next.clone()
+        //
+        //            return controller
+        //
+        //
+        //            //            if pages != nil && (pages?.count)! > 0 {
+        //            //
+        //            //
+        //            //                controller.chapterName = next.chapterName
+        //            //
+        //            //                controller.content = pages?[0]
+        //            //
+        //            //                controller.tag = 0
+        //            //
+        //            //                controller.catalog = next.clone()
+        //            //
+        //            //                controller.pageIndex = "第\(1)/\((pages?.count)!)页"
+        //            //
+        //            //                if let currentIndex  = vm.getCatalogIndex(next) {
+        //            //
+        //            //                    controller.chapterIndex = "第\(currentIndex + 1)/\((vm.currentBook?.catalogs?.count)!)章"
+        //            //                }
+        //            //
+        //            //                return controller
+        //            //
+        //            //            }
+        //            //                /// 1.2 数据不存在，那么需要去请求数据
+        //            //            else {
+        //            //
+        //            //                controller.chapterName = next.chapterName
+        //            //
+        //            //                controller.catalog = next.clone()
+        //            //
+        //            //                return controller
+        //            //
+        //            //
+        //            //            }
+        //
+        //        }
+        //
+        //            ///需要切换到上一章
+        //        else if index < 0 {
+        //
+        //            let tempIndex = vm.getCatalogIndex(catalog)! - 1
+        //
+        //
+        //            if tempIndex  < 0 {
+        //
+        //                return nil
+        //            }
+        //
+        //
+        //            guard  let catalog = vm.currentBook?.catalogs?[tempIndex]  else{
+        //
+        //                // 如果没有上一章 那么返回 nil
+        //                return nil
+        //
+        //            }
+        //            controller.chapterName = catalog.chapterName
+        //
+        //            controller.catalog = catalog.clone()
+        //
+        //            return controller
+        //
+        //
+        //
+        //            //            let pages = vm.contentDic[catalog.chapterUrl!]
+        //            //
+        //            //            //如果有上一章
+        //            //
+        //            //            // 1 先判断上一章的数据是否存在
+        //            //
+        //            //            /// 1.1 如果存在,直接取数据,并赋值
+        //            //            if pages != nil && (pages?.count)! > 0 {
+        //            //
+        //            //                let currentTag = (pages?.count)! - 1
+        //            //
+        //            //                controller.chapterName = catalog.chapterName
+        //            //
+        //            //                controller.content = pages?[currentTag]
+        //            //
+        //            //                controller.tag =  currentTag
+        //            //
+        //            //                controller.catalog = catalog.clone()
+        //            //
+        //            //                controller.pageIndex = "第\(currentTag + 1)/\((pages?.count)!)页"
+        //            //
+        //            //                if let currentIndex  = vm.getCatalogIndex(catalog) {
+        //            //
+        //            //                    controller.chapterIndex = "第\(currentIndex + 1)/\((vm.currentBook?.catalogs?.count)!)章"
+        //            //                }
+        //            //
+        //            //                return controller
+        //            //
+        //            //            }
+        //            //                /// 1.2 数据不存在，那么需要去请求数据
+        //            //            else {
+        //            //
+        //            //                controller.chapterName = catalog.chapterName
+        //            //
+        //            //                controller.catalog = catalog.clone()
+        //            //
+        //            //                return controller
+        //            //
+        //            //            }
+        //
+        //        }
         
         return nil
     }

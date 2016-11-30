@@ -336,16 +336,16 @@
 		B17E03C81DB095B90061DD47 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B194B8C81DBDD0CE0061C9A4 /* ViewModelInstance.swift */,
+				B162E2151DC0F152008DF1C4 /* CommonPageViewModel.swift */,
 				B194B8C61DBDD0280061C9A4 /* BookShelfPageViewModel.swift */,
 				B194B8C41DBDC4530061C9A4 /* RankListPageViewModel.swift */,
 				B194B8CA1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift */,
 				B162E2111DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift */,
-				B194B8C81DBDD0CE0061C9A4 /* ViewModelInstance.swift */,
-				B162E2151DC0F152008DF1C4 /* CommonPageViewModel.swift */,
-				B19B744B1DD43DC9008D6C5C /* UserLoginViewModel.swift */,
-				B19B744F1DD44E18008D6C5C /* SettingPageViewModel.swift */,
-				B19B73E61DD9BD5A00171785 /* DownloadCenterPageViewModel.swift */,
 				B133A77B1DDABFC60038B5D2 /* BookContentPageViewModel.swift */,
+				B19B744F1DD44E18008D6C5C /* SettingPageViewModel.swift */,
+				B19B744B1DD43DC9008D6C5C /* UserLoginViewModel.swift */,
+				B19B73E61DD9BD5A00171785 /* DownloadCenterPageViewModel.swift */,
 				B1A73D341DE0D0F900EA4A40 /* SearchPageViewModel.swift */,
 				B15F7A9C1DEC1E7A00687DB6 /* HistoryPageViewModel.swift */,
 			);

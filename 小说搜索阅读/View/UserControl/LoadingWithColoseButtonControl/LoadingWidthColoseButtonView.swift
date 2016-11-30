@@ -21,10 +21,11 @@ class LoadingWidthColoseButtonView: UIView {
         
         let v = nib.instantiate(withOwner: nil, options: nil)[0] as! LoadingWidthColoseButtonView
         
-        v.frame = CGRect(x: 0, y: 0, width: 150, height: 130)
+        v.frame = CGRect(x: 0, y: 0, width: 140, height: 140)
         
         let loadingIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
-        loadingIndicatorView.frame = CGRect(x:0, y:0, width:40, height:40)
+        
+        loadingIndicatorView.frame = CGRect(x:0, y:0, width:50, height:50)
         
         loadingIndicatorView.center = v.center
         
