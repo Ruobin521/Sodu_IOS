@@ -600,7 +600,7 @@
 				TargetAttributes = {
 					B120E2231DA9E72800921288 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = Z532NADQBJ;
+						DevelopmentTeam = QSND459F3W;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -884,11 +884,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = Z532NADQBJ;
+				DEVELOPMENT_TEAM = QSND459F3W;
 				INFOPLIST_FILE = "小说搜索阅读/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.testapp.------";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.sodu.------";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -901,11 +901,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = Z532NADQBJ;
+				DEVELOPMENT_TEAM = QSND459F3W;
 				INFOPLIST_FILE = "小说搜索阅读/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.testapp.------";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.sodu.------";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

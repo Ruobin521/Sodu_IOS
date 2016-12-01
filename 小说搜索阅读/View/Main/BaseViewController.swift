@@ -112,33 +112,41 @@ class BaseViewController: UIViewController {
             return
         }
         
-        
-        if   (tableview?.numberOfRows(inSection: 0))! > 0 {
+        if tableview?.numberOfSections == 0 {
             
-            if  (tableview?.contentOffset.y)! > CGFloat(0) {
-                
-                let indexPath = IndexPath(row: 0, section: 0)
-                
-                self.tableview?.scrollToRow(at: indexPath, at: .bottom, animated: true)
-                
-                //                self.loadData()
-                //
-                //                let y = (refreshControl?.frame.height)! +  (tableview?.contentInset.top)!
-                //
-                //                self.tableview?.setContentOffset(CGPoint(x: 0, y: -y), animated: true)
-                
-            } else {
-                
-                let lastSectionIndex = (tableview?.numberOfSections)! - 1
+            return
+        }
+        
+        
+        
+        if  (tableview?.contentOffset.y)! > CGFloat(0) {
+            
+            let indexPath = IndexPath(row: 0, section: 0)
+            
+            self.tableview?.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            
+            //                self.loadData()
+            //
+            //                let y = (refreshControl?.frame.height)! +  (tableview?.contentInset.top)!
+            //
+            //                self.tableview?.setContentOffset(CGPoint(x: 0, y: -y), animated: true)
+            
+        } else  {
+            
+            let lastSectionIndex = (tableview?.numberOfSections)! - 1
+            
+            if lastSectionIndex >= 0 {
                 
                 let latRowIndex =  (tableview?.numberOfRows(inSection: lastSectionIndex))! - 1
                 
                 let indexPath = IndexPath(row: latRowIndex, section: lastSectionIndex)
                 
                 tableview?.scrollToRow(at: indexPath, at: .bottom, animated: true)
-                
             }
+            
+            
         }
+        
         
     }
     
