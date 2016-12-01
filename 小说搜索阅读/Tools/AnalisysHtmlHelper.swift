@@ -1177,7 +1177,7 @@ extension AnalisysHtmlHelper {
         
         
         //作者
-        if  let introRegex = try? NSRegularExpression(pattern: "<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：(.*？)</p>", options: []) {
+        if  let introRegex = try? NSRegularExpression(pattern: "<meta property=\"og:novel:author\" content=\"(.*?)\"/>", options: []) {
             
             if  let match = introRegex.firstMatch(in: htmlValue, options: [], range: NSRange(location: 0, length: htmlValue.characters.count)) {
                 

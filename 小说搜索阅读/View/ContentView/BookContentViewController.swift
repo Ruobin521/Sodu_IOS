@@ -149,7 +149,7 @@ class BookContentViewController: UIViewController {
         
         let index = isHead ? 0 : (vm.currentChapterPageList?.count)! - 1
         
-        let controller:ContentPageViewController? =  self.getViewControllerByCatalog(vm.currentCatalog?.chapterUrl, index: index)
+        let controller:ContentPageViewController? =  self.getViewControllerByCatalog(vm.currentCatalog, index: index)
         
         if  controller != nil {
             
@@ -283,7 +283,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         
         index -= 1
         
-        let controller:ContentPageViewController? = getViewControllerByCatalog(catalog.chapterUrl,index: index)
+        let controller:ContentPageViewController? = getViewControllerByCatalog(catalog,index: index)
         
         return controller
     }
@@ -303,7 +303,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         
         index += 1
         
-        let controller:ContentPageViewController? = getViewControllerByCatalog((catalog.chapterUrl)!,index: index)
+        let controller:ContentPageViewController? = getViewControllerByCatalog((catalog),index: index)
         
         return controller
         
@@ -414,7 +414,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         }
         
         
-        if   let  result = getViewControllerByCatalog(catalog.chapterUrl,index:index)  {
+        if   let  result = getViewControllerByCatalog(catalog,index:index)  {
             
             DispatchQueue.main.async {
                 
@@ -436,9 +436,9 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
     
     
     // MARK: 根据索引获取数据
-    func getViewControllerByCatalog(_ catalogUrl:String?,index:Int) -> ContentPageViewController? {
+    func getViewControllerByCatalog(_ cata:BookCatalog?,index:Int) -> ContentPageViewController? {
         
-        if catalogUrl == nil {
+      guard  let catalog = cata ,let  catalogUrl = catalog.chapterUrl  else{
             
             return nil
             
@@ -455,7 +455,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         controller.backColor = self.view.backgroundColor
         
         
-        guard  let currentPages = vm.contentDic[catalogUrl!] else {
+        guard  let currentPages = vm.contentDic[catalogUrl] else {
             
             return nil
         }
@@ -473,7 +473,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                 return nil
             }
             
-            guard  var tempIndex = vm.getCatalogIndex(catalogUrl!)  else {
+            guard  var tempIndex = vm.getCatalogIndex(catalogUrl)  else {
                 
                 return nil
                 
@@ -539,7 +539,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                 return nil
             }
             
-            guard  var tempIndex = vm.getCatalogIndex(catalogUrl!)  else {
+            guard  var tempIndex = vm.getCatalogIndex(catalogUrl)  else {
                 
                 return nil
                 
@@ -600,11 +600,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         //正常切换
         if index >= 0  &&  index < currentPages.count {
             
-            guard let catalog = vm.currentCatalog else {
-                
-                return nil
-            }
-            
+           
             controller.chapterName = catalog.chapterName
             
             controller.content = currentPages[index]
