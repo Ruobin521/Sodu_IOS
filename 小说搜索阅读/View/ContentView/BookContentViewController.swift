@@ -327,30 +327,33 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                 
             }
             
-            
-            if vm.currentCatalog?.chapterUrl != catalog.chapterUrl {
+            DispatchQueue.main.async {
                 
-                if controller.tag == 99  {
+                if self.vm.currentCatalog?.chapterUrl != catalog.chapterUrl {
                     
-                    vm.SetCurrentCatalog(catalog: catalog, completion: nil)
-                    
-                    self.initContentData(true)
-                    
-                }  else if controller.tag == -99 {
-                    
-                    vm.SetCurrentCatalog(catalog: catalog, completion: nil)
-                    
-                    self.initContentData(false)
-                    
-                }   else {
-                    
-                    vm.SetCurrentCatalog(catalog: catalog, completion: nil)
+                    if controller.tag == 99  {
+                        
+                        self.vm.SetCurrentCatalog(catalog: catalog, completion: nil)
+                        
+                        self.initContentData(true)
+                        
+                    }  else if controller.tag == -99 {
+                        
+                        self.vm.SetCurrentCatalog(catalog: catalog, completion: nil)
+                        
+                        self.initContentData(false)
+                        
+                    }   else {
+                        
+                        self.vm.SetCurrentCatalog(catalog: catalog, completion: nil)
+                    }
                 }
+                
+                
+                
+                print(controller.catalog?.chapterName ?? "无章节名")
+                
             }
-            
-            
-            
-            print(controller.catalog?.chapterName ?? "无章节名")
             
         }
         
@@ -375,20 +378,43 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         
         var index:Int = controller.tag
         
-        let catalog = controller.catalog
+        guard  let catalog = controller.catalog   else{
+            
+            return
+        }
         
-        
-        if obj.object as? String == "-1" {
+        if index == 99 {
             
-            index -= 1
+            vm.SetCurrentCatalog(catalog: catalog, completion: nil)
             
-        } else if obj.object as? String  == "1" {
+            self.initContentData(true)
             
-            index  += 1
+            return
+
+            
+        } else if index == -99 {
+            
+            vm.SetCurrentCatalog(catalog: catalog, completion: nil)
+            
+            self.initContentData(false)
+            
+             return
+            
+        } else {
+            
+            if obj.object as? String == "-1" {
+                
+                index -= 1
+                
+            } else if obj.object as? String  == "1" {
+                
+                index  += 1
+            }
+            
         }
         
         
-        if   let  result = getViewControllerByCatalog(catalog?.chapterUrl,index:index)  {
+        if   let  result = getViewControllerByCatalog(catalog.chapterUrl,index:index)  {
             
             DispatchQueue.main.async {
                 
@@ -497,7 +523,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                 
                 controller.tag = -99
                 
-                controller.content = "数据尚未加载"
+                controller.content = " "
                 
                 return controller
                 
@@ -563,7 +589,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                 
                 controller.tag = 99
                 
-                controller.content = "数据尚未加载"
+                controller.content = " "
                 
                 return controller
                 
@@ -887,8 +913,8 @@ extension BookContentViewController {
         self.addChildViewController(pageController)
         
         self.view.insertSubview(pageController.view, at: 0)
-        
-        
+    
+            
         
         
     }

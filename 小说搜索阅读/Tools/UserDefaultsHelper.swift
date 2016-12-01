@@ -24,9 +24,11 @@ class UserDefaultsHelper {
     }
     
     static func getBoolUserDefaultByKey(key:SettingKey) -> Bool {
-        
+         
         let value = UserDefaults.standard.value(forKey: key.rawValue) as? Bool  ?? false
-                 
+        
+        print( "获取设置数据完成：\(key.rawValue) : \(value)")
+        
         return value
     }
     
@@ -51,7 +53,7 @@ class UserDefaultsHelper {
         
         let value = UserDefaults.standard.value(forKey: key.rawValue) as? Bool
         
-        print( "\(key.rawValue) : \(value)")
+        print( "存储设置数据完成：\(key.rawValue) : \(value)")
         
     }
     

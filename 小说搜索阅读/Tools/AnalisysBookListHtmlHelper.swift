@@ -347,7 +347,7 @@ extension AnalisysBookListHtmlHelper {
             return list
         }
         
-        let lyList = LyWebUrls.instance.getAllValues()
+        let lyList = LyWebUrls.instance.getAllValues() as! [String]
         
         for  checkRange in  result
         {

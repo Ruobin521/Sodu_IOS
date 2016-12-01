@@ -28,12 +28,12 @@ enum SettingKey : String {
     case ContentBackColor = "ContentBackColor"
 }
 
-class SettingPageViewModel {
+class SettingPageViewModel:NSObject {
     
     
     
-    lazy var isAutoAddToShelf = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsAutoAddToShelf)
-    lazy var isDownLoadOnWWAN = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsDownLoadOnWWAN)
+     var isAutoAddToShelf = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsAutoAddToShelf)
+     var isDownLoadOnWWAN = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsDownLoadOnWWAN)
     
     
     //正文
@@ -51,12 +51,10 @@ class SettingPageViewModel {
     lazy var contentLineSpace:Float = (UserDefaultsHelper.getFloatUserDefaultByKey(key: .ContentLineSpace)  == Float(0) ) ? Float(10) :  UserDefaultsHelper.getFloatUserDefaultByKey(key: .ContentLineSpace)
     
     /// 背景色
-    lazy var contentBackColor = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentBackColor) ?? "AAC5AA"
+    lazy var contentBackColor = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentBackColor) ?? "#AAC5AA"
     
     /// 字体颜色
-    lazy var contentTextColor = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentTextColor) ??  "1B3D25"
-    
-    
+    lazy var contentTextColor = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentTextColor) ??  "#1B3D25"
     
     
     
@@ -64,7 +62,9 @@ class SettingPageViewModel {
     var switchSettingList = [SettingEntity]()
     
     
-    init() {
+    override init() {
+        
+        super.init()
         
         initSettingList()
     }
@@ -116,8 +116,8 @@ extension  SettingPageViewModel {
         let settingInfo = [["imageName": "person", "title": "个人中心","type":"0","controller":"PersonCenterViewController"],
                            ["imageName": "download", "title": "下载中心","type":"0","controller":"DownCenterViewController"],
                            ["imageName": "history", "title": "历史记录","type":"0","controller":"HistoryPageViewController"],
-                           ["key":"IsAutoAddToShelf","imageName": "addbook", "title": "自动添加到书架存","type":"1"],
-                           ["key":"IsDownLoadOnWWAN","imageName": "wwan", "title": "在2G/3G/4G下缓存","type":"1"],
+                           ["key":"IsAutoAddToShelf","property":"isAutoAddToShelf","imageName": "addbook", "title": "自动添加到书架存","type":"1"],
+                           ["key":"IsDownLoadOnWWAN","property":"isDownLoadOnWWAN","imageName": "wwan", "title": "在2G/3G/4G下缓存","type":"1"],
                            ]
         
         
@@ -158,16 +158,18 @@ extension  SettingPageViewModel {
                 
                 settingItem.settingType = SettingType.Swich
                 
-                if let rawValue = dic["key"], let key =  SettingKey(rawValue: rawValue) {
+                if let rawValue = dic["key"], let key =  SettingKey(rawValue: rawValue) ,let propertyName =  dic["property"]{
                     
                     settingItem.settingKey = key
                     
+                    let value = self.getValueOfProperty(key: propertyName)
+                    
+                    settingItem.value = value
+                    
+                    switchSettingList.append(settingItem)
+                    
                 }
-                
-                switchSettingList.append(settingItem)
-                
-                // settingItem.settingKey = key
-                
+             
                 
             }
             

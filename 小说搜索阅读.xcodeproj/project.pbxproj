@@ -23,6 +23,8 @@
 		B15F7A9D1DEC1E7A00687DB6 /* HistoryPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F7A9C1DEC1E7A00687DB6 /* HistoryPageViewModel.swift */; };
 		B15F7A9F1DEC214300687DB6 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F7A9E1DEC214300687DB6 /* HistoryTableViewCell.swift */; };
 		B15F7AA11DEC217600687DB6 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B15F7AA01DEC217600687DB6 /* HistoryTableViewCell.xib */; };
+		B15F7AA31DF00AA000687DB6 /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F7AA21DF00AA000687DB6 /* NSObject+Extensions.swift */; };
+		B15F7AA51DF011F800687DB6 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F7AA41DF011F800687DB6 /* UIColor+Extensions.swift */; };
 		B1600A401DC25ED3000A4C49 /* WelcomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1600A3E1DC25ED3000A4C49 /* WelcomView.swift */; };
 		B1600A431DC26E76000A4C49 /* WelcomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1600A421DC26E76000A4C49 /* WelcomView.xib */; };
 		B162E2121DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E2111DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift */; };
@@ -111,6 +113,8 @@
 		B15F7A9C1DEC1E7A00687DB6 /* HistoryPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryPageViewModel.swift; sourceTree = "<group>"; };
 		B15F7A9E1DEC214300687DB6 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		B15F7AA01DEC217600687DB6 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		B15F7AA21DF00AA000687DB6 /* NSObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
+		B15F7AA41DF011F800687DB6 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		B1600A3E1DC25ED3000A4C49 /* WelcomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomView.swift; sourceTree = "<group>"; };
 		B1600A421DC26E76000A4C49 /* WelcomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomView.xib; sourceTree = "<group>"; };
 		B162E2111DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateChapterViewModel.swift; sourceTree = "<group>"; };
@@ -130,7 +134,7 @@
 		B1904FB31DB728EA00534AD6 /* ConstantUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantUrl.swift; sourceTree = "<group>"; };
 		B1904FB51DB75E9900534AD6 /* AnalisysBookListHtmlHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalisysBookListHtmlHelper.swift; sourceTree = "<group>"; };
 		B1904FB71DB7866900534AD6 /* BookCacheHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCacheHelper.swift; sourceTree = "<group>"; };
-		B1904FB91DB79A9800534AD6 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		B1904FB91DB79A9800534AD6 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSON.swift; path = ../JSON.swift; sourceTree = "<group>"; };
 		B194B8C41DBDC4530061C9A4 /* RankListPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankListPageViewModel.swift; sourceTree = "<group>"; };
 		B194B8C61DBDD0280061C9A4 /* BookShelfPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookShelfPageViewModel.swift; sourceTree = "<group>"; };
 		B194B8C81DBDD0CE0061C9A4 /* ViewModelInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelInstance.swift; sourceTree = "<group>"; };
@@ -295,7 +299,6 @@
 				B1904FB01DB605C900534AD6 /* ToastView.swift */,
 				B12CD5561DB687EE00377450 /* HttpUtil.swift */,
 				B1904FB71DB7866900534AD6 /* BookCacheHelper.swift */,
-				B1904FB91DB79A9800534AD6 /* JSON.swift */,
 				B1B6A3541DC3409D00CF23B7 /* NetworkHelper.swift */,
 				B15B84691DC5EB4500DD1A56 /* UserDefaultsHelper.swift */,
 			);
@@ -363,8 +366,11 @@
 		B17E03D91DB09B3C0061DD47 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B1904FB91DB79A9800534AD6 /* JSON.swift */,
 				B162E21B1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift */,
 				B17E03DA1DB09B830061DD47 /* Bundle+Extensions.swift */,
+				B15F7AA21DF00AA000687DB6 /* NSObject+Extensions.swift */,
+				B15F7AA41DF011F800687DB6 /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -703,6 +709,7 @@
 				B19B743C1DD33984008D6C5C /* RefreshView.swift in Sources */,
 				B194B8C71DBDD0280061C9A4 /* BookShelfPageViewModel.swift in Sources */,
 				B17E03CF1DB0987A0061DD47 /* NavigationViewController.swift in Sources */,
+				B15F7AA51DF011F800687DB6 /* UIColor+Extensions.swift in Sources */,
 				B17E03DB1DB09B830061DD47 /* Bundle+Extensions.swift in Sources */,
 				B19B73E71DD9BD5A00171785 /* DownloadCenterPageViewModel.swift in Sources */,
 				B17256671DE8BB2F0077AD5D /* ContentPage.swift in Sources */,
@@ -715,6 +722,7 @@
 				B133A77C1DDABFC60038B5D2 /* BookContentPageViewModel.swift in Sources */,
 				B17E03D11DB098CF0061DD47 /* RankViewController.swift in Sources */,
 				B194B8C51DBDC4530061C9A4 /* RankListPageViewModel.swift in Sources */,
+				B15F7AA31DF00AA000687DB6 /* NSObject+Extensions.swift in Sources */,
 				B15F7A9F1DEC214300687DB6 /* HistoryTableViewCell.swift in Sources */,
 				B162E21C1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift in Sources */,
 				B1D759E21DE6ED140052C4F4 /* BookCatalogTableViewCell.swift in Sources */,

@@ -82,7 +82,7 @@ extension Bool: JSON { }
 extension Dictionary:JSON { }
 
 
-extension Array  where  Element: AnyObject {
+extension Array  where  Element: Any {
    
     //将数据转成可用的JSON模型
     func toJSONModel() -> [Any]? {

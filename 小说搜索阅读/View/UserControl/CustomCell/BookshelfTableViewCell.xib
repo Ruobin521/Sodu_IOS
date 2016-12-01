@@ -49,37 +49,38 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="(有更新)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvo-1c-tpo">
-                        <rect key="frame" x="58" y="17" width="57" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.30501239222965681" green="0.54091235342294242" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="right" verticalHuggingPriority="251" text="9999-02-02 00:00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3T-Ph-M69">
-                        <rect key="frame" x="120" y="17" width="275" height="18"/>
+                        <rect key="frame" x="94" y="17" width="301" height="18"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new_blue" translatesAutoresizingMaskIntoConstraints="NO" id="kqH-KC-8jW">
+                        <rect key="frame" x="57" y="11.5" width="32" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="7di-HN-G5E"/>
+                            <constraint firstAttribute="height" constant="28" id="uAu-tt-3Nj"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="7W3-Ud-kQB" firstAttribute="leading" secondItem="wcT-dj-FAh" secondAttribute="trailing" constant="5" id="34U-uu-Iox"/>
                     <constraint firstItem="YDp-J4-rbj" firstAttribute="top" secondItem="hPb-k0-W1c" secondAttribute="top" id="9vX-Vb-VZU"/>
+                    <constraint firstItem="kqH-KC-8jW" firstAttribute="leading" secondItem="cJX-9K-nNR" secondAttribute="trailing" constant="7" id="CIr-35-ZtT"/>
                     <constraint firstItem="wcT-dj-FAh" firstAttribute="top" secondItem="cJX-9K-nNR" secondAttribute="bottom" constant="10" id="GG1-vw-PrU"/>
                     <constraint firstItem="cJX-9K-nNR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="PmM-Rs-BhD"/>
                     <constraint firstItem="YDp-J4-rbj" firstAttribute="leading" secondItem="hPb-k0-W1c" secondAttribute="trailing" constant="5" id="SQt-fn-Qvo"/>
                     <constraint firstItem="7W3-Ud-kQB" firstAttribute="bottom" secondItem="wcT-dj-FAh" secondAttribute="bottom" id="SVw-pb-TxG"/>
                     <constraint firstItem="hPb-k0-W1c" firstAttribute="centerX" secondItem="wcT-dj-FAh" secondAttribute="centerX" id="Ufa-Y2-ul9"/>
-                    <constraint firstItem="Cvo-1c-tpo" firstAttribute="leading" secondItem="cJX-9K-nNR" secondAttribute="trailing" constant="8" id="ZmP-27-q7L"/>
                     <constraint firstItem="hPb-k0-W1c" firstAttribute="leading" secondItem="wcT-dj-FAh" secondAttribute="leading" id="Zml-It-wB5"/>
                     <constraint firstItem="X3T-Ph-M69" firstAttribute="centerY" secondItem="cJX-9K-nNR" secondAttribute="centerY" id="bRf-6V-Q2t"/>
                     <constraint firstItem="YDp-J4-rbj" firstAttribute="bottom" secondItem="hPb-k0-W1c" secondAttribute="bottom" id="c1d-Ey-A5i"/>
+                    <constraint firstItem="kqH-KC-8jW" firstAttribute="centerY" secondItem="cJX-9K-nNR" secondAttribute="centerY" id="ci1-uv-9Ha"/>
                     <constraint firstItem="hPb-k0-W1c" firstAttribute="top" secondItem="wcT-dj-FAh" secondAttribute="bottom" constant="10" id="eWl-Vd-YlP"/>
                     <constraint firstItem="7W3-Ud-kQB" firstAttribute="top" secondItem="wcT-dj-FAh" secondAttribute="top" id="eWz-VY-jbN"/>
-                    <constraint firstItem="X3T-Ph-M69" firstAttribute="leading" secondItem="Cvo-1c-tpo" secondAttribute="trailing" constant="5" id="j5C-Zw-34g"/>
+                    <constraint firstItem="X3T-Ph-M69" firstAttribute="leading" secondItem="kqH-KC-8jW" secondAttribute="trailing" constant="5" id="htm-7G-VsI"/>
                     <constraint firstItem="cJX-9K-nNR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="kvH-2j-3bA"/>
-                    <constraint firstItem="Cvo-1c-tpo" firstAttribute="baseline" secondItem="cJX-9K-nNR" secondAttribute="baseline" id="oXw-sR-yu3"/>
                     <constraint firstItem="wcT-dj-FAh" firstAttribute="leading" secondItem="cJX-9K-nNR" secondAttribute="leading" id="u4L-fP-sDM"/>
                     <constraint firstAttribute="trailingMargin" secondItem="YDp-J4-rbj" secondAttribute="trailing" constant="8" id="wy3-i3-HeM"/>
                     <constraint firstAttribute="trailingMargin" secondItem="X3T-Ph-M69" secondAttribute="trailing" constant="8" id="xUl-u5-tcW"/>
@@ -96,4 +97,7 @@
             <point key="canvasLocation" x="70.5" y="82.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="new_blue" width="30" height="30"/>
+    </resources>
 </document>

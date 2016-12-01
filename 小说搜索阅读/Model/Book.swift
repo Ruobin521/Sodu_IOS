@@ -11,7 +11,7 @@ import UIKit
 /// 属性值要都是string类型的，在写入数据库之前，是写入文件的
 class Book: NSObject,JSON {
     
-
+    var isNew = false
     
     /// bookId
     var   bookId :String?

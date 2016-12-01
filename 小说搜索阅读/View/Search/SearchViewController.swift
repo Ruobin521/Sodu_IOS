@@ -138,8 +138,6 @@ extension SearchViewController {
     
     override func setupUI() {
         
-        
-        
         setUpNavigationBar()
         setBackColor()
         setupTableview()
@@ -162,6 +160,7 @@ extension SearchViewController {
     
     func  setSearchBar()  {
         
+        
         searchView.frame =  CGRect(x: 0, y: (tableview?.contentInset.top)!, width: UIScreen.main.bounds.width , height: 50)
         
         self.view.insertSubview(searchView, aboveSubview: tableview!)
@@ -175,7 +174,6 @@ extension SearchViewController {
         
         searchView.placeholder = "请输入小说名或关键字，支持中文拼音搜索"
         
-        searchView.becomeFirstResponder()
         
     }
     
@@ -183,6 +181,13 @@ extension SearchViewController {
 }
 
 extension SearchViewController:UISearchBarDelegate  {
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        
+        
+    }
+    
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
@@ -204,6 +209,28 @@ extension SearchViewController:UISearchBarDelegate  {
             self.tableview?.reloadData()
             
         }
+        
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        //searchView.placeholder = ""
+        
+        searchView.setShowsCancelButton(true, animated: false)
+        
+        // searchView.placeholder = "请输入小说名或关键字，支持中文拼音搜索"
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        
+         searchView.setShowsCancelButton(false, animated: false)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchView.resignFirstResponder()
+        
+        searchView.setShowsCancelButton(false, animated: true)
         
     }
     
