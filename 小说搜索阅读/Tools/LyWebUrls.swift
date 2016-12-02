@@ -124,6 +124,11 @@ class LyWebUrls :NSObject{
      let myg = "www.muyuge.com";
     
     /// <summary>
+    ///木鱼哥
+    /// </summary>
+    let myg2 = "www.muyuge.net";
+    
+    /// <summary>
     ///VIVI小说网（顶点小说）
     /// </summary>
     // let vivi = "www.zkvivi.com";

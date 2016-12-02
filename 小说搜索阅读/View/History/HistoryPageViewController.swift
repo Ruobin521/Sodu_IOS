@@ -21,6 +21,14 @@ class HistoryPageViewController: BaseViewController {
     }
     
     
+    override func   viewWillAppear(_ animated: Bool) {
+   
+        
+        self.tableview?.reloadData()
+        
+        
+    }
+    
 }
 
 
@@ -63,7 +71,11 @@ extension HistoryPageViewController {
         
         let  book  = vm.bookList[indexPath.section]
         
-        print(book)
+        let bc = BookContentViewController()
+        
+        bc.vm.currentBook = book.clone()
+        
+        present(bc, animated: true, completion: nil)
         
         
     }

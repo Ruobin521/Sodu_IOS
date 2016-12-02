@@ -18,8 +18,6 @@ class HotAndRecommendViewController: BaseViewController {
     
     override func initData() {
         
-        vm.loadCacheData(vc: self)
-        
         loadData()
         
     }
@@ -39,6 +37,12 @@ class HotAndRecommendViewController: BaseViewController {
     func refreshData() {
         
         isLoading = true
+       
+        if vm.bookList.count == 0 {
+            
+            vm.loadCacheData(vc: self)
+            
+        }
         
         
         

@@ -45,6 +45,11 @@ extension HistoryPageViewModel {
         
         SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [tempBook],tableName: TableName.History.rawValue) { (isSuccess) in
             
+            if !isSuccess {
+                
+                return
+                
+            }
             
             if let book = self.bookList.first(where: { (temp) -> Bool in tempBook.bookId == temp.bookId }) {
                 

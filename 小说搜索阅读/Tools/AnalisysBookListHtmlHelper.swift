@@ -385,6 +385,12 @@ extension AnalisysBookListHtmlHelper {
                 
             }
             
+            if host == LyWebUrls.instance.myg2 {
+                
+              b.contentPageUrl = b.contentPageUrl?.replacingOccurrences(of: LyWebUrls.instance.myg2, with: LyWebUrls.instance.myg)
+                
+            }
+            
             
             b.chapterName = (item as NSString).substring(with: (result?.rangeAt(2))!)
             b.lywzName = (item as NSString).substring(with: (result?.rangeAt(3))!)

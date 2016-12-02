@@ -937,7 +937,7 @@
 				B120E24B1DA9E72800921288 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		B120E24C1DA9E72800921288 /* Build configuration list for PBXNativeTarget "小说搜索阅读" */ = {
 			isa = XCConfigurationList;
@@ -946,7 +946,7 @@
 				B120E24E1DA9E72800921288 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

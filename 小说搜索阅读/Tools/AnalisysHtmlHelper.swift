@@ -104,24 +104,24 @@ class AnalisysHtmlHelper {
             }
             
             
-//        ///窝窝小说网
-//        case  LyWebUrls.instance.wwxsw2:
-//            
-//            if type == .Content {
-//                
-//                value = analisysDjzwwHtml(urlStr,html)
-//                
-//                
-//            } else if type == .CatalogPageUrl {
-//                
-//                value = analysisCommonCatalogPageUrl(url: urlStr)  + "mulu.html"
-//                
-//            } else if type == .CatalogList {
-//                
-//                //                value =  analisysCommonCIAC(url: urlStr,coverBaseUrl:"", html: html, htmlPattern: "<head>.*?</html>", catalogPattern: "<td class=\"L\".*?href=\"(.*?)\".*?>(.*?)</a></td>", introPattern: "<div class=\"js\">.*?<p><b>", coverPattern: "<div class=\"pic\">.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern: "<i>作者：(.*?)</i>")
-//                
-//            }
-//            
+            //        ///窝窝小说网
+            //        case  LyWebUrls.instance.wwxsw2:
+            //
+            //            if type == .Content {
+            //
+            //                value = analisysDjzwwHtml(urlStr,html)
+            //
+            //
+            //            } else if type == .CatalogPageUrl {
+            //
+            //                value = analysisCommonCatalogPageUrl(url: urlStr)  + "mulu.html"
+            //
+            //            } else if type == .CatalogList {
+            //
+            //                //                value =  analisysCommonCIAC(url: urlStr,coverBaseUrl:"", html: html, htmlPattern: "<head>.*?</html>", catalogPattern: "<td class=\"L\".*?href=\"(.*?)\".*?>(.*?)</a></td>", introPattern: "<div class=\"js\">.*?<p><b>", coverPattern: "<div class=\"pic\">.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern: "<i>作者：(.*?)</i>")
+            //
+            //            }
+            //
             
         ///大海中文
         case  LyWebUrls.instance.dhzw:
@@ -422,25 +422,25 @@ class AnalisysHtmlHelper {
             
             
             
-//        /// 去笔趣阁
-//        case  LyWebUrls.instance.qbqg:
-//            
-//            if type == .Content {
-//                
-//                value = analisysCommonHtml(html,"<div id=\"?content\"?.*?</div>")
-//                
-//            } else if type == .CatalogPageUrl {
-//                
-//                value = analysisCommonCatalogPageUrl(url: urlStr)
-//                
-//            } else if type == .CatalogList {
-//                
-//                
-//                //                let baseUrl = "http://" + host!
-//                //
-//                //                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "<h2 class=\"bookTitle\">.*?<div id=\"uyan_frame\">", catalogPattern: "<a href=\"(.*?)\">(.*?)</a>", introPattern: "<div class=\"reBook borderF\">(.*?)</div>", coverPattern: "<div style=\"float:left; margin-right:10px\"><img src=\"(.*?)\".*?>", AuthorPattern:"<p>作者：(.*?)&nbsp;&nbsp;&nbsp;</p>")
-//            }
-//            
+            //        /// 去笔趣阁
+            //        case  LyWebUrls.instance.qbqg:
+            //
+            //            if type == .Content {
+            //
+            //                value = analisysCommonHtml(html,"<div id=\"?content\"?.*?</div>")
+            //
+            //            } else if type == .CatalogPageUrl {
+            //
+            //                value = analysisCommonCatalogPageUrl(url: urlStr)
+            //
+            //            } else if type == .CatalogList {
+            //
+            //
+            //                //                let baseUrl = "http://" + host!
+            //                //
+            //                //                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "<h2 class=\"bookTitle\">.*?<div id=\"uyan_frame\">", catalogPattern: "<a href=\"(.*?)\">(.*?)</a>", introPattern: "<div class=\"reBook borderF\">(.*?)</div>", coverPattern: "<div style=\"float:left; margin-right:10px\"><img src=\"(.*?)\".*?>", AuthorPattern:"<p>作者：(.*?)&nbsp;&nbsp;&nbsp;</p>")
+            //            }
+            //
             
         ///秋水轩
         case  LyWebUrls.instance.qsx:
@@ -1765,7 +1765,7 @@ extension AnalisysHtmlHelper {
         tempHtml = tempHtml.replacingOccurrences(of: "一秒记住秋水轩：qiushuixuan.cc", with: "")
         tempHtml = tempHtml.replacingOccurrences(of: "秋水轩", with: "")
         tempHtml = tempHtml.replacingOccurrences(of: "www.qiushuixuan.cc", with: "")
-                
+        
         tempHtml = replaceSymbol(str: tempHtml)
         
         return tempHtml
@@ -1782,12 +1782,27 @@ extension AnalisysHtmlHelper {
             return nil
         }
         
-        guard  let listHtml = reg.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.characters.count)) else {
+        var listHtml = reg.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.characters.count))
+        
+        if  listHtml == nil {
             
-            return nil
+            guard   let reg = try? NSRegularExpression(pattern: "<div id=\"booktext\">.*?<div class=\"row text-center\">", options: []) else {
+                
+                return nil
+            }
+            
+            listHtml = reg.firstMatch(in: str, options: [], range: NSRange(location: 0, length: str.characters.count))
+            
+            if listHtml == nil {
+                
+                return  nil
+                
+            }
+            
         }
         
-        var tempHtml = (str as  NSString).substring(with: listHtml.range)
+        
+        var tempHtml = (str as  NSString).substring(with: listHtml!.range)
         
         
         tempHtml = tempHtml.replacingOccurrences(of: "无弹窗", with: "")

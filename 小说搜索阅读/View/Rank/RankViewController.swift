@@ -16,21 +16,25 @@ class RankViewController: BaseViewController {
     
     var vm =  ViewModelInstance.instance.rank
     
+    
+    
     override func initData() {
         
-        vm.loadCacheData(self)
+        needPullUp = true
         
         loadData()
     }
     
     override func loadData() {
         
-        needPullUp = true
+        
         
         if  checkIsLoading() {
             
             return
         }
+        
+       
         
         
         if isPullup {
@@ -47,6 +51,8 @@ class RankViewController: BaseViewController {
     
     func loadDataByPageIndex(_ pageindex: Int) {
         
+       
+        
         if  pageindex == vm.pageCount {
             
             isPullup = false
@@ -56,7 +62,14 @@ class RankViewController: BaseViewController {
         
         isLoading = true
         
-       
+        
+        if vm.bookList.count == 0 {
+            
+            vm.loadCacheData(self)
+            
+        }
+        
+        
         
         if pageindex > 0 {
             

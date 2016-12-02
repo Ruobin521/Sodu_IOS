@@ -24,8 +24,6 @@ class BookshelfViewController: BaseViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(addBookToShelf), name: NSNotification.Name(rawValue: AddToBookshelfSuccessNotification), object: nil)
         
-        vm.loadCacheData(self)
-        
         loadData()
     }
     
@@ -38,6 +36,13 @@ class BookshelfViewController: BaseViewController {
         }
         
         isLoading = true
+        
+        if vm.bookList.count == 0 {
+            
+            vm.loadCacheData(self)
+            
+        }
+        
         
         
         vm.loadBookShelfPageData {(isSuccess) in
