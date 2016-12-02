@@ -15,19 +15,6 @@ class PersonCenterViewController: BaseViewController {
     
     @IBAction func logout() {
         
-        userLogon = false
-        
-        UserLoginViewModel.deleteCoookie()
-        
-        //获取沙盒路径
-        let docdir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        
-        let jsonPath = (docdir as NSString).appendingPathComponent(ListType.BookShelf.rawValue + ".json")
-        
-        try?   FileManager.default.removeItem(atPath: jsonPath)
-        
-        UserDefaultsHelper.setUserDefaultsValueForKey(key: .UserNameKey, value: "")
-        
         //发送logout通知
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: LogoutNotification), object: nil)
         

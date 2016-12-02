@@ -22,4 +22,23 @@ class ViewModelInstance {
     
     lazy var history = HistoryPageViewModel()
     
+    var  userId:String?
+    
+    var  userLogon = false {
+        
+        didSet {
+            
+            if userLogon {
+                
+                userId = UserDefaultsHelper.getUserDefaultByKey(key: .UserNameKey)
+
+            } else {
+                
+                userId = nil
+            }
+            
+        }
+        
+    }
+    
 }

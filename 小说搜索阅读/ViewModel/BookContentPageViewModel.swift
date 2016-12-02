@@ -182,7 +182,9 @@ class BookContentPageViewModel {
         
         didSet {
             
-            _currentCatalog = BookCatalog(currentBook?.bookId, currentBook?.chapterName, currentBook?.contentPageUrl, nil)
+            let catalog = BookCatalog(currentBook?.bookId, currentBook?.chapterName, currentBook?.contentPageUrl, nil)
+            
+            SetCurrentCatalog(catalog: catalog, completion: nil)
             
         }
     }
@@ -219,7 +221,7 @@ class BookContentPageViewModel {
     func SetCurrentCatalog(catalog:BookCatalog?,completion:(()->())?) {
         
         
-        if catalog == nil {
+        if catalog == nil  || catalog?.chapterUrl == nil {
             
             completion?()
             
@@ -227,29 +229,40 @@ class BookContentPageViewModel {
         }
         
         
-        if currentCatalog?.chapterUrl != catalog?.chapterUrl ,let index = getCatalogIndex((catalog?.chapterUrl)!)  {
+        if currentCatalog?.chapterUrl == catalog?.chapterUrl {
+            
+            return
+        }
+        
+        if currentCatalog?.chapterUrl != catalog?.chapterUrl {
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddHistoryNotification), object: currentBook)
             
-            _currentCatalog =  currentBook?.catalogs?[index]
+            _currentCatalog =  catalog
             
         }
         
         
+        guard let _ = currentBook?.catalogs else {
+            
+            return
+        }
+        
+         
         self.setBeforeAndNextCatalog()
         
-//        if preCatalog != nil {
-//            
-//            getCatalogContentByPosin(posion: .Before, completion: { (isSuccess) in
-//                
-//                if isSuccess {
-//                    
-//                    self.preChapterPageList = self.contentDic[(self.preCatalog?.chapterUrl)!]
-//                }
-//                
-//            })
-//            
-//        }
+        if preCatalog != nil {
+            
+            getCatalogContentByPosin(posion: .Before, completion: { (isSuccess) in
+                
+                if isSuccess {
+                    
+                    self.preChapterPageList = self.contentDic[(self.preCatalog?.chapterUrl)!]
+                }
+                
+            })
+            
+        }
         
         
         if nextCatalog != nil {

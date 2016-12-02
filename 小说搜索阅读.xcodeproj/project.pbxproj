@@ -30,6 +30,9 @@
 		B162E2121DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E2111DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift */; };
 		B162E2161DC0F152008DF1C4 /* CommonPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E2151DC0F152008DF1C4 /* CommonPageViewModel.swift */; };
 		B162E21C1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E21B1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift */; };
+		B16F47C01DF12A23007F88A1 /* SoDuSQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F47BF1DF12A23007F88A1 /* SoDuSQLiteManager.swift */; };
+		B16F47C41DF134F3007F88A1 /* createtable.sql in Resources */ = {isa = PBXBuildFile; fileRef = B16F47C31DF134F3007F88A1 /* createtable.sql */; };
+		B16F47C61DF161B2007F88A1 /* BookListDBHelpr.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F47C51DF161B2007F88A1 /* BookListDBHelpr.swift */; };
 		B17256671DE8BB2F0077AD5D /* ContentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17256661DE8BB2F0077AD5D /* ContentPage.swift */; };
 		B17256691DE8BB440077AD5D /* ContentPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = B17256681DE8BB440077AD5D /* ContentPage.xib */; };
 		B17860BD1DD37A7300E07944 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17860BB1DD37A7300E07944 /* SettingTableViewCell.swift */; };
@@ -120,6 +123,9 @@
 		B162E2111DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateChapterViewModel.swift; sourceTree = "<group>"; };
 		B162E2151DC0F152008DF1C4 /* CommonPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonPageViewModel.swift; sourceTree = "<group>"; };
 		B162E21B1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
+		B16F47BF1DF12A23007F88A1 /* SoDuSQLiteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoDuSQLiteManager.swift; sourceTree = "<group>"; };
+		B16F47C31DF134F3007F88A1 /* createtable.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = createtable.sql; sourceTree = "<group>"; };
+		B16F47C51DF161B2007F88A1 /* BookListDBHelpr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListDBHelpr.swift; sourceTree = "<group>"; };
 		B17256661DE8BB2F0077AD5D /* ContentPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentPage.swift; sourceTree = "<group>"; };
 		B17256681DE8BB440077AD5D /* ContentPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentPage.xib; sourceTree = "<group>"; };
 		B17860BB1DD37A7300E07944 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
@@ -282,6 +288,15 @@
 			path = ContentView;
 			sourceTree = "<group>";
 		};
+		B16F47BE1DF12979007F88A1 /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				B16F47BF1DF12A23007F88A1 /* SoDuSQLiteManager.swift */,
+				B16F47C31DF134F3007F88A1 /* createtable.sql */,
+			);
+			path = SQLite;
+			sourceTree = "<group>";
+		};
 		B17E03C01DB095B90061DD47 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +309,7 @@
 		B17E03C21DB095B90061DD47 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				B16F47BE1DF12979007F88A1 /* SQLite */,
 				B1E472791DE1942300F50D41 /* HtmlService */,
 				B17E03D91DB09B3C0061DD47 /* Extensions */,
 				B1904FB01DB605C900534AD6 /* ToastView.swift */,
@@ -351,6 +367,7 @@
 				B19B73E61DD9BD5A00171785 /* DownloadCenterPageViewModel.swift */,
 				B1A73D341DE0D0F900EA4A40 /* SearchPageViewModel.swift */,
 				B15F7A9C1DEC1E7A00687DB6 /* HistoryPageViewModel.swift */,
+				B16F47C51DF161B2007F88A1 /* BookListDBHelpr.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -648,6 +665,7 @@
 				B120E22F1DA9E72800921288 /* Assets.xcassets in Resources */,
 				B1D0E8641DEDC2D0008209C7 /* LoadingWidthColoseButtonView.xib in Resources */,
 				B1D0E85F1DEDB2A3008209C7 /* FailedView.xib in Resources */,
+				B16F47C41DF134F3007F88A1 /* createtable.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,6 +740,7 @@
 				B133A77C1DDABFC60038B5D2 /* BookContentPageViewModel.swift in Sources */,
 				B17E03D11DB098CF0061DD47 /* RankViewController.swift in Sources */,
 				B194B8C51DBDC4530061C9A4 /* RankListPageViewModel.swift in Sources */,
+				B16F47C01DF12A23007F88A1 /* SoDuSQLiteManager.swift in Sources */,
 				B15F7AA31DF00AA000687DB6 /* NSObject+Extensions.swift in Sources */,
 				B15F7A9F1DEC214300687DB6 /* HistoryTableViewCell.swift in Sources */,
 				B162E21C1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift in Sources */,
@@ -729,6 +748,7 @@
 				B19B74531DD4C30D008D6C5C /* RegisterViewController.swift in Sources */,
 				B17E03C91DB095B90061DD47 /* Book.swift in Sources */,
 				B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */,
+				B16F47C61DF161B2007F88A1 /* BookListDBHelpr.swift in Sources */,
 				B1C2385B1DD388D800C37FA6 /* LonginViewController.swift in Sources */,
 				B15F7A9B1DEC068500687DB6 /* HistoryPageViewController.swift in Sources */,
 				B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */,

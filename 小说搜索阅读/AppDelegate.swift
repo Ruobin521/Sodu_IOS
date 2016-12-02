@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-var  userLogon = false
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,9 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
+       // var manager =   SoDuSQLiteManager.shared
         
-        
-        userLogon =   checklogon()
+        ViewModelInstance.instance.userLogon =   checklogon()
         
        // userLogon =  false
         

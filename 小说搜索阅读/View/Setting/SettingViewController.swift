@@ -88,7 +88,7 @@ extension SettingViewController {
             
         }
         
-        if indexPath.row == 0  && !userLogon {
+        if indexPath.row == 0  && !ViewModelInstance.instance.userLogon {
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: NeedLoginNotification), object: nil)
             return

@@ -10,6 +10,7 @@ pod "FMDB"
 pod "SVProgressHUD"
 pod "pop"
 pod “ReachabilitySwift”
+pod "FMDB"
 
 end
 

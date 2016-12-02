@@ -41,15 +41,11 @@ class RegisterViewController: BaseViewController {
             
             if isSuccess {
                 
-                userLogon = true
-                
                 self?.showToast(content: "注册成功")
                 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
                 
                 self?.vm.setCoookie()
-                
-                
                 
                 self?.goBack()
                 

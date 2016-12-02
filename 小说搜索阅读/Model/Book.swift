@@ -10,14 +10,16 @@ import UIKit
 
 /// 属性值要都是string类型的，在写入数据库之前，是写入文件的
 class Book: NSObject,JSON {
-    
-    var isNew = false
+     
     
     /// bookId
     var   bookId :String?
     
     /// 书名
     var   bookName : String?
+    
+    /// 0 , 1 是否有更新
+    var isNew:String = "0"
     
     /// 标记是否为本地图书 1 是本地  0  不是本地
     var  isLocal : String  =  "0"

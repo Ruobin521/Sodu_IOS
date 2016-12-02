@@ -117,6 +117,10 @@ class BaseViewController: UIViewController {
             return
         }
         
+        if (tableview?.numberOfRows(inSection: (tableview?.numberOfSections)! - 1))!  <= 0 {
+            
+            return
+        }
         
         
         if  (tableview?.contentOffset.y)! > CGFloat(0) {
@@ -141,7 +145,12 @@ class BaseViewController: UIViewController {
                 
                 let indexPath = IndexPath(row: latRowIndex, section: lastSectionIndex)
                 
-                tableview?.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                if latRowIndex >= 0 {
+                    
+                    tableview?.scrollToRow(at: indexPath, at: .bottom, animated: true)
+                }
+                
+                
             }
             
             

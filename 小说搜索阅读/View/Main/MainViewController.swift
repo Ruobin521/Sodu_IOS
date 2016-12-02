@@ -17,7 +17,7 @@ class MainViewController: UITabBarController {
         
         
         super.viewDidLoad()
-         
+        
         setupWelcomView()
         
         setupChildControllers()
@@ -53,6 +53,8 @@ class MainViewController: UITabBarController {
             self.viewControllers?.insert(self.createController(dic: item), at: 0)
             
             self.selectedIndex =  (self.viewControllers?.count)! - 1  >= 0  ? (self.viewControllers?.count)! - 1  : 0
+            
+            ViewModelInstance.instance.userLogon = true
         }
         
     }
@@ -62,12 +64,29 @@ class MainViewController: UITabBarController {
         
         self.viewControllers?.remove(at: 0)
         
+        UserLoginViewModel.deleteCoookie()
+        
+        ViewModelInstance.instance.bookShelf.bookList.removeAll()
+        
+        //获取沙盒路径
+        let docdir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        
+        let jsonPath = (docdir as NSString).appendingPathComponent(ListType.BookShelf.rawValue + ".json")
+        
+        try?   FileManager.default.removeItem(atPath: jsonPath)
+        
+        ViewModelInstance.instance.bookShelf.bookList.removeAll()
+        
+        UserDefaultsHelper.setUserDefaultsValueForKey(key: .UserNameKey, value: "")
+        
+         ViewModelInstance.instance.userLogon = false
+        
     }
     
     
     func addHistory(notif:NSNotification) {
         
-        guard  let book = notif.object as? Book  else{
+        guard  let book = notif.object as? Book   else{
             
             return
         }
@@ -91,7 +110,7 @@ extension  MainViewController {
     func  setupWelcomView() {
         
         
-        if !userLogon {
+        if !ViewModelInstance.instance.userLogon {
             
             return
         }
@@ -113,7 +132,7 @@ extension MainViewController {
     func login() {
         
         let vc =    NavigationViewController(rootViewController: LonginViewController())
-       // vc.modalTransitionStyle = .flipHorizontal
+        // vc.modalTransitionStyle = .flipHorizontal
         
         present(vc, animated: true, completion: nil)
         
@@ -138,7 +157,7 @@ extension MainViewController:UITabBarControllerDelegate {
         
         if tempvc is SettingViewController {
             
-            if !userLogon {
+            if !ViewModelInstance.instance.userLogon {
                 
                 login()
             }
@@ -187,7 +206,7 @@ extension MainViewController {
             ]
         
         
-        if userLogon {
+        if ViewModelInstance.instance.userLogon {
             
             array.insert( ["clsName": "BookshelfViewController", "title": "个人书架", "imageName" : "profile"], at: 0)
             

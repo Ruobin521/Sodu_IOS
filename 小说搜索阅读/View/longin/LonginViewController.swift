@@ -54,8 +54,6 @@ class LonginViewController: BaseViewController {
             
             if isSuccess {
                 
-                userLogon = true
-                
                 self.showToast(content: "登录成功")
                 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
@@ -64,7 +62,7 @@ class LonginViewController: BaseViewController {
                 
                 self.vm.setCoookie()
                 
-                UserDefaultsHelper.setUserDefaultsValueForKey(key: .UserNameKey, value: self.txtUserName.text!)
+                 UserDefaultsHelper.setUserDefaultsValueForKey(key: .UserNameKey, value: self.txtUserName.text!)
                 
             } else {
                 

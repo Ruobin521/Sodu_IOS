@@ -18,6 +18,8 @@ protocol JSON {
 
 //扩展协议方法
 extension JSON {
+    
+    
     //将数据转成可用的JSON模型
     func toJSONModel() -> AnyObject? {
         

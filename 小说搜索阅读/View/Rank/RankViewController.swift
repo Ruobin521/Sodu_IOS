@@ -154,7 +154,7 @@ extension RankViewController {
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
-        return  userLogon
+        return  ViewModelInstance.instance.userLogon
     }
     
     
