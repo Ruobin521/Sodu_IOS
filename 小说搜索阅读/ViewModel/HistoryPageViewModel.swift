@@ -25,56 +25,42 @@ extension HistoryPageViewModel {
     func insertNewHistoryItem(_ insertBook:Book) {
         
         
-        let book = bookList.first(where: { (item) -> Bool in
+        guard let _ = insertBook.bookId , let _ = insertBook.contentPageUrl   else  {
             
-            item.bookId == insertBook.bookId
-            
-        })
-        
-        var tempBook = book
-        
-        if book == nil
-            
-        {
-            tempBook = insertBook.clone()
-            
-            let formatter = DateFormatter()
-            
-            formatter.dateFormat = "yyyy-MM-dd HH:mm"
-            
-            let dateString = formatter.string(from: Date())
-            
-            tempBook?.updateTime = dateString
-            
-            tempBook?.chapterName = insertBook.chapterName
-            
-        } else {
-            
-            
-            let formatter = DateFormatter()
-            
-            formatter.dateFormat = "yyyy-MM-dd HH:mm"
-            
-            let dateString = formatter.string(from: Date())
-            
-            tempBook?.updateTime = dateString
-            
-            tempBook?.chapterName = insertBook.chapterName
-            
-            
+            return
             
         }
         
+        let tempBook = insertBook.clone()
         
-        SoDuSQLiteManager.shared.insertOrUpdateHistory(book: tempBook!) { (isSuccess) in
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        let dateString = formatter.string(from: Date())
+        
+        tempBook.updateTime = dateString
+        
+        
+        
+        SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [tempBook],tableName: TableName.History.rawValue) { (isSuccess) in
             
-            if let index = self.bookList.index(of: tempBook!) {
+            
+            if let book = self.bookList.first(where: { (temp) -> Bool in tempBook.bookId == temp.bookId }) {
+                
+                let index = self.bookList.index(of: book)
+                
+                self.bookList.remove(at: index!)
+             
+            }
+            
+            if let index = self.bookList.index(of: tempBook) {
                 
                 self.bookList.remove(at: index)
                 
             }
             
-            self.bookList.insert(tempBook!, at: 0)
+            self.bookList.insert(tempBook, at: 0)
             
         }
         
@@ -84,7 +70,7 @@ extension HistoryPageViewModel {
     //删除单挑记录
     func deleteItem(book:Book,completion: @escaping (_ isSuccess:Bool) -> ()) {
         
-        SoDuSQLiteManager.shared.deleteHistory(book: book,completion: completion)
+        SoDuSQLiteManager.shared.deleteBooks(books: [book],tableName: TableName.History.rawValue,completion: completion)
         
     }
     

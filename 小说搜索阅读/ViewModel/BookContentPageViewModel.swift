@@ -236,9 +236,14 @@ class BookContentPageViewModel {
         
         if currentCatalog?.chapterUrl != catalog?.chapterUrl {
             
+            _currentCatalog =  catalog
+            
+            currentBook?.chapterName = _currentCatalog?.chapterName
+            
+            currentBook?.contentPageUrl = _currentCatalog?.chapterUrl
+            
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddHistoryNotification), object: currentBook)
             
-            _currentCatalog =  catalog
             
         }
         
@@ -248,7 +253,7 @@ class BookContentPageViewModel {
             return
         }
         
-         
+        
         self.setBeforeAndNextCatalog()
         
         if preCatalog != nil {
@@ -895,4 +900,4 @@ extension BookContentPageViewModel {
 
 extension UIColor {
     
-   }
+}

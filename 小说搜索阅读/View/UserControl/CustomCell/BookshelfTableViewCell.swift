@@ -10,6 +10,7 @@ import UIKit
 
 class BookshelfTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var imageNew: UIImageView!
     
     @IBOutlet weak var txtBookName: UILabel!
     

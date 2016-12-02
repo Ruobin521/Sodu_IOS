@@ -8,15 +8,17 @@
 
 import Foundation
 
-enum TableName {
+enum TableName : String {
     
-    case bookshelf
+    case Bookshelf = "bookshelf"
     
-    case rank
+    case Rank = "rank"
     
-    case recommend
+    case Recommend = "recommend"
     
-    case history
+    case History = "history"
+    
+    case Catalog = "catalog"
     
 }
 
@@ -27,21 +29,88 @@ class BookListDBHelpr {
     
     class func loadHistoryList(completion:(_ isSuccess:Bool,_ books:[Book]?) -> ()) {
         
-        let array = SoDuSQLiteManager.shared.selectHistory()
+        let array = SoDuSQLiteManager.shared.selectBook(tableName: TableName.History.rawValue)
         
         // 判断数组的数量，没有数据返回的是没有数据的空数组 []
         if array.count > 0 {
             
             completion(true,array)
             
-            return
             
         } else {
             
-            completion(false,nil)
+            completion(false,[])
         }
         
     }
     
     
 }
+
+
+
+// MARK: - 首页缓存操作
+extension BookListDBHelpr {
+    
+    
+    /// 加载首页缓存数据
+    ///
+    /// - Parameters:
+    ///   - tableName: <#tableName description#>
+    ///   - completion: <#completion description#>
+    class func loadHomeCache(tableName:String,userId:String? = nil,completion:(_ isSuccess:Bool,_ books:[Book]?) -> ())  {
+        
+        let  books =  SoDuSQLiteManager.shared.selectBook(tableName: tableName, userId: userId)
+        
+        if books.count > 0 {
+            
+            completion(true,books)
+            
+        } else {
+            
+            completion(false,[])
+        }
+    }
+    
+    
+    
+    /// 保存首页缓存数据
+    ///
+    /// - Parameters:
+    ///   - tableName: <#tableName description#>
+    ///   - books: <#books description#>
+    ///   - completion: <#completion description#>
+    class func saveHomeCache(tableName:String,books:[Book],userId:String? = nil,completion:((_ isSuccess:Bool) -> ())?) {
+        
+        SoDuSQLiteManager.shared.clearAll(tableName: tableName) { (isSuccess) in
+            
+            SoDuSQLiteManager.shared.insertOrUpdateBooks(books: books, tableName: tableName,userId: userId) { (isSuccess) in
+                
+                completion?(isSuccess)
+                
+            }
+        }
+        
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

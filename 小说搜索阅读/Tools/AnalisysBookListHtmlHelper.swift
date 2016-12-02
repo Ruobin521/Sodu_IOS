@@ -208,6 +208,8 @@ extension AnalisysBookListHtmlHelper {
             b.updateTime = (item as NSString).substring(with: (result?.rangeAt(4))!)
             b.bookId = (item as NSString).substring(with: (result?.rangeAt(5))!)
             
+            b.lastReadChapterName = b.chapterName
+            
             list.append(b)
         }
         

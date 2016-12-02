@@ -67,19 +67,10 @@ class MainViewController: UITabBarController {
         UserLoginViewModel.deleteCoookie()
         
         ViewModelInstance.instance.bookShelf.bookList.removeAll()
-        
-        //获取沙盒路径
-        let docdir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        
-        let jsonPath = (docdir as NSString).appendingPathComponent(ListType.BookShelf.rawValue + ".json")
-        
-        try?   FileManager.default.removeItem(atPath: jsonPath)
-        
-        ViewModelInstance.instance.bookShelf.bookList.removeAll()
-        
+                
         UserDefaultsHelper.setUserDefaultsValueForKey(key: .UserNameKey, value: "")
         
-         ViewModelInstance.instance.userLogon = false
+        ViewModelInstance.instance.userLogon = false
         
     }
     

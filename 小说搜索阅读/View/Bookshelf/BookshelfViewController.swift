@@ -22,8 +22,9 @@ class BookshelfViewController: BaseViewController {
     
     override func initData() {
         
-        
         NotificationCenter.default.addObserver(self, selector: #selector(addBookToShelf), name: NSNotification.Name(rawValue: AddToBookshelfSuccessNotification), object: nil)
+        
+        vm.loadCacheData(self)
         
         loadData()
     }
@@ -38,7 +39,6 @@ class BookshelfViewController: BaseViewController {
         
         isLoading = true
         
-        vm.loadCacheData(self)
         
         vm.loadBookShelfPageData {(isSuccess) in
             
@@ -61,7 +61,7 @@ class BookshelfViewController: BaseViewController {
             super.endLoadData()
             
         }
-
+        
     }
     
     
@@ -80,6 +80,11 @@ class BookshelfViewController: BaseViewController {
             
         }
         
+    }
+    
+    deinit {
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
 }
@@ -117,11 +122,22 @@ extension BookshelfViewController {
         let book = vm.bookList[indexPath.section]
         
         cell.txtBookName?.text = book.bookName
+        
         cell.txtUpdateTime?.text = book.updateTime
+        
         cell.txtUpdateChpterName?.text = book.chapterName
         
-        cell.txtLastReadChapterName.text = book.chapterName
+        cell.txtLastReadChapterName.text = book.lastReadChapterName
         
+        if book.isNew == "0" {
+            
+            cell.imageNew.isHidden = true
+            
+        } else {
+            
+            cell.imageNew.isHidden = false
+            
+        }
         
         
         return cell
@@ -133,7 +149,24 @@ extension BookshelfViewController {
         
         super.tableView(tableView, didSelectRowAt: indexPath)
         
-        CommonPageViewModel.navigateToUpdateChapterPage(vm.bookList[indexPath.section], navigationController)
+        let book = vm.bookList[indexPath.section]
+        
+        if book.isNew == "1" {
+            
+            book.lastReadChapterName = book.chapterName
+            book.isNew = "0"
+        }
+        
+        
+        CommonPageViewModel.navigateToUpdateChapterPage(book, navigationController)
+        
+        
+        vm.updateBook(book: book) { (isSuccess) in
+            
+            self.tableview?.reloadRows(at: [indexPath], with: .automatic)
+        }
+        
+        
     }
     
     

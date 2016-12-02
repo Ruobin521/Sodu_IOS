@@ -12,22 +12,23 @@ class HotAndRecommendPageViewModel {
     
     lazy  var bookList = [Book]()
     
-    
-    
-    
     func loadCacheData(vc:BaseViewController) {
         
-        if bookList.count == 0  {
+        BookListDBHelpr.loadHomeCache(tableName: TableName.Recommend.rawValue, completion: { (isSuccess, tempList) in
             
-            let tempList =  BookCacheHelper.ReadBookListCacheFromFile(ListType.Hot)
-            
-            if (tempList.count) > 0 {
+            if  isSuccess {
                 
-                bookList += tempList
+                if self.bookList.count == 0 {
+                    
+                    self.bookList.removeAll()
+                    
+                    self.bookList += tempList!
+                    
+                    vc.tableview?.reloadData()
+                }
             }
-            
-            vc.tableview?.reloadData()
-        }
+        })
+        
     }
     
     
@@ -46,14 +47,16 @@ class HotAndRecommendPageViewModel {
                     
                 }  else {
                     
-                    let array = AnalisysBookListHtmlHelper.analisysHotHtml(html)
-                    BookCacheHelper.SavaBookListAsFile(array, .Hot)
                     self.bookList.removeAll()
+                    
+                    let array = AnalisysBookListHtmlHelper.analisysHotHtml(html)
                     self.bookList += array
                     
                     let array2 = AnalisysBookListHtmlHelper.analisysRecommendHtml(html)
-                    BookCacheHelper.SavaBookListAsFile(array2, .Recommend)
                     self.bookList += array2
+                    
+                    
+                    BookListDBHelpr.saveHomeCache(tableName: TableName.Recommend.rawValue, books: self.bookList, completion: nil)
                     
                     completion(true)
                     

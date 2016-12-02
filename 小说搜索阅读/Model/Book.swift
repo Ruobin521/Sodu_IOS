@@ -30,11 +30,15 @@ class Book: NSObject,JSON {
     /// 章节名称
     var   chapterName : String?
     
+    
     /// 更新章节列表地址
     var   updateListPageUrl : String?
     
     /// 正文页面地址
     var   contentPageUrl : String?
+    
+    /// 上次渎至章节名称
+    var   lastReadChapterName : String?
     
     /// 上次阅读至页面地址
     var   LastReadContentPageUrl : String?

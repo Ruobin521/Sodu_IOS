@@ -38,118 +38,74 @@ class SoDuSQLiteManager {
 }
 
 
-// MARK: - 书架的操作
+
+// MARK: - 通用增删改查操作
 extension SoDuSQLiteManager {
     
     
-    /// 插入或者更新一条书架记录
-    func insertOrUpdateBookInBookShelf(userId:String,book:Book) {
+    /// 插入或者更新记录 一条或多条
+    func insertOrUpdateBooks(books:[Book], tableName:String, userId:String? = nil,completion: ((_ isSuccess:Bool) ->  ())?) {
         
         
+        var sql = "INSERT OR REPLACE INTO  \(tableName) (bookid ,book) VALUES (?,?)"
         
+        if userId != nil {
+            
+            sql = "INSERT OR REPLACE INTO  \(tableName) (bookid ,book, userid) VALUES (?,?,?)"
+            
+        }
         
-    }
-    
-    
-    /// 删除一条书架记录
-    func  deleteBookInBookShelf(userId:String,book:Book) {
-        
-        
-        
-        
-    }
-    
-    
-    ///删除所有的书架记录
-    func clearAlBookInBookShelf(userId:String) {
-        
-        
-        
-    }
-    
-    
-}
-
-
-// MARK: - 对历史记录的操作
-extension SoDuSQLiteManager {
-    
-    
-    /// 插入或者更新一条历史记录
-    func insertOrUpdateHistory(book:Book,completion :@escaping (_ isSuccess:Bool) -> ()) {
-        
-        let sql = "INSERT OR REPLACE INTO  history (bookid ,book) VALUES (?,?);"
         
         queue.inTransaction { (db, rollbacl) in
             
-            guard let data = try? JSONSerialization.data(withJSONObject:book.toJSONModel() as Any , options: []) ,let bookid = book.bookId  else {
+            for book  in books {
                 
-                return
-            }
-            
-            if db?.executeUpdate(sql, withArgumentsIn: [bookid,data]) == false {
+                var parameter = [Any]()
                 
-                rollbacl?.pointee = true
                 
-                completion(false)
+                guard let  bookid = book.bookId ,let data =  book.toJSONString() else {
+                    
+                    continue
+                }
                 
-            } else {
                 
-                completion(true)
-            }
-            
-        }
-        
-    }
-    
-    
-    /// 删除一条历史记录
-    func  deleteHistory(book:Book,completion: @escaping (_ isSuccess:Bool) -> ()) {
-        
-        var sql = "DELETE FROM history WHERE bookid = "
-       
-        guard let bookid = book.bookId  else {
-            
-            return
-        }
-        
-        sql += "'"
-        
-        sql += bookid
-        
-        sql += "'"
-        
-        queue.inTransaction { (db, rollbacl) in
-            
-            if db?.executeUpdate(sql, withArgumentsIn: []) == false {
+                parameter.insert(bookid, at: 0)
+                parameter.insert(data, at: 1)
                 
-                rollbacl?.pointee = true
+                if userId != nil {
+                    
+                    parameter.append(userId!)
+                    
+                }
                 
-                completion(false)
                 
-            } else {
-                
-                completion(true)
+                if db?.executeUpdate(sql, withArgumentsIn: parameter) == false {
+                    
+                    rollbacl?.pointee = true
+                    
+                    completion?(false)
+                    
+                    return
+                    
+                }
             }
             
         }
         
-        
-        
-    }
-    
-    
-    ///删除所有的历史记录
-    func clearAllHistory() {
-        
-        
+        completion?(true)
         
     }
     
     
-    func selectHistory() -> [Book] {
+    //MARK: 查询相应表中的所有数据
+    func selectBook(tableName:String,userId:String? = nil) -> [Book] {
         
-        let sql = "SELECT  bookid, book FROM history;"
+        var sql = "SELECT  bookid, book FROM \(tableName)\n"
+        
+        if userId != nil {
+            
+            sql  += " WHERE userid ='\(userId!)' "
+        }
         
         let array = executeRecordSet(sql: sql)
         
@@ -157,36 +113,130 @@ extension SoDuSQLiteManager {
         
         for dic in array {
             
-            guard let value = dic["book"]  as? Data else {
+            
+            guard let value = dic["book"] as? String , let data =  value.data(using: .utf8) else {
                 
                 continue
             }
             
             
             //反序列化data
-            guard   let bookArray = try? JSONSerialization.jsonObject(with: value, options: []) as?  [String:String]  else {
+            guard   let bookArray = (try? JSONSerialization.jsonObject(with: data, options: [])) as?  [String:String]  else {
                 
                 continue
                 
             }
             
-            if bookArray != nil {
+            
+            let b = Book()
+            
+            for  (key,value) in bookArray {
                 
-                let b = Book()
-                
-                for  (key,value) in bookArray! {
-                    
-                    b.setValue(value, forKey: key)
-                }
-                result.append(b)
-                
+                b.setValue(value, forKey: key)
             }
+            result.append(b)
             
         }
         
         return result
     }
     
+    
+    
+    /// 删除一条或多条记录
+    func  deleteBooks(books:[Book],tableName:String,userId:String? = nil, completion: @escaping (_ isSuccess:Bool) -> ()) {
+        
+        
+        var sql = "DELETE FROM \(tableName) WHERE bookid = ?\n"
+        
+        if userId != nil {
+            
+            sql += " AND userid = ?"
+            
+        }
+        
+        
+        queue.inTransaction { (db, rollbacl) in
+            
+            for book  in books {
+                
+                guard let bookid = book.bookId  else {
+                    
+                    continue
+                }
+                
+                var parameters = [Any]()
+                
+                parameters.append(bookid)
+                
+                if userId != nil {
+                    
+                    parameters.append(userId!)
+                    
+                }
+                
+                if db?.executeUpdate(sql, withArgumentsIn: parameters) == false {
+                    
+                    rollbacl?.pointee = true
+                    
+                    completion(false)
+                    
+                    return
+                    
+                }
+            }
+            
+        }
+        
+        completion(true)
+        
+    }
+    
+    
+    ///清空表中的所有数据
+    func clearAll(tableName:String,userId:String? = nil, completion: ((_ isSuccess:Bool) -> ())?) {
+        
+        var sql = "DELETE FROM \(tableName)\n"
+        
+        if userId != nil {
+            
+            sql += "WHERE userid = '\(userId)'"
+        }
+        
+        
+        queue.inTransaction { (db, rollbacl) in
+            
+            if db?.executeUpdate(sql, withArgumentsIn: []) == false {
+                
+                rollbacl?.pointee = true
+                
+                completion?(false)
+                
+                return
+                
+            }
+        }
+        
+        completion?(true)
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+}
+
+
+
+
+
+// MARK: - 基础建表，查询操作
+extension SoDuSQLiteManager {
     
     
     func executeRecordSet(sql:String) -> [[String: Any]] {
@@ -228,13 +278,6 @@ extension SoDuSQLiteManager {
     }
     
     
-}
-
-
-
-
-
-extension SoDuSQLiteManager {
     
     func createTable() {
         

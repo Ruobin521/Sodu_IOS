@@ -19,19 +19,22 @@ class RankListPageViewModel {
     
     func loadCacheData(_ vc:BaseViewController) {
         
-        if bookList.count == 0 && pageIndex == 0 {
+        BookListDBHelpr.loadHomeCache(tableName: TableName.Rank.rawValue, completion: { (isSuccess, tempList) in
             
-            let tempList =  BookCacheHelper.ReadBookListCacheFromFile(ListType.Rank)
-            
-            if (tempList.count) > 0 {
+            if  isSuccess {
                 
-                bookList.removeAll()
-                
-                bookList += tempList
-                
-                vc.tableview?.reloadData()
+                if self.bookList.count == 0 && self.pageIndex == 0 {
+                    
+                    self.bookList.removeAll()
+                    
+                    self.bookList += tempList!
+                    
+                    vc.tableview?.reloadData()
+                }
             }
-        }
+        })
+        
+        
     }
     
     
@@ -59,7 +62,7 @@ class RankListPageViewModel {
                         
                         self.bookList.removeAll()
                         
-                        BookCacheHelper.SavaBookListAsFile(array, .Rank)
+                        BookListDBHelpr.saveHomeCache(tableName: TableName.Rank.rawValue, books: array, completion: nil)
                     }
                     
                     self.bookList += array

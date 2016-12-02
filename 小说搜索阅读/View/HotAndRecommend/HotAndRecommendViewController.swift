@@ -18,7 +18,10 @@ class HotAndRecommendViewController: BaseViewController {
     
     override func initData() {
         
+        vm.loadCacheData(vc: self)
+        
         loadData()
+        
     }
     
     
@@ -37,7 +40,7 @@ class HotAndRecommendViewController: BaseViewController {
         
         isLoading = true
         
-        vm.loadCacheData(vc: self)
+        
         
         vm.loadData { (isSuccess) in
             
@@ -98,7 +101,7 @@ extension HotAndRecommendViewController {
         
     }
     
-     
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

@@ -18,7 +18,7 @@ class RankViewController: BaseViewController {
     
     override func initData() {
         
-        
+        vm.loadCacheData(self)
         
         loadData()
     }
@@ -56,7 +56,7 @@ class RankViewController: BaseViewController {
         
         isLoading = true
         
-        vm.loadCacheData(self)
+       
         
         if pageindex > 0 {
             
