@@ -37,7 +37,7 @@ extension  PersonCenterViewController {
         
         self.view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
         
-        txtUserName.text = UserDefaultsHelper.getUserDefaultByKey(key: .UserNameKey)
+        txtUserName.text =  ViewModelInstance.instance.userId
         
     }
 }

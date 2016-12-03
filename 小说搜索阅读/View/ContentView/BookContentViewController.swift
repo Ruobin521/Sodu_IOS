@@ -23,6 +23,9 @@ class BookContentViewController: UIViewController {
     
     var loadingWindow:LoadingWidthColoseButtonView!
     
+    
+    var layer:CALayer!
+    
     var isLoading = false {
         
         
@@ -31,7 +34,6 @@ class BookContentViewController: UIViewController {
             loadingWindow.isHidden = !isLoading
             
             setPageViewBounces(bool: !isLoading)
-            
             
             
         }
@@ -54,6 +56,26 @@ class BookContentViewController: UIViewController {
     @IBOutlet weak var topMenu: UIView!
     
     @IBOutlet weak var botomMenu: UIView!
+    
+    @IBOutlet weak var settingView: UIView!
+    
+    @IBOutlet weak var lightValueslider: UISlider!
+    
+    
+    
+    @IBOutlet weak var btnMinLineSpace: UIButton!
+    
+    @IBOutlet weak var btnMidLineSpace: UIButton!
+    
+    @IBOutlet weak var btnMaxLineSpace: UIButton!
+    
+    @IBOutlet weak var btnFontSizeMinus: UIButton!
+    
+    @IBOutlet weak var btnFontSizePlus: UIButton!
+    
+    
+    @IBOutlet weak var txtFontSize: UILabel!
+    
     
     
     func cancleAction() {
@@ -162,7 +184,7 @@ class BookContentViewController: UIViewController {
             }
             
         }
-       
+        
     }
     
     
@@ -392,25 +414,6 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
             index  += 1
         }
         
-//        if index == 99 {
-//            
-//            vm.SetCurrentCatalog(catalog: catalog, completion: nil)
-//            
-//            self.initContentData(true)
-//            
-//            return
-//
-//            
-//        } else if index == -99 {
-//            
-//            vm.SetCurrentCatalog(catalog: catalog, completion: nil)
-//            
-//            self.initContentData(false)
-//            
-//             return
-//            
-//        }
-        
         
         if   let  result = getViewControllerByCatalog(catalog,index:index)  {
             
@@ -435,7 +438,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
     // MARK: 根据索引获取数据
     func getViewControllerByCatalog(_ cata:BookCatalog?,index:Int) -> ContentPageViewController? {
         
-      guard  let catalog = cata ,let  catalogUrl = catalog.chapterUrl  else{
+        guard  let catalog = cata ,let  catalogUrl = catalog.chapterUrl  else{
             
             return nil
             
@@ -597,7 +600,7 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
         //正常切换
         if index >= 0  &&  index < currentPages.count {
             
-           
+            
             controller.chapterName = catalog.chapterName
             
             controller.content = currentPages[index]
@@ -728,6 +731,7 @@ extension BookContentViewController {
             setPageViewBounces(bool: true)
         }
         
+        settingView.isHidden = true
         
         UIApplication.shared.setStatusBarHidden(true, with: .slide)
         
@@ -820,6 +824,8 @@ extension BookContentViewController {
         print("点击下载按钮")
         
         
+        
+        
     }
     
     
@@ -828,9 +834,109 @@ extension BookContentViewController {
         
         print("点击设置按钮")
         
+        settingView.isHidden = !settingView.isHidden
+        
+    }
+    
+    //MARK: 亮度调节
+    func lightValueChanged(obj:UISlider) {
+        
+        let value = Float(Float(1) -  obj.value)
+        
+        layer.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: CGFloat(value)).cgColor
+        
+        vm.lightValue =  obj.value
     }
     
     
+    //MARK: 行间距调节
+    func lineSpaceValueChanged(obj:UIButton) {
+        
+        let index =  obj.tag
+        
+        vm.lineSpace =  vm.lineSpaces[index]
+        
+        btnMinLineSpace.isSelected = vm.lineSpace == vm.lineSpaces[0] ? true :false
+        
+        btnMidLineSpace.isSelected = vm.lineSpace == vm.lineSpaces[1] ? true :false
+        
+        btnMaxLineSpace.isSelected = vm.lineSpace == vm.lineSpaces[2] ? true :false
+        
+        
+        resetContent()
+    }
+    
+    
+    // MARK: 调整字体
+    func fontSizeChanged(btn:UIButton!) {
+        
+        let index = btn.tag
+        
+        
+        if index == 0 {
+            
+            if vm.fontSize == 16 {
+                
+                return
+            }
+            
+            vm.fontSize -= 1
+            
+        } else {
+            
+            if vm.fontSize == 26 {
+                
+                return
+            }
+            
+            vm.fontSize += 1
+        }
+        
+        txtFontSize.text = String(Int(vm.fontSize))
+        resetContent()
+        
+    }
+    
+    
+    func resetContent() {
+        
+        if vm.currentCatalog?.chapterContent == nil {
+            
+            return
+        }
+        
+        guard   let controller  =  self.pageController.viewControllers?[0] as? ContentPageViewController,let catalog = controller.catalog else {
+            
+            return
+        }
+        
+        
+        if vm.contentDic[catalog.chapterUrl!] != nil {
+            
+            vm.contentDic.removeValue(forKey: catalog.chapterUrl!)
+            
+        }
+        
+        
+        vm.splitPages(html: catalog.chapterContent) { (pages) in
+            
+            self.vm.currentChapterPageList = pages
+            
+            self.vm.contentDic[catalog.chapterUrl!] = pages
+            
+            DispatchQueue.main.async {
+                
+                if  let result = self.getViewControllerByCatalog(catalog, index: controller.tag) {
+                    
+                    self.pageController.setViewControllers([result], direction:.reverse, animated: false, completion: nil)
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
 }
 
 
@@ -854,6 +960,7 @@ extension BookContentViewController {
         
         btnRetry.isHidden = true
         
+        
         setBottonBarButton()
         
         setPageViewController()
@@ -866,7 +973,12 @@ extension BookContentViewController {
         
         setBattaryInfo()
         
+        setupSettingPanel()
+        
     }
+    
+    
+    
     
     
     
@@ -888,13 +1000,28 @@ extension BookContentViewController {
     // MARK: 初始化PageViewController
     func setPageViewController() {
         
-        pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: vm.orientation, options: nil)
         
         pageController.dataSource = self
         
         pageController.delegate = self
         
         pageController.view.backgroundColor = UIColor.clear
+//        
+//        if vm.orientation == .vertical {
+//            
+//            for v in  pageController.view.subviews {
+//                
+//                if v.isKind(of:UIScrollView.self) {
+//                    
+//                    (v as! UIScrollView).isPagingEnabled = false
+//                    
+//                }
+//                
+//            }
+//        }
+//        
+        
         
         
         let viewControllers:[ContentPageViewController] = [createEmptyContenPageController()]
@@ -906,8 +1033,8 @@ extension BookContentViewController {
         self.addChildViewController(pageController)
         
         self.view.insertSubview(pageController.view, at: 0)
-    
-            
+        
+        
         
         
     }
@@ -1113,6 +1240,114 @@ extension BookContentViewController {
         UIApplication.shared.isStatusBarHidden = false
         
     }
+}
+
+
+extension BookContentViewController {
+    
+    //MARK: 初始化设置面板
+    func setupSettingPanel() {
+        
+        settingView.isHidden = true
+        
+        setupCALayer()
+        
+        setupSlider()
+        
+        setupFontSizeButton()
+        
+        setupLineSpaceButton()
+        
+        txtFontSize.text = String(Int(vm.fontSize))
+        
+    }
+    
+    /// MARK: 设置slider
+    func setupSlider() {
+        
+        lightValueslider.setThumbImage(UIImage(named: "slider"), for: .normal)
+        
+        lightValueslider.addTarget(self, action: #selector(lightValueChanged), for: .valueChanged)
+        
+        lightValueslider.value = vm.lightValue
+        
+        
+    }
+    
+    
+    // MARK: 设置遮罩
+    func setupCALayer()  {
+        
+        layer = CALayer()
+        
+        layer.frame = UIScreen.main.bounds
+        
+        let value =  Float(1) -  vm.lightValue
+        
+        layer.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: CGFloat(value)).cgColor
+        
+        self.view.layer.addSublayer(layer)
+        
+    }
+    
+    
+    // MARK: 设置字体加减按钮
+    func setupFontSizeButton()  {
+        
+        let array:[UIButton]! = [btnFontSizeMinus,btnFontSizePlus]
+        
+        for  (i,btn) in array.enumerated() {
+            
+            btn.layer.cornerRadius = 5
+            btn.layer.borderWidth = 1.0
+            btn.layer.borderColor = UIColor.white.cgColor
+            btn.layer.masksToBounds = true
+            btn.backgroundColor = UIColor.clear
+            btn.setBackgroundImage(UIImage.imageWithColor(color: UIColor.clear), for: UIControlState.normal)
+            btn.setBackgroundImage(UIImage.imageWithColor(color:  UIColor(red:19.0/255.0, green: 19.0/255.0, blue:19.0/255.0, alpha: 1)), for: UIControlState.highlighted)
+            btn.tag = i
+            btn.addTarget(self, action: #selector(fontSizeChanged), for: .touchUpInside)
+        }
+        
+        
+    }
+    
+    
+    // MARK: 行高按钮
+    func setupLineSpaceButton()  {
+        
+        let array:[UIButton]! = [btnMinLineSpace,btnMidLineSpace,btnMaxLineSpace]
+        
+        for (i,btn) in array.enumerated() {
+            
+            btn.layer.cornerRadius = 5
+            btn.layer.borderWidth = 1.0
+            btn.layer.masksToBounds = true
+            btn.layer.borderColor = UIColor.white.cgColor
+            btn.backgroundColor = UIColor.clear
+            btn.setBackgroundImage(UIImage.imageWithColor(color: UIColor.clear), for: UIControlState.normal)
+            
+            btn.setBackgroundImage(UIImage.imageWithColor(color: UIColor(red:19.0/255.0, green: 19.0/255.0, blue:19.0/255.0, alpha: 1)), for: UIControlState.highlighted)
+            
+            btn.tag = i
+            
+            btn.addTarget(self, action: #selector(lineSpaceValueChanged), for: .touchUpInside)
+            
+        }
+        
+        btnMinLineSpace.setImage( UIImage(named: "lineSpace_min_selected"), for: .selected)
+        btnMinLineSpace.isSelected = vm.lineSpace == vm.lineSpaces[0] ? true :false
+        
+        btnMidLineSpace.setImage( UIImage(named: "lineSpace_mid_selected"), for: .selected)
+        btnMidLineSpace.isSelected = vm.lineSpace == vm.lineSpaces[1] ? true :false
+        
+        btnMaxLineSpace.setImage( UIImage(named: "lineSpace_max_selected"), for: .selected)
+        btnMaxLineSpace.isSelected = vm.lineSpace == vm.lineSpaces[2] ? true :false
+        
+        
+        
+    }
+    
 }
 
 

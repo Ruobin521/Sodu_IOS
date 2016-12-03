@@ -21,47 +21,47 @@ enum CatalogPosion {
 class BookContentPageViewModel {
     
     
-    
-    
     //显示部分
     let  moonlightBackColor:UIColor = #colorLiteral(red: 0.04705882353, green: 0.04705882353, blue: 0.04705882353, alpha: 1)
     
     let  moonlightForegroundColor:UIColor = #colorLiteral(red: 0.3529411765, green: 0.3529411765, blue: 0.3529411765, alpha: 1)
     
     
-    var  daylightBackColor:UIColor  {
-        
+    let lineSpaces:[Float] = [5.0,10.0,15.0]
+    
+    
+    private var _contentAndTextColorIndex:Int = -1
+    
+    var contentAndTextColorIndex:Int {
         
         get {
             
-            return UIColor.colorWithHexString(hex: ViewModelInstance.instance.setting.contentBackColor)
-            
+            return  _contentAndTextColorIndex
         }
         
-        set{
+        set {
             
-            ViewModelInstance.instance.setting.setValue(SettingKey.ContentBackColor, newValue)
+            if _contentAndTextColorIndex != newValue {
+                
+                ViewModelInstance.instance.setting.contentAndTextColorIndex = newValue
+                
+                let dic = ContentColorInfo[newValue]
+                
+                daylightBackColor = UIColor.colorWithHexString(hex: dic["backColor"]!)
+                
+                daylightForegroundColor = UIColor.colorWithHexString(hex: dic["textColor"]!)
+                
+            }
             
         }
         
     }
     
     
-    var  daylightForegroundColor:UIColor  {
-        
-        
-        get {
-            
-            return  UIColor.colorWithHexString(hex: ViewModelInstance.instance.setting.contentTextColor)
-        }
-        
-        set{
-            
-            ViewModelInstance.instance.setting.setValue(SettingKey.ContentTextColor, newValue)
-            
-        }
-        
-    }
+    var  daylightBackColor:UIColor!
+    
+    
+    var  daylightForegroundColor:UIColor!
     
     
     
@@ -74,7 +74,7 @@ class BookContentPageViewModel {
         }
         set {
             
-            ViewModelInstance.instance.setting.setValue(SettingKey.ContentTextSize, newValue)
+            ViewModelInstance.instance.setting.contentTextSize = newValue
         }
         
         
@@ -91,7 +91,22 @@ class BookContentPageViewModel {
         }
         set {
             
-            ViewModelInstance.instance.setting.setValue(SettingKey.ContentLineSpace, newValue)
+            ViewModelInstance.instance.setting.contentLineSpace = newValue
+            
+        }
+        
+    }
+    
+    var lightValue:Float  {
+        
+        get {
+            
+            return ViewModelInstance.instance.setting.contentLightValue
+            
+        }
+        set {
+            
+            ViewModelInstance.instance.setting.contentLightValue =  newValue
             
         }
         
@@ -108,11 +123,9 @@ class BookContentPageViewModel {
         }
         set {
             
-            ViewModelInstance.instance.setting.setValue(SettingKey.IsMoomlightMode, newValue)
+            ViewModelInstance.instance.setting.isMoomlightMode = newValue
             
         }
-        
-        
         
     }
     
@@ -121,30 +134,11 @@ class BookContentPageViewModel {
         
         get  {
             
-            let ori =   ViewModelInstance.instance.setting.contentOrientation
-            
-            if ori == "H" {
-                
-                return  UIPageViewControllerNavigationOrientation.horizontal
-                
-            } else {
-                
-                return  UIPageViewControllerNavigationOrientation.vertical
-            }
-            
+            return  ViewModelInstance.instance.setting.contentOrientation
         }
         set {
             
-            if newValue == UIPageViewControllerNavigationOrientation.horizontal {
-                
-                return    ViewModelInstance.instance.setting.setValue(SettingKey.IsMoomlightMode, "H")
-                
-                
-            } else {
-                
-                return    ViewModelInstance.instance.setting.setValue(SettingKey.IsMoomlightMode, "V")
-                
-            }
+            ViewModelInstance.instance.setting.contentOrientation = newValue
         }
         
     }
@@ -217,6 +211,17 @@ class BookContentPageViewModel {
     }
     
     
+    init() {
+        
+        let index = ViewModelInstance.instance.setting.contentAndTextColorIndex
+        
+        
+        contentAndTextColorIndex = index
+        
+        
+    }
+    
+    
     //MARK: 设置当前章节，这是设置当前章节的唯一入口
     func SetCurrentCatalog(catalog:BookCatalog?,completion:(()->())?) {
         
@@ -268,7 +273,7 @@ class BookContentPageViewModel {
             })
             
         }
-
+        
         
         if nextCatalog != nil {
             
@@ -501,6 +506,7 @@ class BookContentPageViewModel {
         
         var count = retryCount
         
+        
         ///上一章节
         if posion == CatalogPosion.Before {
             
@@ -516,17 +522,23 @@ class BookContentPageViewModel {
                 
             else  if catalog.chapterContent != nil {
                 
-                self.preTask?.cancel()
+                DispatchQueue.global().async {
+                    
+                    self.preTask?.cancel()
+                    
+                    self.preTask = nil
+                    
+                    self.splitPages(html: catalog.chapterContent, completion: { (pages) in
+                        
+                        self.contentDic[catalog.chapterUrl!] = pages
+                        
+                        completion?(true)
+                        
+                    })
+                    
+                }
                 
-                self.preTask = nil
                 
-                self.splitPages(html: catalog.chapterContent, completion: { (pages) in
-                    
-                    self.contentDic[catalog.chapterUrl!] = pages
-                    
-                    completion?(true)
-                    
-                })
                 
             } else {
                 
@@ -536,14 +548,19 @@ class BookContentPageViewModel {
                     
                     if isSuccess {
                         
-                        self.splitPages(html: html, completion: { (pages) in
+                        catalog.chapterContent = html
+                        DispatchQueue.global().async {
                             
-                            
-                            self.contentDic[catalog.chapterUrl!] = pages
-                            
-                            completion?(true)
-                            
-                        })
+                            self.splitPages(html: html, completion: { (pages) in
+                                
+                                
+                                self.contentDic[catalog.chapterUrl!] = pages
+                                
+                                completion?(true)
+                                
+                            })
+                        }
+                        
                         
                     } else {
                         
@@ -556,7 +573,6 @@ class BookContentPageViewModel {
                             
                         } else {
                             
-                            
                             self.isPreCanclled = false
                             completion?(false)
                             
@@ -567,6 +583,7 @@ class BookContentPageViewModel {
                 
             }
         }
+            
             
             /// 下一章节
         else if posion == CatalogPosion.Next {
@@ -583,34 +600,45 @@ class BookContentPageViewModel {
                 
             else  if catalog.chapterContent != nil {
                 
-                self.nextTask?.cancel()
+                DispatchQueue.global().async {
+                    
+                    self.nextTask?.cancel()
+                    
+                    self.nextTask = nil
+                    
+                    self.splitPages(html: catalog.chapterContent, completion: { (pages) in
+                        
+                        self.contentDic[catalog.chapterUrl!] = pages
+                        
+                        completion?(true)
+                        
+                    })
+                    
+                }
                 
-                self.nextTask = nil
-                
-                self.splitPages(html: catalog.chapterContent, completion: { (pages) in
-                    
-                    self.contentDic[catalog.chapterUrl!] = pages
-                    
-                    completion?(true)
-                    
-                })
                 
             } else {
                 
                 nextTask = self.getCatalogChapterContent(catalog: catalog) { (isSuccess,html) in
                     
                     self.nextTask = nil
-                    
+                    catalog.chapterContent = html
+
                     if isSuccess {
                         
-                        self.splitPages(html: html, completion: { (pages) in
+                        DispatchQueue.global().async {
                             
+                            self.splitPages(html: html, completion: { (pages) in
+                                
+                                
+                                self.contentDic[catalog.chapterUrl!] = pages
+                                
+                                completion?(true)
+                                
+                            })
                             
-                            self.contentDic[catalog.chapterUrl!] = pages
-                            
-                            completion?(true)
-                            
-                        })
+                        }
+                        
                         
                     } else {
                         
@@ -651,34 +679,42 @@ class BookContentPageViewModel {
                 
             else  if catalog.chapterContent != nil {
                 
-                self.splitPages(html: catalog.chapterContent, completion: { (pages) in
+                DispatchQueue.global().async {
                     
-                    self.currentChapterPageList  = pages
+                    self.splitPages(html: catalog.chapterContent, completion: { (pages) in
+                        
+                        self.currentChapterPageList  = pages
+                        
+                        self.contentDic[catalog.chapterUrl!] = pages
+                        
+                        completion?(true)
+                        
+                    })
                     
-                    self.contentDic[catalog.chapterUrl!] = pages
-                    
-                    completion?(true)
-                    
-                })
-                
+                }
                 
             } else {
                 
                 currentTask = self.getCatalogChapterContent(catalog: catalog) { (isSuccess,html) in
                     
                     self.currentTask = nil
-                    
+                    catalog.chapterContent = html
+
                     if isSuccess {
                         
-                        self.splitPages(html: html, completion: { (pages) in
+                        DispatchQueue.global().async {
                             
-                            self.currentChapterPageList  = pages
+                            self.splitPages(html: html, completion: { (pages) in
+                                
+                                self.currentChapterPageList  = pages
+                                
+                                self.contentDic[catalog.chapterUrl!] = pages
+                                
+                                completion?(true)
+                                
+                            })
                             
-                            self.contentDic[catalog.chapterUrl!] = pages
-                            
-                            completion?(true)
-                            
-                        })
+                        }
                         
                     } else {
                         
@@ -795,90 +831,89 @@ extension BookContentPageViewModel {
         
         var pages:[String] = [String]()
         
-        DispatchQueue.global().async {
+        
+        
+        guard  let str = html else {
             
-            guard  let str = html else {
+            return
+        }
+        
+        let paragraphes = str.components(separatedBy: "\n")
+        
+        if paragraphes.count  == 0 {
+            
+            return
+        }
+        
+        
+        let height = UIScreen.main.bounds.height - 30 - 30
+        
+        let width = UIScreen.main.bounds.width -  15 - 6
+        
+        var tempPageContent :String = ""
+        
+        for j in 0..<paragraphes.count {
+            
+            let str = paragraphes[j]
+            
+            var tempStr = tempPageContent == "" ?   str  : tempPageContent +  "\r" + str
+            
+            let  size =  tempStr.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: self.getTextContetAttributes(), context: nil)
+            
+            
+            if  size.height < height {
                 
-                return
-            }
-            
-            let paragraphes = str.components(separatedBy: "\n")
-            
-            if paragraphes.count  == 0 {
+                tempPageContent =   tempStr
                 
-                return
-            }
-            
-            
-            let height = UIScreen.main.bounds.height - 30 - 30
-            
-            let width = UIScreen.main.bounds.width -  15 - 6
-            
-            var tempPageContent :String = ""
-            
-            for j in 0..<paragraphes.count {
+            } else {
                 
-                let str = paragraphes[j]
+                tempPageContent += "\r"
                 
-                var tempStr = tempPageContent == "" ?   str  : tempPageContent +  "\r" + str
-                
-                let  size =  tempStr.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: self.getTextContetAttributes(), context: nil)
-                
-                
-                if  size.height < height {
+                for (_,char) in str.characters.enumerated() {
                     
-                    tempPageContent =   tempStr
+                    let ch = String(char)
                     
-                } else {
+                    tempStr = tempPageContent + ch
                     
-                    tempPageContent += "\r"
+                    let   tempSize =  tempStr.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: self.getTextContetAttributes(), context: nil)
                     
-                    for (_,char) in str.characters.enumerated() {
+                    
+                    if  tempSize.height > height {
                         
-                        let ch = String(char)
+                        pages.append(tempPageContent)
                         
-                        tempStr = tempPageContent + ch
+                        //                        let temp =  tempPageContent.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: getTextContetAttributes(), context: nil)
                         
-                        let   tempSize =  tempStr.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: self.getTextContetAttributes(), context: nil)
+                        // print("将要添加到页面的文本大小:\(temp)")
                         
+                        tempPageContent = ch
                         
-                        if  tempSize.height > height {
-                            
-                            pages.append(tempPageContent)
-                            
-                            //                        let temp =  tempPageContent.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: getTextContetAttributes(), context: nil)
-                            
-                            // print("将要添加到页面的文本大小:\(temp)")
-                            
-                            tempPageContent = ch
-                            
-                        } else {
-                            
-                            tempPageContent += ch
-                        }
+                    } else {
                         
+                        tempPageContent += ch
                     }
                     
                 }
                 
-                
-                if j == (paragraphes.count - 1) && !tempPageContent.isEmpty {
-                    
-                    pages.append(tempPageContent)
-                }
-                
             }
             
-            if pages.count == 0 {
+            
+            if j == (paragraphes.count - 1) && !tempPageContent.isEmpty {
                 
-                completion(nil)
-                
-            } else {
-                
-                completion(pages)
+                pages.append(tempPageContent)
             }
             
         }
+        
+        if pages.count == 0 {
+            
+            completion(nil)
+            
+        } else {
+            
+            completion(pages)
+        }
+        
         
     }
     

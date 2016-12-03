@@ -30,7 +30,7 @@ class ViewModelInstance {
             
             if userLogon {
                 
-                userId = UserDefaultsHelper.getUserDefaultByKey(key: .UserNameKey)
+                userId = UserDefaultsHelper.getStringValue(key: .UserNameKey)
 
             } else {
                 

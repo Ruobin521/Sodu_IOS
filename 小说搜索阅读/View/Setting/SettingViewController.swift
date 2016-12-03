@@ -69,9 +69,17 @@ extension SettingViewController {
         
         cell.txtSetting.text = setting?.title
         
-        cell.btnSwitch?.addTarget(self, action: #selector(switchAtion), for: .touchUpInside)
         
-        cell.btnSwitch?.tag = setting?.index ??  0
+        if setting?.settingType == SettingType.Swich {
+            
+            cell.btnSwitch?.addTarget(self, action: #selector(switchAtion), for: .touchUpInside)
+            
+            cell.btnSwitch?.isOn = (setting?.value as? Bool) ?? false
+            
+            cell.btnSwitch?.tag = (setting?.index)!
+
+        }
+        
         
         return cell
     }

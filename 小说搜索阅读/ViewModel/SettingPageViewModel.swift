@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 enum SettingKey : String {
@@ -24,37 +25,173 @@ enum SettingKey : String {
     case IsMoomlightMode = "IsMoomlightMode"
     case ContentTextSize = "ContentTextSize"
     case ContentLineSpace = "ContentLineSpace"
-    case ContentTextColor = "ContentTextColor"
-    case ContentBackColor = "ContentBackColor"
+    case ContentAndTextColorIndex = "ContentAndTextColorIndex"
+    
+    case ContentLightValue = "ContentLightValue"
+    
 }
 
 class SettingPageViewModel:NSObject {
     
     
     
-     var isAutoAddToShelf = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsAutoAddToShelf)
-     var isDownLoadOnWWAN = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsDownLoadOnWWAN)
+    
+    lazy var isAutoAddToShelf:Bool =  UserDefaultsHelper.getBoolValue(key:  .IsAutoAddToShelf)
     
     
-    //正文
+    lazy var isDownLoadOnWWAN = UserDefaultsHelper.getBoolValue(key:  .IsDownLoadOnWWAN)
+    
+    
+    //正文方向
+    lazy private var  _contentOrientation:UIPageViewControllerNavigationOrientation = ( UserDefaultsHelper.getStringValue(key:  .ContentOrientation) ==  "V" ) ? UIPageViewControllerNavigationOrientation.vertical : UIPageViewControllerNavigationOrientation.horizontal
+    
     
     /// 滚动方向
-    lazy var contentOrientation = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentOrientation) ?? "H"
+    var contentOrientation:UIPageViewControllerNavigationOrientation  {
+        
+        get {
+            
+            return _contentOrientation
+        }
+        
+        set {
+            
+            if newValue != _contentOrientation {
+                
+                _contentOrientation = newValue
+                
+                if newValue == .horizontal {
+                    
+                    UserDefaultsHelper.setUserDefaultsValueForKey(key: .ContentOrientation, value: "H")
+                    
+                } else {
+                    
+                    UserDefaultsHelper.setUserDefaultsValueForKey(key: .ContentOrientation, value: "V")
+                    
+                }
+                
+                
+            }
+        }
+        
+    }
+    
+    
     
     /// 夜间模式
-    lazy var isMoomlightMode = UserDefaultsHelper.getBoolUserDefaultByKey(key:  .IsMoomlightMode)
+    lazy  private var _isMoomlightMode = UserDefaultsHelper.getBoolValue(key:  .IsMoomlightMode)
     
-    /// 正文字体大小
-    lazy var contentTextSize:Float = (UserDefaultsHelper.getFloatUserDefaultByKey(key: .ContentTextSize)  == Float(0) ) ? Float(20) : UserDefaultsHelper.getFloatUserDefaultByKey(key: .ContentTextSize)
+    var isMoomlightMode:Bool  {
+        
+        get {
+            
+            return _isMoomlightMode
+        }
+        
+        set {
+            
+            if newValue != _isMoomlightMode {
+                
+                _isMoomlightMode = newValue
+                UserDefaultsHelper.setUserDefaultsValueForKey(key: .IsMoomlightMode, value: newValue)
+                
+            }
+        }
+        
+    }
     
-    /// 行高
-    lazy var contentLineSpace:Float = (UserDefaultsHelper.getFloatUserDefaultByKey(key: .ContentLineSpace)  == Float(0) ) ? Float(10) :  UserDefaultsHelper.getFloatUserDefaultByKey(key: .ContentLineSpace)
     
-    /// 背景色
-    lazy var contentBackColor = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentBackColor) ?? "#AAC5AA"
     
-    /// 字体颜色
-    lazy var contentTextColor = UserDefaultsHelper.getUserDefaultByKey(key:  .ContentTextColor) ??  "#1B3D25"
+    
+    /// 正文字体大小 16 - 26 默认20
+    lazy private var _contentTextSize:Float = (UserDefaultsHelper.getFloatValue(key: .ContentTextSize)  == Float(0) ) ? Float(20) : UserDefaultsHelper.getFloatValue(key: .ContentTextSize)
+    
+    var contentTextSize:Float  {
+        
+        get {
+            
+            return _contentTextSize
+        }
+        
+        set {
+            
+            if newValue != _contentTextSize {
+                
+                _contentTextSize = newValue
+                UserDefaultsHelper.setUserDefaultsValueForKey(key: .ContentTextSize, value: newValue)
+                
+            }
+        }
+        
+    }
+    
+    
+    
+    /// 行高 范围从5 - 25 默认10
+    lazy private var _contentLineSpace:Float = (UserDefaultsHelper.getFloatValue(key: .ContentLineSpace)  == Float(0) ) ? Float(10) :  UserDefaultsHelper.getFloatValue(key: .ContentLineSpace)
+    
+    var contentLineSpace:Float  {
+        
+        get {
+            
+            return _contentLineSpace
+        }
+        
+        set {
+            
+            if newValue != _contentLineSpace {
+                
+                _contentLineSpace = newValue
+                UserDefaultsHelper.setUserDefaultsValueForKey(key: .ContentLineSpace, value: newValue)
+            }
+        }
+        
+    }
+    
+    
+    /// 亮度
+    lazy private var _contentLightValue:Float = (UserDefaultsHelper.getFloatValue(key: .ContentLightValue)  == Float(0) ) ? Float(1) :  UserDefaultsHelper.getFloatValue(key: .ContentLightValue)
+    
+    var contentLightValue:Float  {
+        
+        get {
+            
+            return _contentLightValue
+        }
+        
+        set {
+            
+            if newValue != _contentLightValue {
+                
+                _contentLightValue = newValue
+                UserDefaultsHelper.setUserDefaultsValueForKey(key: .ContentLightValue, value: newValue)
+            }
+        }
+        
+    }
+    
+    
+    /// 背景色，字体颜色 index 获取索引
+    lazy private var _contentAndTextColorIndex = UserDefaultsHelper.getIntValue(key:.ContentAndTextColorIndex)
+    
+    var contentAndTextColorIndex:Int  {
+        
+        get {
+            
+            return _contentAndTextColorIndex
+        }
+        
+        set {
+            
+            if newValue != _contentAndTextColorIndex {
+                
+                _contentAndTextColorIndex = newValue
+                
+                UserDefaultsHelper.setUserDefaultsValueForKey(key: .ContentAndTextColorIndex, value: newValue)
+            }
+        }
+        
+    }
     
     
     
@@ -88,15 +225,6 @@ extension SettingPageViewModel {
             
             isDownLoadOnWWAN = value as! Bool
             
-        case SettingKey.IsMoomlightMode:
-            
-            if isMoomlightMode != (value as? Bool) {
-                
-                isMoomlightMode = value as! Bool
-            }
-            
-            return
-            
         default: break
             
         }
@@ -116,8 +244,8 @@ extension  SettingPageViewModel {
         let settingInfo = [["imageName": "person", "title": "个人中心","type":"0","controller":"PersonCenterViewController"],
                            ["imageName": "download", "title": "下载中心","type":"0","controller":"DownCenterViewController"],
                            ["imageName": "history", "title": "历史记录","type":"0","controller":"HistoryPageViewController"],
-                           ["key":"IsAutoAddToShelf","property":"isAutoAddToShelf","imageName": "addbook", "title": "自动添加到书架存","type":"1"],
-                           ["key":"IsDownLoadOnWWAN","property":"isDownLoadOnWWAN","imageName": "wwan", "title": "在2G/3G/4G下缓存","type":"1"],
+                           ["index" : "0" , "key":"IsAutoAddToShelf","property":"isAutoAddToShelf","imageName": "addbook", "title": "自动添加到书架存","type":"1"],
+                           ["index": "1" ,"key":"IsDownLoadOnWWAN","property":"isDownLoadOnWWAN","imageName": "wwan", "title": "在2G/3G/4G下缓存","type":"1"],
                            ]
         
         
@@ -158,7 +286,7 @@ extension  SettingPageViewModel {
                 
                 settingItem.settingType = SettingType.Swich
                 
-                if let rawValue = dic["key"], let key =  SettingKey(rawValue: rawValue) ,let propertyName =  dic["property"]{
+                if let rawValue = dic["key"], let key =  SettingKey(rawValue: rawValue) ,let propertyName =  dic["property"] ,let index = dic["index"]{
                     
                     settingItem.settingKey = key
                     
@@ -166,10 +294,12 @@ extension  SettingPageViewModel {
                     
                     settingItem.value = value
                     
+                    settingItem.index = Int(index)!
+                    
                     switchSettingList.append(settingItem)
                     
                 }
-             
+                
                 
             }
             
@@ -178,3 +308,5 @@ extension  SettingPageViewModel {
     }
     
 }
+
+

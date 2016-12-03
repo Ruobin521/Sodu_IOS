@@ -29,3 +29,9 @@ let  AddHistoryNotification = "AddHistoryNotification"
 
 
 let SoDuDefaultTinkColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)
+
+
+/// 按钮数据数组
+let ContentColorInfo = [["index":"0","backColor": "#AAC5AA", "textColor": "#1B3D25"]]
+    
+

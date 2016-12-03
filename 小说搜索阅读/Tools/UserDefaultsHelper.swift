@@ -16,44 +16,56 @@ import UIKit
 class UserDefaultsHelper {
     
     
-    static func getUserDefaultByKey(key:SettingKey) -> String? {
+    static func getStringValue(key:SettingKey) -> String? {
         
-        let value = UserDefaults.standard.value(forKey: key.rawValue) as? String
-        
-        return value
-    }
-    
-    static func getBoolUserDefaultByKey(key:SettingKey) -> Bool {
-         
-        let value = UserDefaults.standard.value(forKey: key.rawValue) as? Bool  ?? false
-        
-        print( "获取设置数据完成：\(key.rawValue) : \(value)")
-        
-        return value
-    }
-    
-    
-    static func getFloatUserDefaultByKey(key:SettingKey) -> Float {
-        
-        guard let value = UserDefaults.standard.value(forKey: key.rawValue) as? String else{
+        guard  let value = UserDefaults.standard.string(forKey: key.rawValue) else {
             
-            return 0
+            return nil
         }
         
-        
-        return Float(value)!
+        return value
     }
     
     
+    
+    
+    static func getFloatValue(key:SettingKey) -> Float {
+        
+        let value = UserDefaults.standard.float(forKey: key.rawValue)
+        
+        return value
+    }
+    
+    
+    
+    
+    static func getIntValue(key:SettingKey) -> Int {
+        
+        let value = UserDefaults.standard.integer(forKey: key.rawValue)
+        
+        return value
+    }
+    
+    
+    
+    static func getBoolValue(key:SettingKey) -> Bool {
+        
+        let value = UserDefaults.standard.bool(forKey: key.rawValue)
+        
+        return value
+        
+    }
     
     
     static func setUserDefaultsValueForKey(key:SettingKey,value:Any) {
         
         UserDefaults.standard.set(value, forKey: key.rawValue)
         
-        let value = UserDefaults.standard.value(forKey: key.rawValue) as? Bool
+        let value = UserDefaults.standard.value(forKey: key.rawValue)
         
         print( "存储设置数据完成：\(key.rawValue) : \(value)")
+        
+        UserDefaults.standard.synchronize()
         
     }
     

@@ -10,6 +10,7 @@
 		B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120E2271DA9E72800921288 /* AppDelegate.swift */; };
 		B120E22F1DA9E72800921288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B120E22E1DA9E72800921288 /* Assets.xcassets */; };
 		B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B120E2301DA9E72800921288 /* LaunchScreen.storyboard */; };
+		B127B0C71DF356CA00F6C913 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B127B0C61DF356CA00F6C913 /* UIImage+Extensions.swift */; };
 		B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12CD5561DB687EE00377450 /* HttpUtil.swift */; };
 		B133A77C1DDABFC60038B5D2 /* BookContentPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B133A77B1DDABFC60038B5D2 /* BookContentPageViewModel.swift */; };
 		B133A7831DDAD1EC0038B5D2 /* BookContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B133A7811DDAD1EC0038B5D2 /* BookContentViewController.swift */; };
@@ -102,6 +103,7 @@
 		B120E22E1DA9E72800921288 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B120E2311DA9E72800921288 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B120E2331DA9E72800921288 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B127B0C61DF356CA00F6C913 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		B12CD5561DB687EE00377450 /* HttpUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpUtil.swift; sourceTree = "<group>"; };
 		B133A77B1DDABFC60038B5D2 /* BookContentPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookContentPageViewModel.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		B133A7811DDAD1EC0038B5D2 /* BookContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookContentViewController.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 				B17E03DA1DB09B830061DD47 /* Bundle+Extensions.swift */,
 				B15F7AA21DF00AA000687DB6 /* NSObject+Extensions.swift */,
 				B15F7AA41DF011F800687DB6 /* UIColor+Extensions.swift */,
+				B127B0C61DF356CA00F6C913 /* UIImage+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				B19B74531DD4C30D008D6C5C /* RegisterViewController.swift in Sources */,
 				B17E03C91DB095B90061DD47 /* Book.swift in Sources */,
 				B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */,
+				B127B0C71DF356CA00F6C913 /* UIImage+Extensions.swift in Sources */,
 				B16F47C61DF161B2007F88A1 /* BookListDBHelpr.swift in Sources */,
 				B1C2385B1DD388D800C37FA6 /* LonginViewController.swift in Sources */,
 				B15F7A9B1DEC068500687DB6 /* HistoryPageViewController.swift in Sources */,
