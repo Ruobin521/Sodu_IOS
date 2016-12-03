@@ -9,7 +9,7 @@
 import UIKit
 
 
-@IBDesignable class SettingButton: UIControl {
+class SettingButton: UIControl {
     
     @IBOutlet var contentView: UIView!
     
@@ -32,8 +32,6 @@ import UIKit
     required init?(coder aDecoder: NSCoder) {
         
         super.init(coder: aDecoder)
-        
-        
         
         initialFromXib()
     }

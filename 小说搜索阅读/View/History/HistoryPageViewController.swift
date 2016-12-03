@@ -26,6 +26,7 @@ class HistoryPageViewController: BaseViewController {
         
         self.tableview?.reloadData()
         
+
         
     }
     

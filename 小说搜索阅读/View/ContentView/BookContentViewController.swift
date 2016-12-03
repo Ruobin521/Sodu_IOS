@@ -383,35 +383,33 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
             return
         }
         
-        if index == 99 {
+        if obj.object as? String == "-1" {
             
-            vm.SetCurrentCatalog(catalog: catalog, completion: nil)
+            index -= 1
             
-            self.initContentData(true)
+        } else if obj.object as? String  == "1" {
             
-            return
-
-            
-        } else if index == -99 {
-            
-            vm.SetCurrentCatalog(catalog: catalog, completion: nil)
-            
-            self.initContentData(false)
-            
-             return
-            
-        } else {
-            
-            if obj.object as? String == "-1" {
-                
-                index -= 1
-                
-            } else if obj.object as? String  == "1" {
-                
-                index  += 1
-            }
-            
+            index  += 1
         }
+        
+//        if index == 99 {
+//            
+//            vm.SetCurrentCatalog(catalog: catalog, completion: nil)
+//            
+//            self.initContentData(true)
+//            
+//            return
+//
+//            
+//        } else if index == -99 {
+//            
+//            vm.SetCurrentCatalog(catalog: catalog, completion: nil)
+//            
+//            self.initContentData(false)
+//            
+//             return
+//            
+//        }
         
         
         if   let  result = getViewControllerByCatalog(catalog,index:index)  {
@@ -420,12 +418,11 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                 
                 self.vm.SetCurrentCatalog(catalog: result.catalog, completion: nil)
                 
-                let direction = (obj.object as? String == "1") ? UIPageViewControllerNavigationDirection.forward : UIPageViewControllerNavigationDirection.reverse
+                self.pageController.setViewControllers([result], direction:.reverse, animated: false, completion: nil)
                 
-                self.pageController.setViewControllers([result], direction:direction, animated: false, completion: nil)
-                
-                if self.vm.currentChapterPageList == nil {
+                if  result.tag == 99 || result.tag == -99  {
                     
+                    self.vm.currentChapterPageList = nil
                     self.initContentData( (obj.object as? String == "1") ? true : false)
                     
                 }

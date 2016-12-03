@@ -268,7 +268,7 @@ class BookContentPageViewModel {
             })
             
         }
-        
+
         
         if nextCatalog != nil {
             

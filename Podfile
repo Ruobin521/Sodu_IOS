@@ -7,11 +7,7 @@ pod "AFNetworking"
 pod "SDWebImage"
 pod "YYModel"
 pod "FMDB"
-pod "SVProgressHUD"
-pod "pop"
-pod “ReachabilitySwift”
-pod "FMDB"
-
+pod "ReachabilitySwift"
 end
 
 

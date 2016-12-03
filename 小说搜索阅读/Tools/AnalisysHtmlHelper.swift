@@ -1801,13 +1801,14 @@ extension AnalisysHtmlHelper {
             
         }
         
-        
         var tempHtml = (str as  NSString).substring(with: listHtml!.range)
         
         
         tempHtml = tempHtml.replacingOccurrences(of: "无弹窗", with: "")
         
         tempHtml = tempHtml.replacingOccurrences(of: "里面更新速度快、广告少、章节完整、破防盗】", with: "")
+        
+        tempHtml = tempHtml.replacingOccurrences(of: "更新最快，书最齐的小说就是", with: "")
         
         tempHtml = replaceSymbol(str: tempHtml)
         
