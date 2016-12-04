@@ -926,7 +926,14 @@ extension BookContentViewController {
             
             DispatchQueue.main.async {
                 
-                if  let result = self.getViewControllerByCatalog(catalog, index: controller.tag) {
+                var index = controller.tag
+                
+                if index > (pages?.count)! - 1 {
+                    
+                    index = (pages?.count)! - 1
+                }
+                
+                if  let result = self.getViewControllerByCatalog(catalog, index: index) {
                     
                     self.pageController.setViewControllers([result], direction:.reverse, animated: false, completion: nil)
                     

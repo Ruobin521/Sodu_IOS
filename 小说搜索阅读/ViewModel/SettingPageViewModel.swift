@@ -32,9 +32,7 @@ enum SettingKey : String {
 }
 
 class SettingPageViewModel:NSObject {
-    
-    
-    
+     
     
     lazy var isAutoAddToShelf:Bool =  UserDefaultsHelper.getBoolValue(key:  .IsAutoAddToShelf)
     
@@ -51,7 +49,7 @@ class SettingPageViewModel:NSObject {
         
         get {
             
-            return _contentOrientation
+            return  UIPageViewControllerNavigationOrientation.vertical
         }
         
         set {
