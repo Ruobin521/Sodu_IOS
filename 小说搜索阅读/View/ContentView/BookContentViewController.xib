@@ -67,14 +67,14 @@
                     <rect key="frame" x="38" y="88" width="245" height="245"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="啊哦...加载失败了~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JT3-pl-0RF">
-                            <rect key="frame" x="50" y="190" width="145" height="22"/>
+                            <rect key="frame" x="48.5" y="190" width="148" height="22"/>
                             <accessibility key="accessibilityConfiguration">
                                 <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                             </accessibility>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="cig-yj-cb4"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -155,7 +155,7 @@
                         <constraint firstItem="55w-Vk-nxa" firstAttribute="leading" secondItem="Q4B-b4-dyQ" secondAttribute="trailing" id="zYh-Rl-IER"/>
                     </constraints>
                 </view>
-                <view opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vgP-Vm-qmK">
+                <view opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vgP-Vm-qmK">
                     <rect key="frame" x="0.0" y="216" width="320" height="220"/>
                     <subviews>
                         <slider contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.59999999999999998" minValue="0.29999999999999999" maxValue="1" minimumValueImage="minLight" maximumValueImage="maxLight" translatesAutoresizingMaskIntoConstraints="NO" id="P2i-8k-Dln">

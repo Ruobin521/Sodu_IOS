@@ -156,6 +156,7 @@ extension SearchViewController {
         
         
         
+        
     }
     
     func  setSearchBar()  {
@@ -174,6 +175,8 @@ extension SearchViewController {
         
         searchView.placeholder = "请输入小说名或关键字，支持中文拼音搜索"
         
+    
+        searchView.becomeFirstResponder()
         
     }
     
