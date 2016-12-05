@@ -49,7 +49,9 @@ class SettingPageViewModel:NSObject {
         
         get {
             
-            return  UIPageViewControllerNavigationOrientation.vertical
+           // return  UIPageViewControllerNavigationOrientation.vertical
+            
+            return _contentOrientation
         }
         
         set {

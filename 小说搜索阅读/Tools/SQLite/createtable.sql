@@ -26,7 +26,8 @@ book text NOT NULL
 
 CREATE TABLE IF NOT EXISTS history (
 bookid text PRIMARY KEY NOT NULL,
-book text NOT NULL
+book text NOT NULL,
+inserttime text NOT NULL
 );
 
 

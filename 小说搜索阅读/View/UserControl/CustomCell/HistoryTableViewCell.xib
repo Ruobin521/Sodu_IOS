@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="537" height="105"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="537" height="105"/>
+                <rect key="frame" x="0.0" y="0.0" width="537" height="104"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i0K-2a-G1I">
@@ -71,7 +71,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="B74-v1-wLa" firstAttribute="top" secondItem="4b0-YN-WUr" secondAttribute="top" id="0lO-bm-V3K"/>
                             <constraint firstItem="B74-v1-wLa" firstAttribute="bottom" secondItem="4b0-YN-WUr" secondAttribute="bottom" id="0ts-7e-lKe"/>
@@ -106,7 +106,7 @@
                     <constraint firstItem="i0K-2a-G1I" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="y4p-xw-bzc"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="txtBookName" destination="Fvp-VS-fwd" id="HVD-dO-HcA"/>
                 <outlet property="txtChapterName" destination="Jgk-oN-x40" id="vpP-iA-ylB"/>

@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="411" height="105"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="411" height="105"/>
+                <rect key="frame" x="0.0" y="0.0" width="411" height="104"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="书名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJX-9K-nNR">
@@ -63,7 +63,7 @@
                         </constraints>
                     </imageView>
                 </subviews>
-                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="7W3-Ud-kQB" firstAttribute="leading" secondItem="wcT-dj-FAh" secondAttribute="trailing" constant="5" id="34U-uu-Iox"/>
                     <constraint firstItem="YDp-J4-rbj" firstAttribute="top" secondItem="hPb-k0-W1c" secondAttribute="top" id="9vX-Vb-VZU"/>
@@ -87,7 +87,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="7W3-Ud-kQB" secondAttribute="trailing" constant="8" id="xV7-sd-BTu"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="imageNew" destination="kqH-KC-8jW" id="0Dj-u8-hhb"/>
                 <outlet property="txtBookName" destination="cJX-9K-nNR" id="KzB-i8-dG2"/>

@@ -41,8 +41,6 @@ extension HistoryPageViewModel {
         
         tempBook.updateTime = dateString
         
-        
-        
         SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [tempBook],tableName: TableName.History.rawValue) { (isSuccess) in
             
             if !isSuccess {
@@ -59,11 +57,6 @@ extension HistoryPageViewModel {
              
             }
             
-            if let index = self.bookList.index(of: tempBook) {
-                
-                self.bookList.remove(at: index)
-                
-            }
             
             self.bookList.insert(tempBook, at: 0)
             

@@ -30,6 +30,19 @@ class HistoryPageViewController: BaseViewController {
         
     }
     
+    
+    func clearAllHitory() {
+        
+        
+          SoDuSQLiteManager.shared.clearAll(tableName: TableName.History.rawValue) { (isSuccess) in
+            
+            self.vm.bookList.removeAll()
+            
+            self.tableview?.reloadData()
+            
+        }
+    }
+    
 }
 
 
@@ -156,7 +169,7 @@ extension  HistoryPageViewController {
         
         setBackColor()
         
-        
+        setRightNavButton()
         
         let cellNib = UINib(nibName: "HistoryTableViewCell", bundle: nil)
         
@@ -164,6 +177,15 @@ extension  HistoryPageViewController {
         
         tableview?.separatorStyle = .none
         
+    }
+    
+    
+    func setRightNavButton() {
+        
+      
+        
+       // self.navItem.rightBarButtonItem = UIBarButtonItem(title: "清空" , style: .plain, target: self, action: #selector(clearAllHitory))
+        self.navItem.rightBarButtonItem = UIBarButtonItem(title: "清空历史", fontSize: 16, target: self, action: #selector(clearAllHitory), isBack: false)
         
         
     }

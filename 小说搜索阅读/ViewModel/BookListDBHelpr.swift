@@ -29,7 +29,7 @@ class BookListDBHelpr {
     
     class func loadHistoryList(completion:(_ isSuccess:Bool,_ books:[Book]?) -> ()) {
         
-        let array = SoDuSQLiteManager.shared.selectBook(tableName: TableName.History.rawValue)
+        let array = SoDuSQLiteManager.shared.selectBook(tableName: TableName.History.rawValue, userId: nil, orderByTime: true)
         
         // 判断数组的数量，没有数据返回的是没有数据的空数组 []
         if array.count > 0 {
@@ -74,7 +74,7 @@ extension BookListDBHelpr {
     
     
     
-    /// 保存首页缓存数据
+    /// 清空
     ///
     /// - Parameters:
     ///   - tableName: <#tableName description#>

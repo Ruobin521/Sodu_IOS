@@ -44,7 +44,7 @@ extension SoDuSQLiteManager {
     
     
     /// 插入或者更新记录 一条或多条
-    func insertOrUpdateBooks(books:[Book], tableName:String, userId:String? = nil,completion: ((_ isSuccess:Bool) ->  ())?) {
+    func insertOrUpdateBooks(books:[Book], tableName:String, userId:String? = nil,time:Bool = false ,completion: ((_ isSuccess:Bool) ->  ())?) {
         
         
         var sql = "INSERT OR REPLACE INTO  \(tableName) (bookid ,book) VALUES (?,?)"
@@ -52,6 +52,12 @@ extension SoDuSQLiteManager {
         if userId != nil {
             
             sql = "INSERT OR REPLACE INTO  \(tableName) (bookid ,book, userid) VALUES (?,?,?)"
+            
+        }
+        
+        if userId != nil {
+            
+            sql = "INSERT OR REPLACE INTO  \(tableName) (bookid ,book, inse) VALUES (?,?,?)"
             
         }
         
@@ -78,6 +84,17 @@ extension SoDuSQLiteManager {
                     
                 }
                 
+                if time {
+                  
+                    let formatter = DateFormatter()
+                    
+                    formatter.dateFormat = "yyyy-MM-dd HH:mm"
+                    
+                    let dateString = formatter.string(from: Date())
+                    
+                     parameter.append(book.updateTime ?? dateString)
+                }
+                
                 
                 if db?.executeUpdate(sql, withArgumentsIn: parameter) == false {
                     
@@ -98,13 +115,19 @@ extension SoDuSQLiteManager {
     
     
     //MARK: 查询相应表中的所有数据
-    func selectBook(tableName:String,userId:String? = nil) -> [Book] {
+    func selectBook(tableName:String,userId:String? = nil,orderByTime:Bool = false) -> [Book] {
         
         var sql = "SELECT  bookid, book FROM \(tableName)\n"
         
         if userId != nil {
             
             sql  += " WHERE userid ='\(userId!)' "
+        }
+        
+        if orderByTime {
+            
+             sql  += "  ORDER BY  ORDER BY INSerttime DESC"
+                         
         }
         
         let array = executeRecordSet(sql: sql)

@@ -295,7 +295,7 @@ extension BaseViewController {
     
     func  setBackColor()  {
         
-        view.backgroundColor = #colorLiteral(red: 0.9019607843, green: 0.9019607843, blue: 0.9019607843, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.937254902, blue: 0.9568627451, alpha: 1)
     }
     
     

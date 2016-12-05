@@ -62,7 +62,7 @@ class LonginViewController: BaseViewController {
                 
                 self.vm.setCoookie()
                 
-                 UserDefaultsHelper.setUserDefaultsValueForKey(key: .UserNameKey, value: self.txtUserName.text!)
+                UserDefaultsHelper.setUserDefaultsValueForKey(key: .UserNameKey, value: self.txtUserName.text!)
                 
             } else {
                 

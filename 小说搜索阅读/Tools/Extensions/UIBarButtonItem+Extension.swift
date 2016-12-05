@@ -33,9 +33,10 @@ extension UIBarButtonItem {
             
             btn.setImage(UIImage(named: imageName), for: UIControlState(rawValue: 0))
             btn.setImage(UIImage(named: imageName + "_highlighted"), for: .highlighted)
-            
-            btn.sizeToFit()
+             
         }
+        
+        btn.sizeToFit()
         
         btn.addTarget(target, action: action, for: .touchUpInside)
         
