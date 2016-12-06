@@ -41,7 +41,7 @@ extension HistoryPageViewModel {
         
         tempBook.updateTime = dateString
         
-        SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [tempBook],tableName: TableName.History.rawValue) { (isSuccess) in
+        SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [tempBook],tableName: TableName.History.rawValue,time:true) { (isSuccess) in
             
             if !isSuccess {
                 

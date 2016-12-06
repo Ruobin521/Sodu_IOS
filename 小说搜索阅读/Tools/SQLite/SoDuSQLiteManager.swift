@@ -46,6 +46,7 @@ extension SoDuSQLiteManager {
     /// 插入或者更新记录 一条或多条
     func insertOrUpdateBooks(books:[Book], tableName:String, userId:String? = nil,time:Bool = false ,completion: ((_ isSuccess:Bool) ->  ())?) {
         
+        var result = true
         
         var sql = "INSERT OR REPLACE INTO  \(tableName) (bookid ,book) VALUES (?,?)"
         
@@ -55,9 +56,9 @@ extension SoDuSQLiteManager {
             
         }
         
-        if userId != nil {
+        if time {
             
-            sql = "INSERT OR REPLACE INTO  \(tableName) (bookid ,book, inse) VALUES (?,?,?)"
+            sql = "INSERT OR REPLACE INTO  \(tableName) (bookid ,book, inserttime) VALUES (?,?,?)"
             
         }
         
@@ -100,16 +101,16 @@ extension SoDuSQLiteManager {
                     
                     rollbacl?.pointee = true
                     
-                    completion?(false)
+                    result = false
                     
-                    return
+                    break
                     
                 }
             }
             
         }
         
-        completion?(true)
+        completion?(result)
         
     }
     
@@ -126,7 +127,7 @@ extension SoDuSQLiteManager {
         
         if orderByTime {
             
-             sql  += "  ORDER BY  ORDER BY INSerttime DESC"
+             sql  += "  ORDER BY inserttime DESC"
                          
         }
         
@@ -169,6 +170,7 @@ extension SoDuSQLiteManager {
     /// 删除一条或多条记录
     func  deleteBooks(books:[Book],tableName:String,userId:String? = nil, completion: @escaping (_ isSuccess:Bool) -> ()) {
         
+        var result = true
         
         var sql = "DELETE FROM \(tableName) WHERE bookid = ?\n"
         
@@ -202,16 +204,16 @@ extension SoDuSQLiteManager {
                     
                     rollbacl?.pointee = true
                     
-                    completion(false)
+                    result = false
                     
-                    return
+                    break
                     
                 }
             }
             
         }
         
-        completion(true)
+        completion(result)
         
     }
     

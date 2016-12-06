@@ -252,6 +252,13 @@ class BookContentPageViewModel {
             
         }
         
+        preLoadCatalogContent()
+    }
+    
+    
+    
+    func preLoadCatalogContent() {
+        
         
         guard let _ = currentBook?.catalogs else {
             
@@ -288,9 +295,9 @@ class BookContentPageViewModel {
             
         }
         
+        
+        
     }
-    
-    
     
     //MARK:  设置前后 章节
     func  setBeforeAndNextCatalog() {
@@ -421,7 +428,9 @@ class BookContentPageViewModel {
                     
                     catalog.chapterContent = self?.currentCatalog?.chapterContent
                     
-                    self?.SetCurrentCatalog(catalog: catalog, completion: nil)
+                    self?._currentCatalog = catalog
+                    
+                    self?.preLoadCatalogContent()
                     
                 }
                 
@@ -623,7 +632,7 @@ class BookContentPageViewModel {
                     
                     self.nextTask = nil
                     catalog.chapterContent = html
-
+                    
                     if isSuccess {
                         
                         DispatchQueue.global().async {
@@ -699,7 +708,7 @@ class BookContentPageViewModel {
                     
                     self.currentTask = nil
                     catalog.chapterContent = html
-
+                    
                     if isSuccess {
                         
                         DispatchQueue.global().async {
