@@ -314,7 +314,6 @@ extension SoDuSQLiteManager {
                 
         }
         
-        
         queue.inDatabase { (db) in
             
             if db?.executeStatements(sql) == true {
@@ -333,6 +332,34 @@ extension SoDuSQLiteManager {
         
     }
     
+    
+    
+}
+
+
+// MARK: - 缓存本地图书的相关数据库操作
+extension SoDuSQLiteManager {
+    
+    func createBookTable(withTableName:String) {
+        
+        
+        let sql =  "CREATE TABLE IF NOT EXISTS  \(withTableName)  (chapterurl text PRIMARY KEY NOT NULL ，chaptername text  NOT NULL，chaptercontent text NOT NULL);"
+        
+        
+        queue.inDatabase { (db) in
+            
+            if db?.executeStatements(sql) == true {
+                
+                print("创建\(withTableName)成功")
+                
+            } else {
+                
+                print("建表失败")
+                
+            }
+        }
+         
+    }
     
 }
 

@@ -13,6 +13,22 @@ import Foundation
 class DownloadCenterPageViewModel {
     
     
+    var bookList:[Book]  = [Book]()
+    
+    
+    
+}
+
+extension DownloadCenterPageViewModel {
+    
+    
+    func addDownloadItem(book:Book) {
+         
+        
+        bookList.append(book.clone())
+    }
+    
+    
     
     
 }

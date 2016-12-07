@@ -17,7 +17,7 @@ class FailedView: UIView {
         
         let v = nib.instantiate(withOwner: nil, options: nil)[0] as! FailedView
         
-        v.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        v.frame = CGRect(x: 0, y: 0, width: 240, height: 170)
         
         return v
         

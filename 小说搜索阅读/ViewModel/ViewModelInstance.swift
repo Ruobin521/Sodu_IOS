@@ -22,6 +22,8 @@ class ViewModelInstance {
     
     lazy var history = HistoryPageViewModel()
     
+    lazy var downloadCenter = DownloadCenterPageViewModel()
+    
     var  userId:String?
     
     var  userLogon = false {
@@ -31,7 +33,7 @@ class ViewModelInstance {
             if userLogon {
                 
                 userId = UserDefaultsHelper.getStringValue(key: .UserNameKey)
-
+                
             } else {
                 
                 userId = nil

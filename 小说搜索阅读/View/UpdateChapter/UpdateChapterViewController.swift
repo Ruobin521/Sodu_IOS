@@ -57,11 +57,12 @@ class UpdateChapterViewController: BaseViewController {
         }
         
         isLoading = true
-        self.failedView?.isHidden = true
+        
+        self.failedLayer?.isHidden = true
         
         vm.loadUpdateChapterListDataByPageIndex(pageindex) { [weak self]  (isSuccess) in
             
-            if isSuccess {
+            if !isSuccess {
                 
                 self?.tableview?.reloadData()
                 
@@ -71,11 +72,11 @@ class UpdateChapterViewController: BaseViewController {
                 
                 self?.showToast(content: "已加载\((self?.vm.currentBook?.bookName) ?? " ")更新列表第\(pageindex+1)页数据")
                 
-                self?.failedView?.removeFromSuperview()
+                self?.failedLayer?.isHidden = true
                 
-            }else {
+            } else {
                 
-                self?.failedView?.isHidden = false
+                self?.failedLayer?.isHidden = false
                 self?.showToast(content: "第\(pageindex+1)页数据加载失败", false)
             }
             

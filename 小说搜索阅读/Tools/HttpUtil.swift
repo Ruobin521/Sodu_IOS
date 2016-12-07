@@ -21,7 +21,7 @@ enum RequestMethod {
 class  HttpUtil :AFHTTPSessionManager  {
     
     
-    static var  instance:HttpUtil =  {
+     static var  instance:HttpUtil =  {
         
         let shared = HttpUtil()
         

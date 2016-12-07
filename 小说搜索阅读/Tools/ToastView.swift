@@ -83,7 +83,7 @@ class ToastView : NSObject{
     //弹窗文字
     func showToast(content:String , _ isSuccess:Bool = true,_ isCenter:Bool = false, _ duration:CFTimeInterval=1.5) -> UIView {
         
-        let frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)!  , height: 30)
+        let frame = CGRect(x: 0, y: 64, width:  isCenter ? (rv?.bounds.width)! - 100 : (rv?.bounds.width)!  , height: 30)
         
         
         let toastContainerView = UIView()
@@ -104,10 +104,15 @@ class ToastView : NSObject{
         let window = UIView()
         window.backgroundColor = UIColor.clear
         window.frame = frame
-        toastContainerView.frame = frame
+        toastContainerView.frame =  CGRect(x: 0, y: 0, width:  frame.width , height: frame.height)
+        
+        if isCenter {
+            
+            window.center = CGPoint(x: (rv?.center.x)!, y:(rv?.center.y)! + 50)
+
+        }
         
         
-        window.center = CGPoint(x: (rv?.center.x)!, y: isCenter ? (rv?.center.y)! + 80 : 79)
         window.isHidden = false
         window.addSubview(toastContainerView)
         
@@ -147,7 +152,8 @@ class ToastView : NSObject{
         let window = UIWindow()
         window.backgroundColor = UIColor.clear
         window.frame = frame
-        toastContainerView.frame = frame
+        toastContainerView.frame =  CGRect(x: 0, y: 0, width:  frame.width , height: frame.height)
+        
         
         window.windowLevel = UIWindowLevelAlert
         window.center = CGPoint(x: (rv?.center.x)!, y: 79 )
@@ -224,7 +230,7 @@ class AnimationUtil{
         
         ///表示动画保持结束后的状态
         animation.fillMode = kCAFillModeForwards;
-        //  animation.e
+         
         
         
         return animation

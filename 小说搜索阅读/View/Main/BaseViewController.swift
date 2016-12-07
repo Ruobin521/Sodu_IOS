@@ -43,7 +43,7 @@ class BaseViewController: UIViewController {
     
     var refreshControl:RefreshControl?
     
-    var failedView:FailedView?
+    var failedLayer:CALayer?
     
     lazy var navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64))
     
@@ -209,6 +209,8 @@ extension BaseViewController {
         //  tableview?.sectionFooterHeight = CGFloat.leastNormalMagnitude
         
         view.insertSubview(tableview!, belowSubview: navigationBar)
+        
+        
     }
     
     
@@ -281,14 +283,33 @@ extension BaseViewController {
     
     
     func setupFailedView() {
+ 
+        failedLayer = CALayer()
         
-        failedView = FailedView.failedView()
+        failedLayer?.isHidden = true
         
-        failedView?.center = CGPoint(x: self.view.center.x, y: self.view.center.y - 30)
+        let failedView = FailedView.failedView()
         
-        self.view.insertSubview(failedView!, aboveSubview: tableview!)
+        failedLayer?.contents =  UIImage.convertViewToImage(view: failedView).cgImage
         
-        failedView?.isHidden = true
+        failedLayer?.anchorPoint =  CGPoint.zero
+        
+        failedLayer?.bounds =  CGRect(x: 0, y: 0, width: (failedView.frame.width), height: (failedView.frame.height))
+        
+        var rect = failedLayer?.frame
+        
+        rect?.origin.y = (self.view.frame.height - (failedView.frame.height) ) * 0.5 - 80
+        
+        
+        rect?.origin.x = (self.view.frame.width - (failedView.frame.width) ) * 0.5
+        
+        failedLayer?.frame = rect!
+        
+        tableview?.layer.addSublayer(failedLayer!)
+        
+        failedLayer?.zPosition = -5
+  
+        
     }
     
     
@@ -311,6 +332,8 @@ extension BaseViewController {
         
         
     }
+    
+    
     
 }
 

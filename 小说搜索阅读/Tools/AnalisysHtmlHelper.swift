@@ -372,7 +372,7 @@ class AnalisysHtmlHelper {
             } else if type == .CatalogList {
                 
                 
-                value =  analisysCommonCIAC(url: "",coverBaseUrl:"", html: html, htmlPattern: "<div id=\"xslist\">.*?</div>", catalogPattern: "<li><a href=\"(.*?)\".*?>(.*?)</a></li>", introPattern: "<p>&nbsp;&nbsp;&nbsp;&nbsp;.*?</p", coverPattern: "<div id=\"fmimg\">.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern: "</h1>&nbsp;&nbsp;&nbsp;&nbsp;(.*?)/著</div>")
+                value =  analisysCommonCIAC(url: "",coverBaseUrl:"", html: html, htmlPattern: "<div id=\"xslist\">.*?</div>", catalogPattern: "<li><a href=\"(.*?)\".*?>(.*?)</a></li>", introPattern: "<p>&nbsp;&nbsp;&nbsp;&nbsp;.*?</p>", coverPattern: "<div id=\"fmimg\">.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern: "</h1>&nbsp;&nbsp;&nbsp;&nbsp;(.*?)/著</div>")
                 
                 
             }

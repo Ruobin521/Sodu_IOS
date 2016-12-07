@@ -776,7 +776,9 @@ extension BookContentViewController {
         
         if vm.isRequestCatalogs {
             
-            showToast(content: "正在获取目录，请稍后")
+            
+            showToast(content: "正在获取目录，请稍后",true,true)
+            
             return
         }
         
@@ -823,9 +825,36 @@ extension BookContentViewController {
         
         print("点击下载按钮")
         
+        if vm.currentBook?.catalogs == nil  || (vm.currentBook?.catalogs?.count) == 0 {
+            
+            if vm.isRequestCatalogs {
+                
+                showToast(content: "目录获取中，请获取目录后再缓存",false,true)
+                
+            } else {
+                
+                showToast(content: "暂无目录，请换个来源网站重试",false,true)
+            }
+            
+            return
+        }
         
         
+        if let book = ViewModelInstance.instance.downloadCenter.bookList.first(where: { (temp) -> Bool in
+            
+            temp.bookId == vm.currentBook?.bookId
+            
+        }) {
+            
+            showToast(content: "\(book.bookName!)正在缓存中",true,true)
+            
+            return
+            
+        }
         
+        ViewModelInstance.instance.downloadCenter.addDownloadItem(book: vm.currentBook!)
+        
+        showToast(content: "开始缓存\((vm.currentBook?.bookName)!)",true,true)
     }
     
     
@@ -1014,20 +1043,20 @@ extension BookContentViewController {
         pageController.delegate = self
         
         pageController.view.backgroundColor = UIColor.clear
-//        
-//        if vm.orientation == .vertical {
-//            
-//            for v in  pageController.view.subviews {
-//                
-//                if v.isKind(of:UIScrollView.self) {
-//                    
-//                    (v as! UIScrollView).isPagingEnabled = false
-//                    
-//                }
-//                
-//            }
-//        }
-//        
+        //
+        //        if vm.orientation == .vertical {
+        //
+        //            for v in  pageController.view.subviews {
+        //
+        //                if v.isKind(of:UIScrollView.self) {
+        //
+        //                    (v as! UIScrollView).isPagingEnabled = false
+        //
+        //                }
+        //
+        //            }
+        //        }
+        //
         
         
         
