@@ -783,7 +783,7 @@ extension BookContentViewController {
         
         if vm.currentBook?.catalogs == nil  || (vm.currentBook?.catalogs?.count)! == 0 {
             
-            showToast(content: "暂无目录，请换个来源网站重试",false)
+            showToast(content: "暂无目录，请换个来源网站重试",false,true)
             return
         }
         

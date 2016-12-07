@@ -21,6 +21,16 @@ class DownCenterViewController: BaseViewController {
 extension DownCenterViewController {
     
     
+    
+    
+    
+    
+}
+
+
+extension DownCenterViewController {
+    
+    
     override func setupUI() {
         
       

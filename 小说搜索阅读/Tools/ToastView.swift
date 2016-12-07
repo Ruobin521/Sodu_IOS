@@ -81,7 +81,7 @@ class ToastView : NSObject{
     
     
     //弹窗文字
-    func showToast(content:String , _ isSuccess:Bool = true, _ duration:CFTimeInterval=1.5) -> UIView {
+    func showToast(content:String , _ isSuccess:Bool = true,_ isCenter:Bool = false, _ duration:CFTimeInterval=1.5) -> UIView {
         
         let frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)!  , height: 30)
         
@@ -107,7 +107,7 @@ class ToastView : NSObject{
         toastContainerView.frame = frame
         
         
-        window.center = CGPoint(x: (rv?.center.x)!, y: 79)
+        window.center = CGPoint(x: (rv?.center.x)!, y: isCenter ? (rv?.center.y)! + 80 : 79)
         window.isHidden = false
         window.addSubview(toastContainerView)
         

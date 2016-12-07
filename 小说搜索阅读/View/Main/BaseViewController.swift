@@ -430,11 +430,11 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
 extension UIViewController {
     
     
-    func showToast(content:String,_ isScuccess:Bool = true) {
+    func showToast(content:String,_ isScuccess:Bool = true,_ isCenter :Bool = false) {
         
         DispatchQueue.main.async {
             
-            self.view.addSubview(ToastView.instance.showToast(content: content,isScuccess))
+            self.view.addSubview(ToastView.instance.showToast(content: content,isScuccess,isCenter))
             
         }
         
