@@ -62,7 +62,7 @@ class UpdateChapterViewController: BaseViewController {
         
         vm.loadUpdateChapterListDataByPageIndex(pageindex) { [weak self]  (isSuccess) in
             
-            if !isSuccess {
+            if isSuccess {
                 
                 self?.tableview?.reloadData()
                 
@@ -161,11 +161,7 @@ extension UpdateChapterViewController {
         chapterDidSelected(book)
         
     }
-    
-    //    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    //
-    //        return 10
-    //    }
+ 
     
 }
 
