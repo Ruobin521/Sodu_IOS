@@ -13,8 +13,35 @@ import Foundation
 class DownloadCenterPageViewModel {
     
     
-    var bookList:[Book]  = [Book]()
+    var bookList:[DownLoadItemViewModel]  = [DownLoadItemViewModel]()
     
+    
+    init() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(removeDownloadItem), name: NSNotification.Name(rawValue: RemoveDownloadItemNotification), object: nil)
+ 
+    }
+    
+    @objc func removeDownloadItem(obj:Notification) {
+        
+        guard let bookid = obj.object as? String else {
+            
+            return
+        }
+        
+        let index = bookList.index { (item) -> Bool in
+            
+            bookid == item.book?.bookId
+            
+        }
+        
+        
+        if index != nil {
+            
+            bookList.remove(at: index!)
+           
+        }
+    }
     
     
 }
@@ -23,9 +50,12 @@ extension DownloadCenterPageViewModel {
     
     
     func addDownloadItem(book:Book) {
-         
+          
+        let item = DownLoadItemViewModel(book: book.clone())
+       
+        item.startDowm()
         
-        bookList.append(book.clone())
+        bookList.append(item)
     }
     
     

@@ -342,8 +342,9 @@ extension SoDuSQLiteManager {
     
     func createBookTable(withTableName:String) {
         
+        let tableName = "book\(withTableName)"
         
-        let sql =  "CREATE TABLE IF NOT EXISTS  \(withTableName)  (chapterurl text PRIMARY KEY NOT NULL ，chaptername text  NOT NULL，chaptercontent text NOT NULL);"
+        let sql =  "CREATE TABLE IF NOT EXISTS \(tableName) (chapterurl text PRIMARY KEY NOT NULL, chaptername text NOT NULL,  chaptercontent text NOT NULL);"
         
         
         queue.inDatabase { (db) in
@@ -360,6 +361,52 @@ extension SoDuSQLiteManager {
         }
          
     }
+    
+    
+    /// 插入或者更新记录 一条或多条
+    func insertOrUpdateBookCatalogs(catalogs:[BookCatalog], withTableName:String,completion: ((_ isSuccess:Bool) ->  ())?) {
+        
+        var result = true
+        
+        let tableName = "Book" + withTableName
+        
+        let sql = "INSERT OR REPLACE INTO  \(tableName) (chapterurl ,chaptername,chaptercontent) VALUES (?,?,?)"
+        
+        
+        
+        queue.inTransaction { (db, rollbacl) in
+            
+            for catalog  in catalogs {
+                
+                var parameter = [Any]()
+                
+                
+                guard let chapterUrl = catalog.chapterUrl ,let chapterName = catalog.chapterName,let chapterContent = catalog.chapterContent else {
+                    
+                    continue
+                }
+                
+                parameter.insert(chapterUrl, at: 0)
+                parameter.insert(chapterName, at: 1)
+                parameter.insert(chapterContent, at: 2)
+               
+                if db?.executeUpdate(sql, withArgumentsIn: parameter) == false {
+                    
+                    rollbacl?.pointee = true
+                    
+                    result = false
+                    
+                    break
+                    
+                }
+            }
+            
+        }
+        
+        completion?(result)
+        
+    }
+
     
 }
 

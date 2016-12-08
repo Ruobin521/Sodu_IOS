@@ -314,20 +314,12 @@ class BookContentPageViewModel {
     //MARK: 获取相应章节内容
     func getCatalogChapterContent(catalog:BookCatalog?,_ completion: ((_ isSuccess:Bool,_ strs:String?)->())?) -> URLSessionDataTask?  {
         
-        guard let url = catalog?.chapterUrl else{
-            
-            completion?(false,nil)
-            
-            return nil
-        }
         print("开始加载章节：\((catalog?.chapterName)!)")
         
-        
-        let task =  getContentByUrl(url) { (isSuccess, html) in
+        let task =  CommonPageViewModel.getCatalogContent(catalog: catalog!) { (isSuccess, html) in
             
             if isSuccess {
                 
-                catalog?.chapterContent = html
                 print("章节：\((catalog?.chapterName)!) 加载成功")
                 
             } else {
@@ -342,47 +334,6 @@ class BookContentPageViewModel {
     }
     
     
-    //MARK:  获取正文内容
-    func getContentByUrl(_ url:String,_ completion:@escaping (_ isSuccess:Bool,_ html:String?)->()) -> URLSessionDataTask? {
-        
-        self.isRequestContent = true
-        
-        //var count = retryCount
-        
-        var task :  URLSessionDataTask?
-        
-        
-        
-        task =  CommonPageViewModel.getHtmlByURL(url: url) {[weak self] (isSuccess, html) in
-            
-            if self == nil {
-                
-                completion(false,nil)
-            }
-            
-            if isSuccess {
-                
-                if  let  htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, html!,AnalisysType.Content) as? String {
-                    
-                    self?.isRequestContent = false
-                    
-                    completion(true,htmlValue)
-                    
-                } else {
-                    
-                    completion(false,nil)
-                }
-                
-                
-            }  else {
-                
-                completion(false,nil)
-            }
-            
-        }
-        
-        return task
-    }
     
     //MARK: 获取目录列表
     func getBookCatalogs(url:String,retryCount:Int,completion: ((_ isSuccess:Bool)->())?)  {

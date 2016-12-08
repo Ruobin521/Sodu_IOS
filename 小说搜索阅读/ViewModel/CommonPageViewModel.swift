@@ -127,12 +127,49 @@ class CommonPageViewModel {
     }
     
     
+    //MARK: 获取章节正文内容
+    static func   getCatalogContent(catalog:BookCatalog,completion:@escaping (_ isSuccess:Bool ,_ html:String?)->()) -> URLSessionDataTask? {
+        
+        guard let url = catalog.chapterUrl else {
+            
+            return  nil
+        }
+        
+        let task =  HttpUtil.instance.AFrequest(url: url, requestMethod: .GET, postStr: nil, parameters: nil, timeOut: 10)   { (data,isSuccess) in
+            
+            if !isSuccess {
+                
+                completion(false,nil)
+                
+            }  else {
+                
+                let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
+                
+                guard  let  str = String(data: data as! Data, encoding: String.Encoding(rawValue: enc)) else {
+                    
+                    completion(false,nil)
+                    
+                    return
+                }
+                
+                guard let htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, str,AnalisysType.Content) as? String  else{
+                    
+                    completion(false,nil)
+                    
+                    return
+                }
+                
+                catalog.chapterContent = htmlValue
+                completion(true,htmlValue)
+            }
+        }
+        
+        return task
+    }
     
-    /// 获取catalogs introduction coverImage
-    ///
-    /// - Parameters:
-    ///   - url: 任意章节地址
-    ///   - completion: (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)
+    
+    
+    //MARK: 获取目录 封面 作者 简介
     static func   getBookCIAC(url:String,bookid:String,completion:@escaping (_ isSuccess:Bool , _ result: Any?) -> ()) -> URLSessionDataTask? {
         
         guard  let catalogPageUrl = AnalisysHtmlHelper.AnalisysHtml(url,"", AnalisysType.CatalogPageUrl) as? String else {

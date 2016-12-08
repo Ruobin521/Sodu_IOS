@@ -35,7 +35,7 @@ extension  PersonCenterViewController {
         
         setUpNavigationBar()
         
-        self.view.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
+        self.view.backgroundColor = #colorLiteral(red: 0.937254902, green: 0.937254902, blue: 0.9568627451, alpha: 1)
         
         txtUserName.text =  ViewModelInstance.instance.userId
         
