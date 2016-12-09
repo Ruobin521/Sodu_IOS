@@ -30,6 +30,15 @@ class LocalBookPageViewController: BaseViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        DispatchQueue.main.async {
+            
+             self.tableview?.reloadData()
+        }
+        
+    }
+    
     
 }
 
@@ -104,10 +113,13 @@ extension LocalBookPageViewController {
             }
         }
         
-//        
-//        CommonPageViewModel.navigateToUpdateChapterPage(book, navigationController)
-//        
-              
+        
+        let bc = BookContentViewController()
+        
+        bc.vm.currentBook = book.clone()
+        
+        present(bc, animated: true, completion: nil)
+        
     }
     
     
@@ -146,7 +158,7 @@ extension LocalBookPageViewController {
                         
                     }else {
                         
-                        self.showToast(content: "\(book.bookName)删除失败",false)
+                        self.showToast(content: "\((book.bookName)!)删除失败",false)
                     }
                     
                 }

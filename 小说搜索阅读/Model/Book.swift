@@ -35,7 +35,7 @@ class Book: NSObject,JSON {
     var   updateListPageUrl : String?
     
     /// 正文页面地址
-    var   contentPageUrl : String?
+    var   chapterUrl : String?
     
     /// 上次渎至章节名称
     var   lastReadChapterName : String?
@@ -70,19 +70,22 @@ extension Book {
         
         let book = Book()
         
-        
+        //book.isNew = self.isNew
+        book.isLocal = self.isLocal
         book.author = self.author
         book.bookId = self.bookId
         book.bookName = self.bookName
         
         book.chapterName = self.chapterName
-        book.chapterName = self.chapterName
-        book.contentPageUrl = self.contentPageUrl
+        book.lastReadChapterName = self.lastReadChapterName
+        book.chapterUrl = self.chapterUrl
         book.coverImage = self.coverImage
         book.LastReadContentPageUrl = self.LastReadContentPageUrl
         book.lywzName = self.lywzName
         book.updateListPageUrl = self.updateListPageUrl
         book.updateTime = self.updateTime
+        
+        book.introduction = self.introduction
         
         if catalogs != nil   {
             

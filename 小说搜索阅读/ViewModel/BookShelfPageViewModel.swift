@@ -122,7 +122,14 @@ class BookShelfPageViewModel {
                 
             }
             
-            if compareStrs(tempbook.lastReadChapterName!,book.chapterName!) {
+            if tempbook.lastReadChapterName == nil {
+                
+                book.isNew = "0"
+                
+                continue
+            }
+            
+            if compareStrs(tempbook.lastReadChapterName ?? "",book.chapterName!) {
                 
                 book.isNew = "0"
                 

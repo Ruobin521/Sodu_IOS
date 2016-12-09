@@ -35,13 +35,13 @@ class LoaclBookPageViewModel {
     
     
     
-    func updateBookDB(book:Book,completion:@escaping (_ isSuccess:Bool) -> ()) {
+    func updateBookDB(book:Book,completion:((_ isSuccess:Bool) -> ())?) {
         
         SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [book], tableName: TableName.Loaclbook.rawValue) { (isSuccess) in
             
             if isSuccess {
                 
-                completion(isSuccess)
+                completion?(isSuccess)
             }
             
         }
@@ -51,25 +51,34 @@ class LoaclBookPageViewModel {
     
     func removeBookFromList(_ book:Book,completion:@escaping (_ isSuccess:Bool)->())  {
         
-        
-        SoDuSQLiteManager.shared.deleteBooks(books: [book], tableName: TableName.Loaclbook.rawValue, completion: { (isSuccess) in
+         SoDuSQLiteManager.shared.deleteBookCatalogs(bookId: book.bookId!) { (isDeleteCatalogSuccess) in
             
-            if !isSuccess {
+            if !isDeleteCatalogSuccess {
                 
                 completion(false)
                 
-            } else {
+                return
                 
-                completion(true)
+            }  else {
                 
+                SoDuSQLiteManager.shared.deleteBooks(books: [book], tableName: TableName.Loaclbook.rawValue, completion: { (isDeleteBookSuccess) in
+                    
+                    if !isDeleteBookSuccess {
+                        
+                        completion(false)
+                        
+                    } else {
+                        
+                        completion(true)
+                        
+                    }
+                    
+                })
+                 
             }
             
-            
-        })
-        
+        }
         
     }
-    
-    
     
 }

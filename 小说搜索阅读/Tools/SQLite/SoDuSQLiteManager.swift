@@ -221,6 +221,8 @@ extension SoDuSQLiteManager {
     ///清空表中的所有数据
     func clearAll(tableName:String,userId:String? = nil, completion: ((_ isSuccess:Bool) -> ())?) {
         
+        var reslut = true
+        
         var sql = "DELETE FROM \(tableName)\n"
         
         if userId != nil {
@@ -235,15 +237,12 @@ extension SoDuSQLiteManager {
                 
                 rollbacl?.pointee = true
                 
-                completion?(false)
-                
-                return
+                reslut = false
                 
             }
         }
         
-        completion?(true)
-        
+        completion?(reslut)
         
     }
     
@@ -339,7 +338,72 @@ extension SoDuSQLiteManager {
 
 // MARK: - 缓存本地图书的相关数据库操作
 extension SoDuSQLiteManager {
-  
+    
+    
+    ///查询图书的目录
+    func selectBookCatalogs(bookId:String)-> [BookCatalog] {
+        
+        let sql = "SELECT bookid,chapterurl,chapterindex,chaptername,chaptercontent FROM  bookcatalog  WHERE bookid = '\(bookId)'"
+        
+        let array = executeRecordSet(sql: sql)
+        
+        var catalogs = [BookCatalog]()
+        
+        for dic in array {
+           
+            guard let bookid = dic["bookid"] as? String,
+                let chapterurl = dic["chapterurl"] as? String ,
+                let index = dic["chapterindex"] as? String,
+                let chapterindex = Int(index) ,
+                let chaptername = dic["chaptername"]  as? String,
+                let chaptercontent = dic["chaptercontent"] as? String
+                
+                else {
+                    
+                    continue
+            }
+            
+            let bookcatalog = BookCatalog()
+            
+            bookcatalog.bookId = bookid
+            bookcatalog.chapterIndex = chapterindex
+            bookcatalog.chapterUrl = chapterurl
+            bookcatalog.chapterName = chaptername
+            bookcatalog.chapterContent = chaptercontent
+            
+            catalogs.append(bookcatalog)
+            
+            
+        }
+        
+        return catalogs
+        
+    }
+    
+    ///清空表中的所有数据
+    func deleteBookCatalogs(bookId:String, completion: ((_ isSuccess:Bool) -> ())?) {
+        
+        var result = true
+        
+        let sql = "DELETE FROM  bookcatalog  WHERE bookid = ?"
+        
+        
+        queue.inTransaction { (db, rollbacl) in
+            
+            if db?.executeUpdate(sql, withArgumentsIn: [bookId]) == false {
+                
+                rollbacl?.pointee = true
+                
+                result = false
+                
+            }
+        }
+        
+        completion?(result)
+        
+        
+    }
+    
     
     /// 插入或者更新目录 一条或多条
     func insertOrUpdateBookCatalogs(catalogs:[BookCatalog], bookid:String,completion: ((_ isSuccess:Bool) ->  ())?) {
@@ -347,7 +411,7 @@ extension SoDuSQLiteManager {
         var result = true
         
         
-        let sql = "INSERT OR REPLACE INTO  bookcatalog (bookid, chapterurl ,chaptername,chaptercontent) VALUES (?,?,?,?)"
+        let sql = "INSERT OR REPLACE INTO  bookcatalog (bookid, chapterindex,chapterurl ,chaptername,chaptercontent) VALUES (?,?,?,?,?)"
         
         
         
@@ -363,7 +427,10 @@ extension SoDuSQLiteManager {
                     continue
                 }
                 
+                let chapterindex = String(catalog.chapterIndex)
+                
                 parameters.append(bookid)
+                parameters.append(chapterindex)
                 parameters.append(chapterUrl)
                 parameters.append(chapterName)
                 parameters.append(chapterContent)

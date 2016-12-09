@@ -39,9 +39,11 @@ book text NOT NULL
 CREATE TABLE IF NOT EXISTS bookcatalog (
 id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 bookid text NOT NULL,
+chapterindex text NOT NULL,
 chaptername text NOT NULL,
 chapterurl text NOT NULL,
 chaptercontent text
+
 );
 
 

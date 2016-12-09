@@ -93,9 +93,24 @@ class BookContentViewController: UIViewController {
         
         setupUI()
         
-        initContentData()
+        if vm.currentBook?.isLocal == "1" {
+            
+            initCatalogs() { (isSuccess) in
+                
+                self.initContentData()
+                
+            }
+            
+            
+        } else {
+            
+            initContentData()
+            
+            initCatalogs(nil)
+            
+        }
         
-        initCatalogs()
+        
         
         txtBookName.text = vm.currentBook?.bookName
         
@@ -204,36 +219,44 @@ class BookContentViewController: UIViewController {
     }
     
     // MARK: 获取目录数据
-    func  initCatalogs() {
+    func  initCatalogs(_ complete:(() ->())?) {
         
         
         DispatchQueue.global().async {
             
-            guard let url =   self.vm.currentBook?.contentPageUrl  else{
+            guard let url =   self.vm.currentBook?.LastReadContentPageUrl  else{
                 
                 return
             }
             /// 获取目录信息
             self.vm.getBookCatalogs(url: url,retryCount: 0, completion: { (isSucces) in
                 
-                DispatchQueue.main.async {
+                if isSucces {
                     
-                    for controller in  self.pageController.childViewControllers {
+                    DispatchQueue.main.async {
                         
-                        guard  let ctr = controller as? ContentPageViewController,
-                            let view = controller.view as? ContentPage,
-                            let catalog = ctr.catalog,
-                            let currentIndex  = self.vm.getCatalogIndex(catalog.chapterUrl!) else{
-                                
-                                continue
-                                
+                        for controller in  self.pageController.childViewControllers {
+                            
+                            guard  let ctr = controller as? ContentPageViewController,
+                                let view = controller.view as? ContentPage,
+                                let catalog = ctr.catalog,
+                                let currentIndex  = self.vm.getCatalogIndex(catalog.chapterUrl!) else{
+                                    
+                                    continue
+                                    
+                            }
+                            
+                            view.txtChapterIndex.text  = "第\(currentIndex + 1)/\((self.vm.currentBook?.catalogs?.count)!)章"
+                            
                         }
-                        
-                        view.txtChapterIndex.text  = "第\(currentIndex + 1)/\((self.vm.currentBook?.catalogs?.count)!)章"
                         
                     }
                     
+                    
                 }
+                
+                complete?()
+
                 
             })
             
@@ -839,10 +862,10 @@ extension BookContentViewController {
             return
         }
         
-     
+        
         
         ViewModelInstance.instance.downloadCenter.addDownloadItem(book: vm.currentBook!)
-                 
+        
     }
     
     

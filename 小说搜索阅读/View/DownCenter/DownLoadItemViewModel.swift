@@ -25,7 +25,7 @@ class DownLoadItemViewModel {
     }
     
     //创建并行队列
-    let concurrent = DispatchQueue(label: "concurrentQueue", attributes: .concurrent)
+    let concurrent:DispatchQueue!
     
     
     let group = DispatchGroup()
@@ -44,12 +44,8 @@ class DownLoadItemViewModel {
         
         totalCount = (book.catalogs?.count)!
         
-        
+        concurrent = DispatchQueue(label: "concurrentQueue\(book.bookId)", attributes: .concurrent)
     }
-    
-    
-    
-    
     
 }
 
@@ -126,7 +122,9 @@ extension DownLoadItemViewModel {
     // MARK:删除
     func  delete() {
         
-    
+        self.isCompleted = true
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: DownloadCompletedNotification), object: self.book?.bookId)
+        
     }
     
     

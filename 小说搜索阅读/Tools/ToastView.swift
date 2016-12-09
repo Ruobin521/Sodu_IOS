@@ -88,7 +88,7 @@ class ToastView : NSObject{
         
         let toastContainerView = UIView()
         
-        toastContainerView.layer.cornerRadius = 4
+        toastContainerView.layer.cornerRadius = isCenter ? 4 : 0
         
         toastContainerView.backgroundColor =  !isSuccess ? UIColor(red:0, green:0, blue:0, alpha: 0.8) :    UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.8)
         
@@ -127,15 +127,16 @@ class ToastView : NSObject{
         return window
     }
     
+    
     //全局弹窗文字
     func showGlobalToast(content:String , _ isSuccess:Bool = true, _ isCenter:Bool = false,_ duration:CFTimeInterval = 1.5)  {
         
-        let frame = CGRect(x: 0, y: 64, width: (rv?.bounds.width)! - 30 , height: 35)
+        let frame = CGRect(x: 0, y: 64, width: isCenter ?  (rv?.bounds.width)! - 30  : (rv?.bounds.width)! , height: 35)
         
         
         let toastContainerView = UIView()
         
-        toastContainerView.layer.cornerRadius = 4
+        toastContainerView.layer.cornerRadius = isCenter ? 4 : 0
         
         toastContainerView.backgroundColor =  !isSuccess ? UIColor(red:0, green:0, blue:0, alpha: 0.8) :    UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.8)
         
@@ -155,6 +156,9 @@ class ToastView : NSObject{
         window.windowLevel = UIWindowLevelAlert
         window.isHidden = false
         window.addSubview(toastContainerView)
+        
+        window.center = CGPoint(x: (rv?.center.x)!,y:window.center.y)
+
         
         if isCenter {
             

@@ -207,9 +207,10 @@ extension AnalisysBookListHtmlHelper {
             b.chapterName = (item as NSString).substring(with: (result?.rangeAt(3))!).replacingOccurrences(of: "target=_blank", with: "")
             b.updateTime = (item as NSString).substring(with: (result?.rangeAt(4))!)
             b.bookId = (item as NSString).substring(with: (result?.rangeAt(5))!)
-            
+            b.LastReadContentPageUrl = b.chapterUrl
             b.lastReadChapterName = b.chapterName
-            
+
+           
             list.append(b)
         }
         
@@ -370,11 +371,11 @@ extension AnalisysBookListHtmlHelper {
                 continue
             }
             
-            b.contentPageUrl = (item as NSString).substring(with: (result?.rangeAt(1))!)
+            b.chapterUrl = (item as NSString).substring(with: (result?.rangeAt(1))!)
             
             
             
-            guard   let url = b.contentPageUrl, let uri = URL(string:url),let host = uri.host  else{
+            guard   let url = b.chapterUrl, let uri = URL(string:url),let host = uri.host  else{
                 
                 continue
             }
@@ -387,7 +388,7 @@ extension AnalisysBookListHtmlHelper {
             
             if host == LyWebUrls.instance.myg2 {
                 
-              b.contentPageUrl = b.contentPageUrl?.replacingOccurrences(of: LyWebUrls.instance.myg2, with: LyWebUrls.instance.myg)
+              b.chapterUrl = b.chapterUrl?.replacingOccurrences(of: LyWebUrls.instance.myg2, with: LyWebUrls.instance.myg)
                 
             }
             
@@ -395,6 +396,9 @@ extension AnalisysBookListHtmlHelper {
             b.chapterName = (item as NSString).substring(with: (result?.rangeAt(2))!)
             b.lywzName = (item as NSString).substring(with: (result?.rangeAt(3))!)
             b.updateTime = (item as NSString).substring(with: (result?.rangeAt(4))!)
+            
+            b.LastReadContentPageUrl = b.chapterUrl
+            b.lastReadChapterName = b.chapterName
             
             list.append(b)
         }

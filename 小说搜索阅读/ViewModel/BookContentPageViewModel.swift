@@ -176,7 +176,7 @@ class BookContentPageViewModel {
         
         didSet {
             
-            let catalog = BookCatalog(currentBook?.bookId, currentBook?.chapterName, currentBook?.contentPageUrl, nil)
+            let catalog = BookCatalog(currentBook?.bookId, currentBook?.lastReadChapterName, currentBook?.LastReadContentPageUrl, nil)
             
             SetCurrentCatalog(catalog: catalog, completion: nil)
             
@@ -243,16 +243,33 @@ class BookContentPageViewModel {
             
             _currentCatalog =  catalog
             
-            currentBook?.chapterName = _currentCatalog?.chapterName
+            currentBook?.lastReadChapterName = _currentCatalog?.chapterName
             
-            currentBook?.contentPageUrl = _currentCatalog?.chapterUrl
+            currentBook?.LastReadContentPageUrl = _currentCatalog?.chapterUrl
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddHistoryNotification), object: currentBook)
+            if currentBook?.isLocal == "0" {
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddHistoryNotification), object: currentBook)
+                
+            } else {
+                
+                if let  tempBook =  ViewModelInstance.instance.localBook.bookList.first(where: { (book) -> Bool in
+                    
+                    book.bookId == currentBook?.bookId
+                    
+                })  {
+                    
+                    tempBook.lastReadChapterName = _currentCatalog?.chapterName
+                    
+                    tempBook.LastReadContentPageUrl = _currentCatalog?.chapterUrl
+                    
+                    ViewModelInstance.instance.localBook.updateBookDB(book: tempBook, completion: nil)
+                }
+                 
+            }
             
-            
+            preLoadCatalogContent()
         }
-        
-        preLoadCatalogContent()
     }
     
     
@@ -351,67 +368,105 @@ class BookContentPageViewModel {
             
         }
         
-        catalogTask = CommonPageViewModel.getBookCIAC(url: url, bookid: bookid) { [weak self] (isSuccess, value:Any?) in
+        if self.currentBook?.isLocal == "1" {
             
-            if self == nil {
+            DispatchQueue.global().async {
                 
-                completion?(false)
-            }
-            
-            var count = retryCount
-            
-            if isSuccess {
+                let catalogs = SoDuSQLiteManager.shared.selectBookCatalogs(bookId: bookid)
                 
-                let result = value as? (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)
-                
-                self?.currentBook?.catalogs = result?.catalogs
-                
-                self?.currentBook?.introduction = result?.introduction
-                
-                self?.currentBook?.coverImage = result?.cover
-                
-                self?.currentBook?.author = result?.author
-                
-                self?.isRequestCatalogs = false
-                
-                
-                if  let  catalog = self?.getCatalogByPosion(posion: .Current) {
+                if catalogs.count > 0 {
                     
-                    catalog.chapterContent = self?.currentCatalog?.chapterContent
+                    self.currentBook?.catalogs = catalogs
                     
-                    self?._currentCatalog = catalog
+                    if  let  catalog = self.getCatalogByPosion(posion: .Current) {
+                        
+                        self._currentCatalog = catalog
+                        
+                        self.preLoadCatalogContent()
+                        
+                    }
                     
-                    self?.preLoadCatalogContent()
-                    
-                }
-                
-                
-                print("获取\(self?.currentBook?.bookName ?? " ")目录成功")
-                
-                self?.catalogTask = nil
-                
-                return
-                
-            } else {
-                
-                count += 1
-                
-                self?.isRequestCatalogs = false
-                
-                if count <= (self?.retryNumber)! && !(self?.isCatalogCanclled)! {
-                    
-                    self?.getBookCatalogs(url: url,retryCount:count, completion: completion)
-                    print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，正在进行第\(count)次尝试")
-                    
+                    completion?(true)
                     
                 } else {
                     
                     completion?(false)
-                    print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，不再尝试，操蛋")
+                }
+                
+                self.isRequestCatalogs = false
+                
+                
+            }
+            
+        }
+            
+        else {
+            
+            catalogTask = CommonPageViewModel.getBookCIAC(url: url, bookid: bookid) { [weak self] (isSuccess, value:Any?) in
+                
+                if self == nil {
                     
+                    completion?(false)
+                }
+                
+                var count = retryCount
+                
+                if isSuccess {
+                    
+                    let result = value as? (catalogs:[BookCatalog]?, introduction:String?,author:String?, cover:String?)
+                    
+                    self?.currentBook?.catalogs = result?.catalogs
+                    
+                    self?.currentBook?.introduction = result?.introduction
+                    
+                    self?.currentBook?.coverImage = result?.cover
+                    
+                    self?.currentBook?.author = result?.author
+                    
+                    self?.isRequestCatalogs = false
+                    
+                    
+                    if  let  catalog = self?.getCatalogByPosion(posion: .Current) {
+                        
+                        catalog.chapterContent = self?.currentCatalog?.chapterContent
+                        
+                        self?._currentCatalog = catalog
+                        
+                        self?.preLoadCatalogContent()
+                        
+                    }
+                    
+                    
+                    print("获取\(self?.currentBook?.bookName ?? " ")目录成功")
+                    
+                    self?.catalogTask = nil
+                    
+                    return
+                    
+                } else {
+                    
+                    count += 1
+                    
+                    self?.isRequestCatalogs = false
+                    
+                    if count <= (self?.retryNumber)! && !(self?.isCatalogCanclled)! {
+                        
+                        self?.getBookCatalogs(url: url,retryCount:count, completion: completion)
+                        print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，正在进行第\(count)次尝试")
+                        
+                        
+                    } else {
+                        
+                        completion?(false)
+                        print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，不再尝试，操蛋")
+                        
+                    }
                 }
             }
+            
+            
         }
+        
         
     }
     
