@@ -23,7 +23,7 @@ class DownCenterViewController: BaseViewController {
             self.tableview?.reloadData()
         }
         
-    }
+    } 
      
 }
 

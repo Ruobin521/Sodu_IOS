@@ -24,6 +24,8 @@ class DownLoadItemViewModel {
         }
     }
     
+    var isSuspend = false
+    
     //创建并行队列
     let concurrent:DispatchQueue!
     
@@ -105,16 +107,21 @@ extension DownLoadItemViewModel {
     }
     
     //MARK:暂停
-    func pauseDownload() {
+    func suspend() {
+        
+        isSuspend = true
         
         concurrent.suspend()
+        
+        
         
     }
     
     
     // MARK:继续
-    func  unpause() {
+    func  resume() {
         
+        isSuspend = false
         //继续队列
         concurrent.resume()
     }
