@@ -188,7 +188,7 @@ extension MainViewController {
             ["clsName": "RankViewController", "title": "排行榜", "imageName" : "rank"],
             
             ["clsName": "HotAndRecommendViewController", "title": "热门推荐", "imageName" : "hot"],
-            ["clsName": "BaseViewController", "title": "本地书架", "imageName" : "books"],
+            ["clsName": "LocalBookPageViewController", "title": "本地书架", "imageName" : "books"],
             ["clsName": "SettingViewController", "title": "设置", "imageName" : "setting"],
             
             ]

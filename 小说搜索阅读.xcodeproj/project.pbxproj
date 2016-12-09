@@ -53,6 +53,8 @@
 		B194B8C91DBDD0CE0061C9A4 /* ViewModelInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194B8C81DBDD0CE0061C9A4 /* ViewModelInstance.swift */; };
 		B194B8CB1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194B8CA1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift */; };
 		B194B8CE1DBDE6720061C9A4 /* HotAndRecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B194B8CD1DBDE6720061C9A4 /* HotAndRecommendViewController.swift */; };
+		B1958D611DFA82C6007B0B01 /* LoaclBookPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1958D601DFA82C6007B0B01 /* LoaclBookPageViewModel.swift */; };
+		B1958D641DFA84D3007B0B01 /* LocalBookPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1958D631DFA84D3007B0B01 /* LocalBookPageViewController.swift */; };
 		B19B73E71DD9BD5A00171785 /* DownloadCenterPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B73E61DD9BD5A00171785 /* DownloadCenterPageViewModel.swift */; };
 		B19B73EA1DD9C01300171785 /* DownCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B73E91DD9C01300171785 /* DownCenterViewController.swift */; };
 		B19B743B1DD33984008D6C5C /* RefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19B74381DD33984008D6C5C /* RefreshControl.swift */; };
@@ -149,6 +151,8 @@
 		B194B8C81DBDD0CE0061C9A4 /* ViewModelInstance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelInstance.swift; sourceTree = "<group>"; };
 		B194B8CA1DBDD55E0061C9A4 /* HotAndRecommendPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAndRecommendPageViewModel.swift; sourceTree = "<group>"; };
 		B194B8CD1DBDE6720061C9A4 /* HotAndRecommendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotAndRecommendViewController.swift; sourceTree = "<group>"; };
+		B1958D601DFA82C6007B0B01 /* LoaclBookPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaclBookPageViewModel.swift; sourceTree = "<group>"; };
+		B1958D631DFA84D3007B0B01 /* LocalBookPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalBookPageViewController.swift; sourceTree = "<group>"; };
 		B19B73E61DD9BD5A00171785 /* DownloadCenterPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadCenterPageViewModel.swift; sourceTree = "<group>"; };
 		B19B73E91DD9C01300171785 /* DownCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownCenterViewController.swift; sourceTree = "<group>"; };
 		B19B74381DD33984008D6C5C /* RefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshControl.swift; sourceTree = "<group>"; };
@@ -374,6 +378,7 @@
 				B1A73D341DE0D0F900EA4A40 /* SearchPageViewModel.swift */,
 				B15F7A9C1DEC1E7A00687DB6 /* HistoryPageViewModel.swift */,
 				B16F47C51DF161B2007F88A1 /* BookListDBHelpr.swift */,
+				B1958D601DFA82C6007B0B01 /* LoaclBookPageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -416,6 +421,14 @@
 			path = HotAndRecommend;
 			sourceTree = "<group>";
 		};
+		B1958D621DFA84AF007B0B01 /* LocalBooks */ = {
+			isa = PBXGroup;
+			children = (
+				B1958D631DFA84D3007B0B01 /* LocalBookPageViewController.swift */,
+			);
+			path = LocalBooks;
+			sourceTree = "<group>";
+		};
 		B19B73E81DD9BFCC00171785 /* DownCenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,8 +452,8 @@
 			children = (
 				B19B743F1DD3446E008D6C5C /* CommonBookListTableViewCell.swift */,
 				B19B74401DD3446E008D6C5C /* CommonBookListTableViewCell.xib */,
-				B19B74411DD3446E008D6C5C /* UpdateChapterTableViewCell.swift */,
 				B19B74421DD3446E008D6C5C /* UpdateChapterTableViewCell.xib */,
+				B19B74411DD3446E008D6C5C /* UpdateChapterTableViewCell.swift */,
 				B19B74471DD344D8008D6C5C /* BookshelfTableViewCell.swift */,
 				B19B74481DD344D8008D6C5C /* BookshelfTableViewCell.xib */,
 				B17860BB1DD37A7300E07944 /* SettingTableViewCell.swift */,
@@ -531,6 +544,7 @@
 		B1D759D21DE6CD480052C4F4 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				B1958D621DFA84AF007B0B01 /* LocalBooks */,
 				B17E03D61DB099120061DD47 /* Bookshelf */,
 				B17E03C61DB095B90061DD47 /* Rank */,
 				B194B8CC1DBDE6720061C9A4 /* HotAndRecommend */,
@@ -760,8 +774,10 @@
 				B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */,
 				B127B0C71DF356CA00F6C913 /* UIImage+Extensions.swift in Sources */,
 				B16F47C61DF161B2007F88A1 /* BookListDBHelpr.swift in Sources */,
+				B1958D641DFA84D3007B0B01 /* LocalBookPageViewController.swift in Sources */,
 				B1C2385B1DD388D800C37FA6 /* LonginViewController.swift in Sources */,
 				B15F7A9B1DEC068500687DB6 /* HistoryPageViewController.swift in Sources */,
+				B1958D611DFA82C6007B0B01 /* LoaclBookPageViewModel.swift in Sources */,
 				B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */,
 				B162E2161DC0F152008DF1C4 /* CommonPageViewModel.swift in Sources */,
 				B1D0E85D1DEDB295008209C7 /* FailedView.swift in Sources */,

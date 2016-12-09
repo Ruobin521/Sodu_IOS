@@ -86,14 +86,14 @@ extension SoDuSQLiteManager {
                 }
                 
                 if time {
-                  
+                    
                     let formatter = DateFormatter()
                     
                     formatter.dateFormat = "yyyy-MM-dd HH:mm"
                     
                     let dateString = formatter.string(from: Date())
                     
-                     parameter.append(book.updateTime ?? dateString)
+                    parameter.append(book.updateTime ?? dateString)
                 }
                 
                 
@@ -127,8 +127,8 @@ extension SoDuSQLiteManager {
         
         if orderByTime {
             
-             sql  += "  ORDER BY inserttime DESC"
-                         
+            sql  += "  ORDER BY inserttime DESC"
+            
         }
         
         let array = executeRecordSet(sql: sql)
@@ -339,38 +339,15 @@ extension SoDuSQLiteManager {
 
 // MARK: - 缓存本地图书的相关数据库操作
 extension SoDuSQLiteManager {
+  
     
-    func createBookTable(withTableName:String) {
-        
-        let tableName = "book\(withTableName)"
-        
-        let sql =  "CREATE TABLE IF NOT EXISTS \(tableName) (chapterurl text PRIMARY KEY NOT NULL, chaptername text NOT NULL,  chaptercontent text NOT NULL);"
-        
-        
-        queue.inDatabase { (db) in
-            
-            if db?.executeStatements(sql) == true {
-                
-                print("创建\(withTableName)成功")
-                
-            } else {
-                
-                print("建表失败")
-                
-            }
-        }
-         
-    }
-    
-    
-    /// 插入或者更新记录 一条或多条
-    func insertOrUpdateBookCatalogs(catalogs:[BookCatalog], withTableName:String,completion: ((_ isSuccess:Bool) ->  ())?) {
+    /// 插入或者更新目录 一条或多条
+    func insertOrUpdateBookCatalogs(catalogs:[BookCatalog], bookid:String,completion: ((_ isSuccess:Bool) ->  ())?) {
         
         var result = true
         
-        let tableName = "Book" + withTableName
         
-        let sql = "INSERT OR REPLACE INTO  \(tableName) (chapterurl ,chaptername,chaptercontent) VALUES (?,?,?)"
+        let sql = "INSERT OR REPLACE INTO  bookcatalog (bookid, chapterurl ,chaptername,chaptercontent) VALUES (?,?,?,?)"
         
         
         
@@ -378,7 +355,7 @@ extension SoDuSQLiteManager {
             
             for catalog  in catalogs {
                 
-                var parameter = [Any]()
+                var parameters = [Any]()
                 
                 
                 guard let chapterUrl = catalog.chapterUrl ,let chapterName = catalog.chapterName,let chapterContent = catalog.chapterContent else {
@@ -386,11 +363,13 @@ extension SoDuSQLiteManager {
                     continue
                 }
                 
-                parameter.insert(chapterUrl, at: 0)
-                parameter.insert(chapterName, at: 1)
-                parameter.insert(chapterContent, at: 2)
-               
-                if db?.executeUpdate(sql, withArgumentsIn: parameter) == false {
+                parameters.append(bookid)
+                parameters.append(chapterUrl)
+                parameters.append(chapterName)
+                parameters.append(chapterContent)
+                
+                
+                if db?.executeUpdate(sql, withArgumentsIn: parameters) == false {
                     
                     rollbacl?.pointee = true
                     
@@ -406,7 +385,7 @@ extension SoDuSQLiteManager {
         completion?(result)
         
     }
-
+    
     
 }
 

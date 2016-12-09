@@ -21,6 +21,9 @@ class DownloadTableViewCell: UITableViewCell {
         didSet {
             
             txtBookName.text = vm?.book?.bookName
+            
+            setText() 
+
         }
         
     }
@@ -46,15 +49,29 @@ class DownloadTableViewCell: UITableViewCell {
             return
         }
         
+       setText()
+        
+    }
+    
+    
+    func setText() {
+        
         txtProcessValue.text =  "(\((vm?.downloadedCount)!) / \((vm?.totalCount)!))"
         
-        processView.progress =  Float((vm?.downloadedCount)!) / Float((vm?.totalCount)!)
+        processView.progress =   vm?.processValue ?? 0
         
-        if (vm?.isCompleted)! {
+        if  vm?.processValue == 1 {
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: RemoveDownloadItemNotification), object: vm?.book?.bookId)
- 
+            txtProcessValue.text =  "下载完毕，数据处理中..."
+            
         }
+    }
+    
+    override func removeFromSuperview() {
+        
+        super.removeFromSuperview()
+        
+        timer?.invalidate()
         
     }
     

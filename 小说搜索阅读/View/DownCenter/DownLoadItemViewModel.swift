@@ -14,7 +14,21 @@ class DownLoadItemViewModel {
     
     var totalCount:Int = 0
     
-    var downloadedCount:Int = 0
+    
+    var downloadedCount:Int = 0 {
+        
+        
+        didSet {
+            
+            processValue = Float(downloadedCount) / Float(totalCount)
+        }
+    }
+    
+    //创建并行队列
+    let concurrent = DispatchQueue(label: "concurrentQueue", attributes: .concurrent)
+    
+    
+    let group = DispatchGroup()
     
     
     var timer : Timer?
@@ -29,11 +43,20 @@ class DownLoadItemViewModel {
         self.book = book
         
         totalCount = (book.catalogs?.count)!
-      
+        
         
     }
     
     
+    
+    
+    
+}
+
+
+
+// MARK: - 开始 ，暂停，删除 操作
+extension DownLoadItemViewModel {
     
     func startDowm() {
         
@@ -53,12 +76,6 @@ class DownLoadItemViewModel {
             catalogGroup[index].append((self.book?.catalogs)![i])
             
         }
-        
-        //创建并行队列
-        let concurrent = DispatchQueue(label: "concurrentQueue1", attributes: .concurrent)
-        
-        
-        let group = DispatchGroup()
         
         
         for catalogs in catalogGroup {
@@ -86,9 +103,36 @@ class DownLoadItemViewModel {
             
             self.insertToDB()
             
+            
         }
         
     }
+    
+    //MARK:暂停
+    func pauseDownload() {
+        
+        concurrent.suspend()
+        
+    }
+    
+    
+    // MARK:继续
+    func  unpause() {
+        
+        //继续队列
+        concurrent.resume()
+    }
+    
+    // MARK:删除
+    func  delete() {
+        
+    
+    }
+    
+    
+}
+
+extension DownLoadItemViewModel {
     
     
     func httpRequest(urlString:String) -> String? {
@@ -97,9 +141,11 @@ class DownLoadItemViewModel {
         //创建NSURL对象
         let url:URL! = URL(string: urlString)
         //创建请求对象
-        let urlRequest:URLRequest = URLRequest(url: url)
+        var urlRequest:URLRequest = URLRequest(url: url)
         //响应对象
         var response:URLResponse?
+        
+        urlRequest.timeoutInterval = 15
         
         let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
         
@@ -128,24 +174,37 @@ class DownLoadItemViewModel {
         return result
     }
     
-}
-
-
-extension DownLoadItemViewModel {
-    
     
     func insertToDB() {
         
-        //建表 
-        
-        SoDuSQLiteManager.shared.createBookTable(withTableName: (book?.bookId)!)
-        
-        SoDuSQLiteManager.shared.insertOrUpdateBookCatalogs(catalogs: (self.book?.catalogs)!, withTableName: (self.book?.bookId)!) { (isSuccess) in
+        SoDuSQLiteManager.shared.insertOrUpdateBookCatalogs(catalogs: (self.book?.catalogs)!, bookid: (self.book?.bookId)!) { (isSuccess) in
             
             if isSuccess {
                 
-                self.isCompleted = true
+                self.book?.lastReadChapterName = self.book?.catalogs?[0].chapterName
+                self.book?.LastReadContentPageUrl = self.book?.catalogs?[0].chapterUrl
+                
+                self.book?.isLocal = "1"
+                
+                SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [self.book!], tableName: TableName.Loaclbook.rawValue, completion: { (isSuccess) in
+                    
+                    DispatchQueue.main.async {
+                        
+                        ToastView.instance.showGlobalToast(content: "\((self.book?.bookName)!)下载完成，点击”本地图书“查看",true,true)
+                        
+                    }
+                    
+                    ViewModelInstance.instance.localBook.bookList.insert(self.book!, at: 0)
+                    
+                })
+                
+            } else{
+                
+                ToastView.instance.showGlobalToast(content: "\((self.book?.bookName)!)下载失败",false)
             }
+            
+            self.isCompleted = true
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: DownloadCompletedNotification), object: self.book?.bookId)
             
         }
     }

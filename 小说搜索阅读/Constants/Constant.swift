@@ -25,7 +25,7 @@ let ContentPageSwitchNotification = "ContentPageSwitchNotification"
 let  AddHistoryNotification = "AddHistoryNotification"
 
 
-let  RemoveDownloadItemNotification = "RemoveDownloadItemNotification"
+let  DownloadCompletedNotification = "DownloadCompletedNotification"
 
 
 let SoDuDefaultTinkColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)

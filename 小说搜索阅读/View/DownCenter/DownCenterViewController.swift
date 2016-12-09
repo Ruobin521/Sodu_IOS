@@ -18,11 +18,13 @@ class DownCenterViewController: BaseViewController {
     
     func removeDownloadItem(obj:Notification) {
         
-        self.tableview?.reloadData()
+        DispatchQueue.main.async {
+            
+            self.tableview?.reloadData()
+        }
         
     }
-    
-    
+     
 }
 
 
@@ -80,7 +82,7 @@ extension DownCenterViewController {
         let cellNib1 = UINib(nibName: "DownloadTableViewCell", bundle: nil)
         tableview?.register(cellNib1, forCellReuseIdentifier: commonCellId)
         
-         NotificationCenter.default.addObserver(self, selector: #selector(removeDownloadItem), name: NSNotification.Name(rawValue: RemoveDownloadItemNotification), object: nil)
+         NotificationCenter.default.addObserver(self, selector: #selector(removeDownloadItem), name: NSNotification.Name(rawValue: DownloadCompletedNotification), object: nil)
     }
     
     

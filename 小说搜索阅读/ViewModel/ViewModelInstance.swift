@@ -20,6 +20,8 @@ class ViewModelInstance {
     
     lazy var setting = SettingPageViewModel()
     
+    lazy var localBook = LoaclBookPageViewModel()
+    
     lazy var history = HistoryPageViewModel()
     
     lazy var downloadCenter = DownloadCenterPageViewModel()

@@ -18,7 +18,9 @@ enum TableName : String {
     
     case History = "history"
     
-    case Catalog = "catalog"
+    case Catalog = "bookcatalog"
+    
+    case Loaclbook = "localbook"
     
 }
 
@@ -52,6 +54,7 @@ class BookListDBHelpr {
 // MARK: - 首页缓存操作
 extension BookListDBHelpr {
     
+  
     
     /// 加载首页缓存数据
     ///

@@ -839,19 +839,10 @@ extension BookContentViewController {
             return
         }
         
-        let viewModel = ViewModelInstance.instance.downloadCenter.bookList.first(where: { (temp) -> Bool in  temp.book!.bookId == vm.currentBook?.bookId })
-        
-        if   viewModel != nil {
-            
-            showToast(content: "\(viewModel?.book?.bookName!)正在缓存中",true,true)
-            
-            return
-            
-        }
+     
         
         ViewModelInstance.instance.downloadCenter.addDownloadItem(book: vm.currentBook!)
-        
-        showToast(content: "开始缓存\((vm.currentBook?.bookName)!)",true,true)
+                 
     }
     
     

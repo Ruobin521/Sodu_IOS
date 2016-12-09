@@ -83,14 +83,14 @@ class ToastView : NSObject{
     //弹窗文字
     func showToast(content:String , _ isSuccess:Bool = true,_ isCenter:Bool = false, _ duration:CFTimeInterval=1.5) -> UIView {
         
-        let frame = CGRect(x: 0, y: 64, width:  isCenter ? (rv?.bounds.width)! - 100 : (rv?.bounds.width)!  , height: 30)
+        let frame = CGRect(x: 0, y: 64, width:  isCenter ? (rv?.bounds.width)! - 100 : (rv?.bounds.width)!  , height: 35)
         
         
         let toastContainerView = UIView()
         
         toastContainerView.layer.cornerRadius = 4
         
-        toastContainerView.backgroundColor =  !isSuccess ? UIColor(red:0, green:0, blue:0, alpha: 0.5) :    UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.75)
+        toastContainerView.backgroundColor =  !isSuccess ? UIColor(red:0, green:0, blue:0, alpha: 0.8) :    UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.8)
         
         let toastContentView = UILabel(frame: CGRect(x:0, y:0  , width:frame.width,height: frame.height))
         
@@ -99,17 +99,16 @@ class ToastView : NSObject{
         toastContentView.text = content
         toastContentView.textAlignment = NSTextAlignment.center
         toastContainerView.addSubview(toastContentView)
-        
+        toastContainerView.frame =  CGRect(x: 0, y: 0, width:  frame.width , height: frame.height)
         
         let window = UIView()
         window.backgroundColor = UIColor.clear
         window.frame = frame
-        toastContainerView.frame =  CGRect(x: 0, y: 0, width:  frame.width , height: frame.height)
         
         if isCenter {
             
             window.center = CGPoint(x: (rv?.center.x)!, y:(rv?.center.y)! + 50)
-
+            
         }
         
         
@@ -129,16 +128,16 @@ class ToastView : NSObject{
     }
     
     //全局弹窗文字
-    func showGlobalToast(content:String , _ isSuccess:Bool = true, _ duration:CFTimeInterval = 1.5)  {
+    func showGlobalToast(content:String , _ isSuccess:Bool = true, _ isCenter:Bool = false,_ duration:CFTimeInterval = 1.5)  {
         
-        let frame = CGRect(x: 0, y: 0, width: (rv?.bounds.width)! , height: 30)
+        let frame = CGRect(x: 0, y: 64, width: (rv?.bounds.width)! - 30 , height: 35)
         
         
         let toastContainerView = UIView()
         
-        toastContainerView.layer.cornerRadius = 6
+        toastContainerView.layer.cornerRadius = 4
         
-        toastContainerView.backgroundColor =  !isSuccess ? UIColor(red:0, green:0, blue:0, alpha: 0.4) :    UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.5)
+        toastContainerView.backgroundColor =  !isSuccess ? UIColor(red:0, green:0, blue:0, alpha: 0.8) :    UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 0.8)
         
         let toastContentView = UILabel(frame: CGRect(x:0, y:0  , width:frame.width,height: frame.height))
         
@@ -147,18 +146,21 @@ class ToastView : NSObject{
         toastContentView.text = content
         toastContentView.textAlignment = NSTextAlignment.center
         toastContainerView.addSubview(toastContentView)
-        
+        toastContainerView.frame =  CGRect(x: 0, y: 0, width:  frame.width , height: frame.height)
         
         let window = UIWindow()
         window.backgroundColor = UIColor.clear
         window.frame = frame
-        toastContainerView.frame =  CGRect(x: 0, y: 0, width:  frame.width , height: frame.height)
-        
         
         window.windowLevel = UIWindowLevelAlert
-        window.center = CGPoint(x: (rv?.center.x)!, y: 79 )
         window.isHidden = false
         window.addSubview(toastContainerView)
+        
+        if isCenter {
+            
+            window.center = CGPoint(x: (rv?.center.x)!, y:(rv?.center.y)! + 50)
+            
+        }
         
         windows.append(window)
         
@@ -230,7 +232,7 @@ class AnimationUtil{
         
         ///表示动画保持结束后的状态
         animation.fillMode = kCAFillModeForwards;
-         
+        
         
         
         return animation

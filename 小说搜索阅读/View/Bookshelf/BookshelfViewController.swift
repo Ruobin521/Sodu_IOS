@@ -160,18 +160,15 @@ extension BookshelfViewController {
             
             book.lastReadChapterName = book.chapterName
             book.isNew = "0"
+            
+            vm.updateBook(book: book) { (isSuccess) in
+                
+                self.tableview?.reloadRows(at: [indexPath], with: .automatic)
+            }
         }
         
         
         CommonPageViewModel.navigateToUpdateChapterPage(book, navigationController)
-        
-        
-        vm.updateBook(book: book) { (isSuccess) in
-            
-            self.tableview?.reloadRows(at: [indexPath], with: .automatic)
-        }
-        
-        
     }
     
     
