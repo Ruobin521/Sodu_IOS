@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController: BaseUIViewController {
     
     
     var isLoading = false  {
@@ -33,7 +33,6 @@ class BaseViewController: UIViewController {
         
     }
     
-    var emptyView:UIView?
     
     var isPullup = false
     
@@ -204,7 +203,7 @@ extension BaseViewController {
         
         tableview?.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: CGFloat.leastNormalMagnitude))
         
-        tableview?.sectionFooterHeight = 10
+        tableview?.sectionFooterHeight = 5
         tableview?.sectionHeaderHeight = 0.1
         //  tableview?.sectionFooterHeight = CGFloat.leastNormalMagnitude
         
@@ -290,26 +289,25 @@ extension BaseViewController {
         
         let failedView = FailedView.failedView()
         
-        failedLayer?.contents =  UIImage.convertViewToImage(view: failedView).cgImage
+        let view = UIView(frame: self.view.frame)
+        
+        view.addSubview(failedView)
+        
+        failedView.center = CGPoint(x: view.center.x, y: view.center.y -  100)
+                 
+        failedLayer?.contents =  UIImage.convertViewToImage(view: view).cgImage
         
         failedLayer?.anchorPoint =  CGPoint.zero
         
-        failedLayer?.bounds =  CGRect(x: 0, y: 0, width: (failedView.frame.width), height: (failedView.frame.height))
         
-        var rect = failedLayer?.frame
-        
-        rect?.origin.y = (self.view.frame.height - (failedView.frame.height) ) * 0.5 - 80
-        
-        
-        rect?.origin.x = (self.view.frame.width - (failedView.frame.width) ) * 0.5
-        
-        failedLayer?.frame = rect!
-        
+        failedLayer?.bounds =  CGRect(x: 0, y: 0, width: (view.frame.width), height: (view.frame.height))
+       
+        failedLayer?.frame = (failedLayer?.frame)!
+  
         tableview?.layer.addSublayer(failedLayer!)
         
         failedLayer?.zPosition = -5
-  
-        
+   
     }
     
     

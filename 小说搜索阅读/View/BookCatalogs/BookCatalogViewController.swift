@@ -10,7 +10,7 @@ import UIKit
 
 private let cellId = "cellId"
 
-class BookCatalogViewController: UIViewController {
+class BookCatalogViewController: BaseUIViewController {
     
     
     @IBOutlet weak var txtBookName: UILabel!
@@ -233,7 +233,5 @@ extension BookCatalogViewController {
         tableview.tableHeaderView = v
         
     }
-    
-    
     
 }

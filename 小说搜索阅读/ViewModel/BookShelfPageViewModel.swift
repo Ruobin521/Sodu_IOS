@@ -126,6 +126,8 @@ class BookShelfPageViewModel {
                 
                 book.isNew = "0"
                 
+                tempbook.lastReadChapterName = book.lastReadChapterName
+                
                 continue
             }
             

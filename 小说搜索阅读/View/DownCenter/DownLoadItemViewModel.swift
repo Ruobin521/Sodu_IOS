@@ -14,6 +14,8 @@ class DownLoadItemViewModel {
     
     var totalCount:Int = 0
     
+    var isDeleted:Bool = false
+    
     
     var downloadedCount:Int = 0 {
         
@@ -82,13 +84,17 @@ extension DownLoadItemViewModel {
                 
                 for catalog in catalogs {
                     
-                    guard let url = catalog.chapterUrl else {
+                    if self.isDeleted {
                         
-                        continue
+                        break
                     }
                     
-                    catalog.chapterContent =  self.httpRequest(urlString: url)
-                    print("\(catalog.chapterName!)下载完成")
+                    if let url = catalog.chapterUrl {
+                        
+                        catalog.chapterContent =  self.httpRequest(urlString: url)
+                        print("\(catalog.chapterName!)下载完成")
+                    }
+                    
                     self.downloadedCount += 1
                     
                 }
@@ -99,37 +105,22 @@ extension DownLoadItemViewModel {
         
         group.notify(queue: concurrent) {
             
-            self.insertToDB()
+            if self.isDeleted {
+                
+                return
+            }
             
+            self.insertToDB()
             
         }
         
     }
-    
-    //MARK:暂停
-    func suspend() {
-        
-        isSuspend = true
-        
-        concurrent.suspend()
-        
-        
-        
-    }
-    
-    
-    // MARK:继续
-    func  resume() {
-        
-        isSuspend = false
-        //继续队列
-        concurrent.resume()
-    }
+ 
     
     // MARK:删除
     func  delete() {
         
-        self.isCompleted = true
+        self.isDeleted = true
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: DownloadCompletedNotification), object: self.book?.bookId)
         
     }

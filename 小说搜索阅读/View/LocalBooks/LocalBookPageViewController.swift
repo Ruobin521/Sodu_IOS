@@ -62,7 +62,7 @@ extension LocalBookPageViewController {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         
-        return 105
+        return 95
     }
     
     

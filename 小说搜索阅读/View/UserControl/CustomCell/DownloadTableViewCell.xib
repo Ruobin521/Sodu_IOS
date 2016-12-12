@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -16,11 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Maj-tF-69S">
-                        <rect key="frame" x="15" y="50" width="179" height="2"/>
+                        <rect key="frame" x="15" y="50" width="234" height="2"/>
                     </progressView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="书名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h14-mh-vc5">
                         <rect key="frame" x="15" y="15" width="33" height="20"/>
@@ -46,38 +46,21 @@
                             <action selector="deleteAction" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6t3-nx-2Nr"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axp-Of-XhJ">
-                        <rect key="frame" x="209" y="17.5" width="40" height="40"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="CfQ-WN-WlJ"/>
-                            <constraint firstAttribute="height" constant="40" id="z9y-C4-Dn8"/>
-                        </constraints>
-                        <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                        <state key="normal" image="pause"/>
-                        <connections>
-                            <action selector="pasueAction" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bi8-bD-WQ8"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="KTN-6l-LMV" firstAttribute="leading" secondItem="axp-Of-XhJ" secondAttribute="trailing" constant="15" id="C9o-XV-amQ"/>
                     <constraint firstItem="jyH-tJ-Deh" firstAttribute="leading" secondItem="h14-mh-vc5" secondAttribute="trailing" constant="10" id="CYg-iP-ILf"/>
-                    <constraint firstItem="axp-Of-XhJ" firstAttribute="leading" secondItem="Maj-tF-69S" secondAttribute="trailing" constant="15" id="DqU-Zq-LDk"/>
                     <constraint firstItem="h14-mh-vc5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="ILa-hi-HC0"/>
                     <constraint firstAttribute="trailingMargin" secondItem="KTN-6l-LMV" secondAttribute="trailing" constant="8" id="UrH-XA-3b2"/>
-                    <constraint firstItem="axp-Of-XhJ" firstAttribute="centerY" secondItem="KTN-6l-LMV" secondAttribute="centerY" id="Uzo-fQ-ZBC"/>
                     <constraint firstItem="h14-mh-vc5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="dFY-p2-SfM"/>
-                    <constraint firstItem="axp-Of-XhJ" firstAttribute="width" secondItem="KTN-6l-LMV" secondAttribute="width" id="fLX-AY-O1q"/>
                     <constraint firstItem="Maj-tF-69S" firstAttribute="leading" secondItem="h14-mh-vc5" secondAttribute="leading" id="fhv-WX-Yki"/>
                     <constraint firstItem="Maj-tF-69S" firstAttribute="top" secondItem="h14-mh-vc5" secondAttribute="bottom" constant="15" id="msP-8C-Zoe"/>
                     <constraint firstItem="KTN-6l-LMV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="5" id="tcQ-b9-TMb"/>
                     <constraint firstItem="jyH-tJ-Deh" firstAttribute="centerY" secondItem="h14-mh-vc5" secondAttribute="centerY" id="uED-aY-PZl"/>
-                    <constraint firstItem="axp-Of-XhJ" firstAttribute="height" secondItem="KTN-6l-LMV" secondAttribute="height" id="y9h-jG-C7y"/>
+                    <constraint firstItem="KTN-6l-LMV" firstAttribute="leading" secondItem="Maj-tF-69S" secondAttribute="trailing" constant="15" id="vPF-as-S9x"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="btnDelete" destination="KTN-6l-LMV" id="H1Z-qc-6EX"/>
-                <outlet property="btnPause" destination="axp-Of-XhJ" id="ntT-cG-GeV"/>
                 <outlet property="processView" destination="Maj-tF-69S" id="cxd-RE-cPC"/>
                 <outlet property="txtBookName" destination="h14-mh-vc5" id="VMn-2O-xhf"/>
                 <outlet property="txtProcessValue" destination="jyH-tJ-Deh" id="oEX-rI-edj"/>
@@ -87,6 +70,5 @@
     </objects>
     <resources>
         <image name="delete" width="30" height="30"/>
-        <image name="pause" width="30" height="30"/>
     </resources>
 </document>

@@ -86,10 +86,7 @@ class RankViewController: BaseViewController {
                 self.tableview?.reloadData()
                 
                 self.navItem.title = "排行榜 - \(pageindex+1) / 8"
-                
-                self.showToast(content: "已加载排行榜第\(pageindex+1)页数据")
-                
-                
+                  
             }else {
                 
                 self.showToast(content: "第\(pageindex+1)页数据加载失败", false)

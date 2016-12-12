@@ -265,7 +265,7 @@ class BookContentPageViewModel {
                     
                     ViewModelInstance.instance.localBook.updateBookDB(book: tempBook, completion: nil)
                 }
-                 
+                
             }
             
             preLoadCatalogContent()
@@ -328,27 +328,6 @@ class BookContentPageViewModel {
         
     }
     
-    //MARK: 获取相应章节内容
-    func getCatalogChapterContent(catalog:BookCatalog?,_ completion: ((_ isSuccess:Bool,_ strs:String?)->())?) -> URLSessionDataTask?  {
-        
-        print("开始加载章节：\((catalog?.chapterName)!)")
-        
-        let task =  CommonPageViewModel.getCatalogContent(catalog: catalog!) { (isSuccess, html) in
-            
-            if isSuccess {
-                
-                print("章节：\((catalog?.chapterName)!) 加载成功")
-                
-            } else {
-                
-                print("章节：\(catalog?.chapterName) 加载失败")
-            }
-            
-            completion?(isSuccess,html)
-        }
-        
-        return task
-    }
     
     
     
@@ -470,14 +449,45 @@ class BookContentPageViewModel {
         
     }
     
+    //MARK: 获取相应章节内容
+    func getCatalogChapterContent(catalog:BookCatalog?,_ completion: ((_ isSuccess:Bool,_ strs:String?)->())?) -> URLSessionDataTask?  {
+        
+        print("开始加载章节：\((catalog?.chapterName)!)")
+        
+        let task =  CommonPageViewModel.getCatalogContent(catalog: catalog!) { (isSuccess, html) in
+            
+            if isSuccess {
+                
+                print("章节：\((catalog?.chapterName)!) 加载成功")
+                
+            } else {
+                
+                print("章节：\(catalog?.chapterName) 加载失败")
+            }
+            
+            completion?(isSuccess,html)
+        }
+        
+        return task
+    }
+    
+    
     
     //MARK: 根据枚举值获取章节 catalog
     func getCatalogByPosion(posion:CatalogPosion) -> BookCatalog? {
         
         guard let catalogs = currentBook?.catalogs ,let catalog = currentCatalog else {
             
+            if posion == .Current {
+                
+                return currentCatalog
+                
+            } else {
+                
+                return nil
+            }
             
-            return nil
+            
         }
         
         guard  let currentIndex = getCatalogIndex((catalog.chapterUrl)!)  else {
@@ -521,238 +531,126 @@ class BookContentPageViewModel {
         
         var count = retryCount
         
+        var task:URLSessionDataTask?
         
-        ///上一章节
-        if posion == CatalogPosion.Before {
+        
+        guard let catalog = getCatalogByPosion(posion: posion) else{
             
-            guard let catalog = self.preCatalog else {
-                
-                return
-            }
-            
-            if  let _ = contentDic[catalog.chapterUrl!] {
-                
-                completion?(true)
-            }
-                
-            else  if catalog.chapterContent != nil {
-                
-                DispatchQueue.global().async {
-                    
-                    self.preTask?.cancel()
-                    
-                    self.preTask = nil
-                    
-                    self.splitPages(html: catalog.chapterContent, completion: { (pages) in
-                        
-                        self.contentDic[catalog.chapterUrl!] = pages
-                        
-                        completion?(true)
-                        
-                    })
-                    
-                }
-                
-                
-                
-            } else {
-                
-                preTask = self.getCatalogChapterContent(catalog: catalog) { (isSuccess,html) in
-                    
-                    self.preTask = nil
-                    
-                    if isSuccess {
-                        
-                        catalog.chapterContent = html
-                        DispatchQueue.global().async {
-                            
-                            self.splitPages(html: html, completion: { (pages) in
-                                
-                                
-                                self.contentDic[catalog.chapterUrl!] = pages
-                                
-                                completion?(true)
-                                
-                            })
-                        }
-                        
-                        
-                    } else {
-                        
-                        count += 1
-                        
-                        if count  <= self.retryNumber && !self.isPreCanclled {
-                            
-                            self.getCatalogContentByPosin(posion: posion,retryCount:count, completion: completion)
-                            
-                            
-                        } else {
-                            
-                            self.isPreCanclled = false
-                            completion?(false)
-                            
-                        }
-                        
-                    }
-                }
-                
-            }
-        }
-            
-            
-            /// 下一章节
-        else if posion == CatalogPosion.Next {
-            
-            guard let catalog = self.nextCatalog else {
-                
-                return
-            }
-            
-            if  let _ = contentDic[catalog.chapterUrl!] {
-                
-                completion?(true)
-            }
-                
-            else  if catalog.chapterContent != nil {
-                
-                DispatchQueue.global().async {
-                    
-                    self.nextTask?.cancel()
-                    
-                    self.nextTask = nil
-                    
-                    self.splitPages(html: catalog.chapterContent, completion: { (pages) in
-                        
-                        self.contentDic[catalog.chapterUrl!] = pages
-                        
-                        completion?(true)
-                        
-                    })
-                    
-                }
-                
-                
-            } else {
-                
-                nextTask = self.getCatalogChapterContent(catalog: catalog) { (isSuccess,html) in
-                    
-                    self.nextTask = nil
-                    catalog.chapterContent = html
-                    
-                    if isSuccess {
-                        
-                        DispatchQueue.global().async {
-                            
-                            self.splitPages(html: html, completion: { (pages) in
-                                
-                                
-                                self.contentDic[catalog.chapterUrl!] = pages
-                                
-                                completion?(true)
-                                
-                            })
-                            
-                        }
-                        
-                        
-                    } else {
-                        
-                        count += 1
-                        
-                        if count  <= self.retryNumber && !self.isNextCanclled {
-                            
-                            self.getCatalogContentByPosin(posion: posion,retryCount:count, completion: completion)
-                            
-                            
-                        } else {
-                            
-                            self.isNextCanclled = false
-                            completion?(false)
-                            
-                        }
-                    }
-                    
-                }
-                
-            }
-            
-        }
-            
-            
-            /// 当前章节
-        else if posion == CatalogPosion.Current {
-            
-            guard let catalog = self.currentCatalog else {
-                
-                return
-            }
-            
-            if  let _ = contentDic[catalog.chapterUrl!] {
-                
-                completion?(true)
-            }
-                
-            else  if catalog.chapterContent != nil {
-                
-                DispatchQueue.global().async {
-                    
-                    self.splitPages(html: catalog.chapterContent, completion: { (pages) in
-                        
-                        self.currentChapterPageList  = pages
-                        
-                        self.contentDic[catalog.chapterUrl!] = pages
-                        
-                        completion?(true)
-                        
-                    })
-                    
-                }
-                
-            } else {
-                
-                currentTask = self.getCatalogChapterContent(catalog: catalog) { (isSuccess,html) in
-                    
-                    self.currentTask = nil
-                    catalog.chapterContent = html
-                    
-                    if isSuccess {
-                        
-                        DispatchQueue.global().async {
-                            
-                            self.splitPages(html: html, completion: { (pages) in
-                                
-                                self.currentChapterPageList  = pages
-                                
-                                self.contentDic[catalog.chapterUrl!] = pages
-                                
-                                completion?(true)
-                                
-                            })
-                            
-                        }
-                        
-                    } else {
-                        
-                        count += 1
-                        
-                        if count  <= self.retryNumber && !self.isCurrentCanclled {
-                            
-                            self.getCatalogContentByPosin(posion: posion,retryCount:count, completion: completion)
-                            
-                            
-                        } else {
-                            
-                            self.isCurrentCanclled = false
-                            completion?(false)
-                            
-                        }
-                    }
-                    
-                }
-                
-            }
+            completion?(false)
+            return
         }
         
+        
+        if contentDic[catalog.chapterUrl!] != nil {
+            
+            completion?(true)
+            
+            return
+            
+        }  else  if catalog.chapterContent != nil {
+            
+            DispatchQueue.global().async {
+                
+                guard let  pages = self.splitPages(html: catalog.chapterContent) else {
+                    
+                    completion?(false)
+                    
+                    return
+                }
+                
+                self.contentDic[catalog.chapterUrl!] = pages
+                
+                if posion == .Current {
+                    
+                    self.currentChapterPageList = pages
+                }
+                
+                completion?(true)
+                
+            }
+            
+        } else {
+            
+            
+            task = self.getCatalogChapterContent(catalog: catalog) { (isSuccess,html) in
+                
+                if isSuccess {
+                    
+                    catalog.chapterContent = html
+                    
+                    DispatchQueue.global().async {
+                        
+                        guard let  pages = self.splitPages(html: catalog.chapterContent) else {
+                            
+                            completion?(false)
+                            
+                            return
+                        }
+                        
+                        self.contentDic[catalog.chapterUrl!] = pages
+                        
+                        if posion == .Current {
+                            
+                            self.currentChapterPageList = pages
+                        }
+                        
+                        completion?(true)
+                        
+                    }
+                    
+                } else {
+                    
+                    count += 1
+                    
+                    if count  <= self.retryNumber {
+                        
+                        if posion == .Before &&  self.isPreCanclled {
+                            
+                            completion?(false)
+                            
+                        }
+                        else  if posion == .Current &&  self.isCurrentCanclled {
+                            
+                            completion?(false)
+                            
+                        }
+                            
+                        else if posion == .Next &&  self.isNextCanclled {
+                            
+                            completion?(false)
+                            
+                        }
+                        
+                        self.getCatalogContentByPosin(posion: posion,retryCount:count, completion: completion)
+                        
+                        
+                    } else {
+                        
+                        self.isPreCanclled = false
+                        
+                        completion?(false)
+                        
+                    }
+                    
+                }
+            }
+            
+            
+            if posion == .Before {
+                
+                preTask = task
+                
+            } else if posion == .Current {
+                
+                currentTask = task
+                
+            } else if posion == .Next {
+                
+                nextTask = task
+                
+            }
+            
+        }
     }
     
     
@@ -842,22 +740,21 @@ extension BookContentPageViewModel {
     
     
     
-    func splitPages(html:String?,completion:@escaping ([String]?)->()){
+    func splitPages(html:String?) -> [String]?{
         
         var pages:[String] = [String]()
         
         
-        
         guard  let str = html else {
             
-            return
+            return nil
         }
         
         let paragraphes = str.components(separatedBy: "\n")
         
         if paragraphes.count  == 0 {
             
-            return
+            return nil
         }
         
         
@@ -922,11 +819,11 @@ extension BookContentPageViewModel {
         
         if pages.count == 0 {
             
-            completion(nil)
+            return nil
             
         } else {
             
-            completion(pages)
+            return pages
         }
         
         

@@ -107,7 +107,7 @@ class ToastView : NSObject{
         
         if isCenter {
             
-            window.center = CGPoint(x: (rv?.center.x)!, y:(rv?.center.y)! + 50)
+            window.center = CGPoint(x: (rv?.center.x)!, y:(rv?.bounds.height)! / 3 * 2 + 50)
             
         }
         
@@ -162,7 +162,7 @@ class ToastView : NSObject{
         
         if isCenter {
             
-            window.center = CGPoint(x: (rv?.center.x)!, y:(rv?.center.y)! + 50)
+            window.center = CGPoint(x: (rv?.center.x)!, y:(rv?.bounds.height)!/3 * 2 + 50)
             
         }
         

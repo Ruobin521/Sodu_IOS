@@ -64,13 +64,6 @@ class ContentPageViewController: UIViewController {
       
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-          print(contPage?.txtPageIndex.text ?? "无页码")
-        
-    }
-    
-    
+ 
     
 }

@@ -9,9 +9,7 @@
 import UIKit
 
 
-
-
-class BookContentViewController: UIViewController {
+class BookContentViewController: BaseUIViewController {
     
     let vm = BookContentPageViewModel()
     
@@ -84,7 +82,6 @@ class BookContentViewController: UIViewController {
         
         vm.currentTask?.cancel()
         
-        print("取消请求")
     }
     
     override func viewDidLoad() {
@@ -221,6 +218,7 @@ class BookContentViewController: UIViewController {
     // MARK: 获取目录数据
     func  initCatalogs(_ complete:(() ->())?) {
         
+        isLoading = true
         
         DispatchQueue.global().async {
             
@@ -256,7 +254,7 @@ class BookContentViewController: UIViewController {
                 }
                 
                 complete?()
-
+                
                 
             })
             
@@ -315,9 +313,6 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
     // MARK: 准备上一页数据
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        //        print("准备上一页数据")
-        //        var index = (viewController as! ContentPageViewController).tag
-        //
         
         guard let catalog = (viewController as! ContentPageViewController).catalog else {
             
@@ -393,11 +388,6 @@ extension BookContentViewController:UIPageViewControllerDelegate,UIPageViewContr
                         self.vm.SetCurrentCatalog(catalog: catalog, completion: nil)
                     }
                 }
-                
-                
-                
-                print(controller.catalog?.chapterName ?? "无章节名")
-                
             }
             
         }
@@ -795,8 +785,6 @@ extension BookContentViewController {
     // MARK: 点击目录按钮
     func muluClick() {
         
-        print("点击目录")
-        
         if vm.isRequestCatalogs {
             
             
@@ -846,8 +834,6 @@ extension BookContentViewController {
     // MARK: 点击缓存按钮
     func downLoadClick() {
         
-        print("点击下载按钮")
-        
         if vm.currentBook?.catalogs == nil  || (vm.currentBook?.catalogs?.count) == 0 {
             
             if vm.isRequestCatalogs {
@@ -871,8 +857,6 @@ extension BookContentViewController {
     
     //MARK: 点击设置按钮
     func settingClick() {
-        
-        print("点击设置按钮")
         
         settingView.isHidden = !settingView.isHidden
         
@@ -957,8 +941,13 @@ extension BookContentViewController {
             
         }
         
+        self.view.isUserInteractionEnabled = false
         
-        vm.splitPages(html: catalog.chapterContent) { (pages) in
+        isLoading = true
+        
+        DispatchQueue.global().async {
+            
+            let pages = self.vm.splitPages(html: catalog.chapterContent)
             
             self.vm.currentChapterPageList = pages
             
@@ -978,6 +967,10 @@ extension BookContentViewController {
                     self.pageController.setViewControllers([result], direction:.reverse, animated: false, completion: nil)
                     
                 }
+                
+                self.view.isUserInteractionEnabled = true
+                
+                 self.isLoading = false
                 
             }
             
@@ -1274,8 +1267,6 @@ extension BookContentViewController {
         }
         
     }
-    
-    
     
     
     // MARK: 页面即将消失时

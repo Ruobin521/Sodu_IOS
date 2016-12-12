@@ -16,7 +16,6 @@ class DownloadTableViewCell: UITableViewCell {
     
     @IBOutlet weak var txtProcessValue: UILabel!
     
-    @IBOutlet weak var btnPause: UIButton!
     
     @IBOutlet weak var btnDelete: UIButton!
     
@@ -30,18 +29,7 @@ class DownloadTableViewCell: UITableViewCell {
             setText()
             
             initTimer()
-       
-            if (vm?.isSuspend)! {
-                
-                btnPause.setImage( UIImage(named: "unpause"), for: .normal)
-                
-                
-            } else {
-                
-                btnPause.setImage( UIImage(named: "pause"), for: .normal)
-                
-            }
-            
+         
         }
         
     }
@@ -74,6 +62,14 @@ class DownloadTableViewCell: UITableViewCell {
             return
         }
         
+        if (vm?.isDeleted)! {
+            
+            timer?.invalidate()
+            
+            return
+            
+        }
+        
         setText()
         
     }
@@ -101,31 +97,12 @@ class DownloadTableViewCell: UITableViewCell {
     }
     
     
-    
-    @IBAction func pasueAction() {
-        
-        if (vm?.isSuspend)! {
-            
-            vm?.resume()
-            
-            btnPause.setImage( UIImage(named: "pause"), for: .normal)
-          
-        } else {
-            
-            vm?.suspend()
-            
-            btnPause.setImage( UIImage(named: "unpause"), for: .normal)
-            
-        }
-        
-        
-    }
-    
+
     
     
     @IBAction func deleteAction() {
         
-         vm?.suspend()
+         vm?.delete()
         
     }
 }
@@ -135,10 +112,6 @@ extension DownloadTableViewCell {
     
     
     func setupHighlightedBack() {
-        
-        btnPause.backgroundColor = UIColor.clear
-        btnPause.setBackgroundImage(UIImage.imageWithColor(color: UIColor.clear), for: UIControlState.normal)
-        btnPause.setBackgroundImage(UIImage.imageWithColor(color:  UIColor(red:19.0/255.0, green: 19.0/255.0, blue:19.0/255.0, alpha: 0.1)), for: UIControlState.highlighted)
         
         btnDelete.backgroundColor = UIColor.clear
         btnDelete.setBackgroundImage(UIImage.imageWithColor(color: UIColor.clear), for: UIControlState.normal)

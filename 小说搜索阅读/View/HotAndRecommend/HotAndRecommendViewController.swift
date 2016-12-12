@@ -51,7 +51,7 @@ class HotAndRecommendViewController: BaseViewController {
             if  isSuccess {
                 
                 self.tableview?.reloadData()
-                self.showToast(content: "已加载热门推荐数据")
+             
             }
             else {
                 

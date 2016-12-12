@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.carPlay,.sound]) { (success, error) in
                 
-                print("授权" + (success ? "成功"  : "失败"))
+                print("通知授权" + (success ? "成功"  : "失败"))
             }
         } else {
             

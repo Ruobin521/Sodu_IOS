@@ -39,11 +39,7 @@ class UpdateChapterViewModel {
             DispatchQueue.main.async {
                 
                 if !isSuccess {
-                    
-                    //ToastView.instance.showToast(content: "第\(pageindex+1)页数据加载失败", false)
-                    
-                    print("第\(pageindex+1)页数据加载失败")
-                    
+                                         
                     completion(false)
                     
                 }  else {

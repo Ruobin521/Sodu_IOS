@@ -70,14 +70,13 @@ class UpdateChapterViewController: BaseViewController {
                 
                 self?.navItem.title  = (self?.navItem.title)! +   "\(pageindex+1) / \(self?.vm.pageCount ?? 0)"
                 
-                self?.showToast(content: "已加载\((self?.vm.currentBook?.bookName) ?? " ")更新列表第\(pageindex+1)页数据")
                 
                 self?.failedLayer?.isHidden = true
                 
             } else {
                 
                 self?.failedLayer?.isHidden = false
-                self?.showToast(content: "第\(pageindex+1)页数据加载失败", false)
+              
             }
             
             
@@ -123,7 +122,7 @@ extension UpdateChapterViewController {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 105
+        return 95
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

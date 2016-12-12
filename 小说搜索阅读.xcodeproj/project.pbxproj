@@ -96,6 +96,7 @@
 		B1D759E31DE6ED140052C4F4 /* BookCatalogTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1D759E11DE6ED140052C4F4 /* BookCatalogTableViewCell.xib */; };
 		B1E4727D1DE194C700F50D41 /* AnalisysHtmlHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E4727C1DE194C700F50D41 /* AnalisysHtmlHelper.swift */; };
 		B1E472811DE1955500F50D41 /* LyWebUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E472801DE1955500F50D41 /* LyWebUrls.swift */; };
+		B1ED782E1DFE7B3F00AC21B3 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED782D1DFE7B3F00AC21B3 /* BaseUIViewController.swift */; };
 		F5DA2AE54C56A2A2976E8D6F /* Pods_______.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C180B4901097B286F23F8F /* Pods_______.framework */; };
 /* End PBXBuildFile section */
 
@@ -194,6 +195,7 @@
 		B1D759E11DE6ED140052C4F4 /* BookCatalogTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookCatalogTableViewCell.xib; sourceTree = "<group>"; };
 		B1E4727C1DE194C700F50D41 /* AnalisysHtmlHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalisysHtmlHelper.swift; sourceTree = "<group>"; };
 		B1E472801DE1955500F50D41 /* LyWebUrls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyWebUrls.swift; sourceTree = "<group>"; };
+		B1ED782D1DFE7B3F00AC21B3 /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +351,7 @@
 				B17E03CA1DB098350061DD47 /* MainViewController.swift */,
 				B17E03CC1DB0984E0061DD47 /* BaseViewController.swift */,
 				B17E03CE1DB0987A0061DD47 /* NavigationViewController.swift */,
+				B1ED782D1DFE7B3F00AC21B3 /* BaseUIViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -777,6 +780,7 @@
 				B1958D641DFA84D3007B0B01 /* LocalBookPageViewController.swift in Sources */,
 				B1C2385B1DD388D800C37FA6 /* LonginViewController.swift in Sources */,
 				B15F7A9B1DEC068500687DB6 /* HistoryPageViewController.swift in Sources */,
+				B1ED782E1DFE7B3F00AC21B3 /* BaseUIViewController.swift in Sources */,
 				B1958D611DFA82C6007B0B01 /* LoaclBookPageViewModel.swift in Sources */,
 				B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */,
 				B162E2161DC0F152008DF1C4 /* CommonPageViewModel.swift in Sources */,

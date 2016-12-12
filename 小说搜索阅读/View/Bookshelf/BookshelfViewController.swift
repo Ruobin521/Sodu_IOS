@@ -15,6 +15,7 @@ private let cellId = "cellId"
 
 class BookshelfViewController: BaseViewController {
     
+    var emptyLayer :CALayer?
     
     let vm = ViewModelInstance.instance.bookShelf
     
@@ -36,6 +37,8 @@ class BookshelfViewController: BaseViewController {
         }
         
         isLoading = true
+        emptyLayer?.isHidden = true
+        failedLayer?.isHidden = true
         
         if vm.bookList.count == 0 {
             
@@ -51,14 +54,14 @@ class BookshelfViewController: BaseViewController {
                 
                 self.tableview?.reloadData()
                 
-                self.showToast(content: "已加载个人书架数据")
-                
                 if self.vm.bookList.count ==  0 {
                     
-                    self.setEmptyBackView()
-                    
+                    self.emptyLayer?.isHidden = false
                 }
+                
             } else {
+                
+                self.failedLayer?.isHidden = false
                 
                 self.showToast(content: "个人书架加载失败",false)
             }
@@ -80,7 +83,7 @@ class BookshelfViewController: BaseViewController {
         DispatchQueue.main.async {
             
             self.vm.bookList.insert(book, at: 0)
-            self.removeEmptyView()
+            self.emptyLayer?.isHidden = true
             self.tableview?.reloadData()
             
         }
@@ -116,7 +119,7 @@ extension BookshelfViewController {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         
-        return 105
+        return 95
     }
     
     
@@ -251,7 +254,12 @@ extension BookshelfViewController {
     override func setupUI() {
         
         super.setupUI()
+        
         super.setupSeachItem()
+        
+        super.setupFailedView()
+        
+        setEmptyBackView()
         
         let cellNib = UINib(nibName: "BookshelfTableViewCell", bundle: nil)
         
@@ -264,27 +272,34 @@ extension BookshelfViewController {
     
     func setEmptyBackView() {
         
-        emptyView  = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        emptyView?.backgroundColor = UIColor.clear
-        
+        let emptyView  = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        emptyView.backgroundColor = UIColor.clear
+        emptyView.isUserInteractionEnabled = false
         let label = UILabel()
         label.text = "您的书架空空如也，在排行榜或热门推荐中向左滑动添加几本吧..."
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor =  UIColor.lightGray
         label.numberOfLines = 0
         label.frame = CGRect(x: 0, y: 0 , width:  300 , height: 100)
-        label.center =  CGPoint(x: view.center.x, y: view.center.y - 80)
+        label.center =  CGPoint(x: view.center.x, y: view.center.y - 100)
         label.textAlignment = .center
         
-        emptyView?.addSubview(label)
-        view.insertSubview(emptyView!, belowSubview: navigationBar)
+        emptyView.addSubview(label)
+        
+        
+        emptyLayer = CALayer()
+        
+        emptyLayer?.isHidden = true
+        
+        emptyLayer?.contents =  UIImage.convertViewToImage(view: emptyView).cgImage
+        emptyLayer?.anchorPoint =  CGPoint.zero
+        emptyLayer?.bounds =  CGRect(x: 0, y: 0, width: (emptyView.frame.width), height: (emptyView.frame.height))
+        emptyLayer?.frame = (emptyLayer?.frame)!
+        
+        self.tableview?.layer.addSublayer(emptyLayer!)
+        emptyLayer?.zPosition = -4
+        
         
     }
     
-    
-    func removeEmptyView() {
-        
-        emptyView?.removeFromSuperview()
-        
-    }
 }
