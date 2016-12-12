@@ -48,11 +48,7 @@ class HistoryPageViewController: BaseViewController {
 
 extension HistoryPageViewController {
     
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return 105
-    }
+ 
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         

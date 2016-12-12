@@ -203,7 +203,7 @@ extension BaseViewController {
         
         tableview?.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: CGFloat.leastNormalMagnitude))
         
-        tableview?.sectionFooterHeight = 5
+        tableview?.sectionFooterHeight = 8
         tableview?.sectionHeaderHeight = 0.1
         //  tableview?.sectionFooterHeight = CGFloat.leastNormalMagnitude
         
@@ -337,6 +337,14 @@ extension BaseViewController {
 
 ///实现数据源代理方法，父类不实现具体方法，子类去实现，子类调用不需要使用super
 extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
+    
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        
+        return 95
+    }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

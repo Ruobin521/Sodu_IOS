@@ -119,11 +119,7 @@ extension UpdateChapterViewController {
 
 extension UpdateChapterViewController {
     
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return 95
-    }
+     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         
