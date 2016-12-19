@@ -70,7 +70,7 @@ extension HistoryPageViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! HistoryTableViewCell
         
         
-        cell.txtChapterName?.text = vm.bookList[indexPath.section].chapterName
+        cell.txtChapterName?.text = vm.bookList[indexPath.section].lastReadChapterName
         cell.txtBookName?.text = vm.bookList[indexPath.section].bookName
         cell.txtTime?.text = vm.bookList[indexPath.section].updateTime
         
