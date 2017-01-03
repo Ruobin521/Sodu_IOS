@@ -61,8 +61,7 @@ class BookshelfViewController: BaseViewController {
                 
             } else {
                 
-                self.failedLayer?.isHidden = false
-                
+                //  self.failedLayer?.isHidden = false
                 self.showToast(content: "个人书架加载失败",false)
             }
             
@@ -115,7 +114,7 @@ extension BookshelfViewController {
         return  1
     }
     
- 
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
