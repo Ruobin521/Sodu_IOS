@@ -16,6 +16,13 @@ class SettingViewController: BaseViewController {
     let vm = ViewModelInstance.instance.setting
     
     
+    override func viewWillAppear(_ animated: Bool)   {
+        
+        tableview?.reloadData()
+        
+    }
+    
+    
 }
 
 
@@ -28,7 +35,8 @@ extension SettingViewController {
         
     }
     
- 
+    
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return 15
@@ -38,7 +46,7 @@ extension SettingViewController {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         
-       return  5
+        return  5
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,7 +98,7 @@ extension SettingViewController {
             cell.btnSwitch?.isOn = (setting?.value as? Bool) ?? false
             
             cell.btnSwitch?.tag = (setting?.index)!
-
+            
         }
         
         
@@ -115,7 +123,7 @@ extension SettingViewController {
             return
             
         }
-      
+        
         
         let setting = vm.secondarySettingList[indexPath.row]
         
@@ -166,7 +174,7 @@ extension SettingViewController {
         if setting.settingKey != nil {
             
             vm.setValue((setting.settingKey)!,btnSwitch.isOn)
-             
+            
         }
         
     }

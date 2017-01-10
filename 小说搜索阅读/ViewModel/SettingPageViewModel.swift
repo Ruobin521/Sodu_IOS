@@ -32,14 +32,53 @@ enum SettingKey : String {
 }
 
 class SettingPageViewModel:NSObject {
-     
-    
-    lazy var isAutoAddToShelf:Bool =  UserDefaultsHelper.getBoolValue(key:  .IsAutoAddToShelf)
     
     
-    lazy var isDownLoadOnWWAN = UserDefaultsHelper.getBoolValue(key:  .IsDownLoadOnWWAN)
+    lazy var _isAutoAddToShelf:Bool =  UserDefaultsHelper.getBoolValue(key:  .IsAutoAddToShelf)
+    
+    var isAutoAddToShelf:Bool {
+        
+        get{
+            
+            return _isAutoAddToShelf
+            
+        }
+        set{
+            
+            if _isAutoAddToShelf != newValue
+            {
+                
+                _isAutoAddToShelf = newValue
+                UserDefaultsHelper.setUserDefaultsValueForKey(key: .IsAutoAddToShelf, value: newValue)
+                
+            }
+        }
+        
+    }
+
     
     
+    var _isDownLoadOnWWAN:Bool = UserDefaultsHelper.getBoolValue(key:  .IsDownLoadOnWWAN)
+    
+    var isDownLoadOnWWAN:Bool {
+        
+        get{
+            
+            return _isDownLoadOnWWAN
+            
+        }
+        set{
+            
+            if _isDownLoadOnWWAN != newValue
+            {
+                
+                _isDownLoadOnWWAN = newValue
+                UserDefaultsHelper.setUserDefaultsValueForKey(key: .IsDownLoadOnWWAN, value: newValue)
+                
+            }
+        }
+        
+    }
     //正文方向
     lazy private var  _contentOrientation:UIPageViewControllerNavigationOrientation = ( UserDefaultsHelper.getStringValue(key:  .ContentOrientation) ==  "V" ) ? UIPageViewControllerNavigationOrientation.vertical : UIPageViewControllerNavigationOrientation.horizontal
     
@@ -49,7 +88,7 @@ class SettingPageViewModel:NSObject {
         
         get {
             
-           // return  UIPageViewControllerNavigationOrientation.vertical
+            // return  UIPageViewControllerNavigationOrientation.vertical
             
             return _contentOrientation
         }
@@ -229,7 +268,6 @@ extension SettingPageViewModel {
             
         }
         
-        UserDefaultsHelper.setUserDefaultsValueForKey(key: key, value: value)
     }
     
 }

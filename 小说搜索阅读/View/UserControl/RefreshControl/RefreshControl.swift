@@ -92,7 +92,7 @@ class RefreshControl: UIControl {
     }
     
     
-    func endRefreshing(isSuccess:Bool = true) {
+    func endRefreshing(_ isSuccess:Bool = true) {
         
         guard let sv = scrollView else {
             

@@ -523,6 +523,32 @@ class AnalisysHtmlHelper {
                         value =  tempReg!.stringByReplacingMatches(in: tempHtml, options: [], range:NSRange(location: 0, length: tempHtml.characters.count), withTemplate: "")
                         
                     }
+                    
+                    
+                    let tempReg2 = try? NSRegularExpression(pattern: "【风云小说阅读网.*?www.baoliny.com】", options: [])
+                    
+                    if tempReg2 != nil {
+                        
+                        let tempHtml = (value as? String)!
+                        
+                        value =  tempReg2!.stringByReplacingMatches(in: tempHtml, options: [], range:NSRange(location: 0, length: tempHtml.characters.count), withTemplate: "")
+                        
+                    }
+                    
+              
+                    
+                    let tempReg3 = try? NSRegularExpression(pattern: "【最新章节阅读.*?www.baoliny.com】", options: [])
+                    
+                    if tempReg3 != nil {
+                        
+                        let tempHtml = (value as? String)!
+                        
+                        value =  tempReg3!.stringByReplacingMatches(in: tempHtml, options: [], range:NSRange(location: 0, length: tempHtml.characters.count), withTemplate: "")
+                        
+                    }
+
+
+
                 }
                 
             } else if type == .CatalogPageUrl {

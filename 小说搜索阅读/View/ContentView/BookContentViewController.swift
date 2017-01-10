@@ -839,7 +839,7 @@ extension BookContentViewController {
             
             if vm.isRequestCatalogs {
                 
-                showToast(content: "目录获取中，请获取目录后再缓存",false,true)
+                showToast(content: "目录获取中，请获取目录后再缓存",true,true)
                 
             } else {
                 
@@ -849,9 +849,36 @@ extension BookContentViewController {
             return
         }
         
+        if(!ViewModelInstance.instance.setting.isDownLoadOnWWAN) {
+          
+            let alertController = UIAlertController(title: "缓存提示", message: "是否允许在2/3/4G下缓存，在该状态将会使用您的流量？\n您可在设置页面中更改此设置", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "不允许", style: .cancel, handler: {
+                action in
+                
+                return
+                
+            })
+            
+            let okAction = UIAlertAction(title: "允许", style: .default, handler: {
+                action in
+                
+                ViewModelInstance.instance.downloadCenter.addDownloadItem(book: self.vm.currentBook!)
+                ViewModelInstance.instance.setting.isDownLoadOnWWAN = true
+            })
+            
+            alertController.addAction(cancelAction)
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else{
+            
+            ViewModelInstance.instance.downloadCenter.addDownloadItem(book: vm.currentBook!)
+ 
+        }
         
+       
         
-        ViewModelInstance.instance.downloadCenter.addDownloadItem(book: vm.currentBook!)
         
     }
     
@@ -1048,22 +1075,6 @@ extension BookContentViewController {
         pageController.delegate = self
         
         pageController.view.backgroundColor = UIColor.clear
-        //
-        //        if vm.orientation == .vertical {
-        //
-        //            for v in  pageController.view.subviews {
-        //
-        //                if v.isKind(of:UIScrollView.self) {
-        //
-        //                    (v as! UIScrollView).isPagingEnabled = false
-        //
-        //                }
-        //
-        //            }
-        //        }
-        //
-        
-        
         
         let viewControllers:[ContentPageViewController] = [createEmptyContenPageController()]
         
@@ -1282,6 +1293,7 @@ extension BookContentViewController {
 }
 
 
+// MARK: - 阅读设置
 extension BookContentViewController {
     
     //MARK: 初始化设置面板
@@ -1422,7 +1434,7 @@ extension BookContentViewController {
             view.addTarget(self, action: #selector(backColorSelected), for: .touchUpInside)
             
         }
-       
+        
     }
     
     

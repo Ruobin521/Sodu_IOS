@@ -76,12 +76,12 @@ class UpdateChapterViewController: BaseViewController {
             } else {
                 
                 self?.failedLayer?.isHidden = false
-              
+                
             }
             
             
             self?.endLoadData()
-            
+            self?.refreshControl?.endRefreshing(isSuccess)
             
         }
     }
@@ -119,7 +119,7 @@ extension UpdateChapterViewController {
 
 extension UpdateChapterViewController {
     
-     
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -156,7 +156,7 @@ extension UpdateChapterViewController {
         chapterDidSelected(book)
         
     }
- 
+    
     
 }
 

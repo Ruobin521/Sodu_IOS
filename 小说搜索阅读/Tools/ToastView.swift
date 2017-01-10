@@ -33,7 +33,7 @@ class ToastView : NSObject{
         
     }
     
-    func closeLoadingWindos() {
+    func closeLoadingWindows() {
         
         DispatchQueue.main.async {
             

@@ -41,10 +41,11 @@ class SearchViewController: BaseViewController {
             }
             
             super.endLoadData()
+            self.refreshControl?.endRefreshing(isSuccess)
             
             DispatchQueue.main.async {
                 
-                ToastView.instance.closeLoadingWindos()
+                ToastView.instance.closeLoadingWindows()
                 
             }
         }
@@ -53,7 +54,7 @@ class SearchViewController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         
         
-        ToastView.instance.closeLoadingWindos()
+        ToastView.instance.closeLoadingWindows()
     }
     
 }
@@ -66,7 +67,7 @@ extension  SearchViewController {
         return  vm.bookList.count
     }
     
-   
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -171,7 +172,7 @@ extension SearchViewController {
         
         searchView.placeholder = "请输入小说名或关键字，支持中文拼音搜索"
         
-    
+        
         searchView.becomeFirstResponder()
         
     }
@@ -222,7 +223,7 @@ extension SearchViewController:UISearchBarDelegate  {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         
-         searchView.setShowsCancelButton(false, animated: false)
+        searchView.setShowsCancelButton(false, animated: false)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

@@ -25,9 +25,6 @@ class BaseViewController: BaseUIViewController {
             } else {
                 
                 navItem.titleView = nil
-                
-                refreshControl?.endRefreshing()
-                
             }
         }
         
@@ -165,7 +162,6 @@ class BaseViewController: BaseUIViewController {
         isLoading = false
         
         isPullup = false
-        
     }
     
     
@@ -203,7 +199,7 @@ extension BaseViewController {
         
         tableview?.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: CGFloat.leastNormalMagnitude))
         
-        tableview?.sectionFooterHeight = 8
+        tableview?.sectionFooterHeight = 5
         tableview?.sectionHeaderHeight = 0.1
         //  tableview?.sectionFooterHeight = CGFloat.leastNormalMagnitude
         
@@ -282,7 +278,7 @@ extension BaseViewController {
     
     
     func setupFailedView() {
- 
+        
         failedLayer = CALayer()
         
         failedLayer?.isHidden = true
@@ -294,20 +290,20 @@ extension BaseViewController {
         view.addSubview(failedView)
         
         failedView.center = CGPoint(x: view.center.x, y: view.center.y -  100)
-                 
+        
         failedLayer?.contents =  UIImage.convertViewToImage(view: view).cgImage
         
         failedLayer?.anchorPoint =  CGPoint.zero
         
         
         failedLayer?.bounds =  CGRect(x: 0, y: 0, width: (view.frame.width), height: (view.frame.height))
-       
+        
         failedLayer?.frame = (failedLayer?.frame)!
-  
+        
         tableview?.layer.addSublayer(failedLayer!)
         
         failedLayer?.zPosition = -5
-   
+        
     }
     
     

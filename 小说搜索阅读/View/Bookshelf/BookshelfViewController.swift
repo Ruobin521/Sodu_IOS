@@ -64,6 +64,7 @@ class BookshelfViewController: BaseViewController {
             }
             
             super.endLoadData()
+            self.refreshControl?.endRefreshing(isSuccess)
             
         }
         
@@ -106,6 +107,8 @@ extension BookshelfViewController {
         
         
     }
+    
+   
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

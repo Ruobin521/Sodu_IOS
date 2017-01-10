@@ -37,7 +37,7 @@ class HotAndRecommendViewController: BaseViewController {
     func refreshData() {
         
         isLoading = true
-       
+        
         if vm.bookList.count == 0 {
             
             vm.loadCacheData(vc: self)
@@ -51,7 +51,7 @@ class HotAndRecommendViewController: BaseViewController {
             if  isSuccess {
                 
                 self.tableview?.reloadData()
-             
+                
             }
             else {
                 
@@ -59,6 +59,7 @@ class HotAndRecommendViewController: BaseViewController {
             }
             
             super.endLoadData()
+            self.refreshControl?.endRefreshing(isSuccess)
         }
         
         
@@ -73,7 +74,7 @@ class HotAndRecommendViewController: BaseViewController {
 extension HotAndRecommendViewController {
     
     
-   
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return 1

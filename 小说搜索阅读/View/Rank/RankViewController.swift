@@ -93,6 +93,7 @@ class RankViewController: BaseViewController {
             }
             
             super.endLoadData()
+            self.refreshControl?.endRefreshing(isSuccess)
         }
         
         

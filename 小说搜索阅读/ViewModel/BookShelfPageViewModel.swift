@@ -50,7 +50,7 @@ class BookShelfPageViewModel {
                 }  else {
                     
                     let array = AnalisysBookListHtmlHelper.analisysBookShelfHtml(html)
-                     
+                    
                     self.compareBookWithLoacl(requestBooks: array, loacalBooks: self.bookList)
                     
                     self.bookList.removeAll()
@@ -151,36 +151,9 @@ class BookShelfPageViewModel {
     
     func compareStrs(_ str1:String,_ str2:String) -> Bool {
         
-        var string1 = str1
-        var string2 = str2
+        let string1 = replaceChar(str: str1)
+        let string2 = replaceChar(str: str2)
         
-        string1 = string1.replacingOccurrences(of: " ", with: "")
-            .replacingOccurrences(of: "[", with: "")
-            .replacingOccurrences(of: "]", with: "")
-            .replacingOccurrences(of: "【", with: "")
-            .replacingOccurrences(of: "】", with: "")
-            .replacingOccurrences(of: "，", with: "")
-            .replacingOccurrences(of: "。", with: "")
-            .replacingOccurrences(of: "《", with: "")
-            .replacingOccurrences(of: "》", with: "")
-            .replacingOccurrences(of: "？", with: "")
-            .replacingOccurrences(of: "?", with: "")
-            .replacingOccurrences(of: ",", with: "")
-            .replacingOccurrences(of: ".", with: "")
-        
-        string2 = string2.replacingOccurrences(of: " ", with: "")
-            .replacingOccurrences(of: "[", with: "")
-            .replacingOccurrences(of: "]", with: "")
-            .replacingOccurrences(of: "【", with: "")
-            .replacingOccurrences(of: "】", with: "")
-            .replacingOccurrences(of: "，", with: "")
-            .replacingOccurrences(of: "。", with: "")
-            .replacingOccurrences(of: "《", with: "")
-            .replacingOccurrences(of: "》", with: "")
-            .replacingOccurrences(of: "？", with: "")
-            .replacingOccurrences(of: "?", with: "")
-            .replacingOccurrences(of: ",", with: "")
-            .replacingOccurrences(of: ".", with: "")
         
         if string1 == string2 ||  string1.contains(string2)  || string2.contains(string1) {
             
@@ -192,6 +165,29 @@ class BookShelfPageViewModel {
             
         }
         
+        
+    }
+    
+    func replaceChar(str:String) -> String {
+        
+        let    temp = str.replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: "[", with: "")
+            .replacingOccurrences(of: "]", with: "")
+            .replacingOccurrences(of: "【", with: "")
+            .replacingOccurrences(of: "】", with: "")
+            .replacingOccurrences(of: "，", with: "")
+            .replacingOccurrences(of: "。", with: "")
+            .replacingOccurrences(of: "《", with: "")
+            .replacingOccurrences(of: "》", with: "")
+            .replacingOccurrences(of: "？", with: "")
+            .replacingOccurrences(of: "?", with: "")
+            .replacingOccurrences(of: ",", with: "")
+            .replacingOccurrences(of: ".", with: "")
+            .replacingOccurrences(of: "卷", with: "")
+            .replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: "正文", with: "")
+        
+        return temp
         
     }
     

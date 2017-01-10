@@ -36,7 +36,7 @@ class UserLoginViewModel  {
                 
             }
             
-            ToastView.instance.closeLoadingWindos()
+            ToastView.instance.closeLoadingWindows()
             
         }
     }
@@ -65,7 +65,7 @@ class UserLoginViewModel  {
                 
             }
             
-            ToastView.instance.closeLoadingWindos()
+            ToastView.instance.closeLoadingWindows()
             
         }
     }
