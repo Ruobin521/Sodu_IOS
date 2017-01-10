@@ -30,27 +30,19 @@ class BookContentPageViewModel {
     let lineSpaces:[Float] = [5.0,10.0,15.0]
     
     
-    private var _contentAndTextColorIndex:Int = -1
     
     var contentAndTextColorIndex:Int {
         
         get {
             
-            return  _contentAndTextColorIndex
+            return    ViewModelInstance.instance.setting.contentAndTextColorIndex
         }
         
         set {
             
-            if _contentAndTextColorIndex != newValue {
+            if ViewModelInstance.instance.setting.contentAndTextColorIndex != newValue {
                 
                 ViewModelInstance.instance.setting.contentAndTextColorIndex = newValue
-                
-                let dic = ContentColorInfo[newValue]
-                
-                daylightBackColor = UIColor.colorWithHexString(hex: dic["backColor"]!)
-                
-                daylightForegroundColor = UIColor.colorWithHexString(hex: dic["textColor"]!)
-                
             }
             
         }
@@ -58,10 +50,28 @@ class BookContentPageViewModel {
     }
     
     
-    var  daylightBackColor:UIColor!
+    var  daylightBackColor:UIColor! {
+        
+        get{
+            
+            let dic = ContentColorInfo[contentAndTextColorIndex]
+            
+            return  UIColor.colorWithHexString(hex: dic["backColor"]!)
+            
+        }
+        
+    }
     
     
-    var  daylightForegroundColor:UIColor!
+    var  daylightForegroundColor:UIColor! {
+        
+        get{
+            
+            let dic = ContentColorInfo[contentAndTextColorIndex]
+            
+            return UIColor.colorWithHexString(hex: dic["textColor"]!)
+        }
+    }
     
     
     
@@ -183,8 +193,7 @@ class BookContentPageViewModel {
         }
     }
     
-    var contentDic = [String:[String]]()
-    
+    var contentDic:[String:[String]] = [String:[String]]()
     
     var currentChapterPageList:[String]?
     
@@ -454,7 +463,7 @@ class BookContentPageViewModel {
         
         print("开始加载章节：\((catalog?.chapterName)!)")
         
-        let task =  CommonPageViewModel.getCatalogContent(catalog: catalog!) { (isSuccess, html) in
+        let task =  CommonPageViewModel.getCatalogContent(catalog: catalog!,bookName: (self.currentBook?.bookName)!) { (isSuccess, html) in
             
             if isSuccess {
                 
@@ -608,17 +617,19 @@ class BookContentPageViewModel {
                             
                             completion?(false)
                             
+                            return
+                            
                         }
                         else  if posion == .Current &&  self.isCurrentCanclled {
                             
                             completion?(false)
-                            
+                            return
                         }
                             
                         else if posion == .Next &&  self.isNextCanclled {
                             
                             completion?(false)
-                            
+                            return
                         }
                         
                         self.getCatalogContentByPosin(posion: posion,retryCount:count, completion: completion)
@@ -634,7 +645,6 @@ class BookContentPageViewModel {
                     
                 }
             }
-            
             
             if posion == .Before {
                 

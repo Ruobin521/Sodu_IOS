@@ -17,7 +17,7 @@ enum AnalisysType {
 
 class AnalisysHtmlHelper {
     
-    static  func AnalisysHtml(_ urlStr:String, _ html:String, _ type:AnalisysType) -> Any? {
+    static  func AnalisysHtml(_ urlStr:String, _ html:String, _ type:AnalisysType,_ bookName:String = "") -> Any? {
         
         let url = URL(string: urlStr);
         
@@ -363,7 +363,8 @@ class AnalisysHtmlHelper {
             
             if type == .Content {
                 
-                value = analisysMygHtml(urlStr,html)
+                value = analisysMygHtml(urlStr,html,bookName: bookName)
+                
                 
             } else if type == .CatalogPageUrl {
                 
@@ -373,7 +374,6 @@ class AnalisysHtmlHelper {
                 
                 
                 value =  analisysCommonCIAC(url: "",coverBaseUrl:"", html: html, htmlPattern: "<div id=\"xslist\">.*?</div>", catalogPattern: "<li><a href=\"(.*?)\".*?>(.*?)</a></li>", introPattern: "<p>&nbsp;&nbsp;&nbsp;&nbsp;.*?</p>", coverPattern: "<div id=\"fmimg\">.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern: "</h1>&nbsp;&nbsp;&nbsp;&nbsp;(.*?)/著</div>")
-                
                 
             }
             
@@ -511,6 +511,19 @@ class AnalisysHtmlHelper {
             if type == .Content {
                 
                 value = analisysCommonHtml(html,"<p id=\"?content\"?.*?</p>")
+                
+                if(value != nil) {
+                    
+                    let tempReg = try? NSRegularExpression(pattern: "【无弹窗小说网.*?www.baoliny.com】", options: [])
+                    
+                    if tempReg != nil {
+                        
+                        let tempHtml = (value as? String)!
+                        
+                        value =  tempReg!.stringByReplacingMatches(in: tempHtml, options: [], range:NSRange(location: 0, length: tempHtml.characters.count), withTemplate: "")
+                        
+                    }
+                }
                 
             } else if type == .CatalogPageUrl {
                 
@@ -1772,7 +1785,7 @@ extension AnalisysHtmlHelper {
     }
     
     /// 解析木鱼哥
-    static func analisysMygHtml(_ url:String,_ html:String) -> String? {
+    static func analisysMygHtml(_ url:String,_ html:String,bookName:String) -> String? {
         
         var str = html.replacingOccurrences(of: "\r", with: "").replacingOccurrences(of: "\t", with: "").replacingOccurrences(of: "\n", with: "")
         
@@ -1810,9 +1823,12 @@ extension AnalisysHtmlHelper {
         
         tempHtml = tempHtml.replacingOccurrences(of: "更新最快，书最齐的小说就是", with: "")
         
-        tempHtml = replaceSymbol(str: tempHtml)
+        tempHtml = tempHtml.replacingOccurrences(of: bookName, with: "");
         
         tempHtml = tempHtml.replacingOccurrences(of: "[玄界之门http://www.xuanjiexiaoshuo.com/]", with: "")
+        
+        tempHtml = replaceSymbol(str: tempHtml)
+        
         
         return tempHtml
     }
@@ -1903,7 +1919,6 @@ extension AnalisysHtmlHelper {
         
         html = html.replacingOccurrences(of: "&lt;&gt;", with: "")
         html = html.replacingOccurrences(of: "&lt;&gt;", with: "")
-        
         html = html.trimmingCharacters(in: [" ","\n"])
         
         

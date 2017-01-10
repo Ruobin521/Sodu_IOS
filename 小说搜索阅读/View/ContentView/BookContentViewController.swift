@@ -74,6 +74,7 @@ class BookContentViewController: BaseUIViewController {
     
     @IBOutlet weak var txtFontSize: UILabel!
     
+    @IBOutlet weak var scrollviewColor: UIScrollView!
     
     
     func cancleAction() {
@@ -970,7 +971,7 @@ extension BookContentViewController {
                 
                 self.view.isUserInteractionEnabled = true
                 
-                 self.isLoading = false
+                self.isLoading = false
                 
             }
             
@@ -1296,6 +1297,8 @@ extension BookContentViewController {
         
         setupLineSpaceButton()
         
+        setupColorPicker()
+        
         txtFontSize.text = String(Int(vm.fontSize))
         
     }
@@ -1383,8 +1386,63 @@ extension BookContentViewController {
         btnMaxLineSpace.isSelected = vm.lineSpace == vm.lineSpaces[2] ? true :false
         
         
+    }
+    
+    
+    func setupColorPicker(){
+        
+        let colors = ContentColorInfo
+        
+        scrollviewColor.showsHorizontalScrollIndicator = true
+        
+        scrollviewColor.showsVerticalScrollIndicator = false
+        
+        scrollviewColor.isScrollEnabled = true
+        
+        scrollviewColor.indicatorStyle = .white
+        
+        scrollviewColor.contentSize = CGSize(width:CGFloat( 50 * colors.count), height: scrollviewColor.bounds.height)
+        
+        let frame = CGRect(x: 0, y: (scrollviewColor.frame.height - 50) * 0.5 , width: 50, height: 50)
+        
+        for (i,dic) in colors.enumerated() {
+            
+            let index = Int(dic["index"]!)
+            
+            let isSelected = (index == self.vm.contentAndTextColorIndex)
+            
+            let  view = ColorPickerView(frame:frame,color: dic["backColor"]!,isSelected: isSelected)
+            
+            view.frame = frame.offsetBy(dx: CGFloat(i) * frame.width, dy: 0)
+            
+            self.scrollviewColor.addSubview(view)
+            
+            view.tag = index!
+            
+            view.addTarget(self, action: #selector(backColorSelected), for: .touchUpInside)
+            
+        }
+       
+    }
+    
+    
+    func backColorSelected(btn:ColorPickerView) {
+        
+        
+        for item in scrollviewColor.subviews {
+            
+            (item as? ColorPickerView)?.colorSelected = false
+            
+        }
+        
+        self.vm.contentAndTextColorIndex = btn.tag
+        
+        btn.colorSelected = true
+        
+        setColor()
         
     }
+    
     
 }
 

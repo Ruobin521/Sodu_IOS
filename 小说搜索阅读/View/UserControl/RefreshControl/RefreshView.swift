@@ -33,6 +33,8 @@ class RefreshView: UIView {
                 
             case .Normal:
                 
+                tipIcon.image = #imageLiteral(resourceName: "tableview_pull_refresh")
+
                 tipIcon.isHidden = false
                 indicator.stopAnimating()
                 
@@ -66,7 +68,30 @@ class RefreshView: UIView {
                 
                 indicator.startAnimating()
                 
+            case .Succeed:
                 
+                tipLabel.text = "加载成功"
+                
+                self.tipIcon.transform = CGAffineTransform.identity
+            
+                //显示提示图标
+                
+                tipIcon.isHidden = false
+                
+                tipIcon.image = #imageLiteral(resourceName: "success")
+                
+                indicator.stopAnimating()
+                
+                
+            case .Failed:
+                
+                tipLabel.text = "加载失败"
+                
+                //隐藏提示图标
+                
+                tipIcon.isHidden = true
+                
+                indicator.startAnimating()
             }
         }
         

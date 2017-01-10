@@ -97,6 +97,7 @@
 		B1E4727D1DE194C700F50D41 /* AnalisysHtmlHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E4727C1DE194C700F50D41 /* AnalisysHtmlHelper.swift */; };
 		B1E472811DE1955500F50D41 /* LyWebUrls.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E472801DE1955500F50D41 /* LyWebUrls.swift */; };
 		B1ED782E1DFE7B3F00AC21B3 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1ED782D1DFE7B3F00AC21B3 /* BaseUIViewController.swift */; };
+		B1F347711E24C5AF00CD0D7E /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F347701E24C5AF00CD0D7E /* ColorPickerView.swift */; };
 		F5DA2AE54C56A2A2976E8D6F /* Pods_______.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C180B4901097B286F23F8F /* Pods_______.framework */; };
 /* End PBXBuildFile section */
 
@@ -196,6 +197,7 @@
 		B1E4727C1DE194C700F50D41 /* AnalisysHtmlHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalisysHtmlHelper.swift; sourceTree = "<group>"; };
 		B1E472801DE1955500F50D41 /* LyWebUrls.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyWebUrls.swift; sourceTree = "<group>"; };
 		B1ED782D1DFE7B3F00AC21B3 /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
+		B1F347701E24C5AF00CD0D7E /* ColorPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -491,6 +493,7 @@
 		B1BEC7421DC05D9100AD8DC3 /* UserControl */ = {
 			isa = PBXGroup;
 			children = (
+				B1F3476F1E24C5A100CD0D7E /* ColorPickerItem */,
 				B1D0E8601DEDC29E008209C7 /* LoadingWithColoseButtonControl */,
 				B1D0E85B1DEDB263008209C7 /* FailedControl */,
 				B1D41DBB1DE418ED00C0EBB6 /* CustomButton */,
@@ -598,6 +601,14 @@
 				B1E472801DE1955500F50D41 /* LyWebUrls.swift */,
 			);
 			name = HtmlService;
+			sourceTree = "<group>";
+		};
+		B1F3476F1E24C5A100CD0D7E /* ColorPickerItem */ = {
+			isa = PBXGroup;
+			children = (
+				B1F347701E24C5AF00CD0D7E /* ColorPickerView.swift */,
+			);
+			path = ColorPickerItem;
 			sourceTree = "<group>";
 		};
 		F9C326BCDE3D42F556995BC8 /* Frameworks */ = {
@@ -810,6 +821,7 @@
 				B1B6A3551DC3409D00CF23B7 /* NetworkHelper.swift in Sources */,
 				B15B846A1DC5EB4500DD1A56 /* UserDefaultsHelper.swift in Sources */,
 				B1D759DD1DE6D8CC0052C4F4 /* BookIntroductionView.swift in Sources */,
+				B1F347711E24C5AF00CD0D7E /* ColorPickerView.swift in Sources */,
 				B1A73D321DE0C44C00EA4A40 /* SearchViewController.swift in Sources */,
 				B145D8E31DD7530B00FB09F2 /* PersonCenterViewController.swift in Sources */,
 				B162E2121DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift in Sources */,

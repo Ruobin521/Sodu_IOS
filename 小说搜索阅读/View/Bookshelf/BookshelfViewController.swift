@@ -46,8 +46,6 @@ class BookshelfViewController: BaseViewController {
             
         }
         
-        
-        
         vm.loadBookShelfPageData {(isSuccess) in
             
             if isSuccess {
@@ -177,51 +175,39 @@ extension BookshelfViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
+        let book =   self.vm.bookList[indexPath.section]
+        
+        var actions:[UITableViewRowAction] = [UITableViewRowAction]()
+        
         let action1  =  UITableViewRowAction(style: .normal, title: "   删除   ", handler: { (action, indexPath) in
             
-            if self.isDeleting {
+            self.vm.removeBookFromList(book) { (success) in
                 
-                ToastView.instance.showGlobalToast(content: "正在执行删除操作，请稍后")
-                
-            }else {
-                
-                if   indexPath.section > self.vm.bookList.count - 1 {
+                DispatchQueue.main.async {
                     
-                    return
-                }
-                
-                self.isDeleting = true
-                
-                let book =   self.vm.bookList[indexPath.section]
-                
-                self.vm.removeBookFromList(book) { (success) in
-                    
-                    DispatchQueue.main.async {
+                    if success {
                         
-                        if success {
-                            
-                            var array = [IndexPath]()
-                            
-                            array.append(indexPath)
-                            
-                            self.vm.bookList.remove(at: indexPath.section)
-                            
-                            tableView.deleteSections([indexPath.section], with:  UITableViewRowAnimation.automatic)
-                            
-                            // tableView.reloadData()
-                            
-                            self.showToast(content: "\(book.bookName!)取消收藏成功")
-                            
-                        }else {
-                            
-                            self.showToast(content: "\(book.bookName)取消收藏失败",false)
-                        }
+                        var array = [IndexPath]()
                         
-                        self.isDeleting = false
+                        array.append(indexPath)
+                        
+                        self.vm.bookList.remove(at: indexPath.section)
+                        
+                        tableView.deleteSections([indexPath.section], with:  UITableViewRowAnimation.automatic)
+                        
+                        // tableView.reloadData()
+                        
+                        self.showToast(content: "\(book.bookName!)取消收藏成功")
+                        
+                    }else {
+                        
+                        self.showToast(content: "\(book.bookName)取消收藏失败",false)
                     }
+                    
+                    self.isDeleting = false
                 }
-                
             }
+            
             
             DispatchQueue.main.async {
                 
@@ -230,12 +216,41 @@ extension BookshelfViewController {
             }
         })
         
-        //FF2133
         action1.backgroundColor =  #colorLiteral(red: 1, green: 0.1294117647, blue: 0.2, alpha: 1)
         
-        // action1.backgroundColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 1)
+        actions.append(action1)
         
-        return [action1]
+        if book.isNew == "1"   {
+            
+            let action2 =  UITableViewRowAction(style: .normal, title: "  标为已读  ", handler: { (action, indexPath) in
+                
+                book.isNew = "0"
+                book.lastReadChapterName = book.chapterName
+                book.LastReadContentPageUrl = book.chapterUrl
+                
+                self.vm.updateBook(book: book, completion: { (isSuccess) in
+                    
+                    if isSuccess {
+                        
+                        DispatchQueue.main.async {
+                            
+                            tableView.isEditing = false
+                            
+                            tableView.reloadRows(at: [indexPath], with: .automatic)
+                            
+                        }
+                        
+                    }
+                    
+                })
+                
+            })
+            
+            action2.backgroundColor =  #colorLiteral(red: 0.7843137255, green: 0.7803921569, blue: 0.8039215686, alpha: 1)
+            
+            actions.append(action2)
+        }
+        return actions
     }
     
 }

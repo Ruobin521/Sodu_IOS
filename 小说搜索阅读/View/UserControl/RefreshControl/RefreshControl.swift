@@ -17,6 +17,9 @@ enum RefreshState {
     
     case WillRefresh
     
+    case Succeed
+    
+    case Failed
 }
 
 
@@ -76,20 +79,20 @@ class RefreshControl: UIControl {
         
         sv.contentInset = inset
         
-//        UIView.animate(withDuration: 0.25, animations:  {
-//            
-//            var inset = sv.contentInset
-//            
-//            inset.top += self.refreshOffset
-//            
-//            sv.contentInset = inset
-//            
-//        })
+        //        UIView.animate(withDuration: 0.25, animations:  {
+        //
+        //            var inset = sv.contentInset
+        //
+        //            inset.top += self.refreshOffset
+        //
+        //            sv.contentInset = inset
+        //
+        //        })
         
     }
     
     
-    func endRefreshing() {
+    func endRefreshing(isSuccess:Bool = true) {
         
         guard let sv = scrollView else {
             
@@ -104,9 +107,10 @@ class RefreshControl: UIControl {
         
         
         
-        //  self.refreshView.refreshState = .Normal
+        self.refreshView.refreshState = isSuccess ? RefreshState.Succeed : RefreshState.Failed
         
-        UIView.animate(withDuration: 0.25, animations: {
+        
+        UIView.animate(withDuration: 0.25, delay: 0.65, options: [], animations: {
             
             var inset = sv.contentInset
             
@@ -114,13 +118,10 @@ class RefreshControl: UIControl {
             
             sv.contentInset = inset
             
-        }, completion: { (isSuccess) in
+        }) { (result) in
             
-            
-            self.refreshView.refreshState = .Normal
-            
-        })
-        
+              self.refreshView.refreshState = .Normal
+        }
         
     }
     
@@ -129,7 +130,7 @@ class RefreshControl: UIControl {
         
         super.willMove(toSuperview: newSuperview)
         
-            
+        
         guard let sv = newSuperview as? UIScrollView   else {
             
             return
@@ -146,7 +147,7 @@ class RefreshControl: UIControl {
     
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-         
+        
         
         guard  let sv = scrollView else {
             

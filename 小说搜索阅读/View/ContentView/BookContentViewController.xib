@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,6 +20,7 @@
                 <outlet property="btnRetry" destination="jvV-LO-KOT" id="dAG-RP-w4h"/>
                 <outlet property="errorView" destination="6Xo-ah-FQB" id="TUh-5A-JWz"/>
                 <outlet property="lightValueslider" destination="P2i-8k-Dln" id="V4c-k3-0se"/>
+                <outlet property="scrollviewColor" destination="Iri-yI-Rh1" id="FZh-ck-grj"/>
                 <outlet property="settingView" destination="vgP-Vm-qmK" id="kGv-dT-sLz"/>
                 <outlet property="topMenu" destination="u9n-WL-cap" id="sim-zu-cmv"/>
                 <outlet property="txtBookName" destination="qCu-4l-NAI" id="Avi-2y-ajR"/>
@@ -64,7 +65,7 @@
                     </constraints>
                 </view>
                 <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Xo-ah-FQB" userLabel="错误提示">
-                    <rect key="frame" x="37.5" y="131.5" width="245" height="245"/>
+                    <rect key="frame" x="38" y="132" width="245" height="245"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="啊哦...加载失败了~" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JT3-pl-0RF">
                             <rect key="frame" x="48" y="190" width="148" height="22"/>
@@ -98,7 +99,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvV-LO-KOT">
-                    <rect key="frame" x="49.5" y="411.5" width="220" height="40"/>
+                    <rect key="frame" x="50" y="412" width="220" height="40"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="220" id="3jL-ju-clJ"/>
@@ -227,19 +228,29 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iri-yI-Rh1">
+                            <rect key="frame" x="15" y="163" width="295" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="bTn-ii-qOr"/>
+                            </constraints>
+                        </scrollView>
                     </subviews>
                     <color key="backgroundColor" red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="p50-6G-OSh" firstAttribute="centerY" secondItem="RTZ-Rj-leD" secondAttribute="centerY" id="0jz-Gz-9YN"/>
+                        <constraint firstItem="Iri-yI-Rh1" firstAttribute="top" secondItem="hm6-Po-OmM" secondAttribute="bottom" constant="15" id="21W-Cx-iAd"/>
                         <constraint firstItem="bci-rf-8wy" firstAttribute="centerX" secondItem="p50-6G-OSh" secondAttribute="centerX" id="2yJ-KP-9Pq"/>
                         <constraint firstItem="p50-6G-OSh" firstAttribute="height" secondItem="RTZ-Rj-leD" secondAttribute="height" id="3lL-U3-fEq"/>
                         <constraint firstAttribute="trailing" secondItem="P2i-8k-Dln" secondAttribute="trailing" constant="15" id="4D2-Ub-l3G"/>
+                        <constraint firstAttribute="trailing" secondItem="Iri-yI-Rh1" secondAttribute="trailing" constant="10" id="4aO-7X-apP"/>
                         <constraint firstItem="7Q5-0G-Lue" firstAttribute="leading" secondItem="vgP-Vm-qmK" secondAttribute="leading" constant="15" id="5DK-pV-lo0"/>
                         <constraint firstItem="hm6-Po-OmM" firstAttribute="leading" secondItem="09f-xV-6YI" secondAttribute="trailing" constant="20" id="D9n-LY-Y4F"/>
                         <constraint firstAttribute="height" constant="220" id="Feq-eZ-tfo"/>
                         <constraint firstItem="bci-rf-8wy" firstAttribute="centerY" secondItem="hm6-Po-OmM" secondAttribute="centerY" id="IYg-Dv-sBG"/>
                         <constraint firstItem="RTZ-Rj-leD" firstAttribute="width" secondItem="PrV-Iy-h98" secondAttribute="width" id="IwD-OY-rsh"/>
                         <constraint firstItem="p50-6G-OSh" firstAttribute="bottom" secondItem="RTZ-Rj-leD" secondAttribute="bottom" id="JfA-Jk-hPK"/>
+                        <constraint firstItem="Iri-yI-Rh1" firstAttribute="leading" secondItem="vgP-Vm-qmK" secondAttribute="leading" constant="15" id="MIE-j9-gx4"/>
                         <constraint firstItem="P2i-8k-Dln" firstAttribute="top" secondItem="vgP-Vm-qmK" secondAttribute="top" constant="8" id="XZq-OC-IAX"/>
                         <constraint firstItem="p50-6G-OSh" firstAttribute="leading" secondItem="RTZ-Rj-leD" secondAttribute="trailing" constant="20" id="XtM-9I-kYC"/>
                         <constraint firstItem="PrV-Iy-h98" firstAttribute="top" secondItem="P2i-8k-Dln" secondAttribute="bottom" constant="22" id="aDv-2V-q0H"/>

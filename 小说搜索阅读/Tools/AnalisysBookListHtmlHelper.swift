@@ -142,6 +142,7 @@ extension AnalisysBookListHtmlHelper {
             b.chapterName = (item as NSString).substring(with: (match.rangeAt(4)))
             
             b.chapterName = b.chapterName?.replacingOccurrences(of: "【卓雅居全文字秒更】", with: "")
+            b.chapterName = b.chapterName?.replacingOccurrences(of: "target=_blank", with: "")
             
             b.updateTime = (item as NSString).substring(with: (match.rangeAt(5)))
             
@@ -212,6 +213,7 @@ extension AnalisysBookListHtmlHelper {
             b.bookName = (item as NSString).substring(with: (result?.rangeAt(2))!)
             b.chapterName = (item as NSString).substring(with: (result?.rangeAt(3))!).replacingOccurrences(of: "target=_blank", with: "")
             b.chapterName = b.chapterName?.replacingOccurrences(of: "【卓雅居全文字秒更】", with: "")
+            b.chapterName = b.chapterName?.replacingOccurrences(of: "target=_blank", with: "")
             b.updateTime = (item as NSString).substring(with: (result?.rangeAt(4))!)
             b.bookId = (item as NSString).substring(with: (result?.rangeAt(5))!)
             b.LastReadContentPageUrl = b.chapterUrl
@@ -288,7 +290,7 @@ extension AnalisysBookListHtmlHelper {
             b.updateListPageUrl = (item as NSString).substring(with: (result?.rangeAt(3))!)
             b.chapterName = (item as NSString).substring(with: (result?.rangeAt(4))!)
             b.chapterName = b.chapterName?.replacingOccurrences(of: "【卓雅居全文字秒更】", with: "")
-            
+             b.chapterName = b.chapterName?.replacingOccurrences(of: "target=_blank", with: "")
             b.updateTime = (item as NSString).substring(with: (result?.rangeAt(5))!)
             
             b.LastReadContentPageUrl = b.chapterUrl
@@ -407,7 +409,7 @@ extension AnalisysBookListHtmlHelper {
             
             b.chapterName = (item as NSString).substring(with: (result?.rangeAt(2))!)
             b.chapterName = b.chapterName?.replacingOccurrences(of: "【卓雅居全文字秒更】", with: "")
-            
+             b.chapterName = b.chapterName?.replacingOccurrences(of: "target=_blank", with: "")
             b.lywzName = (item as NSString).substring(with: (result?.rangeAt(3))!)
             b.updateTime = (item as NSString).substring(with: (result?.rangeAt(4))!)
             

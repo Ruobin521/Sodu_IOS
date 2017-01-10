@@ -391,13 +391,13 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
         
         if sectionCount > 1 {
             
-            if (section == sectionCount - 1) && !isPullup && needPullUp && !isLoading {
+            if (section == sectionCount - 1) && !isPullup && !isLoading {
                 
                 result = true
             }
         } else if sectionCount == 1 {
             
-            if (row == rowCount - 1) && !isPullup && needPullUp && !isLoading {
+            if (row == rowCount - 1) && !isPullup && !isLoading {
                 
                 result = true
             }

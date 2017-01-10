@@ -128,7 +128,7 @@ class CommonPageViewModel {
     
     
     //MARK: 获取章节正文内容
-    static func   getCatalogContent(catalog:BookCatalog,completion:@escaping (_ isSuccess:Bool ,_ html:String?)->()) -> URLSessionDataTask? {
+    static func   getCatalogContent(catalog:BookCatalog, bookName:String?,completion:@escaping (_ isSuccess:Bool ,_ html:String?)->()) -> URLSessionDataTask? {
         
         guard let url = catalog.chapterUrl else {
             
@@ -152,7 +152,7 @@ class CommonPageViewModel {
                     return
                 }
                 
-                guard let htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, str,AnalisysType.Content) as? String  else{
+                guard let htmlValue = AnalisysHtmlHelper.AnalisysHtml(url, str,AnalisysType.Content,bookName ?? "") as? String  else{
                     
                     completion(false,nil)
                     
