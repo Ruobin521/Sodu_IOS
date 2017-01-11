@@ -204,6 +204,51 @@ class CommonPageViewModel {
         return task
     }
     
+    
+  static func getCatalogContent(urlString:String) -> String? {
+        
+        var result:String? = nil
+        //创建NSURL对象
+        let url:URL! = URL(string: urlString)
+        //创建请求对象
+        var urlRequest:URLRequest = URLRequest(url: url)
+        //响应对象
+        var response:URLResponse?
+        
+        urlRequest.timeoutInterval = 15
+        
+        let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
+        
+        do {
+            
+            if  let data:Data =  try NSURLConnection.sendSynchronousRequest(urlRequest as URLRequest, returning: &response) as Data? {
+                
+                guard  let  str = String(data: data , encoding: String.Encoding(rawValue: enc)) else {
+                    
+                    return nil
+                }
+                
+                guard let htmlValue = AnalisysHtmlHelper.AnalisysHtml(urlString, str,AnalisysType.Content) as? String  else{
+                    
+                    return nil
+                }
+                
+                result = htmlValue
+            }
+            
+        }catch {
+            
+            return nil
+        }
+        
+        return result
+    }
+    
+    
+    
+    
+    
+
     /// 将中文转为utf8
     ///
     /// - Parameter str: <#str description#>

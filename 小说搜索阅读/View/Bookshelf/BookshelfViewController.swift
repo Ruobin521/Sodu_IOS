@@ -64,7 +64,7 @@ class BookshelfViewController: BaseViewController {
             }
             
             super.endLoadData(isSuccess)
-             
+            
         }
         
     }
@@ -107,7 +107,7 @@ extension BookshelfViewController {
         
     }
     
-   
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -159,7 +159,11 @@ extension BookshelfViewController {
             
             vm.updateBook(book: book) { (isSuccess) in
                 
-                self.tableview?.reloadRows(at: [indexPath], with: .automatic)
+                DispatchQueue.main.async {
+                    
+                    self.tableview?.reloadRows(at: [indexPath], with: .automatic)
+                }
+                
             }
         }
         

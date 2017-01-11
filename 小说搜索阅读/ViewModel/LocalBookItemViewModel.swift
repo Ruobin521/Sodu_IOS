@@ -20,6 +20,9 @@ class LocalBookItemViewModel {
     
     var checkUpdateCompletion:((_ count:Int)->())?
     
+    var needUpdateCatalogs : [BookCatalog]?
+    
+    var isUpdating = false
 }
 
 extension LocalBookItemViewModel {
@@ -44,6 +47,7 @@ extension LocalBookItemViewModel {
             }
             
             
+            
             guard  let catalogPageUrl = AnalisysHtmlHelper.AnalisysHtml(url,"", AnalisysType.CatalogPageUrl) as? String else {
                 
                 completion?()
@@ -62,6 +66,7 @@ extension LocalBookItemViewModel {
                 completion?()
                 return
             }
+            
             
             guard let tempCatalog = webCatalogs.first(where: { (item) -> Bool in
                 
@@ -87,8 +92,22 @@ extension LocalBookItemViewModel {
             
             let updateCount = webCatalogs.count - 1 - index
             
-            
-            self.checkUpdateCompletion?(updateCount)
+            if updateCount > 0 {
+                
+                self.needUpdateCatalogs = [BookCatalog]()
+                
+                for i in index + 1 ..< webCatalogs.count {
+                    
+                    self.needUpdateCatalogs?.append(webCatalogs[i])
+                    
+                }
+                
+                self.checkUpdateCompletion?(updateCount)
+                
+                self.hasUpdate = true
+                
+            }
+           
             
             completion?()
         }
@@ -97,13 +116,67 @@ extension LocalBookItemViewModel {
     
     
     
-    
-    func downLoadUpdate() {
+    func downLoadUpdate(completion:(()->())?) {
         
-        
-        
+        if  needUpdateCatalogs == nil || needUpdateCatalogs?.count == 0 {
+            
+            return
+        }
+         
+        DispatchQueue.global().async {
+            
+            var count = 0
+            
+            for item in  self.needUpdateCatalogs! {
+                
+                count += 1
+                
+                guard let url = item.chapterUrl else {
+                    
+                    continue
+                }
+                
+                item.chapterContent = CommonPageViewModel.getCatalogContent(urlString: url)
+                
+                self.checkUpdateCompletion?(self.needUpdateCatalogs!.count - count)
+ 
+            }
+            
+            self.insertToDB()
+            
+        }
         
     }
+    
+    
+    
+    func insertToDB() {
+        
+        SoDuSQLiteManager.shared.insertOrUpdateBookCatalogs(catalogs: self.needUpdateCatalogs!, bookid: (self.book?.bookId)!) { (isSuccess) in
+            
+            if isSuccess {
+                
+                self.book?.chapterName = self.needUpdateCatalogs?.last?.chapterName
+                self.book?.chapterUrl = self.needUpdateCatalogs?.last?.chapterUrl
+                
+                self.book?.isLocal = "1"
+                
+                SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [self.book!], tableName: TableName.Loaclbook.rawValue, completion: { (isSuccess) in
+                    
+                    self.updateCompletion?()
+                   
+                })
+                
+            } else{
+                
+                
+                
+            }
+            
+        }
+    }
+    
+    
     
     
     func getBookCatalogs(url:String) -> [BookCatalog]? {
@@ -125,8 +198,20 @@ extension LocalBookItemViewModel {
                     continue
                 }
                 
-                catalogs = values.catalogs
+                guard let result = values.catalogs  else{
+                    
+                    i += 1
+                    
+                    continue
+                }
                 
+                for item in result {
+                    
+                    item.bookId = book.bookId
+                    
+                }
+                
+                catalogs = result
                 break
                 
             }

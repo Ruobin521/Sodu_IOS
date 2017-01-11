@@ -91,7 +91,7 @@ extension DownLoadItemViewModel {
                     
                     if let url = catalog.chapterUrl {
                         
-                        catalog.chapterContent =  self.httpRequest(urlString: url)
+                        catalog.chapterContent =  CommonPageViewModel.getCatalogContent(urlString: url)
                         print("\(catalog.chapterName!)下载完成")
                     }
                     
@@ -131,46 +131,6 @@ extension DownLoadItemViewModel {
 extension DownLoadItemViewModel {
     
     
-    func httpRequest(urlString:String) -> String? {
-        
-        var result:String? = nil
-        //创建NSURL对象
-        let url:URL! = URL(string: urlString)
-        //创建请求对象
-        var urlRequest:URLRequest = URLRequest(url: url)
-        //响应对象
-        var response:URLResponse?
-        
-        urlRequest.timeoutInterval = 15
-        
-        let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
-        
-        do {
-            
-            if  let data:Data =  try NSURLConnection.sendSynchronousRequest(urlRequest as URLRequest, returning: &response) as Data? {
-                
-                guard  let  str = String(data: data , encoding: String.Encoding(rawValue: enc)) else {
-                    
-                    return nil
-                }
-                
-                guard let htmlValue = AnalisysHtmlHelper.AnalisysHtml(urlString, str,AnalisysType.Content) as? String  else{
-                    
-                    return nil
-                }
-                
-                result = htmlValue
-            }
-            
-        }catch {
-            
-            return nil
-        }
-        
-        return result
-    }
-    
-    
     func insertToDB() {
         
         SoDuSQLiteManager.shared.insertOrUpdateBookCatalogs(catalogs: (self.book?.catalogs)!, bookid: (self.book?.bookId)!) { (isSuccess) in
@@ -208,7 +168,6 @@ extension DownLoadItemViewModel {
             
         }
     }
-    
     
     
     

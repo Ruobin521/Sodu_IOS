@@ -33,6 +33,19 @@ class LocalBookTableViewCell: UITableViewCell {
                 
             }
             
+            
+            vm?.updateCompletion = {
+                
+                DispatchQueue.main.async {
+                    
+                    self.txtUpdateCount.text = ""
+                    
+                    self.txtNewChapterName.text = self.vm?.book.chapterName
+                  
+                }
+                
+            }
+            
         }
     }
     

@@ -168,8 +168,7 @@ extension LocalBookPageViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let action1  =  UITableViewRowAction(style: .normal, title: "   删除   ", handler: { (action, indexPath) in
-            
+        let action1  =  UITableViewRowAction(style: .normal, title: "  删除  ", handler: { (action, indexPath) in
             
             if   indexPath.section > self.vm.bookList.count - 1 {
                 
@@ -208,12 +207,32 @@ extension LocalBookPageViewController {
             }
         })
         
-        //FF2133
+        
         action1.backgroundColor =  #colorLiteral(red: 1, green: 0.1294117647, blue: 0.2, alpha: 1)
         
-        // action1.backgroundColor = UIColor(red:0, green:122.0/255.0, blue:1.0, alpha: 1)
+        let action2  =  UITableViewRowAction(style: .normal, title: "  更新  ", handler: { (action, indexPath) in
+            
+            if   indexPath.section > self.vm.bookList.count - 1 {
+                
+                return
+            }
+            
+            let bookVm =   self.vm.bookList[indexPath.section]
+            
+            bookVm.downLoadUpdate(completion: nil)
+            
+            DispatchQueue.main.async {
+                
+                tableView.isEditing = false
+                
+            }
+        })
         
-        return [action1]
+        
+        action2.backgroundColor =  #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+        
+        
+        return [action1,action2]
     }
     
 }
@@ -232,7 +251,21 @@ extension  LocalBookPageViewController {
         tableview?.separatorStyle = .none
         
         
+        self.navItem.rightBarButtonItem = UIBarButtonItem(title: "全部更新", fontSize: 16, target: self, action: #selector(updateAll), isBack: false)
+
+        
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: NSNotification.Name(rawValue: DownloadCompletedNotification), object: nil)
+        
+    }
+    
+    
+    func updateAll() {
+    
+        for item in  vm.bookList {
+            
+            item.downLoadUpdate(completion: nil)
+            
+        }
         
     }
     
