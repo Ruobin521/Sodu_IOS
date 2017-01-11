@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 
 private let cellId = "cellId"
@@ -17,28 +18,66 @@ class LocalBookPageViewController: BaseViewController {
     
     override func initData() {
         
+        loadData()
+    }
+    
+    override func loadData() {
         
-        vm.loadLoaclBooks { (isSuccess) in
+        if vm.isChecking {
+           
+            self.endLoadData(false)
+            
+            showToast(content: "正在检测更新，请稍后", true, false)
+            
+            return
+        }
+        
+        loadLocalBook()
+    }
+    
+    
+    func loadLocalBook(){
+        
+        vm.isChecking = true
+        
+        isLoading = true
+        
+        DispatchQueue.main.async {
+            
+            self.setTitleView("检测更新中...")
+            
+        }
+       
+        vm.loadLoaclBooks(completion: { (isSuccess) in
             
             DispatchQueue.main.async {
                 
                 self.tableview?.reloadData()
+                self.endLoadData(true)
+
+            }
+            
+        }) {
+            
+            DispatchQueue.main.async {
                 
+                self.navItem.titleView = nil
+                self.vm.isChecking  = false
             }
             
         }
-        
+
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         
         DispatchQueue.main.async {
             
-             self.tableview?.reloadData()
+            self.tableview?.reloadData()
         }
         
     }
-    
     
 }
 
@@ -58,31 +97,34 @@ extension LocalBookPageViewController {
         return  1
     }
     
- 
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BookshelfTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! LocalBookTableViewCell
         
-        let book = vm.bookList[indexPath.section]
+        let book = vm.bookList[indexPath.section].book
         
-        cell.txtBookName?.text = book.bookName
+        cell.vm =  vm.bookList[indexPath.section]
         
-        cell.txtUpdateTime?.text = book.updateTime
+        cell.txtBookName.text = book?.bookName
         
-        cell.txtUpdateChpterName?.text = book.chapterName
+        cell.txtNewChapterName.text = book?.chapterName
         
-        cell.txtLastReadChapterName.text = book.lastReadChapterName
+        cell.txtLastReadChapterName.text = book?.lastReadChapterName
         
-        if book.isNew == "0" {
-            
-            cell.imageNew.isHidden = true
-            
-        } else {
-            
-            cell.imageNew.isHidden = false
-            
-        }
+        cell.coverImage.sd_setImage(with:URL(string:book?.coverImage ?? "") , placeholderImage: UIImage(named: "cover"))
+        
+      
+        //        if book.isNew == "0" {
+        //
+        //            cell.imageNew.isHidden = true
+        //
+        //        } else {
+        //
+        //            cell.imageNew.isHidden = false
+        //
+        //        }
         
         
         return cell
@@ -94,23 +136,23 @@ extension LocalBookPageViewController {
         
         super.tableView(tableView, didSelectRowAt: indexPath)
         
-        let book = vm.bookList[indexPath.section]
+        let book = vm.bookList[indexPath.section].book
         
-        if book.isNew == "1" {
+        
+        if book?.isNew == "1" {
             
-            book.lastReadChapterName = book.chapterName
-            book.isNew = "0"
+            book?.lastReadChapterName = book?.chapterName
+            book?.isNew = "0"
             
-            vm.updateBookDB(book: book) { (isSuccess) in
+            vm.updateBookDB(book: book!) { (isSuccess) in
                 
                 self.tableview?.reloadRows(at: [indexPath], with: .automatic)
             }
         }
         
-        
         let bc = BookContentViewController()
         
-        bc.vm.currentBook = book.clone()
+        bc.vm.currentBook = book?.clone()
         
         present(bc, animated: true, completion: nil)
         
@@ -134,9 +176,9 @@ extension LocalBookPageViewController {
                 return
             }
             
-            let book =   self.vm.bookList[indexPath.section]
+            let bookVm =   self.vm.bookList[indexPath.section]
             
-            self.vm.removeBookFromList(book) { (success) in
+            self.vm.removeBookFromList(bookVm.book.bookId!) { (success) in
                 
                 DispatchQueue.main.async {
                     
@@ -152,7 +194,7 @@ extension LocalBookPageViewController {
                         
                     }else {
                         
-                        self.showToast(content: "\((book.bookName)!)删除失败",false)
+                        self.showToast(content: "\((bookVm.book.bookName)!)删除失败",false)
                     }
                     
                 }
@@ -183,7 +225,7 @@ extension  LocalBookPageViewController {
         
         super.setupUI()
         
-        let cellNib = UINib(nibName: "BookshelfTableViewCell", bundle: nil)
+        let cellNib = UINib(nibName: "LocalBookTableViewCell", bundle: nil)
         
         tableview?.register(cellNib, forCellReuseIdentifier: cellId)
         

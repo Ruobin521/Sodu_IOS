@@ -63,9 +63,8 @@ class BookshelfViewController: BaseViewController {
                 self.showToast(content: "个人书架加载失败",false)
             }
             
-            super.endLoadData()
-            self.refreshControl?.endRefreshing(isSuccess)
-            
+            super.endLoadData(isSuccess)
+             
         }
         
     }
@@ -201,6 +200,11 @@ extension BookshelfViewController {
                         // tableView.reloadData()
                         
                         self.showToast(content: "\(book.bookName!)取消收藏成功")
+                        
+                        if self.vm.bookList.count == 0 {
+                            
+                            self.emptyLayer?.isHidden = false
+                        }
                         
                     }else {
                         

@@ -105,10 +105,13 @@ extension LonginViewController {
         self.title = "登录"
         
         self.navItem.leftBarButtonItem = UIBarButtonItem(title: "返回", fontSize:16.0,  target: self, action: #selector(goBack),isBack:true)
-        
-              
-        txtUserName.text = "918201"
-        txtPasswd.text = "8166450"
+    
+//        #if DEBUG
+//              
+//        txtUserName.text = "918201"
+//        txtPasswd.text = "8166450"
+//        
+//        #endif
 
     }
     

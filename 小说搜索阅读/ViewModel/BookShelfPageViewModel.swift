@@ -78,7 +78,7 @@ class BookShelfPageViewModel {
                 
                 if isSuccess && (str?.contains("取消收藏成功"))!{
                     
-                    SoDuSQLiteManager.shared.deleteBooks(books: [book], tableName: TableName.Bookshelf.rawValue, userId: self.userId, completion: { (isSuccess) in
+                    SoDuSQLiteManager.shared.deleteBooks(books: [book.bookId!], tableName: TableName.Bookshelf.rawValue, userId: self.userId, completion: { (isSuccess) in
                         
                         if !isSuccess {
                             

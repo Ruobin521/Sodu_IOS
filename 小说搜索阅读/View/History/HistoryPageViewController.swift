@@ -22,11 +22,8 @@ class HistoryPageViewController: BaseViewController {
     
     
     override func   viewWillAppear(_ animated: Bool) {
-   
         
         self.tableview?.reloadData()
-        
-
         
     }
     
@@ -34,7 +31,7 @@ class HistoryPageViewController: BaseViewController {
     func clearAllHitory() {
         
         
-          SoDuSQLiteManager.shared.clearAll(tableName: TableName.History.rawValue) { (isSuccess) in
+        SoDuSQLiteManager.shared.clearAll(tableName: TableName.History.rawValue) { (isSuccess) in
             
             self.vm.bookList.removeAll()
             
@@ -48,7 +45,7 @@ class HistoryPageViewController: BaseViewController {
 
 extension HistoryPageViewController {
     
- 
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -178,9 +175,9 @@ extension  HistoryPageViewController {
     
     func setRightNavButton() {
         
-      
         
-       // self.navItem.rightBarButtonItem = UIBarButtonItem(title: "清空" , style: .plain, target: self, action: #selector(clearAllHitory))
+        
+        // self.navItem.rightBarButtonItem = UIBarButtonItem(title: "清空" , style: .plain, target: self, action: #selector(clearAllHitory))
         self.navItem.rightBarButtonItem = UIBarButtonItem(title: "清空历史", fontSize: 16, target: self, action: #selector(clearAllHitory), isBack: false)
         
         

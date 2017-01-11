@@ -12,13 +12,9 @@ class MainViewController: UITabBarController {
     
     override func viewDidLoad() {
         
-        
         super.viewDidLoad()
         
-        setupWelcomView()
-        
         setupChildControllers()
-        
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(login), name: NSNotification.Name(rawValue: NeedLoginNotification), object: nil)
@@ -30,6 +26,9 @@ class MainViewController: UITabBarController {
         NotificationCenter.default.addObserver(self, selector: #selector(addHistory), name: NSNotification.Name(rawValue: AddHistoryNotification), object: nil)
         
         delegate = self
+        
+        setupWelcomView()
+
         
     }
     

@@ -24,7 +24,7 @@ class BaseViewController: BaseUIViewController {
                 
             } else {
                 
-                navItem.titleView = nil
+               // navItem.titleView = nil
             }
         }
         
@@ -156,12 +156,15 @@ class BaseViewController: BaseUIViewController {
     }
     
     
-    func endLoadData() {
+    func endLoadData(_ isSuccess:Bool = true) {
         
         
         isLoading = false
         
         isPullup = false
+        
+        refreshControl?.endRefreshing(isSuccess)
+        
     }
     
     
@@ -245,7 +248,7 @@ extension BaseViewController {
     
     
     
-    func  setTitleView()  {
+    func  setTitleView(_ titleStr:String? = nil)  {
         
         
         let loadingIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
@@ -254,7 +257,7 @@ extension BaseViewController {
         
         
         let label = UILabel()
-        label.text = title
+        label.text = titleStr ?? title
         label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = navigationBar.tintColor
         

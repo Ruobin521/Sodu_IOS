@@ -190,7 +190,11 @@ extension DownLoadItemViewModel {
                         
                     }
                     
-                    ViewModelInstance.instance.localBook.bookList.insert(self.book!, at: 0)
+                    let vm = LocalBookItemViewModel()
+                    
+                    vm.book = self.book!
+                    
+                    ViewModelInstance.instance.localBook.bookList.insert(vm, at: 0)
                     
                 })
                 

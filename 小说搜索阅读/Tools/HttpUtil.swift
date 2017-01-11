@@ -67,6 +67,42 @@ class  HttpUtil :AFHTTPSessionManager  {
     }
     
     
+    func httpRequest(urlString:String) -> String? {
+        
+        var result:String? = nil
+        //创建NSURL对象
+        let url:URL! = URL(string: urlString)
+        //创建请求对象
+        var urlRequest:URLRequest = URLRequest(url: url)
+        //响应对象
+        var response:URLResponse?
+        
+        urlRequest.timeoutInterval = 30
+        
+        let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
+        
+        do {
+            
+            if  let data:Data =  try NSURLConnection.sendSynchronousRequest(urlRequest as URLRequest, returning: &response) as Data? {
+                
+                guard  let  str = String(data: data , encoding: String.Encoding(rawValue: enc)) else {
+                    
+                    return nil
+                }
+                
+                result = str
+            }
+            
+        }catch {
+            
+            return nil
+        }
+        
+        return result
+    }
+    
+    
+    
     func request(url:String ,requestMethod: RequestMethod, postStr: String?, timeOut:TimeInterval = 15.0, _ isIndicatorVisible:Bool = false, completion: @escaping (_ result:String?, _ isSuccess :Bool) ->() )  {
         
         

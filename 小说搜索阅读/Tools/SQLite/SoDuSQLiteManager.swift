@@ -168,7 +168,7 @@ extension SoDuSQLiteManager {
     
     
     /// 删除一条或多条记录
-    func  deleteBooks(books:[Book],tableName:String,userId:String? = nil, completion: @escaping (_ isSuccess:Bool) -> ()) {
+    func  deleteBooks(books:[String],tableName:String,userId:String? = nil, completion: @escaping (_ isSuccess:Bool) -> ()) {
         
         var result = true
         
@@ -183,12 +183,7 @@ extension SoDuSQLiteManager {
         
         queue.inTransaction { (db, rollbacl) in
             
-            for book  in books {
-                
-                guard let bookid = book.bookId  else {
-                    
-                    continue
-                }
+            for bookid  in books {
                 
                 var parameters = [Any]()
                 

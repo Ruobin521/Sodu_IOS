@@ -73,7 +73,6 @@ class RankViewController: BaseViewController {
         
         if pageindex > 0 {
             
-            
             setTitleView()
         }
         
@@ -92,8 +91,9 @@ class RankViewController: BaseViewController {
                 self.showToast(content: "第\(pageindex+1)页数据加载失败", false)
             }
             
-            super.endLoadData()
-            self.refreshControl?.endRefreshing(isSuccess)
+            super.endLoadData(isSuccess)
+            self.navItem.titleView = nil
+            
         }
         
         

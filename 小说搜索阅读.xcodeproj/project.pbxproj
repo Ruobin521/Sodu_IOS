@@ -31,6 +31,9 @@
 		B162E2121DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E2111DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift */; };
 		B162E2161DC0F152008DF1C4 /* CommonPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E2151DC0F152008DF1C4 /* CommonPageViewModel.swift */; };
 		B162E21C1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B162E21B1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift */; };
+		B1674BD31E25DEC200CC9161 /* LocalBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1674BD11E25DEC200CC9161 /* LocalBookTableViewCell.swift */; };
+		B1674BD41E25DEC200CC9161 /* LocalBookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1674BD21E25DEC200CC9161 /* LocalBookTableViewCell.xib */; };
+		B1674BD61E25E19700CC9161 /* LocalBookItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1674BD51E25E19700CC9161 /* LocalBookItemViewModel.swift */; };
 		B16F47C01DF12A23007F88A1 /* SoDuSQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F47BF1DF12A23007F88A1 /* SoDuSQLiteManager.swift */; };
 		B16F47C41DF134F3007F88A1 /* createtable.sql in Resources */ = {isa = PBXBuildFile; fileRef = B16F47C31DF134F3007F88A1 /* createtable.sql */; };
 		B16F47C61DF161B2007F88A1 /* BookListDBHelpr.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F47C51DF161B2007F88A1 /* BookListDBHelpr.swift */; };
@@ -131,6 +134,9 @@
 		B162E2111DC0E2F3008DF1C4 /* UpdateChapterViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateChapterViewModel.swift; sourceTree = "<group>"; };
 		B162E2151DC0F152008DF1C4 /* CommonPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonPageViewModel.swift; sourceTree = "<group>"; };
 		B162E21B1DC10284008DF1C4 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
+		B1674BD11E25DEC200CC9161 /* LocalBookTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalBookTableViewCell.swift; sourceTree = "<group>"; };
+		B1674BD21E25DEC200CC9161 /* LocalBookTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocalBookTableViewCell.xib; sourceTree = "<group>"; };
+		B1674BD51E25E19700CC9161 /* LocalBookItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalBookItemViewModel.swift; sourceTree = "<group>"; };
 		B16F47BF1DF12A23007F88A1 /* SoDuSQLiteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoDuSQLiteManager.swift; sourceTree = "<group>"; };
 		B16F47C31DF134F3007F88A1 /* createtable.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = createtable.sql; sourceTree = "<group>"; };
 		B16F47C51DF161B2007F88A1 /* BookListDBHelpr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListDBHelpr.swift; sourceTree = "<group>"; };
@@ -384,6 +390,7 @@
 				B15F7A9C1DEC1E7A00687DB6 /* HistoryPageViewModel.swift */,
 				B16F47C51DF161B2007F88A1 /* BookListDBHelpr.swift */,
 				B1958D601DFA82C6007B0B01 /* LoaclBookPageViewModel.swift */,
+				B1674BD51E25E19700CC9161 /* LocalBookItemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -469,6 +476,8 @@
 				B15F7AA01DEC217600687DB6 /* HistoryTableViewCell.xib */,
 				B1A0140A1DF9238700239D58 /* DownloadTableViewCell.swift */,
 				B1A0140B1DF9238700239D58 /* DownloadTableViewCell.xib */,
+				B1674BD11E25DEC200CC9161 /* LocalBookTableViewCell.swift */,
+				B1674BD21E25DEC200CC9161 /* LocalBookTableViewCell.xib */,
 			);
 			path = CustomCell;
 			sourceTree = "<group>";
@@ -655,7 +664,7 @@
 					B120E2231DA9E72800921288 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = QSND459F3W;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -685,6 +694,7 @@
 				B19B74551DD4C344008D6C5C /* RegisterViewController.xib in Resources */,
 				B1D759D91DE6CF330052C4F4 /* BookCatalogViewController.xib in Resources */,
 				B17256691DE8BB440077AD5D /* ContentPage.xib in Resources */,
+				B1674BD41E25DEC200CC9161 /* LocalBookTableViewCell.xib in Resources */,
 				B1A0140D1DF9238700239D58 /* DownloadTableViewCell.xib in Resources */,
 				B19B744A1DD344D8008D6C5C /* BookshelfTableViewCell.xib in Resources */,
 				B1C2385C1DD388D800C37FA6 /* LonginViewController.xib in Resources */,
@@ -775,6 +785,7 @@
 				B1904FB61DB75E9900534AD6 /* AnalisysBookListHtmlHelper.swift in Sources */,
 				B17E03CD1DB0984E0061DD47 /* BaseViewController.swift in Sources */,
 				B19B74491DD344D8008D6C5C /* BookshelfTableViewCell.swift in Sources */,
+				B1674BD61E25E19700CC9161 /* LocalBookItemViewModel.swift in Sources */,
 				B133A77C1DDABFC60038B5D2 /* BookContentPageViewModel.swift in Sources */,
 				B17E03D11DB098CF0061DD47 /* RankViewController.swift in Sources */,
 				B194B8C51DBDC4530061C9A4 /* RankListPageViewModel.swift in Sources */,
@@ -796,6 +807,7 @@
 				B12CD5571DB687EE00377450 /* HttpUtil.swift in Sources */,
 				B162E2161DC0F152008DF1C4 /* CommonPageViewModel.swift in Sources */,
 				B1D0E85D1DEDB295008209C7 /* FailedView.swift in Sources */,
+				B1674BD31E25DEC200CC9161 /* LocalBookTableViewCell.swift in Sources */,
 				B15F7A9D1DEC1E7A00687DB6 /* HistoryPageViewModel.swift in Sources */,
 				B19B74431DD3446E008D6C5C /* CommonBookListTableViewCell.swift in Sources */,
 				B133A7831DDAD1EC0038B5D2 /* BookContentViewController.swift in Sources */,
@@ -954,6 +966,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.sodu.------";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "565cfe6c-024a-4bdc-8fe1-de3eb33bc79f";
+				PROVISIONING_PROFILE_SPECIFIER = developmentWildcard;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -971,6 +985,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.sodu.------";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "565cfe6c-024a-4bdc-8fe1-de3eb33bc79f";
+				PROVISIONING_PROFILE_SPECIFIER = developmentWildcard;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

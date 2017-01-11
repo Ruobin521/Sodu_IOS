@@ -79,10 +79,8 @@ class UpdateChapterViewController: BaseViewController {
                 
             }
             
-            
-            self?.endLoadData()
-            self?.refreshControl?.endRefreshing(isSuccess)
-            
+            self?.endLoadData(isSuccess)
+            self?.navItem.titleView = nil
         }
     }
     

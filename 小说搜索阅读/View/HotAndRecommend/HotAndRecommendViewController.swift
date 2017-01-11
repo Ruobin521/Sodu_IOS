@@ -58,8 +58,7 @@ class HotAndRecommendViewController: BaseViewController {
                 self.showToast(content: "热门推荐数据加载失败",false)
             }
             
-            super.endLoadData()
-            self.refreshControl?.endRefreshing(isSuccess)
+            super.endLoadData(isSuccess)
         }
         
         

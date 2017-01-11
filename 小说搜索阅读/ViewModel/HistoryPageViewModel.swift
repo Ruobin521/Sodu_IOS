@@ -68,7 +68,7 @@ extension HistoryPageViewModel {
     //删除单挑记录
     func deleteItem(book:Book,completion: @escaping (_ isSuccess:Bool) -> ()) {
         
-        SoDuSQLiteManager.shared.deleteBooks(books: [book],tableName: TableName.History.rawValue,completion: completion)
+        SoDuSQLiteManager.shared.deleteBooks(books: [book.bookId!],tableName: TableName.History.rawValue,completion: completion)
         
     }
     

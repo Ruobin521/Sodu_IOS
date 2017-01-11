@@ -262,11 +262,11 @@ class BookContentPageViewModel {
                 
             } else {
                 
-                if let  tempBook =  ViewModelInstance.instance.localBook.bookList.first(where: { (book) -> Bool in
+                if let  tempBook =  ViewModelInstance.instance.localBook.bookList.first(where: { (item) -> Bool in
                     
-                    book.bookId == currentBook?.bookId
+                    item.book.bookId == currentBook?.bookId
                     
-                })  {
+                })?.book  {
                     
                     tempBook.lastReadChapterName = _currentCatalog?.chapterName
                     

@@ -10,24 +10,47 @@ import Foundation
 
 class LoaclBookPageViewModel {
     
-    var bookList:[Book] = [Book]()
+    var isChecking:Bool = false
     
+    var bookList:[LocalBookItemViewModel] = [LocalBookItemViewModel]()
     
-    
-    
-    func loadLoaclBooks(completion:(_ isSuccess:Bool) -> ())  {
+    func loadLoaclBooks(completion:(_ isSuccess:Bool) -> (),checkCompletion:@escaping ()->())  {
         
         let  books =  SoDuSQLiteManager.shared.selectBook(tableName: TableName.Loaclbook.rawValue)
         
         if books.count > 0 {
             
+            self.bookList.removeAll()
+            
             completion(true)
             
-            self.bookList = books.reversed()
+            var count = books.count
+            
+            for item in books.reversed() {
+                
+                let temp = LocalBookItemViewModel()
+                
+                temp.book = item
+                
+                bookList.append(temp)
+                
+                temp.checkUpdate() {
+                    
+                    count -= 1
+                    
+                    if count == 0 {
+                        
+                        checkCompletion()
+                    }
+                    
+                }
+                 
+            }
             
         } else {
             
             completion(false)
+            checkCompletion()
         }
     }
     
@@ -49,9 +72,9 @@ class LoaclBookPageViewModel {
     
     
     
-    func removeBookFromList(_ book:Book,completion:@escaping (_ isSuccess:Bool)->())  {
+    func removeBookFromList(_ bookid:String,completion:@escaping (_ isSuccess:Bool)->())  {
         
-         SoDuSQLiteManager.shared.deleteBookCatalogs(bookId: book.bookId!) { (isDeleteCatalogSuccess) in
+        SoDuSQLiteManager.shared.deleteBookCatalogs(bookId: bookid) { (isDeleteCatalogSuccess) in
             
             if !isDeleteCatalogSuccess {
                 
@@ -61,7 +84,7 @@ class LoaclBookPageViewModel {
                 
             }  else {
                 
-                SoDuSQLiteManager.shared.deleteBooks(books: [book], tableName: TableName.Loaclbook.rawValue, completion: { (isDeleteBookSuccess) in
+                SoDuSQLiteManager.shared.deleteBooks(books: [bookid], tableName: TableName.Loaclbook.rawValue, completion: { (isDeleteBookSuccess) in
                     
                     if !isDeleteBookSuccess {
                         
@@ -74,7 +97,7 @@ class LoaclBookPageViewModel {
                     }
                     
                 })
-                 
+                
             }
             
         }
