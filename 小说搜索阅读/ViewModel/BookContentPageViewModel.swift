@@ -689,7 +689,7 @@ class BookContentPageViewModel {
             
         }
         
-        return tempCatalog.chapterIndex
+        return catalogs.index(of: tempCatalog)
         
     }
     

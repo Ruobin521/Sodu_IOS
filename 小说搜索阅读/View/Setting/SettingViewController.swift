@@ -95,7 +95,7 @@ extension SettingViewController {
             
             cell.btnSwitch?.addTarget(self, action: #selector(switchAtion), for: .touchUpInside)
             
-            cell.btnSwitch?.isOn = (setting?.value as? Bool) ?? false
+            cell.btnSwitch?.isOn = self.vm.getValue((setting?.settingKey)!)
             
             cell.btnSwitch?.tag = (setting?.index)!
             

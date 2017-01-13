@@ -91,7 +91,7 @@ extension DownLoadItemViewModel {
                     
                     if let url = catalog.chapterUrl {
                         
-                        catalog.chapterContent =  CommonPageViewModel.getCatalogContent(urlString: url)
+                        catalog.chapterContent =  CommonPageViewModel.getCatalogContent(urlString: url,bookName: self.book?.bookName)
                         print("\(catalog.chapterName!)下载完成")
                     }
                     

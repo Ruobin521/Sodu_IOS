@@ -29,13 +29,19 @@ class NetworkHelper {
     var reachability =  Reachability()
     
     
-    static func isNetConnected() -> Bool {
+    func isNetConnected() -> Bool {
         
         return  NetworkHelper.shared.reachability!.isReachable
         
     }
     
-    static func GetNetType() -> NetTpye  {
+    func isWifi() -> Bool {
+        
+        return GetNetType() == NetTpye.WIFI
+        
+    }
+    
+    func GetNetType() -> NetTpye  {
         
         if   (NetworkHelper.shared.reachability?.isReachableViaWiFi)!  {
             

@@ -12,37 +12,37 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" restorationIdentifier="CommonCellId" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" rowHeight="110" id="KGk-i7-Jjw" customClass="CommonBookListTableViewCell" customModule="小说搜索阅读" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="537" height="105"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="CommonCellId" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" rowHeight="95" id="KGk-i7-Jjw" customClass="CommonBookListTableViewCell" customModule="小说搜索阅读" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="537" height="90"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="537" height="104"/>
+                <rect key="frame" x="0.0" y="0.0" width="537" height="90"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更新时间:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5q-0Q-N6A">
-                        <rect key="frame" x="15" y="70" width="66" height="18"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                        <rect key="frame" x="15" y="67" width="62" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-10-26 00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5vd-IT-cHY">
-                        <rect key="frame" x="82" y="70" width="150" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <rect key="frame" x="85" y="67" width="141" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新章节:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zI3-pp-yK5">
-                        <rect key="frame" x="15" y="42" width="65.5" height="18"/>
+                        <rect key="frame" x="15" y="40" width="66" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="65.5" id="2qi-tz-h1v"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="书名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3RI-YT-cZo">
-                        <rect key="frame" x="15" y="10" width="37" height="22"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <rect key="frame" x="15" y="10" width="33" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -74,8 +74,8 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="最新章节名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPj-Sc-PAY">
-                        <rect key="frame" x="88.5" y="42" width="440.5" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <rect key="frame" x="89" y="40" width="440" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -85,7 +85,7 @@
                     <constraint firstItem="m5q-0Q-N6A" firstAttribute="top" secondItem="zI3-pp-yK5" secondAttribute="bottom" constant="10" id="BJW-5I-md4"/>
                     <constraint firstAttribute="trailingMargin" secondItem="mNp-FD-Mbi" secondAttribute="trailing" constant="15" id="JUA-H7-6a8"/>
                     <constraint firstItem="zI3-pp-yK5" firstAttribute="top" secondItem="3RI-YT-cZo" secondAttribute="bottom" constant="10" id="Mak-8y-zSF"/>
-                    <constraint firstItem="5vd-IT-cHY" firstAttribute="leading" secondItem="m5q-0Q-N6A" secondAttribute="trailing" constant="1" id="QZI-2c-HKK"/>
+                    <constraint firstItem="5vd-IT-cHY" firstAttribute="leading" secondItem="m5q-0Q-N6A" secondAttribute="trailing" constant="8" id="QZI-2c-HKK"/>
                     <constraint firstItem="m5q-0Q-N6A" firstAttribute="leading" secondItem="zI3-pp-yK5" secondAttribute="leading" id="SC4-9q-1JC"/>
                     <constraint firstItem="3RI-YT-cZo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="W1o-QP-goK"/>
                     <constraint firstItem="qPj-Sc-PAY" firstAttribute="leading" secondItem="zI3-pp-yK5" secondAttribute="trailing" constant="8" id="ahZ-E3-4zJ"/>
@@ -106,7 +106,7 @@
                 <outlet property="txtUpdateChpterName" destination="qPj-Sc-PAY" id="Mbq-4A-JOW"/>
                 <outlet property="txtUpdateTime" destination="5vd-IT-cHY" id="od9-bz-2Qi"/>
             </connections>
-            <point key="canvasLocation" x="-42" y="-23"/>
+            <point key="canvasLocation" x="-42.5" y="-31"/>
         </tableViewCell>
     </objects>
     <resources>

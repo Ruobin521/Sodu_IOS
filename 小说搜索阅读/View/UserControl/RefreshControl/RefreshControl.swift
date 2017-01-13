@@ -110,7 +110,7 @@ class RefreshControl: UIControl {
         self.refreshView.refreshState = isSuccess ? RefreshState.Succeed : RefreshState.Failed
         
         
-        UIView.animate(withDuration: 0.35, delay: 0.65, options: [], animations: {
+        UIView.animate(withDuration: 0.35, delay: 0.35, options: [], animations: {
             
             var inset = sv.contentInset
             

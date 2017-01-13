@@ -270,6 +270,26 @@ extension SettingPageViewModel {
         
     }
     
+    func getValue(_ key:SettingKey) -> Bool {
+        
+        switch key {
+            
+        case SettingKey.IsAutoAddToShelf:
+            
+          return  isAutoAddToShelf
+            
+        case SettingKey.IsDownLoadOnWWAN:
+            
+           return isDownLoadOnWWAN
+            
+        default:
+            
+            return false
+            
+        }
+        
+    }
+    
 }
 
 

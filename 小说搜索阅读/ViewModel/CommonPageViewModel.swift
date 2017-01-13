@@ -205,7 +205,7 @@ class CommonPageViewModel {
     }
     
     
-  static func getCatalogContent(urlString:String) -> String? {
+    static func getCatalogContent(urlString:String,bookName:String? = nil) -> String? {
         
         var result:String? = nil
         //创建NSURL对象
@@ -228,7 +228,7 @@ class CommonPageViewModel {
                     return nil
                 }
                 
-                guard let htmlValue = AnalisysHtmlHelper.AnalisysHtml(urlString, str,AnalisysType.Content) as? String  else{
+                guard let htmlValue = AnalisysHtmlHelper.AnalisysHtml(urlString, str,AnalisysType.Content,bookName ?? "") as? String  else{
                     
                     return nil
                 }

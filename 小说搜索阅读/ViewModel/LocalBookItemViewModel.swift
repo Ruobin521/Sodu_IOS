@@ -41,7 +41,7 @@ extension LocalBookItemViewModel {
             }
             
             guard let loacalLastcatalog = localCatalogs.last ,let url = loacalLastcatalog.chapterUrl  else{
-              
+                
                 completion?()
                 return
             }
@@ -56,13 +56,13 @@ extension LocalBookItemViewModel {
             
             
             guard  let webCatalogs = self.getBookCatalogs(url: catalogPageUrl) else {
-              
+                
                 completion?()
                 return
             }
             
             if webCatalogs.count == 0 {
-               
+                
                 completion?()
                 return
             }
@@ -73,19 +73,19 @@ extension LocalBookItemViewModel {
                 loacalLastcatalog.chapterUrl == item.chapterUrl
                 
             }) else{
-               
+                
                 completion?()
                 return
             }
             
             guard let index = webCatalogs.index(of: tempCatalog) else {
-               
+                
                 completion?()
                 return
             }
             
             if index == webCatalogs.count - 1 {
-               
+                
                 completion?()
                 return
             }
@@ -107,7 +107,7 @@ extension LocalBookItemViewModel {
                 self.hasUpdate = true
                 
             }
-           
+            
             
             completion?()
         }
@@ -118,11 +118,20 @@ extension LocalBookItemViewModel {
     
     func downLoadUpdate(completion:(()->())?) {
         
+        if  isUpdating {
+            
+            completion?()
+            
+            return
+        }
+        
+        isUpdating = true
+        
         if  needUpdateCatalogs == nil || needUpdateCatalogs?.count == 0 {
             
             return
         }
-         
+        
         DispatchQueue.global().async {
             
             var count = 0
@@ -136,10 +145,10 @@ extension LocalBookItemViewModel {
                     continue
                 }
                 
-                item.chapterContent = CommonPageViewModel.getCatalogContent(urlString: url)
+                item.chapterContent = CommonPageViewModel.getCatalogContent(urlString: url,bookName:self.book.bookName)
                 
                 self.checkUpdateCompletion?(self.needUpdateCatalogs!.count - count)
- 
+                
             }
             
             self.insertToDB()
@@ -164,7 +173,7 @@ extension LocalBookItemViewModel {
                 SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [self.book!], tableName: TableName.Loaclbook.rawValue, completion: { (isSuccess) in
                     
                     self.updateCompletion?()
-                   
+                    
                 })
                 
             } else{
@@ -172,6 +181,8 @@ extension LocalBookItemViewModel {
                 
                 
             }
+            
+            self.isUpdating =  false
             
         }
     }

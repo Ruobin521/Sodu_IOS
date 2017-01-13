@@ -341,12 +341,12 @@ extension BaseViewController :UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        
-        return 95
+        return 90
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return 0
     }
     

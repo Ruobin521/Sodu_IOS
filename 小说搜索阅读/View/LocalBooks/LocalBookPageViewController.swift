@@ -115,6 +115,7 @@ extension LocalBookPageViewController {
         
         cell.coverImage.sd_setImage(with:URL(string:book?.coverImage ?? "") , placeholderImage: UIImage(named: "cover"))
         
+         cell.txtUpdateCount.text = ""
       
         //        if book.isNew == "0" {
         //
@@ -229,7 +230,7 @@ extension LocalBookPageViewController {
         })
         
         
-        action2.backgroundColor =  #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+        action2.backgroundColor =  #colorLiteral(red: 0.7843137255, green: 0.7803921569, blue: 0.8039215686, alpha: 1)
         
         
         return [action1,action2]
