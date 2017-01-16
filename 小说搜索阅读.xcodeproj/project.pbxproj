@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B11DC96B1E2CA8FD00C2F197 /* TiebaWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11DC96A1E2CA8FD00C2F197 /* TiebaWebViewController.swift */; };
 		B120E2281DA9E72800921288 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B120E2271DA9E72800921288 /* AppDelegate.swift */; };
 		B120E22F1DA9E72800921288 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B120E22E1DA9E72800921288 /* Assets.xcassets */; };
 		B120E2321DA9E72800921288 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B120E2301DA9E72800921288 /* LaunchScreen.storyboard */; };
@@ -108,6 +109,7 @@
 		20C180B4901097B286F23F8F /* Pods_______.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_______.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2372C43A19F5E340E0D49F6C /* Pods-小说搜索阅读.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-小说搜索阅读.release.xcconfig"; path = "Pods/Target Support Files/Pods-小说搜索阅读/Pods-小说搜索阅读.release.xcconfig"; sourceTree = "<group>"; };
 		2C2F100D7D946D83648A620C /* Pods-小说搜索阅读.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-小说搜索阅读.debug.xcconfig"; path = "Pods/Target Support Files/Pods-小说搜索阅读/Pods-小说搜索阅读.debug.xcconfig"; sourceTree = "<group>"; };
+		B11DC96A1E2CA8FD00C2F197 /* TiebaWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiebaWebViewController.swift; sourceTree = "<group>"; };
 		B120E2241DA9E72800921288 /* 小说搜索阅读.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "小说搜索阅读.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B120E2271DA9E72800921288 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B120E22E1DA9E72800921288 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -225,6 +227,14 @@
 				2372C43A19F5E340E0D49F6C /* Pods-小说搜索阅读.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B11DC9691E2CA8B600C2F197 /* TiebaWebView */ = {
+			isa = PBXGroup;
+			children = (
+				B11DC96A1E2CA8FD00C2F197 /* TiebaWebViewController.swift */,
+			);
+			path = TiebaWebView;
 			sourceTree = "<group>";
 		};
 		B120E21B1DA9E72800921288 = {
@@ -580,6 +590,7 @@
 		B1D759D41DE6CDF30052C4F4 /* ThirdPage */ = {
 			isa = PBXGroup;
 			children = (
+				B11DC9691E2CA8B600C2F197 /* TiebaWebView */,
 				B15F7A991DEC064A00687DB6 /* History */,
 				B1C238581DD3889400C37FA6 /* longin */,
 				B19B73E81DD9BFCC00171785 /* DownCenter */,
@@ -829,6 +840,7 @@
 				B19B73EA1DD9C01300171785 /* DownCenterViewController.swift in Sources */,
 				B1A0140C1DF9238700239D58 /* DownloadTableViewCell.swift in Sources */,
 				B19B74501DD44E18008D6C5C /* SettingPageViewModel.swift in Sources */,
+				B11DC96B1E2CA8FD00C2F197 /* TiebaWebViewController.swift in Sources */,
 				B1904FBA1DB79A9800534AD6 /* JSON.swift in Sources */,
 				B1B6A3551DC3409D00CF23B7 /* NetworkHelper.swift in Sources */,
 				B15B846A1DC5EB4500DD1A56 /* UserDefaultsHelper.swift in Sources */,

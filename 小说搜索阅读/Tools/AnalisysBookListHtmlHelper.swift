@@ -45,10 +45,12 @@ class AnalisysBookListHtmlHelper {
     
     
     ///返回更新列表数据
-    static func analisysUpdateChapterHtml(_ str:String?) -> [Book]  {
+    static func analisysUpdateChapterHtml(_ str:String?) -> (books:[Book]?, tiebaUrl:String?)   {
         
         return analisysUpdateChapterPageHtml(str)
     }
+    
+    
     
     
     ///返回更新列表页的数量
@@ -333,7 +335,7 @@ extension AnalisysBookListHtmlHelper {
     }
     
     ///MARK: - 解析更新章节列表页
-    fileprivate static func analisysUpdateChapterPageHtml(_ str:String?)  -> [Book]  {
+    fileprivate static func analisysUpdateChapterPageHtml(_ str:String?)  -> (books:[Book]?, tiebaUrl:String?)  {
         
         var  list = [Book]()
         
@@ -341,7 +343,7 @@ extension AnalisysBookListHtmlHelper {
         
         if(html == nil || html == "") {
             
-            return list
+            return (nil,nil)
         }
         
         
@@ -351,7 +353,7 @@ extension AnalisysBookListHtmlHelper {
         
         guard  let regx = try? NSRegularExpression(pattern: "<div class=\"main-html\".*?class=\"xt1.*?</div>", options: []) else {
             
-            return list
+            return (nil,nil)
         }
         
         
@@ -361,7 +363,7 @@ extension AnalisysBookListHtmlHelper {
         
         if result.count == 0 {
             
-            return list
+            return (nil,nil)
         }
         
         let lyList = LyWebUrls.instance.getAllValues() as! [String]
@@ -421,7 +423,20 @@ extension AnalisysBookListHtmlHelper {
         
         print("解析到的数量 \(list.count)")
         
-        return list
+       
+        
+        guard  let regxTb = try? NSRegularExpression(pattern: "<div style=\"text-align:left;line-height:20px;margin-top:10px;\".*?<a href=\"(.*?)\"", options: []) else {
+            
+            return (list,nil)
+        }
+        
+        
+        let result2 = regxTb.firstMatch(in: html!, options:[], range: NSRange(location: 0, length: html!.characters.count))
+        
+        
+        let titeba =  (html! as NSString).substring(with: (result2?.rangeAt(1))!)
+                 
+        return (list,titeba)
     }
     
     

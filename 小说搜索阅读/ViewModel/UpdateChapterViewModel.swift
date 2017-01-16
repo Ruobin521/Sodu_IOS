@@ -18,6 +18,8 @@ class UpdateChapterViewModel {
     
     var pageCount = 0
     
+    var tieBaUrl:String?
+    
     
     func loadUpdateChapterListDataByPageIndex(_ pageindex: Int,completion:@escaping (_ isSuccess:Bool)->()) {
         
@@ -39,7 +41,7 @@ class UpdateChapterViewModel {
             DispatchQueue.main.async {
                 
                 if !isSuccess {
-                                         
+                    
                     completion(false)
                     
                 }  else {
@@ -48,6 +50,13 @@ class UpdateChapterViewModel {
                     
                     let array = AnalisysBookListHtmlHelper.analisysUpdateChapterHtml(html)
                     
+                    guard array.books != nil else{
+                        
+                        completion(false)
+                        
+                        return
+                        
+                    }
                     
                     self?.pageCount =  AnalisysBookListHtmlHelper.analisysUpdateChapterPageCount(html)
                     
@@ -57,13 +66,17 @@ class UpdateChapterViewModel {
                         
                     }
                     
-                    for item  in array {
+                    
+                    
+                    for item  in array.books! {
                         
                         item.bookId = self?.currentBook?.bookId
                         item.bookName = self?.currentBook?.bookName
                     }
                     
-                    self?.chapterList += array
+                    self?.chapterList += array.books!
+                    
+                    self?.tieBaUrl = array.tiebaUrl
                     
                     completion(true)
                     

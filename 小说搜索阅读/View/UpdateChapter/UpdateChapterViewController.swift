@@ -73,6 +73,8 @@ class UpdateChapterViewController: BaseViewController {
                 
                 self?.failedLayer?.isHidden = true
                 
+                self?.setupTiebaButton()
+                
             } else {
                 
                 self?.failedLayer?.isHidden = false
@@ -82,6 +84,25 @@ class UpdateChapterViewController: BaseViewController {
             self?.endLoadData(isSuccess)
             self?.navItem.titleView = nil
         }
+    }
+    
+    
+    func tiebaAction() {
+        
+        if vm.tieBaUrl  == nil {
+            
+            return
+        }
+        
+        let vc = TiebaWebViewController()
+        
+        vc.webUrl = vm.tieBaUrl
+        
+        vc.title = self.vm.currentBook?.bookName
+        
+        navigationController?.pushViewController(vc, animated: true)
+        
+        
     }
     
     
@@ -173,6 +194,13 @@ extension UpdateChapterViewController {
         tableview?.register(cellNib, forCellReuseIdentifier: cellId)
         
         tableview?.separatorStyle = .none
+        
+    }
+    
+    
+    func setupTiebaButton() {
+        
+        self.navItem.rightBarButtonItem = UIBarButtonItem(title: "贴吧", fontSize: 16, target: self, action: #selector(tiebaAction), isBack: false)
         
     }
     
