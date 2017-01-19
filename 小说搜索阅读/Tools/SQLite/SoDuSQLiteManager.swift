@@ -222,7 +222,7 @@ extension SoDuSQLiteManager {
         
         if userId != nil {
             
-            sql += "WHERE userid = '\(userId)'"
+            sql += "WHERE userid = '\(userId!)'"
         }
         
         

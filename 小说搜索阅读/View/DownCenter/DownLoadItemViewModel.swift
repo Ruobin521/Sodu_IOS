@@ -140,6 +140,9 @@ extension DownLoadItemViewModel {
                 self.book?.lastReadChapterName = self.book?.catalogs?[0].chapterName
                 self.book?.LastReadContentPageUrl = self.book?.catalogs?[0].chapterUrl
                 
+                self.book?.chapterName = self.book?.catalogs?.last?.chapterName
+                self.book?.chapterUrl = self.book?.catalogs?.last?.chapterUrl
+                
                 self.book?.isLocal = "1"
                 
                 SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [self.book!], tableName: TableName.Loaclbook.rawValue, completion: { (isSuccess) in

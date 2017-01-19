@@ -12,8 +12,16 @@ class BookShelfPageViewModel {
     
     lazy var bookList = [Book]()
     
-    let userId  = ViewModelInstance.instance.userId
     
+    
+    var userId:String? {
+        
+        get {
+            
+            return  UserDefaultsHelper.getStringValue(key: .UserNameKey)
+        }
+        
+    }
     
     func loadCacheData(_ vc:BaseViewController) {
         
@@ -57,7 +65,11 @@ class BookShelfPageViewModel {
                     
                     self.bookList += array
                     
-                    BookListDBHelpr.saveHomeCache(tableName: TableName.Bookshelf.rawValue, books: self.bookList, userId: self.userId, completion: nil)
+                    if self.userId != nil  ||  !(self.userId?.isEmpty)! {
+                        
+                        BookListDBHelpr.saveHomeCache(tableName: TableName.Bookshelf.rawValue, books: self.bookList, userId: self.userId!, completion: nil)
+
+                    }
                     
                     completion(true)
                     

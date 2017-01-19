@@ -22,13 +22,13 @@ class LonginViewController: BaseViewController {
     
     @IBAction func login(_ sender: Any) {
         
-        if txtUserName.text == nil  {
+        if txtUserName.text == nil || txtUserName.text!.isEmpty  {
             
             ToastView.instance.showGlobalToast(content: "请输入用户名")
             return
         }
         
-        if txtPasswd.text == nil  {
+        if txtPasswd.text == nil || txtPasswd.text!.isEmpty {
             
             ToastView.instance.showGlobalToast(content: "请输入密码")
             return
@@ -58,11 +58,11 @@ class LonginViewController: BaseViewController {
                 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
                 
-                self.goBack(nil)
+                UserDefaultsHelper.setUserDefaultsValueForKey(key: .UserNameKey, value: (self.txtUserName.text)!)
                 
                 self.vm.setCoookie()
-                
-                UserDefaultsHelper.setUserDefaultsValueForKey(key: .UserNameKey, value: self.txtUserName.text!)
+              
+                self.goBack(nil)
                 
             } else {
                 

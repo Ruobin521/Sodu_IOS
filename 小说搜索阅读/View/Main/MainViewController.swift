@@ -29,7 +29,7 @@ class MainViewController: UITabBarController {
         
         delegate = self
         
-        setupWelcomView()
+       // setupWelcomView()
 
         
     }

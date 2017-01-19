@@ -55,7 +55,7 @@ class SettingPageViewModel:NSObject {
         }
         
     }
-
+    
     
     
     var _isDownLoadOnWWAN:Bool = UserDefaultsHelper.getBoolValue(key:  .IsDownLoadOnWWAN)
@@ -236,7 +236,7 @@ class SettingPageViewModel:NSObject {
     
     var secondarySettingList = [SettingEntity]()
     var switchSettingList = [SettingEntity]()
-    
+    var alterSettingList = [SettingEntity]()
     
     override init() {
         
@@ -276,11 +276,11 @@ extension SettingPageViewModel {
             
         case SettingKey.IsAutoAddToShelf:
             
-          return  isAutoAddToShelf
+            return  isAutoAddToShelf
             
         case SettingKey.IsDownLoadOnWWAN:
             
-           return isDownLoadOnWWAN
+            return isDownLoadOnWWAN
             
         default:
             
@@ -304,7 +304,8 @@ extension  SettingPageViewModel {
                            ["imageName": "history", "title": "历史记录","type":"0","controller":"HistoryPageViewController"],
                            ["index" : "0" , "key":"IsAutoAddToShelf","property":"isAutoAddToShelf","imageName": "addbook", "title": "自动添加到书架存","type":"1"],
                            ["index": "1" ,"key":"IsDownLoadOnWWAN","property":"isDownLoadOnWWAN","imageName": "wwan", "title": "在2G/3G/4G下缓存","type":"1"],
-                           ]
+                           ["index" : "0","action":"mzsmAction","imageName": "mzsm", "title": "免责声明","type":"2"]
+        ]
         
         
         for dic in  settingInfo {
@@ -358,13 +359,23 @@ extension  SettingPageViewModel {
                     
                 }
                 
+            }   else if type == "2" {
+                
+                settingItem.settingType = SettingType.Alter
+                
+                if let index = dic["index"]{
+                    
+                    settingItem.index = Int(index)!
+                    
+                    alterSettingList.append(settingItem)
+                    
+                }
                 
             }
             
         }
         
     }
-    
 }
 
 

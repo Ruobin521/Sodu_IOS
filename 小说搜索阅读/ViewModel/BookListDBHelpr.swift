@@ -85,7 +85,7 @@ extension BookListDBHelpr {
     ///   - completion: <#completion description#>
     class func saveHomeCache(tableName:String,books:[Book],userId:String? = nil,completion:((_ isSuccess:Bool) -> ())?) {
         
-        SoDuSQLiteManager.shared.clearAll(tableName: tableName) { (isSuccess) in
+        SoDuSQLiteManager.shared.clearAll(tableName: tableName,userId: userId) { (isSuccess) in
             
             SoDuSQLiteManager.shared.insertOrUpdateBooks(books: books, tableName: tableName,userId: userId) { (isSuccess) in
                 

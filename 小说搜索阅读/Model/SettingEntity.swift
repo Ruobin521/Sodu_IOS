@@ -12,6 +12,7 @@ enum SettingType :String {
     
     case  Secondary = "0"
     case  Swich = "1"
+    case  Alter = "2"
     
 }
 

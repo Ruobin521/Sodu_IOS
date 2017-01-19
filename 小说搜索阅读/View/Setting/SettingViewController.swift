@@ -31,7 +31,7 @@ extension SettingViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 2
+        return 3
         
     }
     
@@ -59,11 +59,14 @@ extension SettingViewController {
             
             return vm.switchSettingList.count
             
-        }  else {
+        }   else if section == 2  {
+            
+            return 1
+            
+        }   else {
             
             return 1
         }
-        
     }
     
     
@@ -77,7 +80,22 @@ extension SettingViewController {
         
         var setting:SettingEntity?
         
-        let list =  indexPath.section == 0 ? vm.secondarySettingList :  vm.switchSettingList
+        var list:[SettingEntity]!
+        
+        if indexPath.section == 0 {
+            
+            list =  vm.secondarySettingList
+            
+        } else if indexPath.section == 1 {
+            
+             list =  vm.switchSettingList
+            
+        } else{
+            
+             list =  vm.alterSettingList
+        }
+        
+      
         
         setting  = list[indexPath.row]
         
@@ -111,40 +129,45 @@ extension SettingViewController {
         
         super.tableView(tableView, didSelectRowAt: indexPath)
         
-        if indexPath.section != 0  {
+        if indexPath.section == 0  {
             
-            return
+            if indexPath.row == 0  && !ViewModelInstance.instance.userLogon {
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: NeedLoginNotification), object: nil)
+                return
+                
+            }
+            
+            
+            let setting = vm.secondarySettingList[indexPath.row]
+            
+            guard let clsName = setting.controller  else {
+                
+                showToast(content: "该功能暂未实现")
+                
+                return
+            }
+            
+            guard  let cls = NSClassFromString(Bundle.main.namespace + "." + clsName) as? BaseViewController.Type  else {
+                
+                return
+            }
+            
+            
+            let vc = cls.init()
+            
+            vc.title = setting.title
+            
+            navigationController?.pushViewController(vc, animated: true)
+            
+        } else if  indexPath.section == 2 {
+            
+            mzsmAction()
             
         }
         
-        if indexPath.row == 0  && !ViewModelInstance.instance.userLogon {
-            
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: NeedLoginNotification), object: nil)
-            return
-            
-        }
         
-        
-        let setting = vm.secondarySettingList[indexPath.row]
-        
-        guard let clsName = setting.controller  else {
-            
-            showToast(content: "该功能暂未实现")
-            
-            return
-        }
-        
-        guard  let cls = NSClassFromString(Bundle.main.namespace + "." + clsName) as? BaseViewController.Type  else {
-            
-            return
-        }
-        
-        
-        let vc = cls.init()
-        
-        vc.title = setting.title
-        
-        navigationController?.pushViewController(vc, animated: true)
+       
     }
     
 }
@@ -193,6 +216,29 @@ extension SettingViewController {
         
         let cellNib1 = UINib(nibName: "SettingTableViewCell", bundle: nil)
         tableview?.register(cellNib1, forCellReuseIdentifier: commonCellId)
+        
+        
     }
     
+    
+    
+    
+    
+    
+    func mzsmAction() {
+       
+        let alertController = UIAlertController(title: "免责声明", message: mzsmStr, preferredStyle: .alert)
+      
+        let cancelAction = UIAlertAction(title: "知道了", style: .cancel, handler: {
+            action in
+            
+            return
+            
+        })
+        
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+ 
+    }
 }

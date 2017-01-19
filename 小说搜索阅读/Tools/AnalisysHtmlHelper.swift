@@ -213,6 +213,7 @@ class AnalisysHtmlHelper {
                 
                 value = analisysQfxsCIAC(urlStr,html)
                 
+                
             }
             
             
@@ -292,7 +293,7 @@ class AnalisysHtmlHelper {
                 
                 let baseUrl = "http://" + host!
                 
-                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "正文</dt>.*?</div>", catalogPattern: "<dd><a href=\"(.*?)\">(.*?)</a></dd>", introPattern: "<div id=\"intro\">.*?</div>", coverPattern: "<div id=\"fmimg\"><img.*?src=\"(.*?)\".*?>", AuthorPattern: "<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：(.*?)</p>")
+                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:baseUrl, html: html, htmlPattern: "正文</dt>.*?</div>", catalogPattern: "<dd><a href=\"(.*?)\">(.*?)</a></dd>", introPattern: "<div id=\"intro\">.*?</div>", coverPattern: "<div id=\"fmimg\"><img.*?src=\"(.*?)\".*?>", AuthorPattern: "<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：(.*?)</p>")
             }
             
             
@@ -476,12 +477,10 @@ class AnalisysHtmlHelper {
                 value = analysisZyjCatalogPageUrl(url: urlStr)
                 
             } else if type == .CatalogList {
+               
+               // let baseUrl = "http://" + host!
                 
-                
-                let baseUrl = "http://" + host!
-                
-                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "<div id=\"readerlist\">.*?<div class=\"bottoma\">", catalogPattern: "<li><a href=\"(.*?)\".*?>(.*?)</a></li>", introPattern: "<div id=\"bookintro\">.*?</div>", coverPattern: "<div id=\"bookimg\"><img.*?src=\"(.*?)\".*?/>", AuthorPattern:"<div id=\"author\">.*?>(.*?)</a></div>")
-                
+                value =   analisysDjzwCIAC(urlStr, html)
             }
             
             
@@ -535,7 +534,7 @@ class AnalisysHtmlHelper {
                         
                     }
                     
-              
+                    
                     
                     let tempReg3 = try? NSRegularExpression(pattern: "【最新章节阅读.*?www.baoliny.com】", options: [])
                     
@@ -546,9 +545,9 @@ class AnalisysHtmlHelper {
                         value =  tempReg3!.stringByReplacingMatches(in: tempHtml, options: [], range:NSRange(location: 0, length: tempHtml.characters.count), withTemplate: "")
                         
                     }
-
-
-
+                    
+                    
+                    
                 }
                 
             } else if type == .CatalogPageUrl {
@@ -873,7 +872,30 @@ extension AnalisysHtmlHelper {
                 
                 let coverStr = (str as  NSString).substring(with: match.rangeAt(1))
                 
-                coverImage = baseUrl! + replaceSymbol(str: coverStr,false)
+                let url =  "http://" + (uri?.host!)! + "/"
+                
+                coverImage = url + replaceSymbol(str: coverStr,false)
+                 
+                
+                if let imageHtml =  HttpUtil.instance.httpRequest(urlString: coverImage!) {
+                    
+                    let partern = "<img.*?src=\'(.*?)\'.*?/>"
+                    
+                    //封面
+                    if  let regex = try? NSRegularExpression(pattern: partern, options: []) {
+                        
+                        if  let match = regex.firstMatch(in: imageHtml, options: [], range: NSRange(location: 0, length: imageHtml.characters.count)) {
+                            
+                            let coverStr = (imageHtml as  NSString).substring(with: match.rangeAt(1))
+                            
+                            coverImage = coverStr
+                            
+                        }
+                        
+                    }
+
+                }
+                
                 
             }
             
@@ -1100,6 +1122,29 @@ extension AnalisysHtmlHelper {
                 
                 coverImage = baseUrl! +  replaceSymbol(str: coverStr,false)
                 
+                if let cover = coverImage  {
+                    
+                    if let imageHtml =  HttpUtil.instance.httpRequest(urlString: cover) {
+                        
+                        let partern = "<img.*?src=\"(.*?)\".*?/>"
+                        
+                        //封面
+                        if  let regex = try? NSRegularExpression(pattern: partern, options: []) {
+                            
+                            if  let match = regex.firstMatch(in: imageHtml, options: [], range: NSRange(location: 0, length: imageHtml.characters.count)) {
+                                
+                                let coverStr = (imageHtml as  NSString).substring(with: match.rangeAt(1))
+                                
+                                coverImage = coverStr
+                                
+                            }
+                            
+                        }
+                        
+                    }
+
+                }
+                
             }
             
         }
@@ -1135,8 +1180,8 @@ extension AnalisysHtmlHelper {
         
         var authorName:String?
         
-        let uri = URL(string: url)
-        let baseUrl = uri?.deletingLastPathComponent().absoluteString
+       // _ = URL(string: url)
+     //   _ = uri?.deletingLastPathComponent().absoluteString
         
         
         guard let strRegex = try? NSRegularExpression(pattern: "<div id=\"list\">.*?</div>", options: []) else {
@@ -1208,7 +1253,7 @@ extension AnalisysHtmlHelper {
                 
                 let coverStr = (htmlValue as  NSString).substring(with: match.rangeAt(1))
                 
-                coverImage = baseUrl! +  replaceSymbol(str: coverStr,false)
+                coverImage =  replaceSymbol(str: coverStr,false)
                 
             }
             

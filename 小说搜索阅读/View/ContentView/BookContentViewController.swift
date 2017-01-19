@@ -839,7 +839,7 @@ extension BookContentViewController {
             
             if vm.isRequestCatalogs {
                 
-                showToast(content: "目录获取中，请获取目录后再缓存",true,true)
+                showToast(content: "暂无目录，请换个来源网站重试",false,true)
                 
             } else {
                 
@@ -849,7 +849,22 @@ extension BookContentViewController {
             return
         }
         
-        if(NetworkHelper.shared.isWifi() && !ViewModelInstance.instance.setting.isDownLoadOnWWAN) {
+        
+        let  books =  SoDuSQLiteManager.shared.selectBook(tableName: TableName.Loaclbook.rawValue)
+        
+        
+        #if !DEBUG
+            
+            if books.count >= 5 {
+                
+                showToast(content: "您暂时只能缓存5本小说",false,true)
+                return
+            }
+            
+        #endif
+        
+        
+        if(!NetworkHelper.shared.isWifi() && !ViewModelInstance.instance.setting.isDownLoadOnWWAN) {
             
             let alertController = UIAlertController(title: "缓存提示", message: "是否允许在2/3/4G下缓存，在该状态将会使用您的流量？\n您可在设置页面中更改此设置", preferredStyle: .alert)
             let cancelAction = UIAlertAction(title: "不允许", style: .cancel, handler: {

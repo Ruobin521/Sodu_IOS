@@ -26,8 +26,7 @@ class UserLoginViewModel  {
         HttpUtil.instance.request(url: url, requestMethod: .POST, postStr: postData) { (str, isSuccess) in
             
             if  str != nil && (str?.contains("true"))!  && (str?.contains("success"))! {
-                
-                
+                                 
                 completion(true)
                 
             } else  {

@@ -446,7 +446,7 @@ class BookContentPageViewModel {
                     } else {
                         
                         completion?(false)
-                        print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，不再尝试，操蛋")
+                        print("获取\((self?.currentBook?.bookName) ?? " ")目录失败，不再尝试")
                         
                     }
                 }
