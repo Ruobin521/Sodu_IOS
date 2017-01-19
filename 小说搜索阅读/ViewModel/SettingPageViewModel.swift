@@ -18,7 +18,7 @@ enum SettingKey : String {
     case IsFirstLaunchKey = "IsFirstLaunch"
     case IsAutoAddToShelf = "IsAutoAddToShelf"
     case IsDownLoadOnWWAN = "IsDownLoadOnWWAN"
-    
+    case IsReadOnShelf = "IsReadOnShelf"
     
     /// 正文阅读设置选项
     case ContentOrientation = "ContentOrientatione"
@@ -56,6 +56,28 @@ class SettingPageViewModel:NSObject {
         
     }
     
+    lazy var _isReadIOnShelf:Bool =  UserDefaultsHelper.getBoolValue(key:  .IsReadOnShelf)
+    
+    var isReadIOnShelf:Bool {
+        
+        get{
+            
+            return _isReadIOnShelf
+            
+        }
+        set{
+            
+            if _isReadIOnShelf != newValue
+            {
+                
+                _isReadIOnShelf = newValue
+                UserDefaultsHelper.setUserDefaultsValueForKey(key: .IsReadOnShelf, value: newValue)
+                
+            }
+        }
+        
+    }
+
     
     
     var _isDownLoadOnWWAN:Bool = UserDefaultsHelper.getBoolValue(key:  .IsDownLoadOnWWAN)
@@ -264,6 +286,10 @@ extension SettingPageViewModel {
             
             isDownLoadOnWWAN = value as! Bool
             
+        case SettingKey.IsReadOnShelf:
+            
+            isReadIOnShelf = value as! Bool
+            
         default: break
             
         }
@@ -281,6 +307,10 @@ extension SettingPageViewModel {
         case SettingKey.IsDownLoadOnWWAN:
             
             return isDownLoadOnWWAN
+            
+        case SettingKey.IsReadOnShelf:
+            
+            return isReadIOnShelf
             
         default:
             
@@ -303,7 +333,9 @@ extension  SettingPageViewModel {
                            ["imageName": "download", "title": "下载中心","type":"0","controller":"DownCenterViewController"],
                            ["imageName": "history", "title": "历史记录","type":"0","controller":"HistoryPageViewController"],
                            ["index" : "0" , "key":"IsAutoAddToShelf","property":"isAutoAddToShelf","imageName": "addbook", "title": "自动添加到书架存","type":"1"],
-                           ["index": "1" ,"key":"IsDownLoadOnWWAN","property":"isDownLoadOnWWAN","imageName": "wwan", "title": "在2G/3G/4G下缓存","type":"1"],
+                          //  ["index": "1" ,"key":"IsReadOnShelf","property":"isReadIOnShelf","imageName": "directread", "title": "个人书架直接阅读","type":"1"],
+                            ["index": "1" ,"key":"IsDownLoadOnWWAN","property":"isDownLoadOnWWAN","imageName": "wwan", "title": "在2G/3G/4G下缓存","type":"1"],
+                          
                            ["index" : "0","action":"mzsmAction","imageName": "mzsm", "title": "免责声明","type":"2"]
         ]
         

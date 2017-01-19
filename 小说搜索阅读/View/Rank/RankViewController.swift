@@ -204,6 +204,9 @@ extension RankViewController {
         
         tableview?.separatorStyle = .none
         
+      //  setEmptyBackView("使用提示：向左滑动可添加至个人书架")
+
+        
     }
     
 }

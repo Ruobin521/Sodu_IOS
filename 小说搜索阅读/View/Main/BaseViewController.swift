@@ -24,7 +24,7 @@ class BaseViewController: BaseUIViewController {
                 
             } else {
                 
-               // navItem.titleView = nil
+                // navItem.titleView = nil
             }
         }
         
@@ -40,6 +40,8 @@ class BaseViewController: BaseUIViewController {
     var refreshControl:RefreshControl?
     
     var failedLayer:CALayer?
+    
+    var emptyLayer :CALayer?
     
     lazy var navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 64))
     
@@ -306,6 +308,41 @@ extension BaseViewController {
         tableview?.layer.addSublayer(failedLayer!)
         
         failedLayer?.zPosition = -5
+        
+    }
+    
+    
+    
+    
+    func setEmptyBackView(_ str:String) {
+        
+        let emptyView  = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        emptyView.backgroundColor = UIColor.clear
+        emptyView.isUserInteractionEnabled = false
+        let label = UILabel()
+        label.text = str
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor =  UIColor.lightGray
+        label.numberOfLines = 0
+        label.frame = CGRect(x: 0, y: 0 , width:  300 , height: 300)
+        label.center =  CGPoint(x: view.center.x, y: view.center.y - 100)
+        label.textAlignment = .center
+        
+        emptyView.addSubview(label)
+        
+        
+        emptyLayer = CALayer()
+        
+        emptyLayer?.isHidden = true
+        
+        emptyLayer?.contents =  UIImage.convertViewToImage(view: emptyView).cgImage
+        emptyLayer?.anchorPoint =  CGPoint.zero
+        emptyLayer?.bounds =  CGRect(x: 0, y: 0, width: (emptyView.frame.width), height: (emptyView.frame.height))
+        emptyLayer?.frame = (emptyLayer?.frame)!
+        
+        self.tableview?.layer.addSublayer(emptyLayer!)
+        emptyLayer?.zPosition = -4
+        
         
     }
     

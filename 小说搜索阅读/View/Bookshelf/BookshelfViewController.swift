@@ -15,7 +15,7 @@ private let cellId = "cellId"
 
 class BookshelfViewController: BaseViewController {
     
-    var emptyLayer :CALayer?
+  
     
     let vm = ViewModelInstance.instance.bookShelf
     
@@ -278,46 +278,13 @@ extension BookshelfViewController {
         
         super.setupFailedView()
         
-        setEmptyBackView()
+        setEmptyBackView("您的书架空空如也，在排行榜或热门推荐中向左滑动添加几本吧...\n\n使用提示：\n1.个人书架主要是为了追更，如果想连续阅读，请使用历史记录功能或缓存到本地阅读。\n\n2.向左滑动可以对当前项目进行操作。\n\n3.在排行榜或热门推荐页面向左滑动即可添加所选项至个人书架。")
         
         let cellNib = UINib(nibName: "BookshelfTableViewCell", bundle: nil)
         
         tableview?.register(cellNib, forCellReuseIdentifier: cellId)
         
         tableview?.separatorStyle = .none
-        
-    }
-    
-    
-    func setEmptyBackView() {
-        
-        let emptyView  = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        emptyView.backgroundColor = UIColor.clear
-        emptyView.isUserInteractionEnabled = false
-        let label = UILabel()
-        label.text = "您的书架空空如也，在排行榜或热门推荐中向左滑动添加几本吧..."
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor =  UIColor.lightGray
-        label.numberOfLines = 0
-        label.frame = CGRect(x: 0, y: 0 , width:  300 , height: 100)
-        label.center =  CGPoint(x: view.center.x, y: view.center.y - 100)
-        label.textAlignment = .center
-        
-        emptyView.addSubview(label)
-        
-        
-        emptyLayer = CALayer()
-        
-        emptyLayer?.isHidden = true
-        
-        emptyLayer?.contents =  UIImage.convertViewToImage(view: emptyView).cgImage
-        emptyLayer?.anchorPoint =  CGPoint.zero
-        emptyLayer?.bounds =  CGRect(x: 0, y: 0, width: (emptyView.frame.width), height: (emptyView.frame.height))
-        emptyLayer?.frame = (emptyLayer?.frame)!
-        
-        self.tableview?.layer.addSublayer(emptyLayer!)
-        emptyLayer?.zPosition = -4
-        
         
     }
     

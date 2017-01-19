@@ -167,8 +167,12 @@ extension DownLoadItemViewModel {
             }
             
             self.isCompleted = true
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: DownloadCompletedNotification), object: self.book?.bookId)
             
+            DispatchQueue.main.async {
+                
+                  NotificationCenter.default.post(name: NSNotification.Name(rawValue: DownloadCompletedNotification), object: self.book?.bookId)
+            }
+                         
         }
     }
     

@@ -839,7 +839,7 @@ extension BookContentViewController {
             
             if vm.isRequestCatalogs {
                 
-                showToast(content: "暂无目录，请换个来源网站重试",false,true)
+                showToast(content: "正在获取目录，请稍后",true,true)
                 
             } else {
                 

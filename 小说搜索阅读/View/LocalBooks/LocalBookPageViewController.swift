@@ -23,6 +23,8 @@ class LocalBookPageViewController: BaseViewController {
     
     override func loadData() {
         
+        self.emptyLayer?.isHidden = true
+        
         if vm.isChecking {
            
             self.endLoadData(false)
@@ -42,6 +44,8 @@ class LocalBookPageViewController: BaseViewController {
         
         isLoading = true
         
+        self.emptyLayer?.isHidden = true
+ 
         DispatchQueue.main.async {
             
             self.setTitleView("检测更新中...")
@@ -52,9 +56,20 @@ class LocalBookPageViewController: BaseViewController {
             
             DispatchQueue.main.async {
                 
-                self.tableview?.reloadData()
-                self.endLoadData(true)
+                if self.vm.bookList.count == 0 {
+                    
+                    self.emptyLayer?.isHidden = false
+                    
+                } else{
+                    
+                    self.emptyLayer?.isHidden = true
 
+                    self.tableview?.reloadData()
+                   
+                }
+                
+               self.endLoadData(true)
+                
             }
             
         }) {
@@ -75,6 +90,11 @@ class LocalBookPageViewController: BaseViewController {
         DispatchQueue.main.async {
             
             self.tableview?.reloadData()
+            
+            if self.vm.bookList.count == 0 {
+                
+                self.emptyLayer?.isHidden = false
+            }
         }
         
     }
@@ -115,18 +135,8 @@ extension LocalBookPageViewController {
         
         cell.coverImage.sd_setImage(with:URL(string:book?.coverImage ?? "") , placeholderImage: UIImage(named: "cover"))
         
-         cell.txtUpdateCount.text = ""
-      
-        //        if book.isNew == "0" {
-        //
-        //            cell.imageNew.isHidden = true
-        //
-        //        } else {
-        //
-        //            cell.imageNew.isHidden = false
-        //
-        //        }
-        
+        cell.txtUpdateCount.text = ""
+   
         
         return cell
     }
@@ -192,6 +202,11 @@ extension LocalBookPageViewController {
                         
                         tableView.deleteSections([indexPath.section], with:  UITableViewRowAnimation.automatic)
                         
+                        if self.vm.bookList.count == 0 {
+                            
+                            self.emptyLayer?.isHidden = false
+                        }
+                        
                     }else {
                         
                         self.showToast(content: "\((bookVm.book.bookName)!)删除失败",false)
@@ -251,6 +266,7 @@ extension  LocalBookPageViewController {
         
         tableview?.separatorStyle = .none
         
+        setEmptyBackView("在阅读正文下方菜单，点击缓存按钮即可缓存全部章节内容，可以在“设置-下载中心”中查看下载进度。下载完成后即可在此处阅读。")
         
         self.navItem.rightBarButtonItem = UIBarButtonItem(title: "全部更新", fontSize: 16, target: self, action: #selector(updateAll), isBack: false)
 

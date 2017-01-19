@@ -232,7 +232,7 @@ class AnalisysHtmlHelper {
                 
                 let baseUrl = "http://" + host!
                 
-                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "<div id=\"list\".*?</div>", catalogPattern: "<dd><a href=\"(.*?)\">(.*?)</a></dd>", introPattern: "<div id=\"intro\">.*?</div>", coverPattern: "<div id=\"fmimg\"><img.*?src=\"(.*?)\".*?>", AuthorPattern: "<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：(.*?)</p>")
+                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "<dt>《.*?》正文</dt>.*?</div>", catalogPattern: "<dd><a href=\"(.*?)\">(.*?)</a></dd>", introPattern: "<div id=\"intro\">.*?</div>", coverPattern: "<div id=\"fmimg\"><img.*?src=\"(.*?)\".*?>", AuthorPattern: "<p>作&nbsp;&nbsp;&nbsp;&nbsp;者：(.*?)</p>")
             }
             
             

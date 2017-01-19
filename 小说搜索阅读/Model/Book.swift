@@ -24,6 +24,9 @@ class Book: NSObject,JSON {
     /// 标记是否为本地图书 1 是本地  0  不是本地
     var  isLocal : String  =  "0"
     
+    /// 标记是否为书架图书 1 是 0  不是
+    var  isBookShelf : String  =  "0"
+    
     /// 作者
     var   author: String?
     
