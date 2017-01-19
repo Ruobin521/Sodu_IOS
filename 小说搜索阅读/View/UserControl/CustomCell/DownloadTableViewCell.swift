@@ -19,6 +19,7 @@ class DownloadTableViewCell: UITableViewCell {
     
     @IBOutlet weak var btnDelete: UIButton!
     
+    @IBOutlet weak var coverImage: UIImageView!
     
     var vm:DownLoadItemViewModel? {
         
@@ -26,6 +27,8 @@ class DownloadTableViewCell: UITableViewCell {
             
             txtBookName.text = vm?.book?.bookName
             
+            coverImage.sd_setImage(with:URL(string: vm?.book?.coverImage ?? "") , placeholderImage: UIImage(named: "cover"))
+ 
             setText()
             
             initTimer()

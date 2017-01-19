@@ -32,7 +32,7 @@ extension DownCenterViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 65
+        return 95
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
