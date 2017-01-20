@@ -266,7 +266,7 @@ extension  LocalBookPageViewController {
         
         tableview?.separatorStyle = .none
         
-        setEmptyBackView("在阅读正文下方菜单，点击缓存按钮即可缓存全部章节内容，可以在“设置-下载中心”中查看下载进度。下载完成后即可在此处阅读。")
+        setEmptyBackView("点击阅读正文菜单中的”缓存按钮“即可缓存全部章节内容。您可在“设置-下载中心”中查看下载进度。下载完成后即可在此处阅读。")
         
         self.navItem.rightBarButtonItem = UIBarButtonItem(title: "全部更新", fontSize: 16, target: self, action: #selector(updateAll), isBack: false)
 
