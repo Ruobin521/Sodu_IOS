@@ -10,15 +10,19 @@ import Foundation
 
 
 
-class LocalBookItemViewModel {
+class LocalBookItemViewModel : NSObject{
     
     var hasUpdate = false
+    
+    var updateData:String = ""
     
     var book:Book!
     
     var updateCompletion :(() -> ())?
     
-    var checkUpdateCompletion:((_ count:Int)->())?
+    var setContentBlock :(() -> ())?
+    
+    var checkUpdateCompletion:((_ data:String)->())?
     
     var needUpdateCatalogs : [BookCatalog]?
     
@@ -34,19 +38,19 @@ extension LocalBookItemViewModel {
             
             let localCatalogs = SoDuSQLiteManager.shared.selectBookCatalogs(bookId: self.book.bookId!)
             
+            var loacalLastcatalog:BookCatalog?
+            
             if localCatalogs.count == 0 {
                 
-                completion?()
-                return
+                loacalLastcatalog = nil
+                
             }
             
-            guard let loacalLastcatalog = localCatalogs.last ,let url = loacalLastcatalog.chapterUrl  else{
+            guard let url = self.book.LastReadContentPageUrl else {
                 
                 completion?()
                 return
             }
-            
-            
             
             guard  let catalogPageUrl = AnalisysHtmlHelper.AnalisysHtml(url,"", AnalisysType.CatalogPageUrl) as? String else {
                 
@@ -54,45 +58,77 @@ extension LocalBookItemViewModel {
                 return
             }
             
+            DispatchQueue.main.async {
+                
+                self.checkUpdateCompletion?("检测更新...")
+
+            }
+            
             
             guard  let webCatalogs = self.getBookCatalogs(url: catalogPageUrl) else {
                 
                 completion?()
+                
+                self.checkUpdateCompletion?("")
+                
                 return
             }
             
             if webCatalogs.count == 0 {
                 
                 completion?()
+                 self.checkUpdateCompletion?("")
                 return
             }
             
             
-            guard let tempCatalog = webCatalogs.first(where: { (item) -> Bool in
+            let tempCatalog = webCatalogs.first(where: { (item) -> Bool in
                 
-                loacalLastcatalog.chapterUrl == item.chapterUrl
+                loacalLastcatalog?.chapterUrl == item.chapterUrl
                 
-            }) else{
+            })
+            
+            
+            var index:Int = 0
+            
+            
+            
+            if tempCatalog == nil {
                 
-                completion?()
-                return
+                index = -1
+                
+            } else  {
+                
+                guard let tempIndex = webCatalogs.index(of: tempCatalog!) else {
+                    
+                    completion?()
+                    self.checkUpdateCompletion?("")
+                    return
+                    
+                }
+                
+                index = tempIndex
             }
             
-            guard let index = webCatalogs.index(of: tempCatalog) else {
-                
-                completion?()
-                return
-            }
+            
+            
             
             if index == webCatalogs.count - 1 {
                 
                 completion?()
+                self.checkUpdateCompletion?("")
                 return
+                
             }
             
             let updateCount = webCatalogs.count - 1 - index
             
             if updateCount > 0 {
+                
+                self.book.chapterName = webCatalogs.last?.chapterName
+                
+                self.book.chapterUrl = webCatalogs.last?.chapterUrl
+                
                 
                 self.needUpdateCatalogs = [BookCatalog]()
                 
@@ -102,10 +138,15 @@ extension LocalBookItemViewModel {
                     
                 }
                 
-                self.checkUpdateCompletion?(updateCount)
+                self.updateData = String(updateCount)
+                
+                self.checkUpdateCompletion?(String(updateCount))
                 
                 self.hasUpdate = true
                 
+            } else {
+                
+                self.checkUpdateCompletion?("")
             }
             
             
@@ -147,7 +188,7 @@ extension LocalBookItemViewModel {
                 
                 item.chapterContent = CommonPageViewModel.getCatalogContent(urlString: url,bookName:self.book.bookName)
                 
-                self.checkUpdateCompletion?(self.needUpdateCatalogs!.count - count)
+                self.checkUpdateCompletion?(String(self.needUpdateCatalogs!.count - count))
                 
             }
             
@@ -165,8 +206,6 @@ extension LocalBookItemViewModel {
             
             if isSuccess {
                 
-                self.book?.chapterName = self.needUpdateCatalogs?.last?.chapterName
-                self.book?.chapterUrl = self.needUpdateCatalogs?.last?.chapterUrl
                 
                 self.book?.isLocal = "1"
                 
@@ -222,7 +261,27 @@ extension LocalBookItemViewModel {
                     
                 }
                 
+                if  self.book.introduction == nil || self.book.coverImage == nil  || self.book.author == nil {
+                    
+                    self.book.introduction = values.introduction
+                    
+                    self.book.coverImage = values.cover
+                    
+                    self.book.author = values.authorName
+                    
+                    SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [self.book!], tableName: TableName.Loaclbook.rawValue, completion: { (isSuccess) in
+                        
+                        self.setContentBlock?()
+                        
+                    })
+                    
+                    
+                }
+                
+                
+                
                 catalogs = result
+                
                 break
                 
             }

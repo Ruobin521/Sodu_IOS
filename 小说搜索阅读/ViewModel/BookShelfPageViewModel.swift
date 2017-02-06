@@ -13,7 +13,6 @@ class BookShelfPageViewModel {
     lazy var bookList = [Book]()
     
     
-    
     var userId:String? {
         
         get {

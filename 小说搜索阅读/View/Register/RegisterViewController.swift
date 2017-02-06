@@ -45,6 +45,8 @@ class RegisterViewController: BaseViewController {
                 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: LogonSuccessNotification), object: nil)
                 
+                UserDefaultsHelper.setUserDefaultsValueForKey(key: .UserNameKey, value: (self?.txtUserName.text)!)
+                
                 self?.vm.setCoookie()
                 
                 self?.goBack()

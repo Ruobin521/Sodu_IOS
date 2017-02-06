@@ -21,7 +21,7 @@ class Book: NSObject,JSON {
     /// 0 , 1 是否有更新
     var isNew:String = "0"
     
-    /// 标记是否为本地图书 1 是本地  0  不是本地
+    /// 标记是否为本地图书 1 是本地  0 不是本地,2 表示本地在线 
     var  isLocal : String  =  "0"
     
     /// 标记是否为书架图书 1 是 0  不是

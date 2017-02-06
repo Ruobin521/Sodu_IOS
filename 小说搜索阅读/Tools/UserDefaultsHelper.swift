@@ -48,11 +48,11 @@ class UserDefaultsHelper {
     
     
     
-    static func getBoolValue(key:SettingKey) -> Bool {
+    static func getBoolValue(key:SettingKey) -> (Bool)? {
         
-        let value = UserDefaults.standard.bool(forKey: key.rawValue)
+        let value = UserDefaults.standard.value(forKey: key.rawValue)
         
-        return value
+        return value as? Bool
         
     }
     

@@ -26,11 +26,9 @@ class LocalBookPageViewController: BaseViewController {
         self.emptyLayer?.isHidden = true
         
         if vm.isChecking {
-           
-            self.endLoadData(false)
             
-            showToast(content: "正在检测更新，请稍后", true, false)
-            
+          //  self.endLoadData(false)
+          
             return
         }
         
@@ -45,13 +43,13 @@ class LocalBookPageViewController: BaseViewController {
         isLoading = true
         
         self.emptyLayer?.isHidden = true
- 
+        
         DispatchQueue.main.async {
             
             self.setTitleView("检测更新中...")
             
         }
-       
+        
         vm.loadLoaclBooks(completion: { (isSuccess) in
             
             DispatchQueue.main.async {
@@ -63,12 +61,12 @@ class LocalBookPageViewController: BaseViewController {
                 } else{
                     
                     self.emptyLayer?.isHidden = true
-
+                    
                     self.tableview?.reloadData()
-                   
+                    
                 }
                 
-               self.endLoadData(true)
+                self.endLoadData(true)
                 
             }
             
@@ -81,22 +79,12 @@ class LocalBookPageViewController: BaseViewController {
             }
             
         }
-
+        
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
-        DispatchQueue.main.async {
-            
-            self.tableview?.reloadData()
-            
-            if self.vm.bookList.count == 0 {
-                
-                self.emptyLayer?.isHidden = false
-            }
-        }
-        
+        self.loadData()
     }
     
 }
@@ -123,20 +111,11 @@ extension LocalBookPageViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! LocalBookTableViewCell
         
-        let book = vm.bookList[indexPath.section].book
+        
         
         cell.vm =  vm.bookList[indexPath.section]
         
-        cell.txtBookName.text = book?.bookName
         
-        cell.txtNewChapterName.text = book?.chapterName
-        
-        cell.txtLastReadChapterName.text = book?.lastReadChapterName
-        
-        cell.coverImage.sd_setImage(with:URL(string:book?.coverImage ?? "") , placeholderImage: UIImage(named: "cover"))
-        
-        cell.txtUpdateCount.text = ""
-   
         
         return cell
     }
@@ -266,10 +245,10 @@ extension  LocalBookPageViewController {
         
         tableview?.separatorStyle = .none
         
-        setEmptyBackView("点击阅读正文菜单中的”缓存按钮“即可缓存全部章节内容。您可在“设置-下载中心”中查看下载进度。下载完成后即可在此处阅读。")
+        setEmptyBackView("　　1.点击阅读正文菜单中的”缓存“按钮即可缓存全部章节内容。\n　　2.您可在“设置-下载中心”中查看下载进度。\n　　3.下载完成后即可在此处阅读\n　　4.如果你选择自动添加到书架，将自动添加该小说到本地书架。")
         
         self.navItem.rightBarButtonItem = UIBarButtonItem(title: "全部更新", fontSize: 16, target: self, action: #selector(updateAll), isBack: false)
-
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: NSNotification.Name(rawValue: DownloadCompletedNotification), object: nil)
         
@@ -277,7 +256,7 @@ extension  LocalBookPageViewController {
     
     
     func updateAll() {
-    
+        
         for item in  vm.bookList {
             
             item.downLoadUpdate(completion: nil)

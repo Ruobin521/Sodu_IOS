@@ -7,7 +7,7 @@
 //
 
 import UIKit
- 
+
 class MainViewController: UITabBarController {
     
     override func viewDidLoad() {
@@ -25,12 +25,12 @@ class MainViewController: UITabBarController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(addHistory), name: NSNotification.Name(rawValue: AddHistoryNotification), object: nil)
         
-    
+        
         
         delegate = self
         
-       // setupWelcomView()
-
+        // setupWelcomView()
+        
         
     }
     
@@ -65,7 +65,7 @@ class MainViewController: UITabBarController {
         UserLoginViewModel.deleteCoookie()
         
         ViewModelInstance.instance.bookShelf.bookList.removeAll()
-                
+        
         UserDefaultsHelper.setUserDefaultsValueForKey(key: .UserNameKey, value: "")
         
         ViewModelInstance.instance.userLogon = false
@@ -187,7 +187,6 @@ extension MainViewController {
         var  array = [
             
             ["clsName": "RankViewController", "title": "排行榜", "imageName" : "rank"],
-            
             ["clsName": "HotAndRecommendViewController", "title": "热门推荐", "imageName" : "hot"],
             ["clsName": "LocalBookPageViewController", "title": "本地书架", "imageName" : "books"],
             ["clsName": "SettingViewController", "title": "设置", "imageName" : "setting"],

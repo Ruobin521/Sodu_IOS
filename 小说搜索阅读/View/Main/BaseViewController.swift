@@ -326,7 +326,7 @@ extension BaseViewController {
         label.numberOfLines = 0
         label.frame = CGRect(x: 0, y: 0 , width:  300 , height: 300)
         label.center =  CGPoint(x: view.center.x, y: view.center.y - 100)
-        label.textAlignment = .center
+        label.textAlignment = .left
         
         emptyView.addSubview(label)
         

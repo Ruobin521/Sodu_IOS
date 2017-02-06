@@ -813,11 +813,13 @@ extension BookContentViewController {
             
             if (self.isLoading) {
                 
-                
-                
+                return
             }
             
+            self.errorView.isHidden = true
+            
             self.vm.SetCurrentCatalog(catalog: catalog, completion: nil)
+            
             self.initContentData()
             
         }
@@ -892,9 +894,6 @@ extension BookContentViewController {
             
         }
         
-        
-        
-        
     }
     
     
@@ -964,7 +963,7 @@ extension BookContentViewController {
         
     }
     
-    
+    // MARK: 重新加载内容
     func resetContent() {
         
         if vm.currentCatalog?.chapterContent == nil {

@@ -260,23 +260,36 @@ class BookContentPageViewModel {
                 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddHistoryNotification), object: currentBook)
                 
-            } else {
+            }
+            
+            if currentBook?.isLocal == "1"  || currentBook?.isLocal == "2"  || ViewModelInstance.instance.setting.isAutoAddToLocalShelf {
                 
-                if let  tempBook =  ViewModelInstance.instance.localBook.bookList.first(where: { (item) -> Bool in
+                
+                let tempBook = currentBook?.clone()
+                
+                let localbook = ViewModelInstance.instance.localBook.bookList.first(where: { (item) -> Bool in
                     
                     item.book.bookId == currentBook?.bookId
                     
-                })?.book  {
-                    
-                    tempBook.lastReadChapterName = _currentCatalog?.chapterName
-                    
-                    tempBook.LastReadContentPageUrl = _currentCatalog?.chapterUrl
-                    
-                    ViewModelInstance.instance.localBook.updateBookDB(book: tempBook, completion: nil)
-                }
+                })
                 
-            }
+                if localbook == nil {
+                    
+                    tempBook?.isLocal = "2"
+                    
+                } else {
+                    
+                     tempBook?.isLocal = (localbook?.book.isLocal)!
+                    
+                }
             
+                tempBook?.lastReadChapterName = _currentCatalog?.chapterName
+                
+                tempBook?.LastReadContentPageUrl = _currentCatalog?.chapterUrl
+                
+                ViewModelInstance.instance.localBook.updateBookDB(book: tempBook!, completion: nil)
+
+            }
             preLoadCatalogContent()
         }
     }

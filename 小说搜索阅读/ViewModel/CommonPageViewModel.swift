@@ -61,7 +61,7 @@ class CommonPageViewModel {
         
         if item != nil {
             
-            //  ToastView.instance.showGlobalToast(content: "\((book.bookName)!)已存个人书架")
+           // ToastView.instance.showGlobalToast(content: "\((book.bookName)!)已存个人书架")
             return
         }
         

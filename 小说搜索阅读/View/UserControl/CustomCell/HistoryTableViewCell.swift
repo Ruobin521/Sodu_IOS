@@ -17,6 +17,9 @@ class HistoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var txtTime: UILabel!
     
+
+    
+    @IBOutlet weak var coverImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

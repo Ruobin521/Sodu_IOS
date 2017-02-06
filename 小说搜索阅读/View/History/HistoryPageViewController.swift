@@ -62,10 +62,14 @@ extension HistoryPageViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! HistoryTableViewCell
         
+        let book = vm.bookList[indexPath.section]
         
-        cell.txtChapterName?.text = vm.bookList[indexPath.section].lastReadChapterName
-        cell.txtBookName?.text = vm.bookList[indexPath.section].bookName
-        cell.txtTime?.text = vm.bookList[indexPath.section].updateTime
+        cell.txtChapterName?.text = book.lastReadChapterName
+        cell.txtBookName?.text = book.bookName
+        cell.txtTime?.text = book.updateTime
+        
+        cell.coverImage.sd_setImage(with:URL(string: book.coverImage ?? "") , placeholderImage: UIImage(named: "cover"))
+        
         
         return cell
     }

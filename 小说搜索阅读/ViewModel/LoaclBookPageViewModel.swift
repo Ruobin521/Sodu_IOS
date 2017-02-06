@@ -12,7 +12,7 @@ class LoaclBookPageViewModel {
     
     var isChecking:Bool = false
     
-    var bookList:[LocalBookItemViewModel] = [LocalBookItemViewModel]()
+    var bookList = [LocalBookItemViewModel]()
     
     func loadLoaclBooks(completion:(_ isSuccess:Bool) -> (),checkCompletion:@escaping ()->())  {
         
@@ -44,7 +44,7 @@ class LoaclBookPageViewModel {
                     }
                     
                 }
-                 
+                
             }
             
         } else {
@@ -63,6 +63,29 @@ class LoaclBookPageViewModel {
         SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [book], tableName: TableName.Loaclbook.rawValue) { (isSuccess) in
             
             if isSuccess {
+                
+                let tempItem = self.bookList.first(where: { (item) -> Bool in
+                    
+                    item.book.bookId == book.bookId
+                    
+                })
+                
+                if tempItem == nil {
+                    
+                    let tempBook = LocalBookItemViewModel()
+                    
+                    tempBook.book = book
+                    
+                    self.bookList.insert(tempBook, at: 0)
+                    
+                } else {
+                    
+                    self.bookList.remove(at:  self.bookList.index(of: tempItem!)! )
+                    
+                    tempItem?.book = book.clone()
+                    
+                    self.bookList.insert(tempItem!, at: 0)
+                }
                 
                 completion?(isSuccess)
             }

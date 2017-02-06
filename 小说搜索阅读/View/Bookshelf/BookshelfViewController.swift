@@ -197,13 +197,18 @@ extension BookshelfViewController {
                         
                         array.append(indexPath)
                         
-                        self.vm.bookList.remove(at: indexPath.section)
+                        if self.vm.bookList.count >= indexPath.section + 1 {
+                            
+                            self.vm.bookList.remove(at: indexPath.section)
+                            
+                            tableView.deleteSections([indexPath.section], with:  UITableViewRowAnimation.automatic)
+                            
+                            // tableView.reloadData()
+                            
+                            self.showToast(content: "\(book.bookName!)取消收藏成功")
+
+                        }
                         
-                        tableView.deleteSections([indexPath.section], with:  UITableViewRowAnimation.automatic)
-                        
-                        // tableView.reloadData()
-                        
-                        self.showToast(content: "\(book.bookName!)取消收藏成功")
                         
                         if self.vm.bookList.count == 0 {
                             
@@ -278,7 +283,7 @@ extension BookshelfViewController {
         
         super.setupFailedView()
         
-        setEmptyBackView("您的书架空空如也，在排行榜或热门推荐中向左滑动添加几本吧...\n\n使用提示：\n1.个人书架主要是为了追更，如果想连续阅读，请使用历史记录功能或缓存到本地阅读。\n\n2.向左滑动可以对当前项目进行操作。\n\n3.在排行榜或热门推荐页面向左滑动即可添加所选项至个人书架。")
+        setEmptyBackView("　　您的书架空空如也，在排行榜或热门推荐中向左滑动添加几本吧...\n\n使用提示：\n　　1.个人书架主要是为了查看追更，如果想连续阅读，请使用本地书架或历史记录功能。\n　　2.向左滑动可以对当前项目进行操作。\n　　3.在排行榜或热门推荐页面向左滑动即可添加所选项至个人书架。")
         
         let cellNib = UINib(nibName: "BookshelfTableViewCell", bundle: nil)
         
