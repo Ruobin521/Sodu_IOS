@@ -7,8 +7,7 @@
 //
 
 import Foundation
-
-
+import UIKit
 
 class LocalBookItemViewModel : NSObject{
     
@@ -16,23 +15,52 @@ class LocalBookItemViewModel : NSObject{
     
     var updateData:String = ""
     
+    var updateValue:CGFloat = 0
+    
     var book:Book!
     
     var updateCompletion :(() -> ())?
     
     var setContentBlock :(() -> ())?
     
-    var checkUpdateCompletion:((_ data:String)->())?
+    var setUpdateDataBlock:(()->())?
     
     var needUpdateCatalogs : [BookCatalog]?
     
     var isUpdating = false
+    
+    var isDeleted = false
+    
+    //创建并行队列
+    var concurrent:DispatchQueue?
+    
+    let group = DispatchGroup()
 }
 
 extension LocalBookItemViewModel {
     
     
     func checkUpdate(completion:(()->())?) {
+        
+        if self.book.isLocal != "1" {
+            
+            updateData = ""
+            
+            completion?()
+            
+            return
+        }
+        
+        checkMethod {
+            
+            completion?()
+            
+        }
+    }
+    
+    
+    func checkMethod(completion:(()->())?) {
+        
         
         DispatchQueue.global().async {
             
@@ -44,7 +72,11 @@ extension LocalBookItemViewModel {
                 
                 loacalLastcatalog = nil
                 
+                self.book.isLocal = "2"
+                
             }
+            
+            loacalLastcatalog =  localCatalogs.last
             
             guard let url = self.book.LastReadContentPageUrl else {
                 
@@ -60,24 +92,33 @@ extension LocalBookItemViewModel {
             
             DispatchQueue.main.async {
                 
-                self.checkUpdateCompletion?("检测更新...")
-
+                self.updateData = "检测更新..."
+                self.updateValue = 0
+                
+                self.setUpdateDataBlock?()
+                
             }
-            
             
             guard  let webCatalogs = self.getBookCatalogs(url: catalogPageUrl) else {
                 
-                completion?()
+                self.updateData = ""
+                self.updateValue = 0
                 
-                self.checkUpdateCompletion?("")
+                self.setUpdateDataBlock?()
+                completion?()
                 
                 return
             }
             
+            
             if webCatalogs.count == 0 {
                 
+                self.updateData = ""
+                self.updateValue = 0
+                
+                self.setUpdateDataBlock?()
                 completion?()
-                 self.checkUpdateCompletion?("")
+                
                 return
             }
             
@@ -101,8 +142,13 @@ extension LocalBookItemViewModel {
                 
                 guard let tempIndex = webCatalogs.index(of: tempCatalog!) else {
                     
+                    
+                    self.updateData = ""
+                    self.updateValue = 0
+                    
+                    self.setUpdateDataBlock?()
                     completion?()
-                    self.checkUpdateCompletion?("")
+                    
                     return
                     
                 }
@@ -115,8 +161,12 @@ extension LocalBookItemViewModel {
             
             if index == webCatalogs.count - 1 {
                 
+                self.updateData = ""
+                self.updateValue = 0
+                
+                self.setUpdateDataBlock?()
                 completion?()
-                self.checkUpdateCompletion?("")
+                
                 return
                 
             }
@@ -139,22 +189,25 @@ extension LocalBookItemViewModel {
                 }
                 
                 self.updateData = String(updateCount)
-                
-                self.checkUpdateCompletion?(String(updateCount))
+                self.updateValue = 0
+                self.setUpdateDataBlock?()
                 
                 self.hasUpdate = true
                 
             } else {
                 
-                self.checkUpdateCompletion?("")
+                self.updateData = ""
+                self.updateValue = 0
+                self.setUpdateDataBlock?()
+                
             }
             
             
             completion?()
         }
         
+        
     }
-    
     
     
     func downLoadUpdate(completion:(()->())?) {
@@ -173,45 +226,98 @@ extension LocalBookItemViewModel {
             return
         }
         
-        DispatchQueue.global().async {
+        var count = 0
+        
+        var catalogGroup = [[BookCatalog]]()
+        
+        for i in 0..<(needUpdateCatalogs)!.count {
             
-            var count = 0
+            let index = i % 15
             
-            for item in  self.needUpdateCatalogs! {
+            if catalogGroup.count < index + 1 {
                 
-                count += 1
-                
-                guard let url = item.chapterUrl else {
-                    
-                    continue
-                }
-                
-                item.chapterContent = CommonPageViewModel.getCatalogContent(urlString: url,bookName:self.book.bookName)
-                
-                self.checkUpdateCompletion?(String(self.needUpdateCatalogs!.count - count))
-                
+                catalogGroup.append([BookCatalog]())
             }
             
-            self.insertToDB()
+            catalogGroup[index].append((needUpdateCatalogs)![i])
             
         }
+        
+        concurrent = DispatchQueue(label: "concurrentQueue\(book.bookId)", attributes: .concurrent)
+        
+        for catalogs in catalogGroup {
+            
+            concurrent?.async(group: group) {
+                
+                for catalog in catalogs {
+                    
+                    if self.isDeleted {
+                        
+                        break
+                    }
+                    
+                    count += 1
+                    
+                    if let url = catalog.chapterUrl {
+                        
+                        catalog.chapterContent =  CommonPageViewModel.getCatalogContent(urlString: url,bookName: self.book?.bookName)
+                        print("本地缓存:" + (self.book!.bookName)! +  "-:"  + catalog.chapterName!)
+                    }
+                    
+                    self.updateData = String(self.needUpdateCatalogs!.count - count)
+                    
+                    self.updateValue =   CGFloat(integerLiteral: count) /  CGFloat(integerLiteral: self.needUpdateCatalogs!.count) *  CGFloat(100.0)
+                    
+                    self.setUpdateDataBlock?()
+                    
+                }
+            }
+            
+        }
+        
+        group.notify(queue: concurrent!) {
+           
+            self.updateData = ""
+            self.updateValue = 0
+            self.setUpdateDataBlock?()
+            
+            if self.isDeleted {
+                
+                return
+            }
+            
+            self.insertCatalogsToDB()
+            
+        }
+        
         
     }
     
     
     
-    func insertToDB() {
+    func insertCatalogsToDB() {
         
         SoDuSQLiteManager.shared.insertOrUpdateBookCatalogs(catalogs: self.needUpdateCatalogs!, bookid: (self.book?.bookId)!) { (isSuccess) in
             
             if isSuccess {
                 
+                let temp  =  self.book?.clone()
                 
-                self.book?.isLocal = "1"
+                temp?.isLocal = "1"
                 
-                SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [self.book!], tableName: TableName.Loaclbook.rawValue, completion: { (isSuccess) in
+                SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [temp!], tableName: TableName.Loaclbook.rawValue, completion: { (isSuccess) in
                     
-                    self.updateCompletion?()
+                    if isSuccess {
+                        
+                        self.book?.isLocal = "1"
+                        
+                        self.updateCompletion?()
+                        
+                        self.needUpdateCatalogs?.removeAll()
+                        
+                        self.updateData = ""
+                        
+                    }
                     
                 })
                 

@@ -74,15 +74,17 @@ extension DownloadCenterPageViewModel {
         
         let books =  SoDuSQLiteManager.shared.selectBook(tableName: TableName.Loaclbook.rawValue)
         
-        if let _  = books.first(where: { (temp) -> Bool in
+        if let tempBook  = books.first(where: { (temp) -> Bool in
             
             temp.bookId == book.bookId
             
         }) {
-            
-            ToastView.instance.showGlobalToast(content: "\(book.bookName!)已经存在于本地图书列表中",true,true)
-            return
-            
+            if tempBook.isLocal == "1" {
+                
+                ToastView.instance.showGlobalToast(content: "\(book.bookName!)已经存在于本地图书列表中",true,true)
+                return
+            }
+          
         }
         
         let item = DownLoadItemViewModel(book: book.clone())

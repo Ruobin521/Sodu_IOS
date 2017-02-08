@@ -359,9 +359,9 @@ extension  SettingPageViewModel {
         /// 按钮数据数组
         let settingInfo = [["imageName": "person", "title": "个人中心","type":"0","controller":"PersonCenterViewController"],
                            ["imageName": "download", "title": "下载中心","type":"0","controller":"DownCenterViewController"],
-                           ["imageName": "history", "title": "历史记录","type":"0","controller":"HistoryPageViewController"],
-                           ["index" : "0" , "key":"IsAutoAddToShelf","property":"isAutoAddToShelf","imageName": "addbook", "title": "自动添加到个人书架存","type":"1"],
-                           ["index" : "0" , "key":"IsAutoAddToLocalShelf","property":"isAutoAddToLocalShelf","imageName": "addbook2", "title": "自动添加到本地书架存","type":"1"],
+                          
+                           ["index" : "0" , "key":"IsAutoAddToShelf","property":"isAutoAddToShelf","imageName": "addbook", "title": "自动添加到个人书架","type":"1"],
+                          // ["index" : "0" , "key":"IsAutoAddToLocalShelf","property":"isAutoAddToLocalShelf","imageName": "addbook2", "title": "自动添加到本地书架","type":"1"],
                           //  ["index": "1" ,"key":"IsReadOnShelf","property":"isReadIOnShelf","imageName": "directread", "title": "个人书架直接阅读","type":"1"],
                             ["index": "1" ,"key":"IsDownLoadOnWWAN","property":"isDownLoadOnWWAN","imageName": "wwan", "title": "在2G/3G/4G下缓存","type":"1"],
                           

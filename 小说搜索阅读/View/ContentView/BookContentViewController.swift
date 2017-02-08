@@ -77,6 +77,41 @@ class BookContentViewController: BaseUIViewController {
     @IBOutlet weak var scrollviewColor: UIScrollView!
     
     
+    @IBOutlet weak var btnAdd: UIButton!
+    
+    @IBAction func addAction(_ sender: Any) {
+        
+        let alertController = UIAlertController(title: "收藏提示", message: "是否添加本书到本地收藏？", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "好的", style: .default, handler: {
+            action in
+            
+            self.vm.insertBookToLocalShelf({
+                
+                
+                self.hidenMenu()
+                //  self.btnAdd.isHidden = true
+                
+            })
+            
+        })
+        
+        
+        let cancelAction = UIAlertAction(title: "不了", style: .cancel, handler: {
+            action in
+            
+            return
+            
+        })
+        
+        alertController.addAction(okAction)
+        
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
     func cancleAction() {
         
         vm.isCurrentCanclled = true
@@ -278,6 +313,13 @@ class BookContentViewController: BaseUIViewController {
     // MARK: 点击关闭按钮事件
     func closeAciton() {
         
+        closeMethod()
+        
+    }
+    
+    //MARK:关闭时需要销毁任务
+    func closeMethod() {
+        
         //销毁定时器
         timer?.invalidate()
         
@@ -295,7 +337,6 @@ class BookContentViewController: BaseUIViewController {
         
         dismiss(animated: true, completion: nil)
     }
-    
     
     //MARK:  析构函数
     deinit {
@@ -724,6 +765,17 @@ extension BookContentViewController {
             
             self.isShowing = false
             
+            let   localBooks = SoDuSQLiteManager.shared.selectBook(tableName: TableName.Loaclbook.rawValue)
+            
+            if localBooks.first(where: { (item) -> Bool in
+                
+                item.bookId == self.vm.currentBook?.bookId
+                
+            }) == nil   {
+                
+                self.btnAdd.isHidden = false
+                
+            }
             
         })
         
@@ -747,6 +799,12 @@ extension BookContentViewController {
         
         settingView.isHidden = true
         
+        if self.vm.currentBook?.isLocal == "0" {
+            
+            self.btnAdd.isHidden = true
+            
+        }
+        
         UIApplication.shared.setStatusBarHidden(true, with: .slide)
         
         UIView.animate(withDuration: 0.25, animations: {
@@ -763,6 +821,7 @@ extension BookContentViewController {
             self.botomMenu.isHidden = true
             
             self.isShowing = false
+            
             
         })
     }
@@ -850,20 +909,6 @@ extension BookContentViewController {
             
             return
         }
-        
-        
-        let  books =  SoDuSQLiteManager.shared.selectBook(tableName: TableName.Loaclbook.rawValue)
-        
-        
-        #if !DEBUG
-            
-            if books.count >= 5 {
-                
-                showToast(content: "您暂时只能缓存5本小说",false,true)
-                return
-            }
-            
-        #endif
         
         
         if(!NetworkHelper.shared.isWifi() && !ViewModelInstance.instance.setting.isDownLoadOnWWAN) {
@@ -1042,6 +1087,7 @@ extension BookContentViewController {
         
         btnRetry.isHidden = true
         
+        btnAdd.isHidden = true
         
         setBottonBarButton()
         
@@ -1151,7 +1197,6 @@ extension BookContentViewController {
             ctr.setTextAttribute(self.vm.getTextContetAttributes())
             
         }
-        
         
     }
     
@@ -1329,7 +1374,7 @@ extension BookContentViewController {
         
     }
     
-    /// MARK: 设置slider
+    /// MARK: 设置亮度slider
     func setupSlider() {
         
         lightValueslider.setThumbImage(UIImage(named: "slider"), for: .normal)
@@ -1338,11 +1383,10 @@ extension BookContentViewController {
         
         lightValueslider.value = vm.lightValue
         
-        
     }
     
     
-    // MARK: 设置遮罩
+    // MARK: 设置亮度遮罩
     func setupCALayer()  {
         
         layer = CALayer()

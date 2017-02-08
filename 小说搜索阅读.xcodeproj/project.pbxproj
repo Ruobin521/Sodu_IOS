@@ -80,6 +80,7 @@
 		B1A0140F1DF9305200239D58 /* DownLoadItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A0140E1DF9305200239D58 /* DownLoadItemViewModel.swift */; };
 		B1A73D321DE0C44C00EA4A40 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A73D301DE0C44C00EA4A40 /* SearchViewController.swift */; };
 		B1A73D351DE0D0F900EA4A40 /* SearchPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A73D341DE0D0F900EA4A40 /* SearchPageViewModel.swift */; };
+		B1B022BF1E49A95300985778 /* CircleProgressControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B022BE1E49A95300985778 /* CircleProgressControl.swift */; };
 		B1B6A3531DC1EA2300CF23B7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6A3521DC1EA2300CF23B7 /* Constant.swift */; };
 		B1B6A3551DC3409D00CF23B7 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B6A3541DC3409D00CF23B7 /* NetworkHelper.swift */; };
 		B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */; };
@@ -184,6 +185,7 @@
 		B1A0140E1DF9305200239D58 /* DownLoadItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DownLoadItemViewModel.swift; path = ../View/DownCenter/DownLoadItemViewModel.swift; sourceTree = "<group>"; };
 		B1A73D301DE0C44C00EA4A40 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		B1A73D341DE0D0F900EA4A40 /* SearchPageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPageViewModel.swift; sourceTree = "<group>"; };
+		B1B022BE1E49A95300985778 /* CircleProgressControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressControl.swift; sourceTree = "<group>"; };
 		B1B6A3521DC1EA2300CF23B7 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		B1B6A3541DC3409D00CF23B7 /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		B1BEC74E1DC0979000AD8DC3 /* UpdateChapterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateChapterViewController.swift; sourceTree = "<group>"; };
@@ -501,6 +503,14 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
+		B1B022BD1E49A90E00985778 /* CircleProgressControl */ = {
+			isa = PBXGroup;
+			children = (
+				B1B022BE1E49A95300985778 /* CircleProgressControl.swift */,
+			);
+			path = CircleProgressControl;
+			sourceTree = "<group>";
+		};
 		B1B261511DDEF2A900F28B17 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -512,6 +522,7 @@
 		B1BEC7421DC05D9100AD8DC3 /* UserControl */ = {
 			isa = PBXGroup;
 			children = (
+				B1B022BD1E49A90E00985778 /* CircleProgressControl */,
 				B1F3476F1E24C5A100CD0D7E /* ColorPickerItem */,
 				B1D0E8601DEDC29E008209C7 /* LoadingWithColoseButtonControl */,
 				B1D0E85B1DEDB263008209C7 /* FailedControl */,
@@ -807,6 +818,7 @@
 				B1D759E21DE6ED140052C4F4 /* BookCatalogTableViewCell.swift in Sources */,
 				B19B74531DD4C30D008D6C5C /* RegisterViewController.swift in Sources */,
 				B17E03C91DB095B90061DD47 /* Book.swift in Sources */,
+				B1B022BF1E49A95300985778 /* CircleProgressControl.swift in Sources */,
 				B1BEC74F1DC0979000AD8DC3 /* UpdateChapterViewController.swift in Sources */,
 				B127B0C71DF356CA00F6C913 /* UIImage+Extensions.swift in Sources */,
 				B16F47C61DF161B2007F88A1 /* BookListDBHelpr.swift in Sources */,

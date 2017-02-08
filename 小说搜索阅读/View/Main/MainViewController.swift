@@ -10,6 +10,8 @@ import UIKit
 
 class MainViewController: UITabBarController {
     
+    let personItem =  ["clsName": "BookshelfViewController", "title": "在线书架", "imageName" : "profile"]
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -42,13 +44,13 @@ class MainViewController: UITabBarController {
     
     func logonSuccess() {
         
-        let item =  ["clsName": "BookshelfViewController", "title": "个人书架", "imageName" : "profile"]
+      
         
         DispatchQueue.main.async {
             
             self.showToast(content: "用户登陆成功")
             
-            self.viewControllers?.insert(self.createController(dic: item), at: 0)
+            self.viewControllers?.insert(self.createController(dic: self.personItem), at: 0)
             
             self.selectedIndex =  (self.viewControllers?.count)! - 1  >= 0  ? (self.viewControllers?.count)! - 1  : 0
             
@@ -196,7 +198,7 @@ extension MainViewController {
         
         if ViewModelInstance.instance.userLogon {
             
-            array.insert( ["clsName": "BookshelfViewController", "title": "个人书架", "imageName" : "profile"], at: 0)
+            array.insert(personItem, at: 0)
             
         }
         

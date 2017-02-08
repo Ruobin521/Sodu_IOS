@@ -22,17 +22,31 @@ class LocalBookTableViewCell: UITableViewCell {
     
     @IBOutlet weak var onlineView: UIView!
     
+    let cireView = CircleProgressControl()
+    
+    
     var vm:LocalBookItemViewModel? {
         
         didSet {
             
             setContent()
             
-            vm?.checkUpdateCompletion = { (data:String) in
+            vm?.setUpdateDataBlock = {
                 
                 DispatchQueue.main.async {
                     
-                    self.txtUpdateCount.text = data
+                    self.txtUpdateCount.text = self.vm?.updateData
+                    
+                    if (self.vm?.isUpdating)! {
+                        
+                        self.cireView.isHidden = false
+                        self.cireView.value = (self.vm?.updateValue)!
+                        
+                    } else {
+                        
+                          self.cireView.isHidden = true
+                        
+                    }
                 }
             }
             
@@ -53,6 +67,10 @@ class LocalBookTableViewCell: UITableViewCell {
                     self.txtUpdateCount.text = ""
                     
                     self.txtNewChapterName.text = self.vm?.book.chapterName
+                    
+                    self.cireView.isHidden = true
+                    
+                    self.onlineView.isHidden = ((self.vm?.book.isLocal) == "2" ? false : true)
                     
                 }
                 
@@ -78,13 +96,41 @@ class LocalBookTableViewCell: UITableViewCell {
         
         self.onlineView.isHidden = ((self.vm?.book.isLocal) == "2" ? false : true)
         
+        self.cireView.isHidden = !(self.vm?.isUpdating)!
+        
     }
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        creatCire()
+        
     }
+    
+    
+    func creatCire(){
+        
+        self.cireView.value = 0
+        
+        self.cireView.maximumValue = 100
+        
+        self.cireView.backgroundColor = UIColor.clear
+        
+        let width:CGFloat = 30
+        
+        self.cireView.frame = CGRect(x: (self.coverImage.frame.width -  width) * 0.5, y: (self.coverImage.frame.height -  width) * 0.5, width: width, height: width)
+        
+        //self.cireView.center = self.coverImage.center
+        
+        self.coverImage.addSubview(cireView)
+        
+        self.cireView.isHidden = true
+        
+       // ChangeValue()
+    }
+    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookContentViewController" customModule="小说搜索阅读" customModuleProvider="target">
             <connections>
                 <outlet property="botomMenu" destination="dlW-VN-Egm" id="Qcy-RL-EdT"/>
+                <outlet property="btnAdd" destination="eWV-H8-7xq" id="VX9-hk-14H"/>
                 <outlet property="btnFontSizeMinus" destination="09f-xV-6YI" id="kfc-t3-9Iu"/>
                 <outlet property="btnFontSizePlus" destination="hm6-Po-OmM" id="4We-Xq-BbN"/>
                 <outlet property="btnMaxLineSpace" destination="p50-6G-OSh" id="Au1-FS-yJa"/>
@@ -33,6 +34,20 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWV-H8-7xq">
+                    <rect key="frame" x="255" y="459" width="45" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="45" id="la6-Pu-XYA"/>
+                        <constraint firstAttribute="height" constant="45" id="qf3-Pl-e0I"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="44"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                    <inset key="titleEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                    <state key="normal" image="plus" backgroundImage="close"/>
+                    <connections>
+                        <action selector="addAction:" destination="-1" eventType="touchUpInside" id="dxV-X4-Dx1"/>
+                    </connections>
+                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u9n-WL-cap" userLabel="顶部导航栏">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <subviews>
@@ -287,8 +302,10 @@
                 <constraint firstItem="6Xo-ah-FQB" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-30" id="bsy-4j-zdk"/>
                 <constraint firstItem="dlW-VN-Egm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bz8-sf-AVc"/>
                 <constraint firstAttribute="trailing" secondItem="vgP-Vm-qmK" secondAttribute="trailing" id="d5z-YH-bx8"/>
+                <constraint firstItem="eWV-H8-7xq" firstAttribute="trailing" secondItem="dlW-VN-Egm" secondAttribute="trailing" constant="-20" id="du2-4R-fOH"/>
                 <constraint firstItem="jvV-LO-KOT" firstAttribute="centerX" secondItem="6Xo-ah-FQB" secondAttribute="centerX" id="is2-sq-Gzw"/>
                 <constraint firstAttribute="trailing" secondItem="dlW-VN-Egm" secondAttribute="trailing" id="me4-qA-IRO"/>
+                <constraint firstItem="dlW-VN-Egm" firstAttribute="top" secondItem="eWV-H8-7xq" secondAttribute="bottom" constant="20" id="prO-oV-Mt5"/>
                 <constraint firstItem="u9n-WL-cap" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="syL-Yb-rWx"/>
                 <constraint firstItem="6Xo-ah-FQB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="wsm-gA-5Hy"/>
             </constraints>
@@ -297,6 +314,7 @@
         </view>
     </objects>
     <resources>
+        <image name="close" width="30" height="30"/>
         <image name="cry" width="250" height="250"/>
         <image name="lineSpace_max" width="30" height="30"/>
         <image name="lineSpace_mid" width="25" height="25"/>
@@ -304,5 +322,6 @@
         <image name="maxLight" width="35" height="35"/>
         <image name="minLight" width="25" height="25"/>
         <image name="navigationbar_back_withtext" width="16" height="30"/>
+        <image name="plus" width="30" height="30"/>
     </resources>
 </document>

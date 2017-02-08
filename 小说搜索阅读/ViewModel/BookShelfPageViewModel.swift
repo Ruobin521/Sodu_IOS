@@ -202,9 +202,30 @@ class BookShelfPageViewModel {
         
     }
     
+    func setHadReaded(book:Book,completion:((_ isSuccess:Bool) -> ())?) {
+        
+        let temp = book.clone()
+        
+        temp.isNew = "0"
+        temp.lastReadChapterName = book.chapterName
+        temp.LastReadContentPageUrl = book.chapterUrl
+   
+        updateBook(book: temp) { (isSuccess) in
+            
+            if isSuccess {
+                
+                book.isNew = "0"
+                book.lastReadChapterName = book.chapterName
+                book.LastReadContentPageUrl = book.chapterUrl
+                
+                completion?(true)
+            }
+        }
+    }
     
     
     func updateBook(book:Book,completion:@escaping (_ isSuccess:Bool) -> ()) {
+     
         
         SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [book], tableName: TableName.Bookshelf.rawValue,userId: self.userId) { (isSuccess) in
             

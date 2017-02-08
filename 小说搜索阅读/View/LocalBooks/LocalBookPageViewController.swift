@@ -1,3 +1,4 @@
+
 //
 //  LocalBookPageViewController.swift
 //  小说搜索阅读
@@ -27,8 +28,8 @@ class LocalBookPageViewController: BaseViewController {
         
         if vm.isChecking {
             
-          //  self.endLoadData(false)
-          
+            self.endLoadData(false)
+            
             return
         }
         
@@ -49,6 +50,8 @@ class LocalBookPageViewController: BaseViewController {
             self.setTitleView("检测更新中...")
             
         }
+        
+      
         
         vm.loadLoaclBooks(completion: { (isSuccess) in
             
@@ -82,9 +85,21 @@ class LocalBookPageViewController: BaseViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
-        self.loadData()
+       self.tableview?.reloadData()
+        
+        if self.vm.bookList.count == 0 {
+            
+            self.emptyLayer?.isHidden = false
+            
+        } else{
+            
+            self.emptyLayer?.isHidden = true
+            
+            
+        }
+                 
     }
     
 }
@@ -111,12 +126,14 @@ extension LocalBookPageViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! LocalBookTableViewCell
         
+        let tempVm = vm.bookList[indexPath.section]
         
+        tempVm.setContentBlock = nil
+        tempVm.setUpdateDataBlock = nil
+        tempVm.updateCompletion = nil
         
         cell.vm =  vm.bookList[indexPath.section]
-        
-        
-        
+         
         return cell
     }
     
@@ -127,18 +144,6 @@ extension LocalBookPageViewController {
         super.tableView(tableView, didSelectRowAt: indexPath)
         
         let book = vm.bookList[indexPath.section].book
-        
-        
-        if book?.isNew == "1" {
-            
-            book?.lastReadChapterName = book?.chapterName
-            book?.isNew = "0"
-            
-            vm.updateBookDB(book: book!) { (isSuccess) in
-                
-                self.tableview?.reloadRows(at: [indexPath], with: .automatic)
-            }
-        }
         
         let bc = BookContentViewController()
         
@@ -158,6 +163,8 @@ extension LocalBookPageViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
+        let bookVm =   self.vm.bookList[indexPath.section]
+        
         let action1  =  UITableViewRowAction(style: .normal, title: "  删除  ", handler: { (action, indexPath) in
             
             if   indexPath.section > self.vm.bookList.count - 1 {
@@ -165,19 +172,19 @@ extension LocalBookPageViewController {
                 return
             }
             
-            let bookVm =   self.vm.bookList[indexPath.section]
-            
-            self.vm.removeBookFromList(bookVm.book.bookId!) { (success) in
+            self.vm.removeBookFromList(bookVm.book.bookId!) { (isSuccess) in
                 
                 DispatchQueue.main.async {
                     
-                    if success {
+                    if isSuccess {
                         
                         var array = [IndexPath]()
                         
                         array.append(indexPath)
                         
                         self.vm.bookList.remove(at: indexPath.section)
+                        
+                        bookVm.isDeleted = true
                         
                         tableView.deleteSections([indexPath.section], with:  UITableViewRowAnimation.automatic)
                         
@@ -202,8 +209,8 @@ extension LocalBookPageViewController {
             }
         })
         
-        
         action1.backgroundColor =  #colorLiteral(red: 1, green: 0.1294117647, blue: 0.2, alpha: 1)
+        
         
         let action2  =  UITableViewRowAction(style: .normal, title: "  更新  ", handler: { (action, indexPath) in
             
@@ -223,11 +230,45 @@ extension LocalBookPageViewController {
             }
         })
         
-        
         action2.backgroundColor =  #colorLiteral(red: 0.7843137255, green: 0.7803921569, blue: 0.8039215686, alpha: 1)
         
         
-        return [action1,action2]
+        let action3  =  UITableViewRowAction(style: .normal, title: "  缓存  ", handler: { (action, indexPath) in
+            
+            if   indexPath.section > self.vm.bookList.count - 1 {
+                
+                return
+            }
+            
+            let bookVm =   self.vm.bookList[indexPath.section]
+            
+            bookVm.checkMethod(completion: {
+                
+                 bookVm.downLoadUpdate(completion: nil)
+                
+            })
+            
+            
+            DispatchQueue.main.async {
+                
+                tableView.isEditing = false
+                
+            }
+        })
+        
+        
+        action3.backgroundColor =  #colorLiteral(red: 0.7843137255, green: 0.7803921569, blue: 0.8039215686, alpha: 1)
+        
+        if bookVm.book.isLocal == "1" {
+            
+             return [action1,action2]
+            
+        }  else{
+            
+              return [action1,action3]
+        }
+        
+       
     }
     
 }
@@ -245,9 +286,10 @@ extension  LocalBookPageViewController {
         
         tableview?.separatorStyle = .none
         
-        setEmptyBackView("　　1.点击阅读正文菜单中的”缓存“按钮即可缓存全部章节内容。\n　　2.您可在“设置-下载中心”中查看下载进度。\n　　3.下载完成后即可在此处阅读\n　　4.如果你选择自动添加到书架，将自动添加该小说到本地书架。")
+        setEmptyBackView("　　1.点击阅读正文菜单中的”缓存“按钮即可缓存全部章节内容。\n　　2.您可在“设置-下载中心”中查看下载进度。\n　　　3.点击阅读正文页面右下方红色按钮，将添加该小说到本地书架。\n　　　4.下载完成或添加完毕后即可在此处点击阅读\n")
         
-        self.navItem.rightBarButtonItem = UIBarButtonItem(title: "全部更新", fontSize: 16, target: self, action: #selector(updateAll), isBack: false)
+//       self.navItem.rightBarButtonItem = UIBarButtonItem(title: "全部缓存", fontSize: 16, target: self, action: #selector(updateAll), isBack: false)
+//       self.navItem.leftBarButtonItem = UIBarButtonItem(title: "更新本地", fontSize: 16, target: self, action: #selector(updateLocal), isBack: false)
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: NSNotification.Name(rawValue: DownloadCompletedNotification), object: nil)
@@ -258,6 +300,21 @@ extension  LocalBookPageViewController {
     func updateAll() {
         
         for item in  vm.bookList {
+            
+            item.downLoadUpdate(completion: nil)
+            
+        }
+        
+    }
+    
+    func updateLocal() {
+        
+        for item in  vm.bookList {
+            
+            if item.book.isLocal != "1" {
+                
+                continue
+            }
             
             item.downLoadUpdate(completion: nil)
             

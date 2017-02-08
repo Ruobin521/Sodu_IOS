@@ -57,11 +57,12 @@ class BookshelfViewController: BaseViewController {
                     self.emptyLayer?.isHidden = false
                 }
                 
-            } else {
-                
-                //  self.failedLayer?.isHidden = false
-                self.showToast(content: "个人书架加载失败",false)
             }
+                else {
+//                
+//                //  self.failedLayer?.isHidden = false
+//                self.showToast(content: "在线收藏加载失败",false)
+           }
             
             super.endLoadData(isSuccess)
             
@@ -240,11 +241,7 @@ extension BookshelfViewController {
             
             let action2 =  UITableViewRowAction(style: .normal, title: "  标为已读  ", handler: { (action, indexPath) in
                 
-                book.isNew = "0"
-                book.lastReadChapterName = book.chapterName
-                book.LastReadContentPageUrl = book.chapterUrl
-                
-                self.vm.updateBook(book: book, completion: { (isSuccess) in
+                self.vm.setHadReaded(book: book, completion: { (isSuccess) in
                     
                     if isSuccess {
                         
@@ -255,11 +252,9 @@ extension BookshelfViewController {
                             tableView.reloadRows(at: [indexPath], with: .automatic)
                             
                         }
-                        
                     }
                     
-                })
-                
+                    })
             })
             
             action2.backgroundColor =  #colorLiteral(red: 0.7843137255, green: 0.7803921569, blue: 0.8039215686, alpha: 1)
@@ -283,13 +278,38 @@ extension BookshelfViewController {
         
         super.setupFailedView()
         
-        setEmptyBackView("　　您的书架空空如也，在排行榜或热门推荐中向左滑动添加几本吧...\n\n使用提示：\n　　1.个人书架主要是为了查看追更，如果想连续阅读，请使用本地书架或历史记录功能。\n　　2.向左滑动可以对当前项目进行操作。\n　　3.在排行榜或热门推荐页面向左滑动即可添加所选项至个人书架。")
+        setEmptyBackView("　　您的书架空空如也，在排行榜或热门推荐中向左滑动添加几本吧...\n\n使用提示：\n　　1.在线书架主要是为了追更，如果想连续阅读，请使用本地书架功能。\n　　2.向左滑动可以对当前项目进行操作。\n　　3.在排行榜或热门推荐页面向左滑动即可添加所选项至个人书架。")
         
         let cellNib = UINib(nibName: "BookshelfTableViewCell", bundle: nil)
         
         tableview?.register(cellNib, forCellReuseIdentifier: cellId)
         
         tableview?.separatorStyle = .none
+        
+        self.navItem.leftBarButtonItem = UIBarButtonItem(title: "全标已读", fontSize: 16, target: self, action: #selector(setAllHasReaded), isBack: false)
+
+        
+    }
+    
+    
+    func setAllHasReaded() {
+        
+        if vm.bookList.count == 0 {
+            
+            return
+        }
+        
+        for item in vm.bookList {
+            
+            if item.isNew == "1" {
+                
+                vm.setHadReaded(book: item, completion: nil)
+                
+            }
+            
+        }
+        
+        self.tableview?.reloadData()
         
     }
     

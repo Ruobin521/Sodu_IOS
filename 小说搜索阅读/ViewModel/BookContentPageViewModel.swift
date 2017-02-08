@@ -190,6 +190,8 @@ class BookContentPageViewModel {
             
             SetCurrentCatalog(catalog: catalog, completion: nil)
             
+            
+            
         }
     }
     
@@ -256,44 +258,56 @@ class BookContentPageViewModel {
             
             currentBook?.LastReadContentPageUrl = _currentCatalog?.chapterUrl
             
-            if currentBook?.isLocal == "0" {
-                
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddHistoryNotification), object: currentBook)
-                
-            }
+            //            if currentBook?.isLocal == "0" {
+            //
+            //                NotificationCenter.default.post(name: NSNotification.Name(rawValue: AddHistoryNotification), object: currentBook)
+            //
+            //            }
             
-            if currentBook?.isLocal == "1"  || currentBook?.isLocal == "2"  || ViewModelInstance.instance.setting.isAutoAddToLocalShelf {
-                
-                
-                let tempBook = currentBook?.clone()
-                
-                let localbook = ViewModelInstance.instance.localBook.bookList.first(where: { (item) -> Bool in
-                    
-                    item.book.bookId == currentBook?.bookId
-                    
-                })
-                
-                if localbook == nil {
-                    
-                    tempBook?.isLocal = "2"
-                    
-                } else {
-                    
-                     tempBook?.isLocal = (localbook?.book.isLocal)!
-                    
-                }
             
-                tempBook?.lastReadChapterName = _currentCatalog?.chapterName
+            if currentBook?.isLocal == "1"  || currentBook?.isLocal == "2" {
                 
-                tempBook?.LastReadContentPageUrl = _currentCatalog?.chapterUrl
-                
-                ViewModelInstance.instance.localBook.updateBookDB(book: tempBook!, completion: nil)
-
+                self.insertBookToLocalShelf(nil)
             }
             preLoadCatalogContent()
         }
     }
     
+    
+    func insertBookToLocalShelf(_ completion:(()->())?) {
+        
+        let tempBook = currentBook?.clone()
+        
+        let localbook = ViewModelInstance.instance.localBook.bookList.first(where: { (item) -> Bool in
+            
+            item.book.bookId == currentBook?.bookId
+            
+        })
+        
+        if localbook == nil {
+            
+            tempBook?.isLocal = "2"
+            
+        } else {
+            
+            tempBook?.isLocal = (localbook?.book.isLocal)!
+            
+        }
+        
+        tempBook?.lastReadChapterName = _currentCatalog?.chapterName
+        
+        tempBook?.LastReadContentPageUrl = _currentCatalog?.chapterUrl
+        
+        
+        ViewModelInstance.instance.localBook.updateBookDB(book: tempBook!) { (isSuccess) in
+            
+            if isSuccess {
+                                
+                  completion?()
+            }
+            
+        }
+    }
     
     
     func preLoadCatalogContent() {

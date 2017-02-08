@@ -115,7 +115,7 @@ extension HotAndRecommendViewController {
     
     override  func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let action1  =  UITableViewRowAction(style: .normal, title: "添加至书架", handler: { (action, indexPath) in
+        let action1  =  UITableViewRowAction(style: .normal, title: "追更", handler: { (action, indexPath) in
             
             var book:Book
             
