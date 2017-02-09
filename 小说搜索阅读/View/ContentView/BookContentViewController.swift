@@ -202,7 +202,7 @@ class BookContentViewController: BaseUIViewController {
                 
                 self?.isLoading = false
                 
-                 
+                
                 
             }
             
@@ -1105,10 +1105,33 @@ extension BookContentViewController {
         
         setupSettingPanel()
         
+        setupRetryBtn()
+        
     }
     
     
+    func  setupRetryBtn()  {
+        
+        self.btnRetry.addTarget(self, action: #selector(setHeightlightedBackgroundColor), for: .touchDown)
+        self.btnRetry.addTarget(self, action: #selector(setNormaldBackgroundColor), for: .touchUpInside)
+        self.btnRetry.addTarget(self, action: #selector(setNormaldBackgroundColor), for: .touchUpOutside)
+        
+        
+    }
     
+    func   setHeightlightedBackgroundColor() {
+        
+        self.btnRetry.backgroundColor  =   #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        
+    }
+    
+    
+    func   setNormaldBackgroundColor() {
+        
+        
+        self.btnRetry.backgroundColor  =   #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+        
+    }
     
     
     
