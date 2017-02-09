@@ -202,6 +202,8 @@ class BookContentViewController: BaseUIViewController {
                 
                 self?.isLoading = false
                 
+                 
+                
             }
             
         }

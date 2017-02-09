@@ -24,6 +24,7 @@ class LocalBookTableViewCell: UITableViewCell {
     
     let cireView = CircleProgressControl()
     
+    @IBOutlet weak var newImage: UIImageView!
     
     var vm:LocalBookItemViewModel? {
         
@@ -37,6 +38,8 @@ class LocalBookTableViewCell: UITableViewCell {
                     
                     self.txtUpdateCount.text = self.vm?.updateData
                     
+                    self.newImage.isHidden = ((self.vm?.book.isNew) == "1" ? false : true)
+                    
                     if (self.vm?.isUpdating)! {
                         
                         self.cireView.isHidden = false
@@ -44,7 +47,7 @@ class LocalBookTableViewCell: UITableViewCell {
                         
                     } else {
                         
-                          self.cireView.isHidden = true
+                        self.cireView.isHidden = true
                         
                     }
                 }
@@ -98,6 +101,8 @@ class LocalBookTableViewCell: UITableViewCell {
         
         self.cireView.isHidden = !(self.vm?.isUpdating)!
         
+        self.newImage.isHidden = ((self.vm?.book.isNew) == "1" ? false : true)
+        
     }
     
     
@@ -128,7 +133,7 @@ class LocalBookTableViewCell: UITableViewCell {
         
         self.cireView.isHidden = true
         
-       // ChangeValue()
+        // ChangeValue()
     }
     
     

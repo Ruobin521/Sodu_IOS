@@ -17,7 +17,7 @@ enum SettingKey : String {
     case AppVersionKey = "AppVersion"
     case IsFirstLaunchKey = "IsFirstLaunch"
     case IsAutoAddToShelf = "IsAutoAddToShelf"
-    case IsAutoAddToLocalShelf = "IsAutoAddToLocalShelf"
+    case IsLocalBookAutoDownload = "IsLocalBookAutoDownload"
     
     case IsDownLoadOnWWAN = "IsDownLoadOnWWAN"
     case IsReadOnShelf = "IsReadOnShelf"
@@ -58,22 +58,22 @@ class SettingPageViewModel:NSObject {
         
     }
     
-    lazy var _isAutoAddToLocalShelf:Bool =  UserDefaultsHelper.getBoolValue(key:  .IsAutoAddToLocalShelf) ?? true
+    lazy var _isLocalBookAutoDownload:Bool =  UserDefaultsHelper.getBoolValue(key:  .IsLocalBookAutoDownload) ?? true
     
-    var isAutoAddToLocalShelf:Bool {
+    var isLocalBookAutoDownload:Bool {
         
         get{
             
-            return _isAutoAddToLocalShelf
+            return _isLocalBookAutoDownload
             
         }
         set{
             
-            if _isAutoAddToLocalShelf != newValue
+            if _isLocalBookAutoDownload != newValue
             {
                 
-                _isAutoAddToLocalShelf = newValue
-                UserDefaultsHelper.setUserDefaultsValueForKey(key: .IsAutoAddToLocalShelf, value: newValue)
+                _isLocalBookAutoDownload = newValue
+                UserDefaultsHelper.setUserDefaultsValueForKey(key: .IsLocalBookAutoDownload, value: newValue)
                 
             }
         }
@@ -336,9 +336,9 @@ extension SettingPageViewModel {
             
             return isReadIOnShelf
             
-        case SettingKey.IsAutoAddToLocalShelf:
+        case SettingKey.IsLocalBookAutoDownload:
             
-            return isAutoAddToLocalShelf
+            return isLocalBookAutoDownload
             
         default:
             
@@ -361,7 +361,7 @@ extension  SettingPageViewModel {
                            ["imageName": "download", "title": "下载中心","type":"0","controller":"DownCenterViewController"],
                           
                            ["index" : "0" , "key":"IsAutoAddToShelf","property":"isAutoAddToShelf","imageName": "addbook", "title": "自动添加到个人书架","type":"1"],
-                          // ["index" : "0" , "key":"IsAutoAddToLocalShelf","property":"isAutoAddToLocalShelf","imageName": "addbook2", "title": "自动添加到本地书架","type":"1"],
+                          ["index" : "0" , "key":"IsLocalBookAutoDownload","property":"isAutoAddToLocalShelf","imageName": "addbook2", "title": "自动更新本地收藏","type":"1"],
                           //  ["index": "1" ,"key":"IsReadOnShelf","property":"isReadIOnShelf","imageName": "directread", "title": "个人书架直接阅读","type":"1"],
                             ["index": "1" ,"key":"IsDownLoadOnWWAN","property":"isDownLoadOnWWAN","imageName": "wwan", "title": "在2G/3G/4G下缓存","type":"1"],
                           

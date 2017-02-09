@@ -61,7 +61,6 @@ extension LocalBookItemViewModel {
     
     func checkMethod(completion:(()->())?) {
         
-        
         DispatchQueue.global().async {
             
             let localCatalogs = SoDuSQLiteManager.shared.selectBookCatalogs(bookId: self.book.bookId!)
@@ -147,6 +146,7 @@ extension LocalBookItemViewModel {
                     self.updateValue = 0
                     
                     self.setUpdateDataBlock?()
+                    
                     completion?()
                     
                     return
@@ -155,8 +155,6 @@ extension LocalBookItemViewModel {
                 
                 index = tempIndex
             }
-            
-            
             
             
             if index == webCatalogs.count - 1 {
@@ -179,7 +177,6 @@ extension LocalBookItemViewModel {
                 
                 self.book.chapterUrl = webCatalogs.last?.chapterUrl
                 
-                
                 self.needUpdateCatalogs = [BookCatalog]()
                 
                 for i in index + 1 ..< webCatalogs.count {
@@ -194,6 +191,7 @@ extension LocalBookItemViewModel {
                 
                 self.hasUpdate = true
                 
+                
             } else {
                 
                 self.updateData = ""
@@ -201,7 +199,6 @@ extension LocalBookItemViewModel {
                 self.setUpdateDataBlock?()
                 
             }
-            
             
             completion?()
         }
@@ -215,16 +212,17 @@ extension LocalBookItemViewModel {
         if  isUpdating {
             
             completion?()
+            return
+        }
+        
+        if  needUpdateCatalogs == nil || needUpdateCatalogs?.count == 0 {
             
+            completion?()
             return
         }
         
         isUpdating = true
-        
-        if  needUpdateCatalogs == nil || needUpdateCatalogs?.count == 0 {
-            
-            return
-        }
+      
         
         var count = 0
         
@@ -268,15 +266,18 @@ extension LocalBookItemViewModel {
                     
                     self.updateValue =   CGFloat(integerLiteral: count) /  CGFloat(integerLiteral: self.needUpdateCatalogs!.count) *  CGFloat(100.0)
                     
+                    
                     self.setUpdateDataBlock?()
+                    
                     
                 }
             }
             
         }
         
+        
         group.notify(queue: concurrent!) {
-           
+            
             self.updateData = ""
             self.updateValue = 0
             self.setUpdateDataBlock?()
@@ -289,7 +290,6 @@ extension LocalBookItemViewModel {
             self.insertCatalogsToDB()
             
         }
-        
         
     }
     
@@ -304,6 +304,7 @@ extension LocalBookItemViewModel {
                 let temp  =  self.book?.clone()
                 
                 temp?.isLocal = "1"
+                temp?.isNew = "1"
                 
                 SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [temp!], tableName: TableName.Loaclbook.rawValue, completion: { (isSuccess) in
                     

@@ -36,12 +36,18 @@ class LoaclBookPageViewModel {
                 
                 temp.checkUpdate() {
                     
-                    count -= 1
-                    
-                    if count == 0 {
+                    temp.downLoadUpdate(completion: {
                         
-                        checkCompletion()
-                    }
+                        count -= 1
+                        
+                        if count == 0 {
+                            
+                            checkCompletion()
+                        }
+ 
+                        
+                    })
+                    
                     
                 }
                 

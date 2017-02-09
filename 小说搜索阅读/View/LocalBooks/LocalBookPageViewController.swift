@@ -149,6 +149,16 @@ extension LocalBookPageViewController {
         
         bc.vm.currentBook = book?.clone()
         
+        if book?.isNew == "1" {
+            
+            book?.isNew = "0"
+            
+            self.vm.updateBookDB(book: book!, completion: { (isSuccess) in
+                
+                self.tableview?.reloadData()
+            })
+        }
+        
         present(bc, animated: true, completion: nil)
         
     }
@@ -288,9 +298,7 @@ extension  LocalBookPageViewController {
         
         setEmptyBackView("　　1.点击阅读正文菜单中的”缓存“按钮即可缓存全部章节内容。\n　　2.您可在“设置-下载中心”中查看下载进度。\n　　　3.点击阅读正文页面右下方红色按钮，将添加该小说到本地书架。\n　　　4.下载完成或添加完毕后即可在此处点击阅读\n")
         
-//       self.navItem.rightBarButtonItem = UIBarButtonItem(title: "全部缓存", fontSize: 16, target: self, action: #selector(updateAll), isBack: false)
-//       self.navItem.leftBarButtonItem = UIBarButtonItem(title: "更新本地", fontSize: 16, target: self, action: #selector(updateLocal), isBack: false)
-        
+      // self.navItem.rightBarButtonItem = UIBarButtonItem(title: "全部更新", fontSize: 16, target: self, action: #selector(updateAll), isBack: false)//       self.navItem.leftBarButtonItem = UIBarButtonItem(title: "更新本地", fontSize: 16, target: self, action: #selector(updateLocal), isBack: false)
         
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: NSNotification.Name(rawValue: DownloadCompletedNotification), object: nil)
         
