@@ -47,11 +47,11 @@ class LocalBookPageViewController: BaseViewController {
         
         DispatchQueue.main.async {
             
-            self.setTitleView("检测更新中...")
+            self.setTitleView("更新中...")
             
         }
         
-      
+        
         
         vm.loadLoaclBooks(completion: { (isSuccess) in
             
@@ -87,7 +87,17 @@ class LocalBookPageViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-       self.tableview?.reloadData()
+        self.tableview?.reloadData()
+        
+        if !ViewModelInstance.instance.setting.isLocalBookAutoDownload {
+            
+            self.navItem.rightBarButtonItem = UIBarButtonItem(title: "全部更新", fontSize: 16, target: self, action: #selector(updateAll), isBack: false)
+            
+        } else {
+            
+            self.navItem.rightBarButtonItem = nil
+            
+        }
         
         if self.vm.bookList.count == 0 {
             
@@ -99,7 +109,7 @@ class LocalBookPageViewController: BaseViewController {
             
             
         }
-                 
+        
     }
     
 }
@@ -129,11 +139,9 @@ extension LocalBookPageViewController {
         let tempVm = vm.bookList[indexPath.section]
         
         tempVm.setContentBlock = nil
-        tempVm.setUpdateDataBlock = nil
-        tempVm.updateCompletion = nil
         
         cell.vm =  vm.bookList[indexPath.section]
-         
+        
         return cell
     }
     
@@ -178,6 +186,13 @@ extension LocalBookPageViewController {
         let action1  =  UITableViewRowAction(style: .normal, title: "  删除  ", handler: { (action, indexPath) in
             
             if   indexPath.section > self.vm.bookList.count - 1 {
+                
+                return
+            }
+            
+            if self.vm.isChecking {
+                
+                self.showToast(content: "正在检测更新，请稍后", true, true)
                 
                 return
             }
@@ -250,11 +265,19 @@ extension LocalBookPageViewController {
                 return
             }
             
+            
+            if self.vm.isChecking {
+                
+                self.showToast(content: "正在检测更新，请稍后", true, true)
+                
+                return
+            }
+            
             let bookVm =   self.vm.bookList[indexPath.section]
             
             bookVm.checkMethod(completion: {
                 
-                 bookVm.downLoadUpdate(completion: nil)
+                bookVm.downLoadUpdate(completion: nil)
                 
             })
             
@@ -271,14 +294,14 @@ extension LocalBookPageViewController {
         
         if bookVm.book.isLocal == "1" {
             
-             return [action1,action2]
+            return [action1,action2]
             
         }  else{
             
-              return [action1,action3]
+            return [action1,action3]
         }
         
-       
+        
     }
     
 }
@@ -296,9 +319,11 @@ extension  LocalBookPageViewController {
         
         tableview?.separatorStyle = .none
         
-        setEmptyBackView("　　1.点击阅读正文菜单中的”缓存“按钮即可缓存全部章节内容。\n　　2.您可在“设置-下载中心”中查看下载进度。\n　　　3.点击阅读正文页面右下方红色按钮，将添加该小说到本地书架。\n　　　4.下载完成或添加完毕后即可在此处点击阅读\n")
+        setEmptyBackView("　　1.点击阅读正文菜单中的”缓存“按钮即可缓存全部章节内容。\n　　2.您可在“设置-下载中心”中查看下载进度。\n　　3.点击阅读正文页面右下方红色按钮，将添加该小说到本地书架。\n　　4.下载完成或添加完毕后即可在此处点击阅读\n")
         
-      // self.navItem.rightBarButtonItem = UIBarButtonItem(title: "全部更新", fontSize: 16, target: self, action: #selector(updateAll), isBack: false)//       self.navItem.leftBarButtonItem = UIBarButtonItem(title: "更新本地", fontSize: 16, target: self, action: #selector(updateLocal), isBack: false)
+   
+        
+        // self.navItem.rightBarButtonItem = UIBarButtonItem(title: "全部更新", fontSize: 16, target: self, action: #selector(updateAll), isBack: false)//       self.navItem.leftBarButtonItem = UIBarButtonItem(title: "更新本地", fontSize: 16, target: self, action: #selector(updateLocal), isBack: false)
         
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: NSNotification.Name(rawValue: DownloadCompletedNotification), object: nil)
         
@@ -307,13 +332,24 @@ extension  LocalBookPageViewController {
     
     func updateAll() {
         
+        if self.vm.isChecking {
+            
+            return
+        }
+        
         for item in  vm.bookList {
+            
+            if item.book.isLocal != "1" {
+                
+                continue
+            }
             
             item.downLoadUpdate(completion: nil)
             
         }
         
     }
+    
     
     func updateLocal() {
         

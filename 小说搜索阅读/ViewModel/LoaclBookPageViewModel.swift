@@ -16,6 +16,23 @@ class LoaclBookPageViewModel {
     
     func loadLoaclBooks(completion:(_ isSuccess:Bool) -> (),checkCompletion:@escaping ()->())  {
         
+        if bookList.count > 0 {
+            
+            if   bookList.first(where: { (item) -> Bool in
+                
+                item.isUpdating == true
+                
+            }) != nil  {
+                
+                completion(true)
+                
+                checkCompletion()
+                
+                return
+                
+            }
+        }
+        
         let  books =  SoDuSQLiteManager.shared.selectBook(tableName: TableName.Loaclbook.rawValue)
         
         if books.count > 0 {
@@ -36,7 +53,21 @@ class LoaclBookPageViewModel {
                 
                 temp.checkUpdate() {
                     
-                    temp.downLoadUpdate(completion: {
+                    if ViewModelInstance.instance.setting.isLocalBookAutoDownload {
+                        
+                        temp.downLoadUpdate(completion: {
+                            
+                            count -= 1
+                            
+                            if count == 0 {
+                                
+                                checkCompletion()
+                            }
+                            
+                            
+                        })
+                        
+                    } else {
                         
                         count -= 1
                         
@@ -44,10 +75,8 @@ class LoaclBookPageViewModel {
                             
                             checkCompletion()
                         }
- 
                         
-                    })
-                    
+                    }
                     
                 }
                 
@@ -55,7 +84,10 @@ class LoaclBookPageViewModel {
             
         } else {
             
+            bookList.removeAll()
+            
             completion(false)
+            
             checkCompletion()
         }
     }

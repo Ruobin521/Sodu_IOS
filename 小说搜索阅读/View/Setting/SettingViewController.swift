@@ -88,17 +88,16 @@ extension SettingViewController {
             
         } else if indexPath.section == 1 {
             
-             list =  vm.switchSettingList
+            list =  vm.switchSettingList
             
         } else{
             
-             list =  vm.alterSettingList
+            list =  vm.alterSettingList
         }
         
-      
+        
         
         setting  = list[indexPath.row]
-        
         
         let cell = tableView.dequeueReusableCell(withIdentifier: commonCellId, for: indexPath) as! SettingTableViewCell
         
@@ -115,7 +114,7 @@ extension SettingViewController {
             
             cell.btnSwitch?.isOn = self.vm.getValue((setting?.settingKey)!)
             
-            cell.btnSwitch?.tag = (setting?.index)!
+            cell.btnSwitch?.restorationIdentifier = (setting?.settingKey)!.rawValue
             
         }
         
@@ -167,7 +166,7 @@ extension SettingViewController {
         }
         
         
-       
+        
     }
     
 }
@@ -182,26 +181,20 @@ extension SettingViewController {
             
         }
         
-        let index = btnSwitch.tag
-        
-        guard  let setting =  vm.switchSettingList.first(where: { (item) -> Bool in
-            
-            item.index == index
-            
-        }) else {
-            
-            return
-        }
+        let key = btnSwitch.restorationIdentifier
         
         
-        if setting.settingKey != nil {
+        if  let setting  =  vm.switchSettingList.first(where: { (item) -> Bool in
+            
+            item.settingKey?.rawValue == key
+            
+        })  {
             
             vm.setValue((setting.settingKey)!,btnSwitch.isOn)
             
         }
         
     }
-    
     
 }
 
@@ -226,9 +219,9 @@ extension SettingViewController {
     
     
     func mzsmAction() {
-       
+        
         let alertController = UIAlertController(title: "免责声明", message: mzsmStr, preferredStyle: .alert)
-      
+        
         let cancelAction = UIAlertAction(title: "知道了", style: .cancel, handler: {
             action in
             
@@ -239,6 +232,6 @@ extension SettingViewController {
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
- 
+        
     }
 }

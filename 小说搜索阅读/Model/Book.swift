@@ -73,7 +73,7 @@ extension Book {
         
         let book = Book()
         
-        //book.isNew = self.isNew
+        book.isNew = self.isNew
         book.isLocal = self.isLocal
         book.author = self.author
         book.bookId = self.bookId

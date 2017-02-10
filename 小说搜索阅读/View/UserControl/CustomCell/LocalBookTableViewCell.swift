@@ -32,27 +32,6 @@ class LocalBookTableViewCell: UITableViewCell {
             
             setContent()
             
-            vm?.setUpdateDataBlock = {
-                
-                DispatchQueue.main.async {
-                    
-                    self.txtUpdateCount.text = self.vm?.updateData
-                    
-                    self.newImage.isHidden = ((self.vm?.book.isNew) == "1" ? false : true)
-                    
-                    if (self.vm?.isUpdating)! {
-                        
-                        self.cireView.isHidden = false
-                        self.cireView.value = (self.vm?.updateValue)!
-                        
-                    } else {
-                        
-                        self.cireView.isHidden = true
-                        
-                    }
-                }
-            }
-            
             vm?.setContentBlock = {
                 
                 DispatchQueue.main.async {
@@ -61,24 +40,7 @@ class LocalBookTableViewCell: UITableViewCell {
                 }
                 
             }
-            
-            
-            vm?.updateCompletion = {
-                
-                DispatchQueue.main.async {
-                    
-                    self.txtUpdateCount.text = ""
-                    
-                    self.txtNewChapterName.text = self.vm?.book.chapterName
-                    
-                    self.cireView.isHidden = true
-                    
-                    self.onlineView.isHidden = ((self.vm?.book.isLocal) == "2" ? false : true)
-                    
-                }
-                
-            }
-            
+                         
         }
     }
     

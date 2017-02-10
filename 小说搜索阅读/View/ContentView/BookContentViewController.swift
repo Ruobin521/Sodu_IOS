@@ -303,12 +303,15 @@ class BookContentViewController: BaseUIViewController {
     //MARK: 点击重试按钮事件
     @IBAction func retryAction(_ sender: Any) {
         
-        
         errorView.isHidden = true
         
         btnRetry .isHidden = true
         
-        initContentData()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            
+            self.initContentData()
+        }
+        
     }
     
     
@@ -1121,7 +1124,7 @@ extension BookContentViewController {
     
     func   setHeightlightedBackgroundColor() {
         
-        self.btnRetry.backgroundColor  =   #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        self.btnRetry.backgroundColor  =   #colorLiteral(red: 0, green: 0.6431372549, blue: 1, alpha: 1)
         
     }
     
@@ -1483,7 +1486,7 @@ extension BookContentViewController {
         
     }
     
-    
+    //MARK:初始化颜色选择器
     func setupColorPicker(){
         
         let colors = ContentColorInfo
@@ -1521,6 +1524,8 @@ extension BookContentViewController {
     }
     
     
+    
+    //MARK:设置颜色选择选中状态
     func backColorSelected(btn:ColorPickerView) {
         
         

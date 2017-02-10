@@ -80,28 +80,7 @@ class SettingPageViewModel:NSObject {
         
     }
     
-    lazy var _isReadIOnShelf:Bool =  UserDefaultsHelper.getBoolValue(key:  .IsReadOnShelf) ?? true
-    
-    var isReadIOnShelf:Bool {
-        
-        get{
-            
-            return _isReadIOnShelf
-            
-        }
-        set{
-            
-            if _isReadIOnShelf != newValue
-            {
-                
-                _isReadIOnShelf = newValue
-                UserDefaultsHelper.setUserDefaultsValueForKey(key: .IsReadOnShelf, value: newValue)
-                
-            }
-        }
-        
-    }
-
+ 
     
     
     var _isDownLoadOnWWAN:Bool = UserDefaultsHelper.getBoolValue(key:  .IsDownLoadOnWWAN) ?? false
@@ -310,9 +289,9 @@ extension SettingPageViewModel {
             
             isDownLoadOnWWAN = value as! Bool
             
-        case SettingKey.IsReadOnShelf:
+        case SettingKey.IsLocalBookAutoDownload:
             
-            isReadIOnShelf = value as! Bool
+            isLocalBookAutoDownload = value as! Bool
             
         default: break
             
@@ -332,10 +311,7 @@ extension SettingPageViewModel {
             
             return isDownLoadOnWWAN
             
-        case SettingKey.IsReadOnShelf:
-            
-            return isReadIOnShelf
-            
+     
         case SettingKey.IsLocalBookAutoDownload:
             
             return isLocalBookAutoDownload
@@ -357,15 +333,17 @@ extension  SettingPageViewModel {
     func  initSettingList() {
         
         /// 按钮数据数组
-        let settingInfo = [["imageName": "person", "title": "个人中心","type":"0","controller":"PersonCenterViewController"],
-                           ["imageName": "download", "title": "下载中心","type":"0","controller":"DownCenterViewController"],
+        let settingInfo = [["imageName": "person", "title": "个人中心","controller":"PersonCenterViewController","type":"0"],
+                           ["imageName": "download", "title": "下载中心","controller":"DownCenterViewController","type":"0"],
                           
-                           ["index" : "0" , "key":"IsAutoAddToShelf","property":"isAutoAddToShelf","imageName": "addbook", "title": "自动添加到个人书架","type":"1"],
-                          ["index" : "0" , "key":"IsLocalBookAutoDownload","property":"isAutoAddToLocalShelf","imageName": "addbook2", "title": "自动更新本地收藏","type":"1"],
-                          //  ["index": "1" ,"key":"IsReadOnShelf","property":"isReadIOnShelf","imageName": "directread", "title": "个人书架直接阅读","type":"1"],
-                            ["index": "1" ,"key":"IsDownLoadOnWWAN","property":"isDownLoadOnWWAN","imageName": "wwan", "title": "在2G/3G/4G下缓存","type":"1"],
+                           [ "key":"IsAutoAddToShelf","property":"isAutoAddToShelf","imageName": "addbook", "title": "自动添加到个人书架","type":"1"],
+                           
+                          ["key":"IsLocalBookAutoDownload","property":"isLocalBookAutoDownload","imageName": "addbook2", "title": "自动更新本地收藏","type":"1"],
+                         
+                            ["key":"IsDownLoadOnWWAN","property":"isDownLoadOnWWAN","imageName": "wwan", "title": "在2G/3G/4G下缓存","type":"1"],
                           
-                           ["index" : "0","action":"mzsmAction","imageName": "mzsm", "title": "免责声明","type":"2"]
+                           
+                            ["index" : "0","action":"mzsmAction","imageName": "mzsm", "title": "免责声明","type":"2"]
         ]
         
         
@@ -406,15 +384,13 @@ extension  SettingPageViewModel {
                 
                 settingItem.settingType = SettingType.Swich
                 
-                if let rawValue = dic["key"], let key =  SettingKey(rawValue: rawValue) ,let propertyName =  dic["property"] ,let index = dic["index"]{
+                if let rawValue = dic["key"], let key =  SettingKey(rawValue: rawValue) ,let propertyName =  dic["property"] {
                     
                     settingItem.settingKey = key
                     
                     let value = self.getValueOfProperty(key: propertyName)
                     
                     settingItem.value = value
-                    
-                    settingItem.index = Int(index)!
                     
                     switchSettingList.append(settingItem)
                     
@@ -424,13 +400,7 @@ extension  SettingPageViewModel {
                 
                 settingItem.settingType = SettingType.Alter
                 
-                if let index = dic["index"]{
-                    
-                    settingItem.index = Int(index)!
-                    
-                    alterSettingList.append(settingItem)
-                    
-                }
+                alterSettingList.append(settingItem)
                 
             }
             

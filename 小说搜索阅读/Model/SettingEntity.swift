@@ -18,9 +18,7 @@ enum SettingType :String {
 
 
 class SettingEntity :NSObject {
-    
-    var index:Int = 0
-    
+         
     ///设置类型
     var settingType:SettingType?
     

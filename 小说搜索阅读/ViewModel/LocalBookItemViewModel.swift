@@ -19,11 +19,7 @@ class LocalBookItemViewModel : NSObject{
     
     var book:Book!
     
-    var updateCompletion :(() -> ())?
-    
     var setContentBlock :(() -> ())?
-    
-    var setUpdateDataBlock:(()->())?
     
     var needUpdateCatalogs : [BookCatalog]?
     
@@ -91,10 +87,11 @@ extension LocalBookItemViewModel {
             
             DispatchQueue.main.async {
                 
-                self.updateData = "检测更新..."
+                self.updateData = "更新数据中..."
+                
                 self.updateValue = 0
                 
-                self.setUpdateDataBlock?()
+                self.setContentBlock?()
                 
             }
             
@@ -103,7 +100,7 @@ extension LocalBookItemViewModel {
                 self.updateData = ""
                 self.updateValue = 0
                 
-                self.setUpdateDataBlock?()
+                self.setContentBlock?()
                 completion?()
                 
                 return
@@ -115,7 +112,7 @@ extension LocalBookItemViewModel {
                 self.updateData = ""
                 self.updateValue = 0
                 
-                self.setUpdateDataBlock?()
+                self.setContentBlock?()
                 completion?()
                 
                 return
@@ -145,7 +142,7 @@ extension LocalBookItemViewModel {
                     self.updateData = ""
                     self.updateValue = 0
                     
-                    self.setUpdateDataBlock?()
+                    self.setContentBlock?()
                     
                     completion?()
                     
@@ -162,7 +159,7 @@ extension LocalBookItemViewModel {
                 self.updateData = ""
                 self.updateValue = 0
                 
-                self.setUpdateDataBlock?()
+                self.setContentBlock?()
                 completion?()
                 
                 return
@@ -187,7 +184,7 @@ extension LocalBookItemViewModel {
                 
                 self.updateData = String(updateCount)
                 self.updateValue = 0
-                self.setUpdateDataBlock?()
+                self.setContentBlock?()
                 
                 self.hasUpdate = true
                 
@@ -196,7 +193,7 @@ extension LocalBookItemViewModel {
                 
                 self.updateData = ""
                 self.updateValue = 0
-                self.setUpdateDataBlock?()
+                self.setContentBlock?()
                 
             }
             
@@ -222,7 +219,7 @@ extension LocalBookItemViewModel {
         }
         
         isUpdating = true
-      
+        
         
         var count = 0
         
@@ -267,8 +264,7 @@ extension LocalBookItemViewModel {
                     self.updateValue =   CGFloat(integerLiteral: count) /  CGFloat(integerLiteral: self.needUpdateCatalogs!.count) *  CGFloat(100.0)
                     
                     
-                    self.setUpdateDataBlock?()
-                    
+                    self.setContentBlock?()
                     
                 }
             }
@@ -280,7 +276,7 @@ extension LocalBookItemViewModel {
             
             self.updateData = ""
             self.updateValue = 0
-            self.setUpdateDataBlock?()
+            self.setContentBlock?()
             
             if self.isDeleted {
                 
@@ -288,6 +284,7 @@ extension LocalBookItemViewModel {
             }
             
             self.insertCatalogsToDB()
+            completion?()
             
         }
         
@@ -303,16 +300,21 @@ extension LocalBookItemViewModel {
                 
                 let temp  =  self.book?.clone()
                 
+                if temp?.isLocal == "1" {
+                    
+                    temp?.isNew = "1"
+                    
+                }
+                
                 temp?.isLocal = "1"
-                temp?.isNew = "1"
                 
                 SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [temp!], tableName: TableName.Loaclbook.rawValue, completion: { (isSuccess) in
                     
                     if isSuccess {
                         
-                        self.book?.isLocal = "1"
+                        self.book = (temp?.clone())!
                         
-                        self.updateCompletion?()
+                        self.setContentBlock?()
                         
                         self.needUpdateCatalogs?.removeAll()
                         
@@ -332,8 +334,6 @@ extension LocalBookItemViewModel {
             
         }
     }
-    
-    
     
     
     func getBookCatalogs(url:String) -> [BookCatalog]? {
