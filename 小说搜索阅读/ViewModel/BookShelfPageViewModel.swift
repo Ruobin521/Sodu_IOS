@@ -67,7 +67,7 @@ class BookShelfPageViewModel {
                     if self.userId != nil  ||  !(self.userId?.isEmpty)! {
                         
                         BookListDBHelpr.saveHomeCache(tableName: TableName.Bookshelf.rawValue, books: self.bookList, userId: self.userId!, completion: nil)
-
+                        
                     }
                     
                     completion(true)
@@ -142,7 +142,7 @@ class BookShelfPageViewModel {
                 continue
             }
             
-            if compareStrs(tempbook.lastReadChapterName ?? "",book.chapterName!) {
+            if CommonPageViewModel.compareStrs(tempbook.lastReadChapterName ?? "",book.chapterName!) {
                 
                 book.isNew = "0"
                 
@@ -153,54 +153,15 @@ class BookShelfPageViewModel {
                 book.lastReadChapterName = tempbook.lastReadChapterName
             }
             
-            
         }
         
     }
     
     
+
     
-    func compareStrs(_ str1:String,_ str2:String) -> Bool {
-        
-        let string1 = replaceChar(str: str1)
-        let string2 = replaceChar(str: str2)
-        
-        
-        if string1 == string2 ||  string1.contains(string2)  || string2.contains(string1) {
-            
-            return true
-            
-        }  else {
-            
-            return false
-            
-        }
-        
-        
-    }
     
-    func replaceChar(str:String) -> String {
-        
-        let    temp = str.replacingOccurrences(of: " ", with: "")
-            .replacingOccurrences(of: "[", with: "")
-            .replacingOccurrences(of: "]", with: "")
-            .replacingOccurrences(of: "【", with: "")
-            .replacingOccurrences(of: "】", with: "")
-            .replacingOccurrences(of: "，", with: "")
-            .replacingOccurrences(of: "。", with: "")
-            .replacingOccurrences(of: "《", with: "")
-            .replacingOccurrences(of: "》", with: "")
-            .replacingOccurrences(of: "？", with: "")
-            .replacingOccurrences(of: "?", with: "")
-            .replacingOccurrences(of: ",", with: "")
-            .replacingOccurrences(of: ".", with: "")
-            .replacingOccurrences(of: "卷", with: "")
-            .replacingOccurrences(of: " ", with: "")
-            .replacingOccurrences(of: "正文", with: "")
-        
-        return temp
-        
-    }
+    
     
     func setHadReaded(book:Book,completion:((_ isSuccess:Bool) -> ())?) {
         
@@ -209,7 +170,7 @@ class BookShelfPageViewModel {
         temp.isNew = "0"
         temp.lastReadChapterName = book.chapterName
         temp.LastReadContentPageUrl = book.chapterUrl
-   
+        
         updateBook(book: temp) { (isSuccess) in
             
             if isSuccess {
@@ -225,7 +186,7 @@ class BookShelfPageViewModel {
     
     
     func updateBook(book:Book,completion:@escaping (_ isSuccess:Bool) -> ()) {
-     
+        
         
         SoDuSQLiteManager.shared.insertOrUpdateBooks(books: [book], tableName: TableName.Bookshelf.rawValue,userId: self.userId) { (isSuccess) in
             

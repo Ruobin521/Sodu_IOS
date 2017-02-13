@@ -687,6 +687,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = QSND459F3W;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -991,7 +996,7 @@
 				INFOPLIST_FILE = "小说搜索阅读/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.sodu-develop";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ruobin.sodu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d3d6391a-c82f-4408-8c6d-d03e6d4c9a4f";
 				PROVISIONING_PROFILE_SPECIFIER = developmentWildcard;
@@ -1011,7 +1016,7 @@
 				INFOPLIST_FILE = "小说搜索阅读/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ruobin.sodu-develop";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ruobin.sodu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "477fdb3c-e7a8-4e8b-b857-37d7b81d286c";
 				PROVISIONING_PROFILE_SPECIFIER = SoduPublish;

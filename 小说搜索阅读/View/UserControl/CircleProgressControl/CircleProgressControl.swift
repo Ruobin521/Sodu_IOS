@@ -64,7 +64,7 @@ class CircleProgressControl: UIView {
 //        ovalPath.stroke()
         
         //context!.setStrokeColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).cgColor)
-         context!.setStrokeColor(UIColor(red: 255 , green: 255, blue: 255, alpha: 0.6).cgColor)
+         context!.setStrokeColor(UIColor(red: 255 / 255, green: 255/255, blue: 255/255, alpha: 0.6).cgColor)
         
         //画笔宽度
         context!.setLineWidth(radius * 2)

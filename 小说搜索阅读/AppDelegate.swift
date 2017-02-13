@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        Thread.sleep(forTimeInterval: 0.5)
+        Thread.sleep(forTimeInterval: 1)
         
         
         if #available(iOS 10.0, *) {
@@ -37,11 +37,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-       // var manager =   SoDuSQLiteManager.shared
+        // var manager =   SoDuSQLiteManager.shared
         
         ViewModelInstance.instance.userLogon =   checklogon()
         
-       // userLogon =  false
+        // userLogon =  false
         
         window = UIWindow()
         
@@ -58,10 +58,108 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        
+        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+    }
+    
+    
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        if  UserDefaultsHelper.getStringValue(key: .UserNameKey) ==  nil {
+            
+            return
+        }
+        
+        if checkBookShelfData()  {
+            
+            //清除所有本地推送
+            UIApplication.shared.cancelAllLocalNotifications()
+            //创建UILocalNotification来进行本地消息通知
+            let localNotification = UILocalNotification()
+            //推送时间（立刻推送）
+            localNotification.fireDate = NSDate(timeIntervalSinceNow: 0) as Date
+            //时区
+            localNotification.timeZone = NSTimeZone.default
+            //推送内容
+            localNotification.alertBody = "在线书架有更新，别忘了追更。"
+            //声音
+            localNotification.soundName = UILocalNotificationDefaultSoundName
+            
+            UIApplication.shared.scheduleLocalNotification(localNotification)
+            
+            //让OS知道已经获取到新数据
+            completionHandler(UIBackgroundFetchResult.newData)
+            
+        }
+        
+    }
+    
 }
 
 
 extension AppDelegate {
+    
+    
+    func checkBookShelfData() -> Bool {
+        
+        var result:Bool  = false
+        
+        let userId =  UserDefaultsHelper.getStringValue(key: .UserNameKey)
+        //创建NSURL对象
+        let url:URL! = URL(string: SoDuUrl.bookShelfPage)
+        //创建请求对象
+        var urlRequest:URLRequest = URLRequest(url: url)
+        //响应对象
+        var response:URLResponse?
+        
+        urlRequest.timeoutInterval = 25
+        
+        do {
+            
+            if  let data:Data =  try NSURLConnection.sendSynchronousRequest(urlRequest as URLRequest, returning: &response) as Data? {
+                
+                guard  let  str = String(data: data , encoding: .utf8) else {
+                    
+                    return false
+                }
+                
+                let list =  AnalisysBookListHtmlHelper.analisysBookShelfHtml(str)
+                
+                let localbooks =  SoDuSQLiteManager.shared.selectBook(tableName: TableName.Bookshelf.rawValue, userId: userId)
+                
+                for  item in localbooks {
+                    
+                    guard  let book = list.first(where: { (temp) -> Bool in
+                        
+                        temp.bookId == item.bookId
+                        
+                    }) else {
+                        
+                        continue
+                        
+                    }
+                    
+                    if !CommonPageViewModel.compareStrs(item.chapterName ?? "", book.chapterName ?? "")
+                    {
+                        
+                        result = true
+                        break
+                    }
+                    
+                }
+                
+                return result
+            }
+            
+            
+        } catch {
+            
+            return result
+        }
+        
+    }
+    
     
     func checklogon() -> Bool {
         

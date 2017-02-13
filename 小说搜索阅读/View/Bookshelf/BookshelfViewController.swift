@@ -186,7 +186,7 @@ extension BookshelfViewController {
         
         var actions:[UITableViewRowAction] = [UITableViewRowAction]()
         
-        let action1  =  UITableViewRowAction(style: .normal, title: "   删除   ", handler: { (action, indexPath) in
+        let action1  =  UITableViewRowAction(style: .normal, title: "不追了", handler: { (action, indexPath) in
             
             self.vm.removeBookFromList(book) { (success) in
                 
