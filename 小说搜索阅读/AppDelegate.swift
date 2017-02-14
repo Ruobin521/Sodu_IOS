@@ -77,12 +77,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UIApplication.shared.cancelAllLocalNotifications()
             //创建UILocalNotification来进行本地消息通知
             let localNotification = UILocalNotification()
+            
+        
             //推送时间（立刻推送）
             localNotification.fireDate = NSDate(timeIntervalSinceNow: 0) as Date
             //时区
             localNotification.timeZone = NSTimeZone.default
             //推送内容
-            localNotification.alertBody = "在线书架有更新，别忘了追更。"
+            localNotification.alertBody = "在线书架有更新啦，别忘了追更哦。"
             //声音
             localNotification.soundName = UILocalNotificationDefaultSoundName
             
@@ -140,7 +142,7 @@ extension AppDelegate {
                         
                     }
                     
-                    if !CommonPageViewModel.compareStrs(item.chapterName ?? "", book.chapterName ?? "")
+                    if !CommonPageViewModel.compareStrs(item.lastReadChapterName ?? "", book.chapterName ?? "")
                     {
                         
                         result = true
