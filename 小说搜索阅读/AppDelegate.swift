@@ -139,16 +139,27 @@ extension AppDelegate {
                     }) else {
                         
                         continue
-                        
                     }
                     
-                    if !CommonPageViewModel.compareStrs(item.lastReadChapterName ?? "", book.chapterName ?? "")
+                    if !CommonPageViewModel.compareStrs(item.chapterName ?? "", book.chapterName ?? "")
                     {
+                        item.chapterName = book.chapterName
+                        
+                        item.isNew = "1"
                         
                         result = true
-                        break
                     }
                     
+                }
+                
+                if result {
+                    
+                    ViewModelInstance.instance.bookShelf.bookList = localbooks
+                    
+                    ViewModelInstance.instance.bookShelf.needRefresh = true
+                    
+                    BookListDBHelpr.saveHomeCache(tableName: TableName.Bookshelf.rawValue, books: localbooks, userId: userId, completion: nil)
+
                 }
                 
                 return result

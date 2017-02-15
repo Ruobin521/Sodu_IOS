@@ -12,6 +12,8 @@ class BookShelfPageViewModel {
     
     lazy var bookList = [Book]()
     
+    var needRefresh = false
+    
     
     var userId:String? {
         

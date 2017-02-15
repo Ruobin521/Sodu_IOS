@@ -93,6 +93,17 @@ class BookshelfViewController: BaseViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if self.vm.needRefresh {
+            
+            self.tableview?.reloadData()
+            
+            self.vm.needRefresh = false
+        }
+        
+    }
 }
 
 
