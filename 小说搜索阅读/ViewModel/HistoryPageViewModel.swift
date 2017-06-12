@@ -25,7 +25,7 @@ extension HistoryPageViewModel {
     func insertNewHistoryItem(_ insertBook:Book) {
         
         
-        guard let _ = insertBook.bookId , let _ = insertBook.chapterUrl   else  {
+        guard let _ = insertBook.bookId , let _ = insertBook.LastReadContentPageUrl   else  {
             
             return
             

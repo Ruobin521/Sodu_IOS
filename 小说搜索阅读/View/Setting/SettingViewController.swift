@@ -216,8 +216,7 @@ extension SettingViewController {
     
     
     
-    
-    
+    ///免责声明
     func mzsmAction() {
         
         let alertController = UIAlertController(title: "免责声明", message: mzsmStr, preferredStyle: .alert)

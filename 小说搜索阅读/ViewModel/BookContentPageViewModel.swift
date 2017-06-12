@@ -269,7 +269,12 @@ class BookContentPageViewModel {
                 
                 self.insertBookToLocalShelf(nil)
             }
+            
             preLoadCatalogContent()
+            
+            //添加历史记录
+            
+            ViewModelInstance.instance.history.insertNewHistoryItem(currentBook!);
         }
     }
     

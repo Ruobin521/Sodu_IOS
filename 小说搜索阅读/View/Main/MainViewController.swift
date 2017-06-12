@@ -194,7 +194,7 @@ extension MainViewController {
             ["clsName": "SettingViewController", "title": "设置", "imageName" : "setting"],
             
             ]
-        
+         
         
         if ViewModelInstance.instance.userLogon {
             

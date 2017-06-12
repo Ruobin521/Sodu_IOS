@@ -181,5 +181,17 @@ class LyWebUrls :NSObject{
     /// </summary>
     let dsb = "www.dashubao.cc";
     
-     
+    
+    /// <summary>
+    /// 漂流地
+    /// </summary>
+    let pld = "piaoliudi.com";
+    
+    
+    /// <summary>
+    /// 齐鲁文学
+    /// </summary>
+    let qlwx = "www.76wx.com";
+    
+    
 }

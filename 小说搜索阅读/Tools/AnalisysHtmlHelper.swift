@@ -581,6 +581,44 @@ class AnalisysHtmlHelper {
                 value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "<h2 class=\"bookTitle\">.*?<div id=\"uyan_frame\">", catalogPattern: "<a href=\"(.*?)\">(.*?)</a>", introPattern: "<div class=\"reBook borderF\">(.*?)</div>", coverPattern: "<div style=\"width:600px; padding:5px\">.*?<img.*?src=\"(.*?)\".*?>", AuthorPattern:"<p>作者：(.*?)&nbsp;&nbsp;&nbsp;</p>")
             }
             
+        /// 漂流地
+        case  LyWebUrls.instance.pld:
+            if type == .Content {
+                
+                value = analisysCommonHtml(html," <div id=\"BookText\">.*?</div>")
+                
+            } else if type == .CatalogPageUrl {
+                
+                value = analysisCommonCatalogPageUrl(url: urlStr)
+
+                
+            } else if type == .CatalogList {
+                
+                
+                let baseUrl = "https://" + host!
+                
+                
+                value =  analisysCommonCIAC(url: baseUrl,coverBaseUrl:"", html: html, htmlPattern: "<dl class=\"chapterlist\">.*?</dl>", catalogPattern: "<dd><a href=\"(.*?)\">(.*?)</a></dd>", introPattern: "<p class=\"book-intro\">(.*?)</p>", coverPattern: "<div class=\"book-img\">.*?<img.*?src=\"(.*?)\".*?/>", AuthorPattern:"<p>作.*?者：(.*?)</p>")
+            }
+            
+        /// 齐鲁文学
+        case  LyWebUrls.instance.qlwx:
+            if type == .Content {
+                
+                value = analisysCommonHtml(html,"<div id=\"content\">.*?</div>")
+                
+            } else if type == .CatalogPageUrl {
+                
+                value = analysisCommonCatalogPageUrl(url: urlStr)
+                
+                
+            } else if type == .CatalogList {
+                
+                let baseUrl = "http://" + host!
+                
+                value =  analisysCommonCIAC(url: urlStr,coverBaseUrl:baseUrl, html: html, htmlPattern: "<dl>.*?</dl>", catalogPattern: "<dd><a href=\"(.*?)\">(.*?)</a></dd>", introPattern: "<div id=\"intro\">(.*?)</div", coverPattern: "<div id=\"fmimg\">.*?<img.*?src=\"(.*?)\".*?/>", AuthorPattern:"<p>作.*?者：(.*?)</p>")
+            }
+            
             
             
         default:

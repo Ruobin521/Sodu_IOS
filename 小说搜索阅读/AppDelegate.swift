@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidEnterBackground(_ application: UIApplication) {
         
-        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        application.setMinimumBackgroundFetchInterval(10800)
     }
     
     
@@ -71,8 +71,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
+        let calendar: Calendar = Calendar(identifier: .gregorian)
+        var comps: DateComponents = DateComponents()
+        comps = calendar.dateComponents([.year,.month,.day, .weekday, .hour, .minute,.second], from: Date())
+        
+        
+        if( (comps.hour! > 0 && comps.hour! < 7) || comps.hour! > 22) {
+            return
+        }
+        
+        
         if checkBookShelfData()  {
             
+          
             //清除所有本地推送
             UIApplication.shared.cancelAllLocalNotifications()
             //创建UILocalNotification来进行本地消息通知
